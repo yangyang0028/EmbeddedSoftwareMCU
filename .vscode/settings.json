@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "freertosconfig.h": "c",
+        "stm32f10x_lib.h": "c",
+        "stm32f10x.h": "c",
+        "stdio.h": "c",
+        "main.h": "c",
+        "usart.h": "c",
+        "as5600.h": "c",
+        "common.h": "c"
+    }
+}
