@@ -3,6 +3,6 @@
 
 #include "stdint-gcc.h"
 
-void Main();
+void UserMain();
 
 #endif

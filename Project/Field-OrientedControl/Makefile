@@ -37,7 +37,7 @@ else
   PLATFORM="MacOS"
  else
   PLATFORM="Unix-Like"
-   GCC_PATH = $(embedded_software_mcu_path)/Tools/gcc-arm-none-eabi-unix/bin
+  GCC_PATH = $(embedded_software_mcu_path)/Tools/gcc-arm-none-eabi-unix/bin
  endif
 endif
 
@@ -96,7 +96,7 @@ $(embedded_software_mcu_path)/SoftwareLib/Foc/svpwm.c \
 $(embedded_software_mcu_path)/SoftwareLib/Foc/park.c \
 $(embedded_software_mcu_path)/SoftwareLib/Foc/ipark.c \
 $(embedded_software_mcu_path)/SoftwareLib/Foc/clarke.c \
-UserApp/Main.c
+UserApp/UserMain.c
 
 # ASM sources
 ASM_SOURCES =  \
