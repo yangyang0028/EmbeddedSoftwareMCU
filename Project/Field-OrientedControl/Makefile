@@ -24,15 +24,6 @@ DEBUG = 1
 # optimization
 OPT = -Og
 
-# mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
-# cur_makefile_path := $(patsubst %/, %, $(dir $(MAKEFILE_LIST)))
-# # embedded_software_mcu_path := patsubst$(%/, %, dir $(cur_makefile_path))
-
-
-# $(info mkfile_path=$(mkfile_path))
-# $(info cur_makefile_path=$(cur_makefile_path))
-# $(info embedded_software_mcu_path=$(embedded_software_mcu_path))
-
 cur_mkfile := $(abspath $(lastword $(MAKEFILE_LIST)))
 cur_makefile_path := $(patsubst %/, %, $(dir $(cur_mkfile)))
 project_path := $(patsubst %/, %, $(dir $(cur_makefile_path)))
