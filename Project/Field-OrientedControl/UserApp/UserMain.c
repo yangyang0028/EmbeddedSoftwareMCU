@@ -28,7 +28,7 @@ _iq X, Y, Z;
 float x, y, z;
 float time_cnt;
 
-void Main() {
+void UserMain() {
     HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2);
     HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_3);
@@ -36,12 +36,12 @@ void Main() {
     HAL_ADC_Start_IT(&hadc1);
     DBG_OUTPUT(INFORMATION, "HELLO Word!");
     while(1){
-        time_cnt+=0.01;
+        time_cnt+=0.05;
         X = _IQsinPU(_IQ(time_cnt));
         x = _IQtoF(X) + 1;
-            Y = _IQsinPU(_IQ(time_cnt + (3.1415926 / 6.0)));
+            Y = _IQsinPU(_IQ(time_cnt + 1.0/3.0));
         y = _IQtoF(Y) + 1;
-        Z = _IQsinPU(_IQ(time_cnt - (3.1415926 / 6.0)));
+        Z = _IQsinPU(_IQ(time_cnt - 1.0/3.0));
         z = _IQtoF(Z) + 1;
 
         DBG_OUTPUT(INFORMATION, ",X=%ld,Y=%ld,Z=%ld,",(int)(x*2500.0), (int)(y*2500.0), (int)(z*2500.0));
