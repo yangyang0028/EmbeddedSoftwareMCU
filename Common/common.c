@@ -1,6 +1,7 @@
 #include "common.h"
 #include <stdarg.h>
 #include <stdio.h>
+#include "stm32f1xx_hal.h"
 
 void log_put(const char * fmt,...) {
     va_list args;
@@ -10,4 +11,21 @@ void log_put(const char * fmt,...) {
     length = vsnprintf(log_buf, sizeof(log_buf) - 1, fmt, args);
     va_end(args);
     HAL_UART_Transmit(&huart1, (uint8_t*)log_buf, length, 0xFFFF);
+}
+
+__STATIC_INLINE uint32_t LL_SYSTICK_IsActiveCounterFlag(void) {
+    return ((SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) == (SysTick_CTRL_COUNTFLAG_Msk));
+}
+
+
+uint64_t _micros() {
+  LL_SYSTICK_IsActiveCounterFlag();
+  uint32_t m = HAL_GetTick();
+  const uint32_t tms = SysTick->LOAD + 1;
+  __IO uint32_t u = tms - SysTick->VAL;
+  if (LL_SYSTICK_IsActiveCounterFlag()) {
+    m = HAL_GetTick();
+    u = tms - SysTick->VAL;
+  }
+  return (m * 1000 + (u * 1000) / tms);
 }

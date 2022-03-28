@@ -7,6 +7,11 @@
         "main.h": "c",
         "usart.h": "c",
         "as5600.h": "c",
-        "common.h": "c"
+        "common.h": "c",
+        "foc_utils.h": "c",
+        "focmotor.h": "c",
+        "bldcmotor.h": "c",
+        "chrono": "c",
+        "foc.h": "c"
     }
 }

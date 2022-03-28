@@ -11,9 +11,11 @@
 
 void log_put(const char * fmt,...);
 
-#define DBG_OUTPUT(level, fmt, args...) \
-  log_put("[" level "%s(%d)]" fmt "\n", __FILE__, __LINE__, ##args)
+#define OUTPUT(fmt, args...) \
+  log_put(fmt, ##args)
 
+#define DBG_OUTPUT(level, fmt, args...) \
+  log_put("[" level "]%s%d::" fmt "\n", __FILE__, __LINE__, ##args)
 
 #define RETURN_CODE uint8_t
 #define EOK  0
@@ -26,3 +28,4 @@ void log_put(const char * fmt,...);
 #define EBUSY  8
 #define EIO  9
 
+uint64_t _micros(void);
