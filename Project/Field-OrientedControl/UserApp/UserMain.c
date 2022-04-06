@@ -1,7 +1,5 @@
 #include "common.h"
 #include "AS5600.h"
-#include "svpwm.h"
-#include "IQmathLib.h"
 
 #include "adc.h"
 #include "i2c.h"

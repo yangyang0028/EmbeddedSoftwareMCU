@@ -37,8 +37,8 @@ RETURN_CODE IST8310Init(IST8310 *ist8310) {
     ist8310->DelayMs(1);
     ist8310->MagneDataReadData(rx_buf, 1);
     if (rx_buf[0] != IST8310_CHIP_ID_VALUE) {
-        printf("magne chip ID error!!!\n");
-        return ERROR;
+        OUTPUT("magne chip ID error!!!\n");
+        return EERROR;
     }
 
     for (int writeNum = 0; writeNum < IST8310_WRITE_REG_NUM; writeNum++) {
@@ -46,8 +46,8 @@ RETURN_CODE IST8310Init(IST8310 *ist8310) {
         ist8310->MagneDataWriteData(&ist8310_write_reg_data_error[writeNum][0], 1);
         ist8310->MagneDataReadData(rx_buf, 1);
         if(rx_buf[0] != ist8310_write_reg_data_error[writeNum][1]) {
-            printf("set magne config is failed!!!\n");
-            return ERROR;
+            OUTPUT("set magne config is failed!!!\n");
+            return EERROR;
         }
     }
     return EOK;
@@ -65,8 +65,12 @@ RETURN_CODE IST8310ReadMagne(IST8310 *ist8310) {
     ist8310->MagneDataWriteData(tx_buf, 1);
     ist8310->DelayMs(1);
     ist8310->MagneDataReadData(rx_buf, 6);
-    memcpy(&ist8310->magne, rx_buf, 6);
-    
+    int16_t magne[3] ={0};
+    memcpy(&magne, rx_buf, 6);
+    ist8310->magne[0] = magne[0] * 1600.0 / 32768.0;
+    ist8310->magne[1] = magne[1] * 1600.0 / 32768.0;
+    ist8310->magne[2] = magne[2] * 1600.0 / 32768.0;
+
     return EOK;
 }
 

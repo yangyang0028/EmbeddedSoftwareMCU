@@ -101,6 +101,7 @@ static float ShaftVelocity(FOC *foc, int64_t time_prev, uint64_t *update_time, f
     else if (angle_now - angle_prev > _PI) temp = _2PI - angle_now + angle_prev;
     else temp = angle_now - angle_prev;
     if (updata_angle !=  NULL) *updata_angle = angle_now;
+    OUTPUT("A=%l0.3f, B=%0.3lf, C=%0.3lf,\n", temp/Ts, temp, Ts);
     return LowPassFilter(temp/Ts, foc->shaft_velocity);
 }
 
@@ -136,6 +137,7 @@ RETURN_CODE FOCMove(FOC *foc, float target) {
             break;
     }
     float electrical_angle = foc->shaft_angle * foc->foc_config->pole_pairs - foc->foc_config->zero_electric_angle;
+    ShaftVelocity(foc, foc->time_prev, &foc->time_prev, foc->angle_prev, &foc->angle_prev);
     // OUTPUT("e = %f,\n", electrical_angle);
     // OUTPUT("a = %f,\n", foc->shaft_angle);
     SetPhaseVoltage(foc, foc->voltage.q, foc->voltage.d, electrical_angle);
