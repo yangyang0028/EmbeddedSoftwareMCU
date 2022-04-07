@@ -1,5 +1,6 @@
 #include "bmi088.h"
 #include <math.h>
+#include <string.h>
 
 #define BMI088_ACC_CHIP_ID 0x00 // the register is  " Who am I "
 #define BMI088_ACC_CHIP_ID_VALUE 0x1E
@@ -257,8 +258,8 @@ static RETURN_CODE Bmi088AccelInit(BMI088 *bmi088) {
   bmi088->DelayMs(1);
 
   if (res != BMI088_ACC_CHIP_ID_VALUE) {
-    printf("accel chip ID error!!!\n");
-    return ERROR;
+    OUTPUT("accel chip ID error!!!\n");
+    return EERROR;
   }
   return EOK;
 }
@@ -295,8 +296,8 @@ static RETURN_CODE Bmi088GryoInit(BMI088 *bmi088) {
   bmi088->DelayMs(1);
 
   if (res != BMI088_GYRO_CHIP_ID_VALUE) {
-    printf("gyro chip ID error!!!\n");
-    return ERROR;
+    OUTPUT("gyro chip ID error!!!\n");
+    return EERROR;
   }
   return EOK;
 }
@@ -313,7 +314,7 @@ RETURN_CODE Bmi088AccelConfig(BMI088 *bmi088) {
         bmi088, g_write_bmi088_accel_reg_data_error[write_reg_num][0], &res);
     bmi088->DelayMs(1);
     if (res != g_write_bmi088_accel_reg_data_error[write_reg_num][1]) {
-      printf("set accel config is failed!!!\n");
+      OUTPUT("set accel config is failed!!!\n");
       return g_write_bmi088_accel_reg_data_error[write_reg_num][2];
     }
   }
@@ -332,7 +333,7 @@ RETURN_CODE Bmi088GryoConfig(BMI088 *bmi088) {
         bmi088, g_write_BMI088_gyro_reg_data_error[write_reg_num][0], &res);
     bmi088->DelayMs(1);
     if (res != g_write_BMI088_gyro_reg_data_error[write_reg_num][1]) {
-      printf("set gryo config is failed!!!\n");
+      OUTPUT("set gryo config is failed!!!\n");
       return g_write_BMI088_gyro_reg_data_error[write_reg_num][2];
     }
   }
@@ -345,19 +346,20 @@ RETURN_CODE Bmi088Init(BMI088 *bmi088) {
     return EEMPTY;
   }
   if (Bmi088AccelInit(bmi088)) {
-    return ERROR;
+    return EERROR;
   }
   if (Bmi088AccelConfig(bmi088)) {
-    return ERROR;
+    return EERROR;
   }
   if (Bmi088GryoInit(bmi088)) {
-    return ERROR;
+    return EERROR;
   }
   if (Bmi088GryoConfig(bmi088)) {
-    return ERROR;
+    return EERROR;
   }
   return EOK;
 }
+
 RETURN_CODE Bmi088ReadAccel(BMI088 *bmi088) {
   if (bmi088 == NULL || bmi088->AcceDataTransfer == NULL ||
       bmi088->GryoDataTransfer == NULL || bmi088->DelayMs == NULL) {

@@ -1349,12 +1349,11 @@ static void prvAddNewTaskToReadyList( TCB_t * pxNewTCB )
 
         /* A delay time of zero just forces a reschedule. */
         if( xTicksToDelay > ( TickType_t ) 0U )
-        {
+        { 
             configASSERT( uxSchedulerSuspended == 0 );
             vTaskSuspendAll();
             {
                 traceTASK_DELAY();
-
                 /* A task that is removed from the event list while the
                  * scheduler is suspended will not get placed in the ready
                  * list or removed from the blocked list until the scheduler
@@ -2248,7 +2247,6 @@ BaseType_t xTaskResumeAll( void )
                     portMEMORY_BARRIER();
                     listREMOVE_ITEM( &( pxTCB->xStateListItem ) );
                     prvAddTaskToReadyList( pxTCB );
-
                     /* If the moved task has a priority higher than or equal to
                      * the current task then a yield must be performed. */
                     if( pxTCB->uxPriority >= pxCurrentTCB->uxPriority )
@@ -2260,7 +2258,6 @@ BaseType_t xTaskResumeAll( void )
                         mtCOVERAGE_TEST_MARKER();
                     }
                 }
-
                 if( pxTCB != NULL )
                 {
                     /* A task was unblocked while the scheduler was suspended,

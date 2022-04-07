@@ -29,3 +29,4 @@ void log_put(const char * fmt,...);
 #define EIO  9
 
 uint64_t _micros(void);
+

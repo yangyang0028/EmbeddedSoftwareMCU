@@ -6,11 +6,11 @@
 #define IST8310_ADDRESS 0x0E
 
 typedef struct IST8310 {
-  int16_t magne[3];    // Raw data
-  int16_t temperature; // Raw data
-  void (*MagneDataReadData)(uint8_t *rx_buf, uint32_t rx_len);
-  void (*MagneDataWriteData)(uint8_t *tx_buf, uint32_t tx_len);                   
-  void (*DelayMs)(uint32_t Ms);
+  float magne[3];    // uT
+  uint16_t temperature; // Raw data
+  void (*MagneDataReadData)(uint8_t *rx_buf, uint16_t rx_len);
+  void (*MagneDataWriteData)(uint8_t *tx_buf, uint16_t tx_len);                   
+  void (*DelayMs)(uint16_t Ms);
 } IST8310;
 
 RETURN_CODE IST8310Init(IST8310 *ist8310);

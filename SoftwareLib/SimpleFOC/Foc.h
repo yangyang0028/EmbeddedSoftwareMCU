@@ -11,11 +11,10 @@ typedef enum {
 	Type_velocity,
 	Type_angle,
 	Type_velocity_openloop,
-	Type_angle_openloop
+	Type_velocity_openloop_angle,
 }MotionControlType;
 
-typedef enum
-{
+typedef enum {
     CW      = 1,  //clockwise
     CCW     = -1, // counter clockwise
     UNKNOWN = 0   //not yet known or invalid state
@@ -28,10 +27,11 @@ typedef struct FOCConfig {
     float voltage_sensor_align;
     uint8_t velocity_limit; //rad/s
     uint8_t pole_pairs;
+    float zero_electric_angle; //电磁角度与机械角度差
     PID *velocity_pid;
     void (*OutPutPWM)(float Ta, float Tb, float Tc);
     void (*DelayMs)(uint16_t ms);
-    float (*GetAnage)(); // 0~2pi; 
+    float (*GetShaftAnage)(); // 0~2pi; 
 }FOCConfig;
 
 typedef struct FOC {
@@ -44,10 +44,11 @@ typedef struct FOC {
     float shaft_angle; // 轴角度  0~2pi;
     float shaft_velocity; // 轴速度 rad/s
     float shaft_velocity_prev;
-    float zero_electric_angle; // 电磁零角度
 }FOC;
 
 RETURN_CODE FOCInit(FOC *foc);
 RETURN_CODE FOCMove(FOC *foc, float target);
+void FOCTestPolePairs(FOC *foc, int pole_pairs);
+float FOCTestZeroElectricAngle(FOC *foc);
 
 #endif

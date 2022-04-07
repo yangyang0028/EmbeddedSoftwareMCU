@@ -7,11 +7,11 @@ typedef struct BMI088 {
   float accel[3];    // mg
   float gyro[3];     // °/s
   float temperature; // °C
-  void (*AcceDataTransfer)(uint8_t *tx_buf, uint32_t tx_len,
-                           uint8_t *rx_buf, uint32_t rx_len);
-  void (*GryoDataTransfer)(uint8_t *tx_buf, uint32_t tx_len,
-                           uint8_t *rx_buf, uint32_t rx_len);
-  void (*DelayMs)(uint32_t Ms);
+  void (*AcceDataTransfer)(uint8_t *tx_buf, uint16_t tx_len,
+                           uint8_t *rx_buf, uint16_t rx_len);
+  void (*GryoDataTransfer)(uint8_t *tx_buf, uint16_t tx_len,
+                           uint8_t *rx_buf, uint16_t rx_len);
+  void (*DelayMs)(uint16_t Ms);
 } BMI088;
 
 RETURN_CODE Bmi088Init(BMI088 *bmi088);

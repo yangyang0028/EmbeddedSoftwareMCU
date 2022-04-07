@@ -1,7 +1,6 @@
 #include "common.h"
 #include <stdarg.h>
 #include <stdio.h>
-#include "stm32f1xx_hal.h"
 
 void log_put(const char * fmt,...) {
     va_list args;

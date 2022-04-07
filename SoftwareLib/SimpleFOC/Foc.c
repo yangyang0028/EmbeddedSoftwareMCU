@@ -1,6 +1,6 @@
 #include "Foc.h"
 
-static void setPhaseVoltage(FOC *foc, float Uq, float Ud, float angle_el) {
+static void SetPhaseVoltage(FOC *foc, float Uq, float Ud, float angle_el) {
     float Uout;
     uint32_t sector;
     float T0,T1,T2;
@@ -60,118 +60,64 @@ static void setPhaseVoltage(FOC *foc, float Uq, float Ud, float angle_el) {
 }
 
 static float ShaftAngle(FOC *foc) {
-  foc->shaft_angle = (int)foc->sensor_direction * foc->foc_config->GetAnage();
-  return foc->shaft_angle;
+  return foc->foc_config->GetShaftAnage();
+}
+
+static void DelayMs(FOC *foc, uint16_t ms) {
+    foc->foc_config->DelayMs(ms);
 }
 
 static float LowPassFilter(float input, float prev) {
 	return 0.9*prev + 0.1*input;
 }
 
-static float ShaftTargetAngle(FOC *foc, float target_velocity) {
+static float ShaftTargetAngle(FOC *foc, float target_velocity, uint64_t time_prev, uint64_t *update_time) {
     uint64_t now_us = _micros();
     float Ts = 0;
-    if(now_us > foc->time_prev) {
-        Ts = (float)(now_us - foc->time_prev)*1e-6;
-    } else {
-        Ts = (float)(0xFFFFFFFF - foc->time_prev + now_us)*1e-6;
-    }
-
-    // float angle_now = foc->foc_config->GetAnage();
-    // float temp = 0;
-    // if (angle_now - foc->angle_prev < -_PI) temp = _2PI + angle_now - foc->angle_prev;
-    // else if (angle_now - foc->angle_prev > _PI) temp = _2PI - angle_now + foc->angle_prev;
-    // else temp = angle_now - foc->angle_prev;
-    // foc->shaft_velocity = LowPassFilter(temp/Ts, foc->shaft_velocity);
-    // OUTPUT("a=%0.3lf,\n",foc->shaft_velocity, temp, Ts);
-    // foc->angle_prev = angle_now;
-
-    foc->time_prev=now_us; 
+    if(now_us > time_prev) 
+        Ts = (float)(now_us - time_prev)*1e-6;
+    else
+        Ts = (float)(0xFFFFFFFF - time_prev + now_us)*1e-6;
+    if (update_time != NULL) *update_time=now_us;
     if(Ts == 0 || Ts > 0.5) Ts = 1e-3;
-    foc->shaft_angle = _normalizeAngle(foc->shaft_angle + target_velocity*Ts); 
-    return foc->shaft_angle;
+    return _normalizeAngle(foc->shaft_angle + target_velocity * Ts);
 }
 
-static float ShaftVelocity(FOC *foc) {
+static float ShaftVelocity(FOC *foc, int64_t time_prev, uint64_t *update_time, float angle_prev, float *updata_angle) {
     uint64_t now_us = _micros();
     float Ts = 0;
     float angle_now = 0;
-    if(now_us > foc->time_prev) {
-        Ts = (float)(now_us - foc->time_prev)*1e-6;
+    if(now_us > time_prev) {
+        Ts = (float)(now_us - time_prev)*1e-6;
     } else {
-        Ts = (float)(0xFFFFFFFF - foc->time_prev + now_us)*1e-6;
+        Ts = (float)(0xFFFFFFFF - time_prev + now_us)*1e-6;
     }
+    if (update_time != NULL) *update_time=now_us;
     if(Ts == 0 || Ts > 0.5) Ts = 1e-3;
-    foc->time_prev=now_us; 
-    float temp = 0;
-    angle_now = foc->foc_config->GetAnage();
-    if (angle_now - foc->angle_prev < -_PI) temp = _2PI + angle_now - foc->angle_prev;
-    else if (angle_now - foc->angle_prev > _PI) temp = _2PI - angle_now + foc->angle_prev;
-    else temp = angle_now - foc->angle_prev;
-    foc->shaft_velocity = LowPassFilter(temp/Ts, foc->shaft_velocity);
-    // OUTPUT("a=%0.3lf,\n",foc->shaft_velocity, temp, Ts);
-    foc->angle_prev = angle_now;
-    return foc->shaft_velocity;
-}
 
-static void alignSensor(FOC *foc) {
-	float angle = 0;
-	float mid_angle = 0;
-	float end_angle = 0;
-	float moved = 0;
-	for (int i = 0; i <= 500; i++) {
-		angle = _2PI * i / 500.0;
-		setPhaseVoltage(foc, foc->foc_config->voltage_sensor_align, 0, angle);
-		foc->foc_config->DelayMs(2);
-	}
-	mid_angle = foc->foc_config->GetAnage();
-	for (int i = 500; i >= 0; i--) {
-		angle = _2PI * i / 500.0;
-		setPhaseVoltage(foc, foc->foc_config->voltage_sensor_align, 0, angle);
-		foc->foc_config->DelayMs(2);
-	}
-	end_angle = foc->foc_config->GetAnage();
-	setPhaseVoltage(foc, 0, 0, 0);
-	foc->foc_config->DelayMs(200);
-	DBG_OUTPUT(INFORMATION, "mid_angle=%lf, end_angle=%lf,", mid_angle, end_angle);
-	moved = fabs(mid_angle - end_angle);
-    DBG_OUTPUT(INFORMATION, "moved=%lf", moved);
-	if ((mid_angle == end_angle) || (moved < 0.02)) {
-        DBG_OUTPUT(ERROR, "Failed to notice movement.\r\n");
-		return ;
-	}
-    else if (mid_angle < end_angle) {
-        DBG_OUTPUT(INFORMATION, "sensor_direction==CCW\r\n");
-        foc->sensor_direction = CCW;
-    } else {
-        DBG_OUTPUT(INFORMATION, "sensor_direction==CW\r\n");
-        foc->sensor_direction = CW;
-    }
-    if (fabs(moved * foc->foc_config->pole_pairs - _2PI) > 0.5) {
-        foc->foc_config->pole_pairs = _2PI / moved + 0.5; //浮点数转整形，四舍五入
-    }
-    DBG_OUTPUT(INFORMATION, "pole_pairs=%ld,", foc->foc_config->pole_pairs);
-    setPhaseVoltage(foc, foc->foc_config->voltage_sensor_align, 0, _3PI_2);
-    foc->foc_config->DelayMs(700);
-    foc->zero_electric_angle = _normalizeAngle(ShaftAngle(foc)*foc->foc_config->pole_pairs);
-    DBG_OUTPUT(INFORMATION, "zero_electric_angle=%lf,", foc->zero_electric_angle);
-    foc->foc_config->DelayMs(20);
-    setPhaseVoltage(foc, 0, 0, 0);
-    foc->foc_config->DelayMs(20);
+    float temp = 0;
+    angle_now = ShaftAngle(foc);
+    if (angle_now - angle_prev < -_PI) temp = _2PI + angle_now - angle_prev;
+    else if (angle_now - angle_prev > _PI) temp = _2PI - angle_now + angle_prev;
+    else temp = angle_now - angle_prev;
+    if (updata_angle !=  NULL) *updata_angle = angle_now;
+    OUTPUT("A=%l0.3f, B=%0.3lf, C=%0.3lf,\n", temp/Ts, temp, Ts);
+    return LowPassFilter(temp/Ts, foc->shaft_velocity);
 }
 
 RETURN_CODE FOCInit(FOC *foc) {
-    if (foc->foc_config == NULL){
+    if (foc->foc_config == NULL) {
         return EEMPTY;
     }
-    if (foc->foc_config->voltage_sensor_align > foc->foc_config->voltage_limit){
+    if (foc->foc_config->voltage_sensor_align > foc->foc_config->voltage_limit) {
 		foc->foc_config->voltage_sensor_align = foc->foc_config->voltage_limit;
 	}
-	foc->sensor_direction = UNKNOWN ;
-	alignSensor(foc);
-    foc->angle_prev=foc->foc_config->GetAnage();
-	foc->foc_config->DelayMs(5);
-	foc->shaft_velocity = ShaftVelocity(foc);  //必须调用一次，进入主循环后速度为0
+    if (ShaftAngle(foc) == 0.0) {
+        return EBUSY;
+    }
+	SetPhaseVoltage(foc, 0, 0, 0);
+	DelayMs(foc, 10);
+    ShaftVelocity(foc, foc->time_prev, &foc->time_prev, foc->angle_prev, &foc->angle_prev);
 	foc->foc_config->DelayMs(5);
 	foc->shaft_angle = ShaftAngle(foc);
 	return EOK;
@@ -180,20 +126,43 @@ RETURN_CODE FOCInit(FOC *foc) {
 RETURN_CODE FOCMove(FOC *foc, float target) {
     switch(foc->foc_config->controller){
         case Type_velocity_openloop:
-            foc->shaft_angle = ShaftTargetAngle(foc, target);
+            foc->shaft_angle = ShaftTargetAngle(foc, target, foc->time_prev, &foc->time_prev);
             foc->voltage.q = foc->foc_config->voltage_limit;
             foc->voltage.d = 0;
             break;
-        case Type_velocity:
+        case Type_velocity_openloop_angle:
             foc->shaft_angle = ShaftAngle(foc);
-            foc->foc_config->velocity_pid->target = target;
-            foc->foc_config->velocity_pid->feedback = ShaftVelocity(foc);
-            foc->voltage.q = PIDCalc(foc->foc_config->velocity_pid);  
+            foc->voltage.q = target;
             foc->voltage.d = 0;
             break;
     }
-    float electrical_angle = foc->shaft_angle * foc->foc_config->pole_pairs - foc->zero_electric_angle;
-    OUTPUT("%lf %lf %lf\n", foc->foc_config->velocity_pid->target, foc->foc_config->velocity_pid->feedback,foc->voltage.q);
-    setPhaseVoltage(foc, foc->voltage.q, foc->voltage.d, electrical_angle);
+    float electrical_angle = foc->shaft_angle * foc->foc_config->pole_pairs - foc->foc_config->zero_electric_angle;
+    ShaftVelocity(foc, foc->time_prev, &foc->time_prev, foc->angle_prev, &foc->angle_prev);
+    // OUTPUT("e = %f,\n", electrical_angle);
+    // OUTPUT("a = %f,\n", foc->shaft_angle);
+    SetPhaseVoltage(foc, foc->voltage.q, foc->voltage.d, electrical_angle);
     return EOK;
+}
+
+void FOCTestPolePairs(FOC *foc, int pole_pairs) {
+    int num = pole_pairs * 500;
+    float num_anage = _2PI * pole_pairs ;
+    SetPhaseVoltage(foc, foc->foc_config->voltage_sensor_align, 0, 0);
+    foc->foc_config->DelayMs(100);
+	for (int i = 0; i <= num; i++) {
+		float angle = num_anage * i / num;
+		SetPhaseVoltage(foc, foc->foc_config->voltage_sensor_align, 0, angle);
+		foc->foc_config->DelayMs(2);
+	}
+    SetPhaseVoltage(foc, 0, 0, 0);
+}
+
+float FOCTestZeroElectricAngle(FOC *foc) {
+    if (foc->foc_config->pole_pairs == 0) {
+        return -1;
+    }
+    SetPhaseVoltage(foc, foc->foc_config->voltage_sensor_align, 0, _3PI_2);
+    foc->foc_config->DelayMs(700);
+    SetPhaseVoltage(foc, 0, 0, 0);
+    return _normalizeAngle(ShaftAngle(foc)*foc->foc_config->pole_pairs);
 }

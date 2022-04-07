@@ -12,6 +12,17 @@
         "focmotor.h": "c",
         "bldcmotor.h": "c",
         "chrono": "c",
-        "foc.h": "c"
+        "foc.h": "c",
+        "freertos.h": "c",
+        "instask.h": "c",
+        "bmi088.h": "c",
+        "ahrs.h": "c",
+        "time.h": "c",
+        "coroutine": "c",
+        "can.h": "c",
+        "bspcan.h": "c",
+        "cmath": "c",
+        "complex": "c",
+        "cstdlib": "c"
     }
 }
