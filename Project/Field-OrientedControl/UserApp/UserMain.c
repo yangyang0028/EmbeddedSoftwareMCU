@@ -66,6 +66,8 @@ struct FOC g_foc = {
 
 uint32_t ADC_Values[2]={0};
 
+
+uint8_t RUN = 0;
 void UserMain() {
     HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
     HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2);
@@ -75,10 +77,16 @@ void UserMain() {
     DBG_OUTPUT(INFORMATION, "FOCInit %d", FOCInit(&g_foc));
     while(1) {
       FOCMove(&g_foc, 3);
+
     }
 }
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
   ADC_Values[0]=HAL_ADC_GetValue(hadc);
   ADC_Values[1]=HAL_ADC_GetValue(hadc);
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+  if (RUN)
+  FOCMove(&g_foc, _2PI);
 }
