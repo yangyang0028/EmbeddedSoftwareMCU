@@ -18,6 +18,11 @@
         "bmi088.h": "c",
         "ahrs.h": "c",
         "time.h": "c",
-        "coroutine": "c"
+        "coroutine": "c",
+        "can.h": "c",
+        "bspcan.h": "c",
+        "cmath": "c",
+        "complex": "c",
+        "cstdlib": "c"
     }
 }

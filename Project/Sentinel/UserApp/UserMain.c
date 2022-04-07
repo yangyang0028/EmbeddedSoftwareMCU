@@ -5,6 +5,7 @@
 
 #include "UserMain.h"
 #include "InsTask.h"
+#include "Holder.h"
 
 #define START_TASK_PRIO 5
 #define START_TASK_SIZE 256
@@ -17,6 +18,10 @@ static TaskHandle_t InsTaskHandler  = NULL;
 #define LED_TASK_PRIO 1
 #define LED_TASK_SIZE 64
 static TaskHandle_t LedTaskHandler  = NULL;
+
+#define HOLDER_TASK_PRIO 3
+#define HOLDER_TASK_SIZE 256
+static TaskHandle_t HolderTaskHandler  = NULL;
 
 void LedTask(void const * argument) {
     while(1){
@@ -44,13 +49,19 @@ void StartTask(void const * argument) {
             (UBaseType_t)INS_TASK_PRIO,
             (TaskHandle_t *)&InsTaskHandler);
 
+    xTaskCreate((TaskFunction_t)HolderTask,
+            (const char *)"HolderTask",
+            (uint16_t)HOLDER_TASK_SIZE,
+            (void *)NULL,
+            (UBaseType_t)HOLDER_TASK_PRIO,
+            (TaskHandle_t *)&HolderTaskHandler);
+
     vTaskDelete(StartTaskHandler);
     taskEXIT_CRITICAL();
 }
 
 void UserMain(){
   DBG_OUTPUT(INFORMATION, "System core clock is %0.3fMhz.\n", (float)SystemCoreClock*1e-6);
-  
     xTaskCreate((TaskFunction_t)StartTask,
             (const char *)"StartTask",
             (uint16_t)START_TASK_SIZE,

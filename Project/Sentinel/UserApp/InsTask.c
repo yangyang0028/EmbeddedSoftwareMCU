@@ -8,6 +8,7 @@
 #include "AHRS.h"
 #include "AHRS_MiddleWare.h"
 
+
 extern void vTaskDelay( const TickType_t xTicksToDelay);
 
 static void AcceDataTransfer(uint8_t *tx_buf, uint16_t tx_len,
@@ -65,10 +66,12 @@ float yaw = 0;
 float pitch =0;
 float roll =0;
 
+char buff[4]={"abcd"};
+
 void INSTask(void const * argument) {
     while(Bmi088Init(&g_bmi088) != EOK) vTaskDelay(100);
     Bmi088ReadAccel(&g_bmi088);
-    for (int i=0 ;i< 1000; i++){
+    for (int i=0 ;i< 1000; i++) {
         Bmi088ReadGryo(&g_bmi088);
         for (int i=0;i<3;i++){
         gyro_drift[i] += g_bmi088.gyro[i];
@@ -84,7 +87,7 @@ void INSTask(void const * argument) {
     AHRS_init(quat, accel, mag);
     HAL_TIM_Base_Start_IT(&htim3);
     while(1) {
-        OUTPUT("yaw=%lf, pitch=%lf, roll=%lf\n",  yaw, pitch, roll);
+        CDC_Transmit_FS(buff, 4);
         vTaskDelay(1);
     }
 }
@@ -92,11 +95,11 @@ void INSTask(void const * argument) {
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
     if(htim == &htim3){
         Bmi088ReadAccel(&g_bmi088);
-        for (int i=0;i<3;i++){
+        for (int i=0;i<3;i++) {
             accel[i] = g_bmi088.accel[i]/100;
         }
         Bmi088ReadGryo(&g_bmi088);
-        for (int i=0;i<3;i++){
+        for (int i=0;i<3;i++) {
             gyro[i] = (g_bmi088.gyro[i] - gyro_drift[i]) / 180.0 * 3.14159;
         }
         AHRS_update(quat, 0.002f, gyro, accel, mag);
@@ -107,10 +110,3 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
     }
 }
 
-// Bmi088ReadAccel(&bmi088);
-// Bmi088ReadGryo(&bmi088);
-// Bmi088ReadTemp(&bmi088);
-// OUTPUT("AX=%lf, AY=%lf, AZ=%lf, ", bmi088.accel[0], bmi088.accel[1], bmi088.accel[2]);
-// OUTPUT("GX=%lf, GY=%lf, GZ=%lf, ", bmi088.gyro[0], bmi088.gyro[1], bmi088.gyro[2]);
-// OUTPUT("t=%lf,\n",  bmi088.temperature);
-// vTaskDelay(1);
