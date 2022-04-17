@@ -30,3 +30,4 @@ void log_put(const char * fmt,...);
 
 uint64_t _micros(void);
 
+#define USING_USB 

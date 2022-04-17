@@ -1,6 +1,9 @@
 #include "common.h"
 #include <stdarg.h>
 #include <stdio.h>
+#ifdef USING_USB
+#include "usbd_cdc_if.h"
+#endif
 
 void log_put(const char * fmt,...) {
     va_list args;
@@ -9,6 +12,9 @@ void log_put(const char * fmt,...) {
     va_start(args, fmt);
     length = vsnprintf(log_buf, sizeof(log_buf) - 1, fmt, args);
     va_end(args);
+#ifdef USING_USB
+    CDC_Transmit_FS(log_buf, length);
+#endif
     HAL_UART_Transmit(&huart1, (uint8_t*)log_buf, length, 0xFFFF);
 }
 

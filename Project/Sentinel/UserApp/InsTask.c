@@ -87,7 +87,6 @@ void INSTask(void const * argument) {
     AHRS_init(quat, accel, mag);
     HAL_TIM_Base_Start_IT(&htim3);
     while(1) {
-        // CDC_Transmit_FS(buff, 4);
         vTaskDelay(1);
     }
 }

@@ -6,6 +6,9 @@
 #include "UserMain.h"
 #include "InsTask.h"
 #include "Holder.h"
+#include "BspUsart.h"
+
+
 
 #define START_TASK_PRIO 5
 #define START_TASK_SIZE 256
@@ -61,7 +64,8 @@ void StartTask(void const * argument) {
 }
 
 void UserMain(){
-  DBG_OUTPUT(INFORMATION, "System core clock is %0.3fMhz.\n", (float)SystemCoreClock*1e-6);
+    DBG_OUTPUT(INFORMATION, "System core clock is %0.3fMhz.\n", (float)SystemCoreClock*1e-6);
+    UsartUserInit();
     xTaskCreate((TaskFunction_t)StartTask,
             (const char *)"StartTask",
             (uint16_t)START_TASK_SIZE,

@@ -2,7 +2,7 @@
 #include "stm32f4xx_hal.h"
 #include "common.h"
 
-void can_user_init(void) {
+void CanUserInit(void) {
     CAN_FilterTypeDef can_filter_st; 
     can_filter_st.FilterActivation = ENABLE; 
     can_filter_st.FilterMode = CAN_FILTERMODE_IDMASK; 
@@ -27,14 +27,14 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
   if ((rx_header.StdId >= FEEDBACK_ID_BASE)
    && (rx_header.StdId <  FEEDBACK_ID_BASE + MOTOR_MAX_NUM)) {
     uint8_t index = rx_header.StdId - FEEDBACK_ID_BASE;
-    motor_info[index].rotor_angle    = ((rx_data[0] << 8) | rx_data[1]);
-    motor_info[index].rotor_speed    = ((rx_data[2] << 8) | rx_data[3]);
-    motor_info[index].torque_current = ((rx_data[4] << 8) | rx_data[5]);
-    motor_info[index].temp           =   rx_data[6];
+    g_motor_info[index].rotor_angle    = ((rx_data[0] << 8) | rx_data[1]);
+    g_motor_info[index].rotor_speed    = ((rx_data[2] << 8) | rx_data[3]);
+    g_motor_info[index].torque_current = ((rx_data[4] << 8) | rx_data[5]);
+    g_motor_info[index].temp           =   rx_data[6];
   }
 }
 
-void set_motor_voltage_mg6020(int16_t v1, int16_t v2, int16_t v3, int16_t v4) {
+void SetMotorVoltageMg6020(int16_t v1, int16_t v2, int16_t v3, int16_t v4) {
   CAN_TxHeaderTypeDef tx_header;
   uint8_t             tx_data[8];
   tx_header.StdId = 0x1ff;

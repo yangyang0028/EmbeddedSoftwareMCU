@@ -23,6 +23,10 @@
         "bspcan.h": "c",
         "cmath": "c",
         "complex": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "string_view": "c",
+        "rope": "c",
+        "regex": "c",
+        "stm32f4xx_hal.h": "c"
     }
 }
