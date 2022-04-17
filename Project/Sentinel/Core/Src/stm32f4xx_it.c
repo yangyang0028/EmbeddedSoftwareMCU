@@ -255,11 +255,11 @@ void TIM3_IRQHandler(void)
 void USART3_IRQHandler(void)
 {
   /* USER CODE BEGIN USART3_IRQn 0 */
-  HAL_UART_IDLE_IRQHandler(&huart3);
+
   /* USER CODE END USART3_IRQn 0 */
   // HAL_UART_IRQHandler(&huart3);
   /* USER CODE BEGIN USART3_IRQn 1 */
-
+  HAL_UART_IDLE_IRQHandler(&huart3);
   /* USER CODE END USART3_IRQn 1 */
 }
 
@@ -297,11 +297,11 @@ void OTG_FS_IRQHandler(void)
 void USART6_IRQHandler(void)
 {
   /* USER CODE BEGIN USART6_IRQn 0 */
-  HAL_UART_IDLE_IRQHandler(&huart6);
+
   /* USER CODE END USART6_IRQn 0 */
   // HAL_UART_IRQHandler(&huart6);
   /* USER CODE BEGIN USART6_IRQn 1 */
-
+  HAL_UART_IDLE_IRQHandler(&huart6);
   /* USER CODE END USART6_IRQn 1 */
 }
 

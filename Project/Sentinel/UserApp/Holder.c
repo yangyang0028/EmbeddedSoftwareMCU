@@ -128,10 +128,11 @@ void HolderTask(void const * argument) {
 		SetMotorVoltageMg6020(g_holder.output_yaw_voltage, g_holder.output_pitch_voltage, 0, 0);
 		// OUTPUT("g_motor_info %d %d\n", g_motor_info[5].rotor_angle, g_motor_info[6].rotor_angle);
 		// OUTPUT("%d, %d\n", g_remote_control.ch1, g_remote_control.ch2);
-		// g_jetson_nano_tx_buff[0] = 0x55;
-		// memcpy((uint8_t*)&g_holder.mg6020_pid_yaw_angle->feedback, g_jetson_nano_tx_buff+1, 4);
-		// memcpy((uint8_t*)&g_holder.mg6020_pid_pitch_angle->feedback, g_jetson_nano_tx_buff+5, 4);
-		// HAL_UART_Transmit(&huart6, g_jetson_nano_tx_buff, 9, 0xFFFF);
+		g_jetson_nano_tx_buff[0] = 0x55;
+		memcpy((uint8_t*)&g_holder.mg6020_pid_yaw_angle->feedback, g_jetson_nano_tx_buff+1, 4);
+		memcpy((uint8_t*)&g_holder.mg6020_pid_pitch_angle->feedback, g_jetson_nano_tx_buff+5, 4);
+		HAL_UART_Transmit(&huart6, g_jetson_nano_tx_buff, 9, 0xFFFF);
+		
 		vTaskDelay(1);
 	}
 }

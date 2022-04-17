@@ -137,7 +137,7 @@ RETURN_CODE FOCMove(FOC *foc, float target) {
             break;
     }
     float electrical_angle = foc->shaft_angle * foc->foc_config->pole_pairs - foc->foc_config->zero_electric_angle;
-    ShaftVelocity(foc, foc->time_prev, &foc->time_prev, foc->angle_prev, &foc->angle_prev);
+    // ShaftVelocity(foc, foc->time_prev, &foc->time_prev, foc->angle_prev, &foc->angle_prev);
     // OUTPUT("e = %f,\n", electrical_angle);
     // OUTPUT("a = %f,\n", foc->shaft_angle);
     SetPhaseVoltage(foc, foc->voltage.q, foc->voltage.d, electrical_angle);

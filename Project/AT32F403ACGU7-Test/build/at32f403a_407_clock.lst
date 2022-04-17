@@ -1,0 +1,247 @@
+ARM GAS  /tmp/cc3CxL8y.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"at32f403a_407_clock.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.system_clock_config,"ax",%progbits
+  16              		.align	1
+  17              		.global	system_clock_config
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  21              		.fpu softvfp
+  23              	system_clock_config:
+  24              	.LFB133:
+  25              		.file 1 "Core/Src/at32f403a_407_clock.c"
+   1:Core/Src/at32f403a_407_clock.c **** /**
+   2:Core/Src/at32f403a_407_clock.c ****   **************************************************************************
+   3:Core/Src/at32f403a_407_clock.c ****   * @file     at32f403a_407_clock.c
+   4:Core/Src/at32f403a_407_clock.c ****   * @version  v2.0.8
+   5:Core/Src/at32f403a_407_clock.c ****   * @date     2022-04-02
+   6:Core/Src/at32f403a_407_clock.c ****   * @brief    system clock config program
+   7:Core/Src/at32f403a_407_clock.c ****   **************************************************************************
+   8:Core/Src/at32f403a_407_clock.c ****   *                       Copyright notice & Disclaimer
+   9:Core/Src/at32f403a_407_clock.c ****   *
+  10:Core/Src/at32f403a_407_clock.c ****   * The software Board Support Package (BSP) that is made available to
+  11:Core/Src/at32f403a_407_clock.c ****   * download from Artery official website is the copyrighted work of Artery.
+  12:Core/Src/at32f403a_407_clock.c ****   * Artery authorizes customers to use, copy, and distribute the BSP
+  13:Core/Src/at32f403a_407_clock.c ****   * software and its related documentation for the purpose of design and
+  14:Core/Src/at32f403a_407_clock.c ****   * development in conjunction with Artery microcontrollers. Use of the
+  15:Core/Src/at32f403a_407_clock.c ****   * software is governed by this copyright notice and the following disclaimer.
+  16:Core/Src/at32f403a_407_clock.c ****   *
+  17:Core/Src/at32f403a_407_clock.c ****   * THIS SOFTWARE IS PROVIDED ON "AS IS" BASIS WITHOUT WARRANTIES,
+  18:Core/Src/at32f403a_407_clock.c ****   * GUARANTEES OR REPRESENTATIONS OF ANY KIND. ARTERY EXPRESSLY DISCLAIMS,
+  19:Core/Src/at32f403a_407_clock.c ****   * TO THE FULLEST EXTENT PERMITTED BY LAW, ALL EXPRESS, IMPLIED OR
+  20:Core/Src/at32f403a_407_clock.c ****   * STATUTORY OR OTHER WARRANTIES, GUARANTEES OR REPRESENTATIONS,
+  21:Core/Src/at32f403a_407_clock.c ****   * INCLUDING BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+  22:Core/Src/at32f403a_407_clock.c ****   * FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
+  23:Core/Src/at32f403a_407_clock.c ****   *
+  24:Core/Src/at32f403a_407_clock.c ****   **************************************************************************
+  25:Core/Src/at32f403a_407_clock.c ****   */
+  26:Core/Src/at32f403a_407_clock.c **** 
+  27:Core/Src/at32f403a_407_clock.c **** /* includes ------------------------------------------------------------------*/
+  28:Core/Src/at32f403a_407_clock.c **** #include "at32f403a_407_clock.h"
+  29:Core/Src/at32f403a_407_clock.c **** 
+  30:Core/Src/at32f403a_407_clock.c **** /**
+  31:Core/Src/at32f403a_407_clock.c ****   * @brief  system clock config program
+  32:Core/Src/at32f403a_407_clock.c ****   * @note   the system clock is configured as follow:
+  33:Core/Src/at32f403a_407_clock.c ****   *         - system clock        = hext / 2 * pll_mult
+ARM GAS  /tmp/cc3CxL8y.s 			page 2
+
+
+  34:Core/Src/at32f403a_407_clock.c ****   *         - system clock source = pll (hext)
+  35:Core/Src/at32f403a_407_clock.c ****   *         - hext                = 8000000
+  36:Core/Src/at32f403a_407_clock.c ****   *         - sclk                = 240000000
+  37:Core/Src/at32f403a_407_clock.c ****   *         - ahbdiv              = 1
+  38:Core/Src/at32f403a_407_clock.c ****   *         - ahbclk              = 240000000
+  39:Core/Src/at32f403a_407_clock.c ****   *         - apb2div             = 2
+  40:Core/Src/at32f403a_407_clock.c ****   *         - apb2clk             = 120000000
+  41:Core/Src/at32f403a_407_clock.c ****   *         - apb1div             = 2
+  42:Core/Src/at32f403a_407_clock.c ****   *         - apb1clk             = 120000000
+  43:Core/Src/at32f403a_407_clock.c ****   *         - pll_mult            = 60
+  44:Core/Src/at32f403a_407_clock.c ****   *         - pll_range           = GT72MHZ (greater than 72 mhz)
+  45:Core/Src/at32f403a_407_clock.c ****   * @param  none
+  46:Core/Src/at32f403a_407_clock.c ****   * @retval none
+  47:Core/Src/at32f403a_407_clock.c ****   */
+  48:Core/Src/at32f403a_407_clock.c **** void system_clock_config(void)
+  49:Core/Src/at32f403a_407_clock.c **** {
+  26              		.loc 1 49 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30 0000 08B5     		push	{r3, lr}
+  31              	.LCFI0:
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 3, -8
+  34              		.cfi_offset 14, -4
+  50:Core/Src/at32f403a_407_clock.c ****   /* reset crm */
+  51:Core/Src/at32f403a_407_clock.c ****   crm_reset();
+  35              		.loc 1 51 0
+  36 0002 FFF7FEFF 		bl	crm_reset
+  37              	.LVL0:
+  52:Core/Src/at32f403a_407_clock.c **** 
+  53:Core/Src/at32f403a_407_clock.c ****   crm_clock_source_enable(CRM_CLOCK_SOURCE_HEXT, TRUE);
+  38              		.loc 1 53 0
+  39 0006 0121     		movs	r1, #1
+  40 0008 0846     		mov	r0, r1
+  41 000a FFF7FEFF 		bl	crm_clock_source_enable
+  42              	.LVL1:
+  43              	.L2:
+  54:Core/Src/at32f403a_407_clock.c **** 
+  55:Core/Src/at32f403a_407_clock.c ****    /* wait till hext is ready */
+  56:Core/Src/at32f403a_407_clock.c ****   while(crm_hext_stable_wait() == ERROR)
+  44              		.loc 1 56 0 discriminator 1
+  45 000e FFF7FEFF 		bl	crm_hext_stable_wait
+  46              	.LVL2:
+  47 0012 0028     		cmp	r0, #0
+  48 0014 FBD0     		beq	.L2
+  57:Core/Src/at32f403a_407_clock.c ****   {
+  58:Core/Src/at32f403a_407_clock.c ****   }
+  59:Core/Src/at32f403a_407_clock.c **** 
+  60:Core/Src/at32f403a_407_clock.c ****   /* config pll clock resource */
+  61:Core/Src/at32f403a_407_clock.c ****   crm_pll_config(CRM_PLL_SOURCE_HEXT_DIV, CRM_PLL_MULT_60, CRM_PLL_OUTPUT_RANGE_GT72MHZ);
+  49              		.loc 1 61 0
+  50 0016 0122     		movs	r2, #1
+  51 0018 3B21     		movs	r1, #59
+  52 001a 0220     		movs	r0, #2
+  53 001c FFF7FEFF 		bl	crm_pll_config
+  54              	.LVL3:
+ARM GAS  /tmp/cc3CxL8y.s 			page 3
+
+
+  62:Core/Src/at32f403a_407_clock.c **** 
+  63:Core/Src/at32f403a_407_clock.c ****   /* config hext division */
+  64:Core/Src/at32f403a_407_clock.c ****   crm_hext_clock_div_set(CRM_HEXT_DIV_2);
+  55              		.loc 1 64 0
+  56 0020 0020     		movs	r0, #0
+  57 0022 FFF7FEFF 		bl	crm_hext_clock_div_set
+  58              	.LVL4:
+  65:Core/Src/at32f403a_407_clock.c **** 
+  66:Core/Src/at32f403a_407_clock.c ****   /* enable pll */
+  67:Core/Src/at32f403a_407_clock.c ****   crm_clock_source_enable(CRM_CLOCK_SOURCE_PLL, TRUE);
+  59              		.loc 1 67 0
+  60 0026 0121     		movs	r1, #1
+  61 0028 0220     		movs	r0, #2
+  62 002a FFF7FEFF 		bl	crm_clock_source_enable
+  63              	.LVL5:
+  64              	.L3:
+  68:Core/Src/at32f403a_407_clock.c **** 
+  69:Core/Src/at32f403a_407_clock.c ****   /* wait till pll is ready */
+  70:Core/Src/at32f403a_407_clock.c ****   while(crm_flag_get(CRM_PLL_STABLE_FLAG) != SET)
+  65              		.loc 1 70 0 discriminator 1
+  66 002e 1920     		movs	r0, #25
+  67 0030 FFF7FEFF 		bl	crm_flag_get
+  68              	.LVL6:
+  69 0034 0128     		cmp	r0, #1
+  70 0036 FAD1     		bne	.L3
+  71:Core/Src/at32f403a_407_clock.c ****   {
+  72:Core/Src/at32f403a_407_clock.c ****   }
+  73:Core/Src/at32f403a_407_clock.c **** 
+  74:Core/Src/at32f403a_407_clock.c ****   /* config ahbclk */
+  75:Core/Src/at32f403a_407_clock.c ****   crm_ahb_div_set(CRM_AHB_DIV_1);
+  71              		.loc 1 75 0
+  72 0038 0020     		movs	r0, #0
+  73 003a FFF7FEFF 		bl	crm_ahb_div_set
+  74              	.LVL7:
+  76:Core/Src/at32f403a_407_clock.c **** 
+  77:Core/Src/at32f403a_407_clock.c ****   /* config apb2clk */
+  78:Core/Src/at32f403a_407_clock.c ****   crm_apb2_div_set(CRM_APB2_DIV_2);
+  75              		.loc 1 78 0
+  76 003e 0420     		movs	r0, #4
+  77 0040 FFF7FEFF 		bl	crm_apb2_div_set
+  78              	.LVL8:
+  79:Core/Src/at32f403a_407_clock.c **** 
+  80:Core/Src/at32f403a_407_clock.c ****   /* config apb1clk */
+  81:Core/Src/at32f403a_407_clock.c ****   crm_apb1_div_set(CRM_APB1_DIV_2);
+  79              		.loc 1 81 0
+  80 0044 0420     		movs	r0, #4
+  81 0046 FFF7FEFF 		bl	crm_apb1_div_set
+  82              	.LVL9:
+  82:Core/Src/at32f403a_407_clock.c **** 
+  83:Core/Src/at32f403a_407_clock.c ****   /* enable auto step mode */
+  84:Core/Src/at32f403a_407_clock.c ****   crm_auto_step_mode_enable(TRUE);
+  83              		.loc 1 84 0
+  84 004a 0120     		movs	r0, #1
+  85 004c FFF7FEFF 		bl	crm_auto_step_mode_enable
+  86              	.LVL10:
+  85:Core/Src/at32f403a_407_clock.c **** 
+  86:Core/Src/at32f403a_407_clock.c ****   /* select pll as system clock source */
+ARM GAS  /tmp/cc3CxL8y.s 			page 4
+
+
+  87:Core/Src/at32f403a_407_clock.c ****   crm_sysclk_switch(CRM_SCLK_PLL);
+  87              		.loc 1 87 0
+  88 0050 0220     		movs	r0, #2
+  89 0052 FFF7FEFF 		bl	crm_sysclk_switch
+  90              	.LVL11:
+  91              	.L4:
+  88:Core/Src/at32f403a_407_clock.c **** 
+  89:Core/Src/at32f403a_407_clock.c ****   /* wait till pll is used as system clock source */
+  90:Core/Src/at32f403a_407_clock.c ****   while(crm_sysclk_switch_status_get() != CRM_SCLK_PLL)
+  92              		.loc 1 90 0 discriminator 1
+  93 0056 FFF7FEFF 		bl	crm_sysclk_switch_status_get
+  94              	.LVL12:
+  95 005a 0228     		cmp	r0, #2
+  96 005c FBD1     		bne	.L4
+  91:Core/Src/at32f403a_407_clock.c ****   {
+  92:Core/Src/at32f403a_407_clock.c ****   }
+  93:Core/Src/at32f403a_407_clock.c **** 
+  94:Core/Src/at32f403a_407_clock.c ****   /* disable auto step mode */
+  95:Core/Src/at32f403a_407_clock.c ****   crm_auto_step_mode_enable(FALSE);
+  97              		.loc 1 95 0
+  98 005e 0020     		movs	r0, #0
+  99 0060 FFF7FEFF 		bl	crm_auto_step_mode_enable
+ 100              	.LVL13:
+  96:Core/Src/at32f403a_407_clock.c **** 
+  97:Core/Src/at32f403a_407_clock.c ****   /* update system_core_clock global variable */
+  98:Core/Src/at32f403a_407_clock.c ****   system_core_clock_update();
+ 101              		.loc 1 98 0
+ 102 0064 FFF7FEFF 		bl	system_core_clock_update
+ 103              	.LVL14:
+ 104 0068 08BD     		pop	{r3, pc}
+ 105              		.cfi_endproc
+ 106              	.LFE133:
+ 108              		.text
+ 109              	.Letext0:
+ 110              		.file 2 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/mac
+ 111              		.file 3 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
+ 112              		.file 4 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/core_support/core_cm4.h"
+ 113              		.file 5 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/system_at32f40
+ 114              		.file 6 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/at32f403a_407.
+ 115              		.file 7 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_crm.h"
+ 116              		.file 8 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_usb.h"
+ARM GAS  /tmp/cc3CxL8y.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 at32f403a_407_clock.c
+     /tmp/cc3CxL8y.s:16     .text.system_clock_config:0000000000000000 $t
+     /tmp/cc3CxL8y.s:23     .text.system_clock_config:0000000000000000 system_clock_config
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+crm_reset
+crm_clock_source_enable
+crm_hext_stable_wait
+crm_pll_config
+crm_hext_clock_div_set
+crm_flag_get
+crm_ahb_div_set
+crm_apb2_div_set
+crm_apb1_div_set
+crm_auto_step_mode_enable
+crm_sysclk_switch
+crm_sysclk_switch_status_get
+system_core_clock_update

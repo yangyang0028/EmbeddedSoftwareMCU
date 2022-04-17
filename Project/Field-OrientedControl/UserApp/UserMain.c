@@ -54,7 +54,7 @@ struct FOCConfig g_foc_config = {
     .velocity_limit = 20,
     .velocity_pid = &velocity_pid,
     .pole_pairs = 11,
-    .zero_electric_angle = 1.6,
+    .zero_electric_angle = 2.423690,
     .OutPutPWM = OutPutPWM,
     .DelayMs = DelayMs,
     .GetShaftAnage = GetShaftAnage,
@@ -66,7 +66,6 @@ struct FOC g_foc = {
 
 uint32_t ADC_Values[2]={0};
 
-
 uint8_t RUN = 0;
 void UserMain() {
     HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
@@ -76,8 +75,7 @@ void UserMain() {
     DBG_OUTPUT(INFORMATION, "Field-OrientedControl");
     DBG_OUTPUT(INFORMATION, "FOCInit %d", FOCInit(&g_foc));
     while(1) {
-      FOCMove(&g_foc, 3);
-
+      FOCMove(&g_foc, 2);
     }
 }
 

@@ -83,8 +83,8 @@ void HAL_UART_IDLE_IRQHandler(UART_HandleTypeDef *huart) {
 	    __HAL_DMA_CLEAR_FLAG(huart->hdmarx,DMA_FLAGS);
 		huart->hdmarx->Instance->NDTR = huart->RxXferSize;
 		__HAL_DMA_ENABLE(huart->hdmarx);
+        UartIdleTrqHandler(huart);
 	}
-    UartIdleTrqHandler(huart);
 }
 
 void RCHandle(RCType* rc, uint8_t* buff) {

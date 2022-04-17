@@ -67,15 +67,33 @@ struct FOC g_foc = {
 
 uint32_t ADC_Values[2]={0};
 
+struct SerialPortRx{
+  char start_flag;
+  float yaw;
+  float pitch;
+  float roll;
+  char end_flag;
+}__attribute__ ((packed))SerialPortRx;
+
+struct SerialPortRx g_serial_rx = {
+    .start_flag = 0x55,
+    .yaw = 10.0,
+    .pitch = 20.0,
+    .roll = 40.0, 
+    .end_flag = 0x54,
+};
+
 void UserMain() {
-    HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
-    HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2);
-    HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_3);
-    HAL_ADC_Start_IT(&hadc1);
-    DBG_OUTPUT(INFORMATION, "HELLO Word!");
-    DBG_OUTPUT(INFORMATION, "FOCInit %d", FOCInit(&g_foc));
+    // HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
+    // HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2);
+    // HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_3);
+    // HAL_ADC_Start_IT(&hadc1);
+    // DBG_OUTPUT(INFORMATION, "HELLO Word!");
+    // DBG_OUTPUT(INFORMATION, "FOCInit %d", FOCInit(&g_foc));
+    int rx_size = sizeof(SerialPortRx);
     while(1) {
-      FOCMove(&g_foc, 3);
+          HAL_UART_Transmit(&huart1, (uint8_t*)&g_serial_rx, rx_size, 0xFFFF);
+          HAL_Delay(10);
     }
 }
 

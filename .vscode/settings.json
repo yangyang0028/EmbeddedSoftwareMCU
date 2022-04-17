@@ -27,6 +27,8 @@
         "string_view": "c",
         "rope": "c",
         "regex": "c",
-        "stm32f4xx_hal.h": "c"
+        "stm32f4xx_hal.h": "c",
+        "usb_device.h": "c",
+        "usbd_cdc_if.h": "c"
     }
 }
