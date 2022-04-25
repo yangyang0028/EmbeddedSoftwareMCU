@@ -5,6 +5,22 @@ uint8_t g_remote_control_buff[100] = {0};
 uint8_t g_jetson_nano_rx_buff[100] = {0};
 uint8_t g_dji_judge_buff[100] = {0};
 
+struct SerialPortRx g_jetson_nano_rx = {
+    .start_flag = 0x55,
+    .x_offset = 0,
+    .y_offset = 0,
+    .shooting = 0,
+    .end_flag = 0x54
+};
+
+struct SerialPortTx g_jetson_nano_tx = {
+    .start_flag = 0x55,
+    .yaw = 0,
+    .pitch = 0,
+    .roll = 0,
+    .end_flag = 0x54
+};
+
 
 HAL_StatusTypeDef UART_Receive_DMA_NoIT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size) {
     uint32_t *tmp;
@@ -65,10 +81,10 @@ void UsartUserInit() {
 }
 
 void RCHandle(RCType* rc, uint8_t* buff);
-void JNHandle(JNReadType* Jn, uint8_t* buff);
+void JNHandle(SerialPortRx* Jn, uint8_t* buff);
 
 void UartIdleTrqHandler(UART_HandleTypeDef *huart){
-    if(huart==&huart6) JNHandle(&g_jetson_nano,g_jetson_nano_rx_buff);
+    if(huart==&huart6) JNHandle(&g_jetson_nano_rx,g_jetson_nano_rx_buff);
     if(huart==&huart3) RCHandle(&g_remote_control,g_remote_control_buff);
 }
 
@@ -107,15 +123,10 @@ void RCHandle(RCType* rc, uint8_t* buff) {
 	rc->press_r = buff[13];
 	
 	rc->v = ((int16_t)buff[14]);
-    OUTPUT("%d, %d\n", g_remote_control.ch1, g_remote_control.ch2);
+    OUTPUT("press_l %d %d\n", rc->ch1, g_remote_control.switch_left);
 }
 
-void JNHandle(JNReadType* Jn, uint8_t* buff) {
-    uint16_t temp = 0;
-    if(buff[0] == 0x55) {
-        memcpy(buff+1, &temp, 2);
-        Jn->x_deviation = temp - 32768;
-        memcpy(buff+3, &temp, 2);
-        Jn->y_deviation = temp - 32768;
-    }
+void JNHandle(SerialPortRx* Jn, uint8_t* buff) {
+    memcpy(Jn, buff, sizeof(SerialPortRx));
+    // OUTPUT("Jn %d %d %d %d %d\n", Jn->start_flag, Jn->x_offset, Jn->y_offset, Jn->shooting, Jn->end_flag);
 }

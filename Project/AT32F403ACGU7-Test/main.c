@@ -50,11 +50,11 @@ int main(void)
   while(1)
   {
     at32_led_toggle(LED2);
-    delay_ms(200);
+    delay_ms(1);
     at32_led_toggle(LED3);
-    delay_ms(200);
+    delay_ms(1);
     at32_led_toggle(LED4);
-    delay_ms(200);
+    delay_ms(1);
   }
 }
 

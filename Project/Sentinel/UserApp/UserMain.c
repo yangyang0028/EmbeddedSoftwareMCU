@@ -7,7 +7,7 @@
 #include "InsTask.h"
 #include "Holder.h"
 #include "BspUsart.h"
-
+#include "Shoot.h"
 
 
 #define START_TASK_PRIO 5
@@ -25,6 +25,10 @@ static TaskHandle_t LedTaskHandler  = NULL;
 #define HOLDER_TASK_PRIO 3
 #define HOLDER_TASK_SIZE 256
 static TaskHandle_t HolderTaskHandler  = NULL;
+
+#define SHOOT_TASK_PRIO 3
+#define SHOOT_TASK_SIZE 256
+static TaskHandle_t ShootTaskHandler  = NULL;
 
 void LedTask(void const * argument) {
     while(1){
@@ -58,6 +62,13 @@ void StartTask(void const * argument) {
             (void *)NULL,
             (UBaseType_t)HOLDER_TASK_PRIO,
             (TaskHandle_t *)&HolderTaskHandler);
+
+    xTaskCreate((TaskFunction_t)ShootTask,
+            (const char *)"ShootTask",
+            (uint16_t)SHOOT_TASK_SIZE,
+            (void *)NULL,
+            (UBaseType_t)SHOOT_TASK_PRIO,
+            (TaskHandle_t *)&ShootTaskHandler);
 
     vTaskDelete(StartTaskHandler);
     taskEXIT_CRITICAL();

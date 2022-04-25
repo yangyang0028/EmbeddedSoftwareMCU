@@ -649,7 +649,7 @@ LOAD /home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/bin/../lib/
                 0x0000000000000319       0x1e /home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/bin/../lib/gcc/arm-none-eabi/6.2.1/thumb/v7e-m/crtn.o
 OUTPUT(build/AT32F403ACGU7-Test.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000     0xa08d
+.debug_info     0x0000000000000000     0xa08a
  .debug_info    0x0000000000000000      0x5c9 build/at32f403a_407_clock.o
  .debug_info    0x00000000000005c9      0x18e build/at32f403a_407_int.o
  .debug_info    0x0000000000000757     0x265b build/at32f403a_407_board.o
@@ -657,8 +657,8 @@ OUTPUT(build/AT32F403ACGU7-Test.elf elf32-littlearm)
  .debug_info    0x0000000000005226     0x16ad build/system_at32f403a_407.o
  .debug_info    0x00000000000068d3     0x2176 build/at32f403a_407_gpio.o
  .debug_info    0x0000000000008a49      0xaaf build/at32f403a_407_misc.o
- .debug_info    0x00000000000094f8      0xac3 build/main.o
- .debug_info    0x0000000000009fbb       0xd2 build/startup_at32f403a_407.o
+ .debug_info    0x00000000000094f8      0xac0 build/main.o
+ .debug_info    0x0000000000009fb8       0xd2 build/startup_at32f403a_407.o
 
 .debug_abbrev   0x0000000000000000      0xfb3
  .debug_abbrev  0x0000000000000000       0xe5 build/at32f403a_407_clock.o

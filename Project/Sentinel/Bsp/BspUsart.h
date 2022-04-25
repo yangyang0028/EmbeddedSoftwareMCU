@@ -30,13 +30,23 @@ typedef struct RCType{
 	uint16_t v;
 }RCType;
 
-typedef struct JNReadType{
-    int x_deviation;
-    int y_deviation;
-}JNReadType;
+typedef struct SerialPortTx{
+  char start_flag;
+  float yaw;
+  float pitch;
+  float roll;
+  char end_flag;
+}__attribute__ ((packed))SerialPortTx;
 
-static RCType g_remote_control;
-static JNReadType g_jetson_nano;
+typedef struct SerialPortRx{
+    char start_flag;
+    short  x_offset;
+    short  y_offset;
+    char  shooting;
+    char end_flag;
+}__attribute__ ((packed))SerialPortRx;
+
+struct RCType g_remote_control;
 
 void UsartUserInit();
 

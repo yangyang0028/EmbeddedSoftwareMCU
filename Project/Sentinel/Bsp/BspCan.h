@@ -6,6 +6,7 @@
 #define MOTOR_MAX_NUM         8
 #define YAW_MOTOR             5
 #define PITCH_MOTOR           6
+#define DIAL_MOTOR            7
 
 typedef struct {
     uint16_t can_id;
