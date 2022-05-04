@@ -49,12 +49,12 @@ void StartTask(void const * argument) {
         (UBaseType_t)LED_TASK_PRIO,
         (TaskHandle_t *)&LedTaskHandler);
 
-    xTaskCreate((TaskFunction_t)INSTask,
-            (const char *)"INSTask",
-            (uint16_t)INS_TASK_SIZE,
-            (void *)NULL,
-            (UBaseType_t)INS_TASK_PRIO,
-            (TaskHandle_t *)&InsTaskHandler);
+    // xTaskCreate((TaskFunction_t)INSTask,
+    //         (const char *)"INSTask",
+    //         (uint16_t)INS_TASK_SIZE,
+    //         (void *)NULL,
+    //         (UBaseType_t)INS_TASK_PRIO,
+    //         (TaskHandle_t *)&InsTaskHandler);
 
     xTaskCreate((TaskFunction_t)HolderTask,
             (const char *)"HolderTask",

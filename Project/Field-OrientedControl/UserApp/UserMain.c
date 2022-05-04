@@ -54,7 +54,7 @@ struct FOCConfig g_foc_config = {
     .velocity_limit = 20,
     .velocity_pid = &velocity_pid,
     .pole_pairs = 11,
-    .zero_electric_angle = 2.423690,
+    .zero_electric_angle = 1.828502,
     .OutPutPWM = OutPutPWM,
     .DelayMs = DelayMs,
     .GetShaftAnage = GetShaftAnage,
@@ -74,6 +74,7 @@ void UserMain() {
     HAL_ADC_Start_IT(&hadc1);
     DBG_OUTPUT(INFORMATION, "Field-OrientedControl");
     DBG_OUTPUT(INFORMATION, "FOCInit %d", FOCInit(&g_foc));
+    // OUTPUT("%f", FOCTestZeroElectricAngle(&g_foc));
     while(1) {
       FOCMove(&g_foc, 2);
     }
@@ -82,6 +83,7 @@ void UserMain() {
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
   ADC_Values[0]=HAL_ADC_GetValue(hadc);
   ADC_Values[1]=HAL_ADC_GetValue(hadc);
+  // OUTPUT("a=%d,b=%d,", ADC_Values[0], ADC_Values[1]);
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {

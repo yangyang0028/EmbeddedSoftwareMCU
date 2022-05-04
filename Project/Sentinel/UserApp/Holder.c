@@ -43,13 +43,13 @@ typedef struct Holder {
 }Holder;
 
 struct PID g_mg6020_pid_yaw_angle = {
-    .Kp = 40.0,
+    .Kp = 60.0,
     .Ki = 0.0,
     .Kd = 0.0,
 };
 
 struct PID g_mg6020_pid_yaw_speed = {
-    .Kp = 20000.0, // 10000
+    .Kp = 18000.0, // 10000
     .Ki = 0.000,
     .Kd = 0.0,
 };
@@ -61,21 +61,21 @@ struct PID g_mg6020_pid_pitch_angle = {
 };
 
 struct PID g_mg6020_pid_pitch_speed = {
-    .Kp = 10000.0, //10000
+    .Kp = 8000.0, //10000
     .Ki = 0.0,
     .Kd = 0.0,
 };
 
 struct PID g_track_pid_x = {
-    .Kp = 0.000005,
+    .Kp = 0.0000015,
     .Ki = 0.0,
-    .Kd = 0.0,
+    .Kd = 0,
 };
 
 struct PID g_track_pid_y = {
-    .Kp = -0.000005,
+    .Kp = -0.0000015,
     .Ki = 0.0,
-    .Kd = 0.0,
+    .Kd = 0,
 };
 
 Holder g_holder = {
@@ -131,8 +131,8 @@ void HolderTask(void const * argument) {
 	vTaskDelay(1000);
 	g_holder.target_yaw_angle = 0;
 	g_holder.target_pitch_angle = 0;
-	g_holder.offset_yaw_angle = 6098;
-	g_holder.offset_pitch_angle = 6055;
+	g_holder.offset_yaw_angle = 8177 ;
+	g_holder.offset_pitch_angle = 5790;
 	int num = 0;
 	while(1) {
 
@@ -146,7 +146,7 @@ void HolderTask(void const * argument) {
 			// OUTPUT("%f %f\n", g_holder.target_yaw_angle, g_holder.target_pitch_angle);
 		}
 
-		g_holder.target_yaw_angle = InPutLimitAngle(g_holder.target_yaw_angle, -0.5, 0.5);
+		g_holder.target_yaw_angle = InPutLimitAngle(g_holder.target_yaw_angle, -0.3, 0.3);
 		g_holder.mg6020_pid_yaw_angle->target = g_holder.target_yaw_angle;
 		g_holder.mg6020_pid_yaw_angle->feedback = GetActualAngle(YAW_MOTOR, g_holder.offset_yaw_angle);
 		g_holder.mg6020_pid_yaw_speed->target = PIDCalc(g_holder.mg6020_pid_yaw_angle);
@@ -161,14 +161,16 @@ void HolderTask(void const * argument) {
 		g_holder.output_pitch_voltage = GetOutPutVoltage(PIDCalc(g_holder.mg6020_pid_pitch_speed));
 
 		SetMotorVoltageMg6020(g_holder.output_yaw_voltage, g_holder.output_pitch_voltage, g_shoot.output_voltage, 0);
+		// SetMotorVoltageMg6020(g_holder.output_yaw_voltage, g_holder.output_pitch_voltage, 0, 0);
 		num++;
-		if(num >= 10){
+		if(num >= 10) {
 			HAL_UART_Transmit(&huart6, (uint8_t*)&g_jetson_nano_tx, sizeof(SerialPortTx), 0xFFFF);
 			g_jetson_nano_tx.pitch = g_holder.mg6020_pid_pitch_angle->feedback;
 			g_jetson_nano_tx.yaw = g_holder.mg6020_pid_yaw_angle->feedback;
 			g_jetson_nano_tx.roll = 0;
 			num = 0;
 		}
+		// OUTPUT("YAW_MOTOR %d PITCH_MOTOR %d\n",  g_motor_info[YAW_MOTOR].rotor_angle, g_motor_info[PITCH_MOTOR].rotor_angle);
 		vTaskDelay(1);
 	}
 }

@@ -131,8 +131,8 @@ RETURN_CODE FOCMove(FOC *foc, float target) {
             foc->voltage.d = 0;
             break;
         case Type_velocity_openloop_angle:
-            foc->shaft_angle = ShaftAngle(foc);
-            foc->voltage.q = target;
+            foc->shaft_angle = ShaftAngle(foc) + target * 0.1;
+            foc->voltage.q = foc->foc_config->voltage_limit;
             foc->voltage.d = 0;
             break;
     }
