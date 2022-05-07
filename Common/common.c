@@ -15,7 +15,15 @@ void log_put(const char * fmt,...) {
 #ifdef USING_USB
     CDC_Transmit_FS(log_buf, length);
 #endif
+#ifdef AT32
+    size_t usart2_tx_counter = 0;
+    for (int i = 0; i< length ; i++){
+      while(usart_flag_get(USART1, USART_TDBE_FLAG) == RESET);
+      usart_data_transmit(USART1, log_buf[usart2_tx_counter++]);
+    }
+#else
     HAL_UART_Transmit(&huart1, (uint8_t*)log_buf, length, 0xFFFF);
+#endif
 }
 
 __STATIC_INLINE uint32_t LL_SYSTICK_IsActiveCounterFlag(void) {

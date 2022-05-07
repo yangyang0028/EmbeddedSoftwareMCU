@@ -30,6 +30,7 @@
         "stm32f4xx_hal.h": "c",
         "usb_device.h": "c",
         "usbd_cdc_if.h": "c",
-        "tim.h": "c"
+        "tim.h": "c",
+        "at32f403a_407_usart.h": "c"
     }
 }

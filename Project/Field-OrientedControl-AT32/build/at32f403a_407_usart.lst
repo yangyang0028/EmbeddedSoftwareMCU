@@ -1,0 +1,1889 @@
+ARM GAS  /tmp/ccsXmuZX.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"at32f403a_407_usart.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.usart_reset,"ax",%progbits
+  16              		.align	1
+  17              		.global	usart_reset
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  21              		.fpu softvfp
+  23              	usart_reset:
+  24              	.LFB133:
+  25              		.file 1 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c"
+   1:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+   2:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   **************************************************************************
+   3:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @file     at32f403a_407_usart.c
+   4:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @version  v2.0.8
+   5:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @date     2022-04-02
+   6:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief    contains all the functions for the usart firmware library
+   7:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   **************************************************************************
+   8:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *                       Copyright notice & Disclaimer
+   9:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *
+  10:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * The software Board Support Package (BSP) that is made available to
+  11:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * download from Artery official website is the copyrighted work of Artery.
+  12:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * Artery authorizes customers to use, copy, and distribute the BSP
+  13:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * software and its related documentation for the purpose of design and
+  14:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * development in conjunction with Artery microcontrollers. Use of the
+  15:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * software is governed by this copyright notice and the following disclaimer.
+  16:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *
+  17:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * THIS SOFTWARE IS PROVIDED ON "AS IS" BASIS WITHOUT WARRANTIES,
+  18:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * GUARANTEES OR REPRESENTATIONS OF ANY KIND. ARTERY EXPRESSLY DISCLAIMS,
+  19:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * TO THE FULLEST EXTENT PERMITTED BY LAW, ALL EXPRESS, IMPLIED OR
+  20:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * STATUTORY OR OTHER WARRANTIES, GUARANTEES OR REPRESENTATIONS,
+  21:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * INCLUDING BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+  22:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
+  23:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *
+  24:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   **************************************************************************
+  25:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+  26:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+  27:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /* includes ------------------------------------------------------------------*/
+  28:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** #include "at32f403a_407_conf.h"
+  29:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+  30:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /** @addtogroup AT32F403A_407_periph_driver
+  31:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @{
+  32:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+  33:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ARM GAS  /tmp/ccsXmuZX.s 			page 2
+
+
+  34:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /** @defgroup USART
+  35:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief USART driver modules
+  36:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @{
+  37:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+  38:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+  39:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** #ifdef USART_MODULE_ENABLED
+  40:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+  41:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /** @defgroup USART_private_functions
+  42:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @{
+  43:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+  44:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+  45:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+  46:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  deinitialize the usart peripheral registers to their default reset values.
+  47:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+  48:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+  49:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7,or UART8.
+  50:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+  51:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+  52:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_reset(usart_type* usart_x)
+  53:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+  26              		.loc 1 53 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              	.LVL0:
+  31 0000 10B5     		push	{r4, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  54:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   if(usart_x == USART1)
+  36              		.loc 1 54 0
+  37 0002 344B     		ldr	r3, .L19
+  38 0004 9842     		cmp	r0, r3
+  39 0006 15D0     		beq	.L11
+  55:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+  56:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_USART1_PERIPH_RESET, TRUE);
+  57:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_USART1_PERIPH_RESET, FALSE);
+  58:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+  59:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   else if(usart_x == USART2)
+  40              		.loc 1 59 0
+  41 0008 334B     		ldr	r3, .L19+4
+  42 000a 9842     		cmp	r0, r3
+  43 000c 1CD0     		beq	.L12
+  60:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+  61:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_USART2_PERIPH_RESET, TRUE);
+  62:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_USART2_PERIPH_RESET, FALSE);
+  63:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+  64:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   else if(usart_x == USART3)
+  44              		.loc 1 64 0
+  45 000e 334B     		ldr	r3, .L19+8
+  46 0010 9842     		cmp	r0, r3
+  47 0012 23D0     		beq	.L13
+  65:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+  66:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_USART3_PERIPH_RESET, TRUE);
+  67:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_USART3_PERIPH_RESET, FALSE);
+  68:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ARM GAS  /tmp/ccsXmuZX.s 			page 3
+
+
+  69:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   else if(usart_x == UART4)
+  48              		.loc 1 69 0
+  49 0014 324B     		ldr	r3, .L19+12
+  50 0016 9842     		cmp	r0, r3
+  51 0018 2AD0     		beq	.L14
+  70:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+  71:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_UART4_PERIPH_RESET, TRUE);
+  72:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_UART4_PERIPH_RESET, FALSE);
+  73:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+  74:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   else if(usart_x == UART5)
+  52              		.loc 1 74 0
+  53 001a 324B     		ldr	r3, .L19+16
+  54 001c 9842     		cmp	r0, r3
+  55 001e 31D0     		beq	.L15
+  75:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+  76:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_UART5_PERIPH_RESET, TRUE);
+  77:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_UART5_PERIPH_RESET, FALSE);
+  78:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+  79:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   else if(usart_x == USART6)
+  56              		.loc 1 79 0
+  57 0020 314B     		ldr	r3, .L19+20
+  58 0022 9842     		cmp	r0, r3
+  59 0024 38D0     		beq	.L16
+  80:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+  81:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_USART6_PERIPH_RESET, TRUE);
+  82:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_USART6_PERIPH_RESET, FALSE);
+  83:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+  84:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   else if(usart_x == UART7)
+  60              		.loc 1 84 0
+  61 0026 314B     		ldr	r3, .L19+24
+  62 0028 9842     		cmp	r0, r3
+  63 002a 3FD0     		beq	.L17
+  85:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+  86:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_UART7_PERIPH_RESET, TRUE);
+  87:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_UART7_PERIPH_RESET, FALSE);
+  88:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+  89:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   else if(usart_x == UART8)
+  64              		.loc 1 89 0
+  65 002c 304B     		ldr	r3, .L19+28
+  66 002e 9842     		cmp	r0, r3
+  67 0030 46D0     		beq	.L18
+  68              	.LVL1:
+  69              	.L1:
+  70 0032 10BD     		pop	{r4, pc}
+  71              	.LVL2:
+  72              	.L11:
+  56:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_USART1_PERIPH_RESET, FALSE);
+  73              		.loc 1 56 0
+  74 0034 2F4C     		ldr	r4, .L19+32
+  75 0036 0121     		movs	r1, #1
+  76 0038 2046     		mov	r0, r4
+  77              	.LVL3:
+  78 003a FFF7FEFF 		bl	crm_periph_reset
+  79              	.LVL4:
+  57:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+  80              		.loc 1 57 0
+  81 003e 0021     		movs	r1, #0
+ARM GAS  /tmp/ccsXmuZX.s 			page 4
+
+
+  82 0040 2046     		mov	r0, r4
+  83 0042 FFF7FEFF 		bl	crm_periph_reset
+  84              	.LVL5:
+  85 0046 10BD     		pop	{r4, pc}
+  86              	.LVL6:
+  87              	.L12:
+  61:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_USART2_PERIPH_RESET, FALSE);
+  88              		.loc 1 61 0
+  89 0048 2B4C     		ldr	r4, .L19+36
+  90 004a 0121     		movs	r1, #1
+  91 004c 2046     		mov	r0, r4
+  92              	.LVL7:
+  93 004e FFF7FEFF 		bl	crm_periph_reset
+  94              	.LVL8:
+  62:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+  95              		.loc 1 62 0
+  96 0052 0021     		movs	r1, #0
+  97 0054 2046     		mov	r0, r4
+  98 0056 FFF7FEFF 		bl	crm_periph_reset
+  99              	.LVL9:
+ 100 005a 10BD     		pop	{r4, pc}
+ 101              	.LVL10:
+ 102              	.L13:
+  66:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_USART3_PERIPH_RESET, FALSE);
+ 103              		.loc 1 66 0
+ 104 005c 274C     		ldr	r4, .L19+40
+ 105 005e 0121     		movs	r1, #1
+ 106 0060 2046     		mov	r0, r4
+ 107              	.LVL11:
+ 108 0062 FFF7FEFF 		bl	crm_periph_reset
+ 109              	.LVL12:
+  67:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 110              		.loc 1 67 0
+ 111 0066 0021     		movs	r1, #0
+ 112 0068 2046     		mov	r0, r4
+ 113 006a FFF7FEFF 		bl	crm_periph_reset
+ 114              	.LVL13:
+ 115 006e 10BD     		pop	{r4, pc}
+ 116              	.LVL14:
+ 117              	.L14:
+  71:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_UART4_PERIPH_RESET, FALSE);
+ 118              		.loc 1 71 0
+ 119 0070 234C     		ldr	r4, .L19+44
+ 120 0072 0121     		movs	r1, #1
+ 121 0074 2046     		mov	r0, r4
+ 122              	.LVL15:
+ 123 0076 FFF7FEFF 		bl	crm_periph_reset
+ 124              	.LVL16:
+  72:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 125              		.loc 1 72 0
+ 126 007a 0021     		movs	r1, #0
+ 127 007c 2046     		mov	r0, r4
+ 128 007e FFF7FEFF 		bl	crm_periph_reset
+ 129              	.LVL17:
+ 130 0082 10BD     		pop	{r4, pc}
+ 131              	.LVL18:
+ 132              	.L15:
+ARM GAS  /tmp/ccsXmuZX.s 			page 5
+
+
+  76:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_UART5_PERIPH_RESET, FALSE);
+ 133              		.loc 1 76 0
+ 134 0084 1F4C     		ldr	r4, .L19+48
+ 135 0086 0121     		movs	r1, #1
+ 136 0088 2046     		mov	r0, r4
+ 137              	.LVL19:
+ 138 008a FFF7FEFF 		bl	crm_periph_reset
+ 139              	.LVL20:
+  77:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 140              		.loc 1 77 0
+ 141 008e 0021     		movs	r1, #0
+ 142 0090 2046     		mov	r0, r4
+ 143 0092 FFF7FEFF 		bl	crm_periph_reset
+ 144              	.LVL21:
+ 145 0096 10BD     		pop	{r4, pc}
+ 146              	.LVL22:
+ 147              	.L16:
+  81:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_USART6_PERIPH_RESET, FALSE);
+ 148              		.loc 1 81 0
+ 149 0098 1B4C     		ldr	r4, .L19+52
+ 150 009a 0121     		movs	r1, #1
+ 151 009c 2046     		mov	r0, r4
+ 152              	.LVL23:
+ 153 009e FFF7FEFF 		bl	crm_periph_reset
+ 154              	.LVL24:
+  82:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 155              		.loc 1 82 0
+ 156 00a2 0021     		movs	r1, #0
+ 157 00a4 2046     		mov	r0, r4
+ 158 00a6 FFF7FEFF 		bl	crm_periph_reset
+ 159              	.LVL25:
+ 160 00aa 10BD     		pop	{r4, pc}
+ 161              	.LVL26:
+ 162              	.L17:
+  86:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_UART7_PERIPH_RESET, FALSE);
+ 163              		.loc 1 86 0
+ 164 00ac 174C     		ldr	r4, .L19+56
+ 165 00ae 0121     		movs	r1, #1
+ 166 00b0 2046     		mov	r0, r4
+ 167              	.LVL27:
+ 168 00b2 FFF7FEFF 		bl	crm_periph_reset
+ 169              	.LVL28:
+  87:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 170              		.loc 1 87 0
+ 171 00b6 0021     		movs	r1, #0
+ 172 00b8 2046     		mov	r0, r4
+ 173 00ba FFF7FEFF 		bl	crm_periph_reset
+ 174              	.LVL29:
+ 175 00be 10BD     		pop	{r4, pc}
+ 176              	.LVL30:
+ 177              	.L18:
+  90:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+  91:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_UART8_PERIPH_RESET, TRUE);
+ 178              		.loc 1 91 0
+ 179 00c0 134C     		ldr	r4, .L19+60
+ 180 00c2 0121     		movs	r1, #1
+ 181 00c4 2046     		mov	r0, r4
+ARM GAS  /tmp/ccsXmuZX.s 			page 6
+
+
+ 182              	.LVL31:
+ 183 00c6 FFF7FEFF 		bl	crm_periph_reset
+ 184              	.LVL32:
+  92:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     crm_periph_reset(CRM_UART8_PERIPH_RESET, FALSE);
+ 185              		.loc 1 92 0
+ 186 00ca 0021     		movs	r1, #0
+ 187 00cc 2046     		mov	r0, r4
+ 188 00ce FFF7FEFF 		bl	crm_periph_reset
+ 189              	.LVL33:
+  93:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+  94:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 190              		.loc 1 94 0
+ 191 00d2 AEE7     		b	.L1
+ 192              	.L20:
+ 193              		.align	2
+ 194              	.L19:
+ 195 00d4 00380140 		.word	1073821696
+ 196 00d8 00440040 		.word	1073759232
+ 197 00dc 00480040 		.word	1073760256
+ 198 00e0 004C0040 		.word	1073761280
+ 199 00e4 00500040 		.word	1073762304
+ 200 00e8 00600140 		.word	1073831936
+ 201 00ec 00640140 		.word	1073832960
+ 202 00f0 00680140 		.word	1073833984
+ 203 00f4 0E000C00 		.word	786446
+ 204 00f8 11001000 		.word	1048593
+ 205 00fc 12001000 		.word	1048594
+ 206 0100 13001000 		.word	1048595
+ 207 0104 14001000 		.word	1048596
+ 208 0108 18000C00 		.word	786456
+ 209 010c 19000C00 		.word	786457
+ 210 0110 1A000C00 		.word	786458
+ 211              		.cfi_endproc
+ 212              	.LFE133:
+ 214              		.section	.text.usart_init,"ax",%progbits
+ 215              		.align	1
+ 216              		.global	usart_init
+ 217              		.syntax unified
+ 218              		.thumb
+ 219              		.thumb_func
+ 220              		.fpu softvfp
+ 222              	usart_init:
+ 223              	.LFB134:
+  95:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+  96:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+  97:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  initialize the usart peripheral according to the specified parameters.
+  98:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+  99:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 100:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4 ,UART5, USART6, UART7 or UART8.
+ 101:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  baud_rate: configure the usart communication baud rate.
+ 102:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  data_bit: data bits transmitted or received in a frame
+ 103:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 104:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_DATA_8BITS
+ 105:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_DATA_9BITS.
+ 106:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  stop_bit: stop bits transmitted
+ 107:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 108:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_STOP_1_BIT
+ARM GAS  /tmp/ccsXmuZX.s 			page 7
+
+
+ 109:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_STOP_0_5_BIT.
+ 110:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_STOP_2_BIT
+ 111:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_STOP_1_5_BIT.
+ 112:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 113:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 114:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_init(usart_type* usart_x, uint32_t baud_rate, usart_data_bit_num_type data_bit, usart_st
+ 115:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 224              		.loc 1 115 0
+ 225              		.cfi_startproc
+ 226              		@ args = 0, pretend = 0, frame = 24
+ 227              		@ frame_needed = 0, uses_anonymous_args = 0
+ 228              	.LVL34:
+ 229 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 230              	.LCFI1:
+ 231              		.cfi_def_cfa_offset 20
+ 232              		.cfi_offset 4, -20
+ 233              		.cfi_offset 5, -16
+ 234              		.cfi_offset 6, -12
+ 235              		.cfi_offset 7, -8
+ 236              		.cfi_offset 14, -4
+ 237 0002 87B0     		sub	sp, sp, #28
+ 238              	.LCFI2:
+ 239              		.cfi_def_cfa_offset 48
+ 240 0004 0446     		mov	r4, r0
+ 241 0006 0F46     		mov	r7, r1
+ 242 0008 1646     		mov	r6, r2
+ 243 000a 1D46     		mov	r5, r3
+ 116:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   crm_clocks_freq_type clocks_freq;
+ 117:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   uint32_t apb_clock, temp_val;
+ 118:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   crm_clocks_freq_get(&clocks_freq);
+ 244              		.loc 1 118 0
+ 245 000c 01A8     		add	r0, sp, #4
+ 246              	.LVL35:
+ 247 000e FFF7FEFF 		bl	crm_clocks_freq_get
+ 248              	.LVL36:
+ 119:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   if((usart_x == USART1) || (usart_x == USART6) ||  (usart_x == UART7) || (usart_x == UART8))
+ 249              		.loc 1 119 0
+ 250 0012 1D4B     		ldr	r3, .L29
+ 251 0014 9C42     		cmp	r4, r3
+ 252 0016 2FD0     		beq	.L22
+ 253              		.loc 1 119 0 is_stmt 0 discriminator 1
+ 254 0018 03F52053 		add	r3, r3, #10240
+ 255 001c 9C42     		cmp	r4, r3
+ 256 001e 2BD0     		beq	.L22
+ 257              		.loc 1 119 0 discriminator 2
+ 258 0020 03F58063 		add	r3, r3, #1024
+ 259 0024 9C42     		cmp	r4, r3
+ 260 0026 27D0     		beq	.L22
+ 261              		.loc 1 119 0 discriminator 3
+ 262 0028 03F58063 		add	r3, r3, #1024
+ 263 002c 9C42     		cmp	r4, r3
+ 264 002e 23D0     		beq	.L22
+ 120:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+ 121:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     apb_clock = clocks_freq.apb2_freq;
+ 122:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 123:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   else
+ 124:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+ARM GAS  /tmp/ccsXmuZX.s 			page 8
+
+
+ 125:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     apb_clock = clocks_freq.apb1_freq;
+ 265              		.loc 1 125 0 is_stmt 1
+ 266 0030 049B     		ldr	r3, [sp, #16]
+ 267              	.LVL37:
+ 268              	.L24:
+ 126:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 127:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   temp_val = (apb_clock * 10 / baud_rate);
+ 269              		.loc 1 127 0
+ 270 0032 03EB8303 		add	r3, r3, r3, lsl #2
+ 271              	.LVL38:
+ 272 0036 5900     		lsls	r1, r3, #1
+ 273 0038 B1FBF7F1 		udiv	r1, r1, r7
+ 274              	.LVL39:
+ 128:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   if((temp_val % 10) < 5)
+ 275              		.loc 1 128 0
+ 276 003c 134B     		ldr	r3, .L29+4
+ 277 003e A3FB0123 		umull	r2, r3, r3, r1
+ 278 0042 DB08     		lsrs	r3, r3, #3
+ 279 0044 03EB8303 		add	r3, r3, r3, lsl #2
+ 280 0048 5A00     		lsls	r2, r3, #1
+ 281 004a 8B1A     		subs	r3, r1, r2
+ 282 004c 042B     		cmp	r3, #4
+ 283 004e 15D9     		bls	.L28
+ 129:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+ 130:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     temp_val = (temp_val / 10);
+ 131:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 132:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   else
+ 133:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+ 134:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     temp_val = (temp_val / 10) + 1;
+ 284              		.loc 1 134 0
+ 285 0050 0E4B     		ldr	r3, .L29+4
+ 286 0052 A3FB0131 		umull	r3, r1, r3, r1
+ 287              	.LVL40:
+ 288 0056 C908     		lsrs	r1, r1, #3
+ 289 0058 0131     		adds	r1, r1, #1
+ 290              	.LVL41:
+ 291              	.L26:
+ 135:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 136:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->baudr_bit.div = temp_val;
+ 292              		.loc 1 136 0
+ 293 005a 89B2     		uxth	r1, r1
+ 294              	.LVL42:
+ 295 005c A368     		ldr	r3, [r4, #8]
+ 296 005e 61F30F03 		bfi	r3, r1, #0, #16
+ 297 0062 A360     		str	r3, [r4, #8]
+ 137:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl1_bit.dbn = data_bit;
+ 298              		.loc 1 137 0
+ 299 0064 E368     		ldr	r3, [r4, #12]
+ 300 0066 66F30C33 		bfi	r3, r6, #12, #1
+ 301 006a E360     		str	r3, [r4, #12]
+ 138:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl2_bit.stopbn = stop_bit;
+ 302              		.loc 1 138 0
+ 303 006c 2369     		ldr	r3, [r4, #16]
+ 304 006e 65F30D33 		bfi	r3, r5, #12, #2
+ 305 0072 2361     		str	r3, [r4, #16]
+ 139:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 306              		.loc 1 139 0
+ARM GAS  /tmp/ccsXmuZX.s 			page 9
+
+
+ 307 0074 07B0     		add	sp, sp, #28
+ 308              	.LCFI3:
+ 309              		.cfi_remember_state
+ 310              		.cfi_def_cfa_offset 20
+ 311              		@ sp needed
+ 312 0076 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 313              	.LVL43:
+ 314              	.L22:
+ 315              	.LCFI4:
+ 316              		.cfi_restore_state
+ 121:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 317              		.loc 1 121 0
+ 318 0078 039B     		ldr	r3, [sp, #12]
+ 319              	.LVL44:
+ 320 007a DAE7     		b	.L24
+ 321              	.LVL45:
+ 322              	.L28:
+ 130:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 323              		.loc 1 130 0
+ 324 007c 034B     		ldr	r3, .L29+4
+ 325 007e A3FB0131 		umull	r3, r1, r3, r1
+ 326              	.LVL46:
+ 327 0082 C908     		lsrs	r1, r1, #3
+ 328              	.LVL47:
+ 329 0084 E9E7     		b	.L26
+ 330              	.L30:
+ 331 0086 00BF     		.align	2
+ 332              	.L29:
+ 333 0088 00380140 		.word	1073821696
+ 334 008c CDCCCCCC 		.word	-858993459
+ 335              		.cfi_endproc
+ 336              	.LFE134:
+ 338              		.section	.text.usart_parity_selection_config,"ax",%progbits
+ 339              		.align	1
+ 340              		.global	usart_parity_selection_config
+ 341              		.syntax unified
+ 342              		.thumb
+ 343              		.thumb_func
+ 344              		.fpu softvfp
+ 346              	usart_parity_selection_config:
+ 347              	.LFB135:
+ 140:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 141:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 142:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  usart parity selection config.
+ 143:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 144:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 145:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4 ,UART5, USART6, UART7 or UART8.
+ 146:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  parity: select the none, odd or even parity.
+ 147:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 148:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_PARITY_NONE
+ 149:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_PARITY_EVEN.
+ 150:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_PARITY_ODD
+ 151:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 152:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 153:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_parity_selection_config(usart_type* usart_x, usart_parity_selection_type parity)
+ 154:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 348              		.loc 1 154 0
+ARM GAS  /tmp/ccsXmuZX.s 			page 10
+
+
+ 349              		.cfi_startproc
+ 350              		@ args = 0, pretend = 0, frame = 0
+ 351              		@ frame_needed = 0, uses_anonymous_args = 0
+ 352              		@ link register save eliminated.
+ 353              	.LVL48:
+ 155:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   if(parity == USART_PARITY_NONE)
+ 354              		.loc 1 155 0
+ 355 0000 21B1     		cbz	r1, .L35
+ 156:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+ 157:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl1_bit.psel = FALSE;
+ 158:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl1_bit.pen = FALSE;
+ 159:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 160:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   else if(parity == USART_PARITY_EVEN)
+ 356              		.loc 1 160 0
+ 357 0002 0129     		cmp	r1, #1
+ 358 0004 0BD0     		beq	.L36
+ 161:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+ 162:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl1_bit.psel = FALSE;
+ 163:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl1_bit.pen = TRUE;
+ 164:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 165:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   else if(parity == USART_PARITY_ODD)
+ 359              		.loc 1 165 0
+ 360 0006 0229     		cmp	r1, #2
+ 361 0008 12D0     		beq	.L37
+ 362              	.L31:
+ 363 000a 7047     		bx	lr
+ 364              	.L35:
+ 157:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl1_bit.pen = FALSE;
+ 365              		.loc 1 157 0
+ 366 000c C368     		ldr	r3, [r0, #12]
+ 367 000e 6FF34923 		bfc	r3, #9, #1
+ 368 0012 C360     		str	r3, [r0, #12]
+ 158:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 369              		.loc 1 158 0
+ 370 0014 C368     		ldr	r3, [r0, #12]
+ 371 0016 6FF38A23 		bfc	r3, #10, #1
+ 372 001a C360     		str	r3, [r0, #12]
+ 373 001c 7047     		bx	lr
+ 374              	.L36:
+ 162:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl1_bit.pen = TRUE;
+ 375              		.loc 1 162 0
+ 376 001e C368     		ldr	r3, [r0, #12]
+ 377 0020 6FF34923 		bfc	r3, #9, #1
+ 378 0024 C360     		str	r3, [r0, #12]
+ 163:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 379              		.loc 1 163 0
+ 380 0026 C368     		ldr	r3, [r0, #12]
+ 381 0028 43F48063 		orr	r3, r3, #1024
+ 382 002c C360     		str	r3, [r0, #12]
+ 383 002e 7047     		bx	lr
+ 384              	.L37:
+ 166:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+ 167:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl1_bit.psel = TRUE;
+ 385              		.loc 1 167 0
+ 386 0030 C368     		ldr	r3, [r0, #12]
+ 387 0032 43F40073 		orr	r3, r3, #512
+ 388 0036 C360     		str	r3, [r0, #12]
+ARM GAS  /tmp/ccsXmuZX.s 			page 11
+
+
+ 168:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl1_bit.pen = TRUE;
+ 389              		.loc 1 168 0
+ 390 0038 C368     		ldr	r3, [r0, #12]
+ 391 003a 43F48063 		orr	r3, r3, #1024
+ 392 003e C360     		str	r3, [r0, #12]
+ 169:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 170:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 393              		.loc 1 170 0
+ 394 0040 E3E7     		b	.L31
+ 395              		.cfi_endproc
+ 396              	.LFE135:
+ 398              		.section	.text.usart_enable,"ax",%progbits
+ 399              		.align	1
+ 400              		.global	usart_enable
+ 401              		.syntax unified
+ 402              		.thumb
+ 403              		.thumb_func
+ 404              		.fpu softvfp
+ 406              	usart_enable:
+ 407              	.LFB136:
+ 171:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 172:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 173:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  enable or disable the specified usart peripheral.
+ 174:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 175:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 176:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7 or UART8.
+ 177:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  new_state: new state of the usart peripheral.
+ 178:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be: TRUE or FALSE.
+ 179:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 180:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 181:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_enable(usart_type* usart_x, confirm_state new_state)
+ 182:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 408              		.loc 1 182 0
+ 409              		.cfi_startproc
+ 410              		@ args = 0, pretend = 0, frame = 0
+ 411              		@ frame_needed = 0, uses_anonymous_args = 0
+ 412              		@ link register save eliminated.
+ 413              	.LVL49:
+ 183:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl1_bit.uen = new_state;
+ 414              		.loc 1 183 0
+ 415 0000 C368     		ldr	r3, [r0, #12]
+ 416 0002 61F34D33 		bfi	r3, r1, #13, #1
+ 417 0006 C360     		str	r3, [r0, #12]
+ 418 0008 7047     		bx	lr
+ 419              		.cfi_endproc
+ 420              	.LFE136:
+ 422              		.section	.text.usart_transmitter_enable,"ax",%progbits
+ 423              		.align	1
+ 424              		.global	usart_transmitter_enable
+ 425              		.syntax unified
+ 426              		.thumb
+ 427              		.thumb_func
+ 428              		.fpu softvfp
+ 430              	usart_transmitter_enable:
+ 431              	.LFB137:
+ 184:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 185:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ARM GAS  /tmp/ccsXmuZX.s 			page 12
+
+
+ 186:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 187:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  usart transmitter enable.
+ 188:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 189:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 190:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4 ,UART5, USART6, UART7 or UART8.
+ 191:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  new_state: TRUE or FALSE.
+ 192:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 193:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 194:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_transmitter_enable(usart_type* usart_x, confirm_state new_state)
+ 195:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 432              		.loc 1 195 0
+ 433              		.cfi_startproc
+ 434              		@ args = 0, pretend = 0, frame = 0
+ 435              		@ frame_needed = 0, uses_anonymous_args = 0
+ 436              		@ link register save eliminated.
+ 437              	.LVL50:
+ 196:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl1_bit.ten = new_state;
+ 438              		.loc 1 196 0
+ 439 0000 C368     		ldr	r3, [r0, #12]
+ 440 0002 61F3C303 		bfi	r3, r1, #3, #1
+ 441 0006 C360     		str	r3, [r0, #12]
+ 442 0008 7047     		bx	lr
+ 443              		.cfi_endproc
+ 444              	.LFE137:
+ 446              		.section	.text.usart_receiver_enable,"ax",%progbits
+ 447              		.align	1
+ 448              		.global	usart_receiver_enable
+ 449              		.syntax unified
+ 450              		.thumb
+ 451              		.thumb_func
+ 452              		.fpu softvfp
+ 454              	usart_receiver_enable:
+ 455              	.LFB138:
+ 197:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 198:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 199:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 200:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  usart receiver enable.
+ 201:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 202:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 203:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4 ,UART5, USART6, UART7 or UART8.
+ 204:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  new_state: TRUE or FALSE.
+ 205:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 206:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 207:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_receiver_enable(usart_type* usart_x, confirm_state new_state)
+ 208:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 456              		.loc 1 208 0
+ 457              		.cfi_startproc
+ 458              		@ args = 0, pretend = 0, frame = 0
+ 459              		@ frame_needed = 0, uses_anonymous_args = 0
+ 460              		@ link register save eliminated.
+ 461              	.LVL51:
+ 209:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl1_bit.ren = new_state;
+ 462              		.loc 1 209 0
+ 463 0000 C368     		ldr	r3, [r0, #12]
+ 464 0002 61F38203 		bfi	r3, r1, #2, #1
+ 465 0006 C360     		str	r3, [r0, #12]
+ 466 0008 7047     		bx	lr
+ARM GAS  /tmp/ccsXmuZX.s 			page 13
+
+
+ 467              		.cfi_endproc
+ 468              	.LFE138:
+ 470              		.section	.text.usart_clock_config,"ax",%progbits
+ 471              		.align	1
+ 472              		.global	usart_clock_config
+ 473              		.syntax unified
+ 474              		.thumb
+ 475              		.thumb_func
+ 476              		.fpu softvfp
+ 478              	usart_clock_config:
+ 479              	.LFB139:
+ 210:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 211:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 212:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 213:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  usart clock config.
+ 214:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @note   clock config are not available for UART4, UART5, UART7 and UART8.
+ 215:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 216:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 217:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3 or USART6.
+ 218:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  clk_pol: polarity of the clock output on the ck pin.
+ 219:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 220:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_CLOCK_POLARITY_LOW
+ 221:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_CLOCK_POLARITY_HIGH
+ 222:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  clk_pha: phase of the clock output on the ck pin.
+ 223:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 224:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_CLOCK_PHASE_1EDGE
+ 225:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_CLOCK_PHASE_2EDGE
+ 226:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  clk_lb: whether the clock pulse of the last data bit transmitted (MSB) is outputted on 
+ 227:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 228:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_CLOCK_LAST_BIT_NONE
+ 229:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_CLOCK_LAST_BIT_OUTPUT
+ 230:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 231:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 232:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_clock_config(usart_type* usart_x, usart_clock_polarity_type clk_pol, usart_clock_phase_t
+ 233:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 480              		.loc 1 233 0
+ 481              		.cfi_startproc
+ 482              		@ args = 0, pretend = 0, frame = 0
+ 483              		@ frame_needed = 0, uses_anonymous_args = 0
+ 484              		@ link register save eliminated.
+ 485              	.LVL52:
+ 486 0000 10B4     		push	{r4}
+ 487              	.LCFI5:
+ 488              		.cfi_def_cfa_offset 4
+ 489              		.cfi_offset 4, -4
+ 234:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl2_bit.clkpol = clk_pol;
+ 490              		.loc 1 234 0
+ 491 0002 0469     		ldr	r4, [r0, #16]
+ 492 0004 61F38A24 		bfi	r4, r1, #10, #1
+ 493 0008 0461     		str	r4, [r0, #16]
+ 235:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl2_bit.clkpha = clk_pha;
+ 494              		.loc 1 235 0
+ 495 000a 0169     		ldr	r1, [r0, #16]
+ 496              	.LVL53:
+ 497 000c 62F34921 		bfi	r1, r2, #9, #1
+ 498 0010 0161     		str	r1, [r0, #16]
+ 236:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl2_bit.lbcp = clk_lb;
+ARM GAS  /tmp/ccsXmuZX.s 			page 14
+
+
+ 499              		.loc 1 236 0
+ 500 0012 0269     		ldr	r2, [r0, #16]
+ 501              	.LVL54:
+ 502 0014 63F30822 		bfi	r2, r3, #8, #1
+ 503 0018 0261     		str	r2, [r0, #16]
+ 237:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 504              		.loc 1 237 0
+ 505 001a 10BC     		pop	{r4}
+ 506              	.LCFI6:
+ 507              		.cfi_restore 4
+ 508              		.cfi_def_cfa_offset 0
+ 509 001c 7047     		bx	lr
+ 510              		.cfi_endproc
+ 511              	.LFE139:
+ 513              		.section	.text.usart_clock_enable,"ax",%progbits
+ 514              		.align	1
+ 515              		.global	usart_clock_enable
+ 516              		.syntax unified
+ 517              		.thumb
+ 518              		.thumb_func
+ 519              		.fpu softvfp
+ 521              	usart_clock_enable:
+ 522              	.LFB140:
+ 238:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 239:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 240:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  usart enable the ck pin.
+ 241:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @note   clock enable are not available for UART4, UART5, UART7 and UART8.
+ 242:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 243:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 244:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3 or USART6.
+ 245:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  new_state: TRUE or FALSE
+ 246:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 247:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 248:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_clock_enable(usart_type* usart_x, confirm_state new_state)
+ 249:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 523              		.loc 1 249 0
+ 524              		.cfi_startproc
+ 525              		@ args = 0, pretend = 0, frame = 0
+ 526              		@ frame_needed = 0, uses_anonymous_args = 0
+ 527              		@ link register save eliminated.
+ 528              	.LVL55:
+ 250:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl2_bit.clken = new_state;
+ 529              		.loc 1 250 0
+ 530 0000 0369     		ldr	r3, [r0, #16]
+ 531 0002 61F3CB23 		bfi	r3, r1, #11, #1
+ 532 0006 0361     		str	r3, [r0, #16]
+ 533 0008 7047     		bx	lr
+ 534              		.cfi_endproc
+ 535              	.LFE140:
+ 537              		.section	.text.usart_interrupt_enable,"ax",%progbits
+ 538              		.align	1
+ 539              		.global	usart_interrupt_enable
+ 540              		.syntax unified
+ 541              		.thumb
+ 542              		.thumb_func
+ 543              		.fpu softvfp
+ 545              	usart_interrupt_enable:
+ARM GAS  /tmp/ccsXmuZX.s 			page 15
+
+
+ 546              	.LFB141:
+ 251:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 252:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 253:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 254:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  enable or disable the specified usart interrupts.
+ 255:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 256:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 257:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7 or UART8.
+ 258:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_int: specifies the USART interrupt sources to be enabled or disabled.
+ 259:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 260:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_IDLE_INT:  idle interrupt
+ 261:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_RDBF_INT:  rdbf interrupt
+ 262:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_TDC_INT:   tdc interrupt
+ 263:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_TDBE_INT:  tdbe interrupt
+ 264:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_PERR_INT:  perr interrupt
+ 265:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_BF_INT:    break frame interrupt
+ 266:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_ERR_INT:   err interrupt
+ 267:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_CTSCF_INT: ctscf interrupt
+ 268:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  new_state: new state of the specified usart interrupts.
+ 269:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be: TRUE or FALSE.
+ 270:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 271:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 272:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_interrupt_enable(usart_type* usart_x, uint32_t usart_int, confirm_state new_state)
+ 273:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 547              		.loc 1 273 0
+ 548              		.cfi_startproc
+ 549              		@ args = 0, pretend = 0, frame = 0
+ 550              		@ frame_needed = 0, uses_anonymous_args = 0
+ 551              		@ link register save eliminated.
+ 552              	.LVL56:
+ 553 0000 10B4     		push	{r4}
+ 554              	.LCFI7:
+ 555              		.cfi_def_cfa_offset 4
+ 556              		.cfi_offset 4, -4
+ 274:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   if(new_state == TRUE)
+ 557              		.loc 1 274 0
+ 558 0002 012A     		cmp	r2, #1
+ 559 0004 0BD0     		beq	.L48
+ 275:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     PERIPH_REG((uint32_t)usart_x, usart_int) |= PERIPH_REG_BIT(usart_int);
+ 276:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   else
+ 277:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     PERIPH_REG((uint32_t)usart_x, usart_int) &= ~PERIPH_REG_BIT(usart_int);
+ 560              		.loc 1 277 0
+ 561 0006 0C0C     		lsrs	r4, r1, #16
+ 562 0008 0359     		ldr	r3, [r0, r4]
+ 563 000a 01F01F01 		and	r1, r1, #31
+ 564              	.LVL57:
+ 565 000e 0122     		movs	r2, #1
+ 566              	.LVL58:
+ 567 0010 02FA01F1 		lsl	r1, r2, r1
+ 568 0014 23EA0101 		bic	r1, r3, r1
+ 569 0018 0151     		str	r1, [r0, r4]
+ 570              	.L44:
+ 278:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 571              		.loc 1 278 0
+ 572 001a 10BC     		pop	{r4}
+ 573              	.LCFI8:
+ 574              		.cfi_remember_state
+ARM GAS  /tmp/ccsXmuZX.s 			page 16
+
+
+ 575              		.cfi_restore 4
+ 576              		.cfi_def_cfa_offset 0
+ 577 001c 7047     		bx	lr
+ 578              	.LVL59:
+ 579              	.L48:
+ 580              	.LCFI9:
+ 581              		.cfi_restore_state
+ 275:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     PERIPH_REG((uint32_t)usart_x, usart_int) |= PERIPH_REG_BIT(usart_int);
+ 582              		.loc 1 275 0
+ 583 001e 0C0C     		lsrs	r4, r1, #16
+ 584 0020 0359     		ldr	r3, [r0, r4]
+ 585 0022 01F01F01 		and	r1, r1, #31
+ 586              	.LVL60:
+ 587 0026 02FA01F1 		lsl	r1, r2, r1
+ 588 002a 1943     		orrs	r1, r1, r3
+ 589 002c 0151     		str	r1, [r0, r4]
+ 590 002e F4E7     		b	.L44
+ 591              		.cfi_endproc
+ 592              	.LFE141:
+ 594              		.section	.text.usart_dma_transmitter_enable,"ax",%progbits
+ 595              		.align	1
+ 596              		.global	usart_dma_transmitter_enable
+ 597              		.syntax unified
+ 598              		.thumb
+ 599              		.thumb_func
+ 600              		.fpu softvfp
+ 602              	usart_dma_transmitter_enable:
+ 603              	.LFB142:
+ 279:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 280:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 281:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  enable or disable the usart's dma transmitter interface.
+ 282:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 283:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 284:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7 or UART8.
+ 285:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  new_state: new state of the dma request sources.
+ 286:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be: TRUE or FALSE.
+ 287:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 288:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 289:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_dma_transmitter_enable(usart_type* usart_x, confirm_state new_state)
+ 290:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 604              		.loc 1 290 0
+ 605              		.cfi_startproc
+ 606              		@ args = 0, pretend = 0, frame = 0
+ 607              		@ frame_needed = 0, uses_anonymous_args = 0
+ 608              		@ link register save eliminated.
+ 609              	.LVL61:
+ 291:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl3_bit.dmaten = new_state;
+ 610              		.loc 1 291 0
+ 611 0000 4369     		ldr	r3, [r0, #20]
+ 612 0002 61F3C713 		bfi	r3, r1, #7, #1
+ 613 0006 4361     		str	r3, [r0, #20]
+ 614 0008 7047     		bx	lr
+ 615              		.cfi_endproc
+ 616              	.LFE142:
+ 618              		.section	.text.usart_dma_receiver_enable,"ax",%progbits
+ 619              		.align	1
+ 620              		.global	usart_dma_receiver_enable
+ARM GAS  /tmp/ccsXmuZX.s 			page 17
+
+
+ 621              		.syntax unified
+ 622              		.thumb
+ 623              		.thumb_func
+ 624              		.fpu softvfp
+ 626              	usart_dma_receiver_enable:
+ 627              	.LFB143:
+ 292:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 293:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 294:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 295:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  enable or disable the usart's dma receiver interface.
+ 296:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 297:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 298:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7 or UART8.
+ 299:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  new_state: new state of the dma request sources.
+ 300:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be: TRUE or FALSE.
+ 301:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 302:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 303:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_dma_receiver_enable(usart_type* usart_x, confirm_state new_state)
+ 304:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 628              		.loc 1 304 0
+ 629              		.cfi_startproc
+ 630              		@ args = 0, pretend = 0, frame = 0
+ 631              		@ frame_needed = 0, uses_anonymous_args = 0
+ 632              		@ link register save eliminated.
+ 633              	.LVL62:
+ 305:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl3_bit.dmaren = new_state;
+ 634              		.loc 1 305 0
+ 635 0000 4369     		ldr	r3, [r0, #20]
+ 636 0002 61F38613 		bfi	r3, r1, #6, #1
+ 637 0006 4361     		str	r3, [r0, #20]
+ 638 0008 7047     		bx	lr
+ 639              		.cfi_endproc
+ 640              	.LFE143:
+ 642              		.section	.text.usart_wakeup_id_set,"ax",%progbits
+ 643              		.align	1
+ 644              		.global	usart_wakeup_id_set
+ 645              		.syntax unified
+ 646              		.thumb
+ 647              		.thumb_func
+ 648              		.fpu softvfp
+ 650              	usart_wakeup_id_set:
+ 651              	.LFB144:
+ 306:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 307:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 308:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 309:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  set the wakeup id of the usart.
+ 310:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 311:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 312:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7 or UART8.
+ 313:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_id: the matching id(0x0~0xF).
+ 314:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 315:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 316:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_wakeup_id_set(usart_type* usart_x, uint8_t usart_id)
+ 317:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 652              		.loc 1 317 0
+ 653              		.cfi_startproc
+ 654              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /tmp/ccsXmuZX.s 			page 18
+
+
+ 655              		@ frame_needed = 0, uses_anonymous_args = 0
+ 656              		@ link register save eliminated.
+ 657              	.LVL63:
+ 318:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl2_bit.id = usart_id;
+ 658              		.loc 1 318 0
+ 659 0000 0369     		ldr	r3, [r0, #16]
+ 660 0002 61F30303 		bfi	r3, r1, #0, #4
+ 661 0006 0361     		str	r3, [r0, #16]
+ 662 0008 7047     		bx	lr
+ 663              		.cfi_endproc
+ 664              	.LFE144:
+ 666              		.section	.text.usart_wakeup_mode_set,"ax",%progbits
+ 667              		.align	1
+ 668              		.global	usart_wakeup_mode_set
+ 669              		.syntax unified
+ 670              		.thumb
+ 671              		.thumb_func
+ 672              		.fpu softvfp
+ 674              	usart_wakeup_mode_set:
+ 675              	.LFB145:
+ 319:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 320:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 321:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 322:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  select the usart wakeup method in multi-processor communication.
+ 323:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 324:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 325:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7 or UART8.
+ 326:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  wakeup_mode: determines the way to wake up usart method.
+ 327:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 328:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_WAKEUP_BY_IDLE_FRAME
+ 329:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_WAKEUP_BY_MATCHING_ID
+ 330:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 331:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 332:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_wakeup_mode_set(usart_type* usart_x, usart_wakeup_mode_type wakeup_mode)
+ 333:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 676              		.loc 1 333 0
+ 677              		.cfi_startproc
+ 678              		@ args = 0, pretend = 0, frame = 0
+ 679              		@ frame_needed = 0, uses_anonymous_args = 0
+ 680              		@ link register save eliminated.
+ 681              	.LVL64:
+ 334:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl1_bit.wum = wakeup_mode;
+ 682              		.loc 1 334 0
+ 683 0000 C368     		ldr	r3, [r0, #12]
+ 684 0002 61F3CB23 		bfi	r3, r1, #11, #1
+ 685 0006 C360     		str	r3, [r0, #12]
+ 686 0008 7047     		bx	lr
+ 687              		.cfi_endproc
+ 688              	.LFE145:
+ 690              		.section	.text.usart_receiver_mute_enable,"ax",%progbits
+ 691              		.align	1
+ 692              		.global	usart_receiver_mute_enable
+ 693              		.syntax unified
+ 694              		.thumb
+ 695              		.thumb_func
+ 696              		.fpu softvfp
+ 698              	usart_receiver_mute_enable:
+ARM GAS  /tmp/ccsXmuZX.s 			page 19
+
+
+ 699              	.LFB146:
+ 335:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 336:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 337:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 338:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  config the usart in mute mode in multi-processor communication.
+ 339:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 340:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 341:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7 or UART8.
+ 342:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  new_state: new state of the usart mute mode.
+ 343:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be: TRUE or FALSE.
+ 344:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 345:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 346:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_receiver_mute_enable(usart_type* usart_x, confirm_state new_state)
+ 347:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 700              		.loc 1 347 0
+ 701              		.cfi_startproc
+ 702              		@ args = 0, pretend = 0, frame = 0
+ 703              		@ frame_needed = 0, uses_anonymous_args = 0
+ 704              		@ link register save eliminated.
+ 705              	.LVL65:
+ 348:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl1_bit.rm = new_state;
+ 706              		.loc 1 348 0
+ 707 0000 C368     		ldr	r3, [r0, #12]
+ 708 0002 61F34103 		bfi	r3, r1, #1, #1
+ 709 0006 C360     		str	r3, [r0, #12]
+ 710 0008 7047     		bx	lr
+ 711              		.cfi_endproc
+ 712              	.LFE146:
+ 714              		.section	.text.usart_break_bit_num_set,"ax",%progbits
+ 715              		.align	1
+ 716              		.global	usart_break_bit_num_set
+ 717              		.syntax unified
+ 718              		.thumb
+ 719              		.thumb_func
+ 720              		.fpu softvfp
+ 722              	usart_break_bit_num_set:
+ 723              	.LFB147:
+ 349:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 350:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 351:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 352:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  set the usart break frame bit num.
+ 353:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 354:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 355:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7 or UART8.
+ 356:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  break_bit: specifies the break bit num.
+ 357:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 358:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_BREAK_10BITS
+ 359:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_BREAK_11BITS
+ 360:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 361:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 362:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_break_bit_num_set(usart_type* usart_x, usart_break_bit_num_type break_bit)
+ 363:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 724              		.loc 1 363 0
+ 725              		.cfi_startproc
+ 726              		@ args = 0, pretend = 0, frame = 0
+ 727              		@ frame_needed = 0, uses_anonymous_args = 0
+ 728              		@ link register save eliminated.
+ARM GAS  /tmp/ccsXmuZX.s 			page 20
+
+
+ 729              	.LVL66:
+ 364:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl2_bit.bfbn = break_bit;
+ 730              		.loc 1 364 0
+ 731 0000 0369     		ldr	r3, [r0, #16]
+ 732 0002 61F34513 		bfi	r3, r1, #5, #1
+ 733 0006 0361     		str	r3, [r0, #16]
+ 734 0008 7047     		bx	lr
+ 735              		.cfi_endproc
+ 736              	.LFE147:
+ 738              		.section	.text.usart_lin_mode_enable,"ax",%progbits
+ 739              		.align	1
+ 740              		.global	usart_lin_mode_enable
+ 741              		.syntax unified
+ 742              		.thumb
+ 743              		.thumb_func
+ 744              		.fpu softvfp
+ 746              	usart_lin_mode_enable:
+ 747              	.LFB148:
+ 365:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 366:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 367:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 368:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  enable or disable the usart lin mode.
+ 369:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 370:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 371:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7 or UART8.
+ 372:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  new_state: new state of the usart lin mode.
+ 373:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be: TRUE or FALSE.
+ 374:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 375:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 376:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_lin_mode_enable(usart_type* usart_x, confirm_state new_state)
+ 377:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 748              		.loc 1 377 0
+ 749              		.cfi_startproc
+ 750              		@ args = 0, pretend = 0, frame = 0
+ 751              		@ frame_needed = 0, uses_anonymous_args = 0
+ 752              		@ link register save eliminated.
+ 753              	.LVL67:
+ 378:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl2_bit.linen = new_state;
+ 754              		.loc 1 378 0
+ 755 0000 0369     		ldr	r3, [r0, #16]
+ 756 0002 61F38E33 		bfi	r3, r1, #14, #1
+ 757 0006 0361     		str	r3, [r0, #16]
+ 758 0008 7047     		bx	lr
+ 759              		.cfi_endproc
+ 760              	.LFE148:
+ 762              		.section	.text.usart_data_transmit,"ax",%progbits
+ 763              		.align	1
+ 764              		.global	usart_data_transmit
+ 765              		.syntax unified
+ 766              		.thumb
+ 767              		.thumb_func
+ 768              		.fpu softvfp
+ 770              	usart_data_transmit:
+ 771              	.LFB149:
+ 379:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 380:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 381:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ARM GAS  /tmp/ccsXmuZX.s 			page 21
+
+
+ 382:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  transmit single data through the usart peripheral.
+ 383:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 384:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 385:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7 or UART8.
+ 386:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  data: the data to transmit.
+ 387:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 388:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 389:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_data_transmit(usart_type* usart_x, uint16_t data)
+ 390:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 772              		.loc 1 390 0
+ 773              		.cfi_startproc
+ 774              		@ args = 0, pretend = 0, frame = 0
+ 775              		@ frame_needed = 0, uses_anonymous_args = 0
+ 776              		@ link register save eliminated.
+ 777              	.LVL68:
+ 391:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->dt = (data & 0x01FF);
+ 778              		.loc 1 391 0
+ 779 0000 C1F30801 		ubfx	r1, r1, #0, #9
+ 780              	.LVL69:
+ 781 0004 4160     		str	r1, [r0, #4]
+ 782 0006 7047     		bx	lr
+ 783              		.cfi_endproc
+ 784              	.LFE149:
+ 786              		.section	.text.usart_data_receive,"ax",%progbits
+ 787              		.align	1
+ 788              		.global	usart_data_receive
+ 789              		.syntax unified
+ 790              		.thumb
+ 791              		.thumb_func
+ 792              		.fpu softvfp
+ 794              	usart_data_receive:
+ 795              	.LFB150:
+ 392:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 393:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 394:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 395:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  return the most recent received data by the usart peripheral.
+ 396:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 397:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 398:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7 or UART8.
+ 399:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval the received data.
+ 400:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 401:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** uint16_t usart_data_receive(usart_type* usart_x)
+ 402:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 796              		.loc 1 402 0
+ 797              		.cfi_startproc
+ 798              		@ args = 0, pretend = 0, frame = 0
+ 799              		@ frame_needed = 0, uses_anonymous_args = 0
+ 800              		@ link register save eliminated.
+ 801              	.LVL70:
+ 403:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   return (uint16_t)(usart_x->dt);
+ 802              		.loc 1 403 0
+ 803 0000 4068     		ldr	r0, [r0, #4]
+ 804              	.LVL71:
+ 404:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 805              		.loc 1 404 0
+ 806 0002 80B2     		uxth	r0, r0
+ 807 0004 7047     		bx	lr
+ARM GAS  /tmp/ccsXmuZX.s 			page 22
+
+
+ 808              		.cfi_endproc
+ 809              	.LFE150:
+ 811              		.section	.text.usart_break_send,"ax",%progbits
+ 812              		.align	1
+ 813              		.global	usart_break_send
+ 814              		.syntax unified
+ 815              		.thumb
+ 816              		.thumb_func
+ 817              		.fpu softvfp
+ 819              	usart_break_send:
+ 820              	.LFB151:
+ 405:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 406:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 407:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  transmit break characters.
+ 408:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 409:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 410:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7 or UART8.
+ 411:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 412:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 413:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_break_send(usart_type* usart_x)
+ 414:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 821              		.loc 1 414 0
+ 822              		.cfi_startproc
+ 823              		@ args = 0, pretend = 0, frame = 0
+ 824              		@ frame_needed = 0, uses_anonymous_args = 0
+ 825              		@ link register save eliminated.
+ 826              	.LVL72:
+ 415:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl1_bit.sbf = TRUE;
+ 827              		.loc 1 415 0
+ 828 0000 C368     		ldr	r3, [r0, #12]
+ 829 0002 43F00103 		orr	r3, r3, #1
+ 830 0006 C360     		str	r3, [r0, #12]
+ 831 0008 7047     		bx	lr
+ 832              		.cfi_endproc
+ 833              	.LFE151:
+ 835              		.section	.text.usart_smartcard_guard_time_set,"ax",%progbits
+ 836              		.align	1
+ 837              		.global	usart_smartcard_guard_time_set
+ 838              		.syntax unified
+ 839              		.thumb
+ 840              		.thumb_func
+ 841              		.fpu softvfp
+ 843              	usart_smartcard_guard_time_set:
+ 844              	.LFB152:
+ 416:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 417:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 418:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 419:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  config the specified usart smartcard guard time.
+ 420:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @note   The guard time bits are not available for UART4, UART5, UART7 or UART8.
+ 421:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 422:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 423:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3 or USART6.
+ 424:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  guard_time_val: specifies the guard time (0x00~0xFF).
+ 425:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 426:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 427:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_smartcard_guard_time_set(usart_type* usart_x, uint8_t guard_time_val)
+ 428:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ARM GAS  /tmp/ccsXmuZX.s 			page 23
+
+
+ 845              		.loc 1 428 0
+ 846              		.cfi_startproc
+ 847              		@ args = 0, pretend = 0, frame = 0
+ 848              		@ frame_needed = 0, uses_anonymous_args = 0
+ 849              		@ link register save eliminated.
+ 850              	.LVL73:
+ 429:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->gdiv_bit.scgt = guard_time_val;
+ 851              		.loc 1 429 0
+ 852 0000 8369     		ldr	r3, [r0, #24]
+ 853 0002 61F30F23 		bfi	r3, r1, #8, #8
+ 854 0006 8361     		str	r3, [r0, #24]
+ 855 0008 7047     		bx	lr
+ 856              		.cfi_endproc
+ 857              	.LFE152:
+ 859              		.section	.text.usart_irda_smartcard_division_set,"ax",%progbits
+ 860              		.align	1
+ 861              		.global	usart_irda_smartcard_division_set
+ 862              		.syntax unified
+ 863              		.thumb
+ 864              		.thumb_func
+ 865              		.fpu softvfp
+ 867              	usart_irda_smartcard_division_set:
+ 868              	.LFB153:
+ 430:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 431:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 432:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 433:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  config the irda/smartcard division.
+ 434:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @note   the division are not available for UART4, UART5, UART7 or UART8.
+ 435:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 436:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 437:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3 or USART6.
+ 438:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  div_val: specifies the division.
+ 439:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 440:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 441:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_irda_smartcard_division_set(usart_type* usart_x, uint8_t div_val)
+ 442:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 869              		.loc 1 442 0
+ 870              		.cfi_startproc
+ 871              		@ args = 0, pretend = 0, frame = 0
+ 872              		@ frame_needed = 0, uses_anonymous_args = 0
+ 873              		@ link register save eliminated.
+ 874              	.LVL74:
+ 443:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->gdiv_bit.isdiv = div_val;
+ 875              		.loc 1 443 0
+ 876 0000 8369     		ldr	r3, [r0, #24]
+ 877              	.LVL75:
+ 878 0002 61F30703 		bfi	r3, r1, #0, #8
+ 879 0006 8361     		str	r3, [r0, #24]
+ 880 0008 7047     		bx	lr
+ 881              		.cfi_endproc
+ 882              	.LFE153:
+ 884              		.section	.text.usart_smartcard_mode_enable,"ax",%progbits
+ 885              		.align	1
+ 886              		.global	usart_smartcard_mode_enable
+ 887              		.syntax unified
+ 888              		.thumb
+ 889              		.thumb_func
+ARM GAS  /tmp/ccsXmuZX.s 			page 24
+
+
+ 890              		.fpu softvfp
+ 892              	usart_smartcard_mode_enable:
+ 893              	.LFB154:
+ 444:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 445:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 446:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 447:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  enable or disable the usart smart card mode.
+ 448:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @note   the smart card mode are not available for UART4, UART5, UART7 or UART8.
+ 449:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 450:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 451:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3 or USART6.
+ 452:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  new_state: new state of the smart card mode.
+ 453:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be: TRUE or FALSE.
+ 454:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 455:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 456:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_smartcard_mode_enable(usart_type* usart_x, confirm_state new_state)
+ 457:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 894              		.loc 1 457 0
+ 895              		.cfi_startproc
+ 896              		@ args = 0, pretend = 0, frame = 0
+ 897              		@ frame_needed = 0, uses_anonymous_args = 0
+ 898              		@ link register save eliminated.
+ 899              	.LVL76:
+ 458:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl3_bit.scmen = new_state;
+ 900              		.loc 1 458 0
+ 901 0000 4369     		ldr	r3, [r0, #20]
+ 902 0002 61F34513 		bfi	r3, r1, #5, #1
+ 903 0006 4361     		str	r3, [r0, #20]
+ 904 0008 7047     		bx	lr
+ 905              		.cfi_endproc
+ 906              	.LFE154:
+ 908              		.section	.text.usart_smartcard_nack_set,"ax",%progbits
+ 909              		.align	1
+ 910              		.global	usart_smartcard_nack_set
+ 911              		.syntax unified
+ 912              		.thumb
+ 913              		.thumb_func
+ 914              		.fpu softvfp
+ 916              	usart_smartcard_nack_set:
+ 917              	.LFB155:
+ 459:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 460:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 461:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 462:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  enable or disable nack transmission in smartcard mode.
+ 463:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @note   the smart card nack are not available for UART4, UART5, UART7 or UART8.
+ 464:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 465:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 466:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3 or USART6.
+ 467:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  new_state: new state of the nack transmission.
+ 468:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be: TRUE or FALSE.
+ 469:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 470:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 471:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_smartcard_nack_set(usart_type* usart_x, confirm_state new_state)
+ 472:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 918              		.loc 1 472 0
+ 919              		.cfi_startproc
+ 920              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /tmp/ccsXmuZX.s 			page 25
+
+
+ 921              		@ frame_needed = 0, uses_anonymous_args = 0
+ 922              		@ link register save eliminated.
+ 923              	.LVL77:
+ 473:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl3_bit.scnacken = new_state;
+ 924              		.loc 1 473 0
+ 925 0000 4369     		ldr	r3, [r0, #20]
+ 926 0002 61F30413 		bfi	r3, r1, #4, #1
+ 927 0006 4361     		str	r3, [r0, #20]
+ 928 0008 7047     		bx	lr
+ 929              		.cfi_endproc
+ 930              	.LFE155:
+ 932              		.section	.text.usart_single_line_halfduplex_select,"ax",%progbits
+ 933              		.align	1
+ 934              		.global	usart_single_line_halfduplex_select
+ 935              		.syntax unified
+ 936              		.thumb
+ 937              		.thumb_func
+ 938              		.fpu softvfp
+ 940              	usart_single_line_halfduplex_select:
+ 941              	.LFB156:
+ 474:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 475:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 476:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 477:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  enable or disable the usart single line bidirectional half-duplex communication.
+ 478:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 479:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 480:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7 or UART8.
+ 481:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  new_state: new state of the single line half-duplex select.
+ 482:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be: TRUE or FALSE.
+ 483:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 484:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 485:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_single_line_halfduplex_select(usart_type* usart_x, confirm_state new_state)
+ 486:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 942              		.loc 1 486 0
+ 943              		.cfi_startproc
+ 944              		@ args = 0, pretend = 0, frame = 0
+ 945              		@ frame_needed = 0, uses_anonymous_args = 0
+ 946              		@ link register save eliminated.
+ 947              	.LVL78:
+ 487:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl3_bit.slben = new_state;
+ 948              		.loc 1 487 0
+ 949 0000 4369     		ldr	r3, [r0, #20]
+ 950 0002 61F3C303 		bfi	r3, r1, #3, #1
+ 951 0006 4361     		str	r3, [r0, #20]
+ 952 0008 7047     		bx	lr
+ 953              		.cfi_endproc
+ 954              	.LFE156:
+ 956              		.section	.text.usart_irda_mode_enable,"ax",%progbits
+ 957              		.align	1
+ 958              		.global	usart_irda_mode_enable
+ 959              		.syntax unified
+ 960              		.thumb
+ 961              		.thumb_func
+ 962              		.fpu softvfp
+ 964              	usart_irda_mode_enable:
+ 965              	.LFB157:
+ 488:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ARM GAS  /tmp/ccsXmuZX.s 			page 26
+
+
+ 489:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 490:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 491:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  enable or disable the usart's irda interface.
+ 492:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 493:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 494:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7 or UART8.
+ 495:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  new_state: new state of the irda mode.
+ 496:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be: TRUE or FALSE.
+ 497:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 498:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 499:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_irda_mode_enable(usart_type* usart_x, confirm_state new_state)
+ 500:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 966              		.loc 1 500 0
+ 967              		.cfi_startproc
+ 968              		@ args = 0, pretend = 0, frame = 0
+ 969              		@ frame_needed = 0, uses_anonymous_args = 0
+ 970              		@ link register save eliminated.
+ 971              	.LVL79:
+ 501:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl3_bit.irdaen = new_state;
+ 972              		.loc 1 501 0
+ 973 0000 4369     		ldr	r3, [r0, #20]
+ 974 0002 61F34103 		bfi	r3, r1, #1, #1
+ 975 0006 4361     		str	r3, [r0, #20]
+ 976 0008 7047     		bx	lr
+ 977              		.cfi_endproc
+ 978              	.LFE157:
+ 980              		.section	.text.usart_irda_low_power_enable,"ax",%progbits
+ 981              		.align	1
+ 982              		.global	usart_irda_low_power_enable
+ 983              		.syntax unified
+ 984              		.thumb
+ 985              		.thumb_func
+ 986              		.fpu softvfp
+ 988              	usart_irda_low_power_enable:
+ 989              	.LFB158:
+ 502:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 503:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 504:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 505:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  configure the usart's irda low power.
+ 506:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 507:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 508:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7 or UART8.
+ 509:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  new_state: new state of the irda mode.
+ 510:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be: TRUE or FALSE.
+ 511:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 512:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 513:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_irda_low_power_enable(usart_type* usart_x, confirm_state new_state)
+ 514:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 990              		.loc 1 514 0
+ 991              		.cfi_startproc
+ 992              		@ args = 0, pretend = 0, frame = 0
+ 993              		@ frame_needed = 0, uses_anonymous_args = 0
+ 994              		@ link register save eliminated.
+ 995              	.LVL80:
+ 515:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->ctrl3_bit.irdalp = new_state;
+ 996              		.loc 1 515 0
+ 997 0000 4369     		ldr	r3, [r0, #20]
+ARM GAS  /tmp/ccsXmuZX.s 			page 27
+
+
+ 998 0002 61F38203 		bfi	r3, r1, #2, #1
+ 999 0006 4361     		str	r3, [r0, #20]
+ 1000 0008 7047     		bx	lr
+ 1001              		.cfi_endproc
+ 1002              	.LFE158:
+ 1004              		.section	.text.usart_hardware_flow_control_set,"ax",%progbits
+ 1005              		.align	1
+ 1006              		.global	usart_hardware_flow_control_set
+ 1007              		.syntax unified
+ 1008              		.thumb
+ 1009              		.thumb_func
+ 1010              		.fpu softvfp
+ 1012              	usart_hardware_flow_control_set:
+ 1013              	.LFB159:
+ 516:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 517:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 518:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 519:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  configure the usart's hardware flow control.
+ 520:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 521:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 522:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3
+ 523:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  flow_state: specifies the hardware flow control.
+ 524:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 525:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_HARDWARE_FLOW_NONE
+ 526:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_HARDWARE_FLOW_RTS,
+ 527:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_HARDWARE_FLOW_CTS,
+ 528:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_HARDWARE_FLOW_RTS_CTS
+ 529:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 530:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 531:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_hardware_flow_control_set(usart_type* usart_x,usart_hardware_flow_control_type flow_stat
+ 532:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 1014              		.loc 1 532 0
+ 1015              		.cfi_startproc
+ 1016              		@ args = 0, pretend = 0, frame = 0
+ 1017              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1018              		@ link register save eliminated.
+ 1019              	.LVL81:
+ 533:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   if(flow_state == USART_HARDWARE_FLOW_NONE)
+ 1020              		.loc 1 533 0
+ 1021 0000 31B1     		cbz	r1, .L71
+ 534:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+ 535:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl3_bit.rtsen = FALSE;
+ 536:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl3_bit.ctsen = FALSE;
+ 537:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 538:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   else if(flow_state == USART_HARDWARE_FLOW_RTS)
+ 1022              		.loc 1 538 0
+ 1023 0002 0129     		cmp	r1, #1
+ 1024 0004 0DD0     		beq	.L72
+ 539:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+ 540:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl3_bit.rtsen = TRUE;
+ 541:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl3_bit.ctsen = FALSE;
+ 542:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 543:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   else if(flow_state == USART_HARDWARE_FLOW_CTS)
+ 1025              		.loc 1 543 0
+ 1026 0006 0229     		cmp	r1, #2
+ 1027 0008 14D0     		beq	.L73
+ 544:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+ARM GAS  /tmp/ccsXmuZX.s 			page 28
+
+
+ 545:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl3_bit.rtsen = FALSE;
+ 546:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl3_bit.ctsen = TRUE;
+ 547:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 548:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   else if(flow_state == USART_HARDWARE_FLOW_RTS_CTS)
+ 1028              		.loc 1 548 0
+ 1029 000a 0329     		cmp	r1, #3
+ 1030 000c 1BD0     		beq	.L74
+ 1031              	.L66:
+ 1032 000e 7047     		bx	lr
+ 1033              	.L71:
+ 535:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl3_bit.ctsen = FALSE;
+ 1034              		.loc 1 535 0
+ 1035 0010 4369     		ldr	r3, [r0, #20]
+ 1036 0012 6FF30823 		bfc	r3, #8, #1
+ 1037 0016 4361     		str	r3, [r0, #20]
+ 536:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 1038              		.loc 1 536 0
+ 1039 0018 4369     		ldr	r3, [r0, #20]
+ 1040 001a 6FF34923 		bfc	r3, #9, #1
+ 1041 001e 4361     		str	r3, [r0, #20]
+ 1042 0020 7047     		bx	lr
+ 1043              	.L72:
+ 540:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl3_bit.ctsen = FALSE;
+ 1044              		.loc 1 540 0
+ 1045 0022 4369     		ldr	r3, [r0, #20]
+ 1046 0024 43F48073 		orr	r3, r3, #256
+ 1047 0028 4361     		str	r3, [r0, #20]
+ 541:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 1048              		.loc 1 541 0
+ 1049 002a 4369     		ldr	r3, [r0, #20]
+ 1050 002c 6FF34923 		bfc	r3, #9, #1
+ 1051 0030 4361     		str	r3, [r0, #20]
+ 1052 0032 7047     		bx	lr
+ 1053              	.L73:
+ 545:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl3_bit.ctsen = TRUE;
+ 1054              		.loc 1 545 0
+ 1055 0034 4369     		ldr	r3, [r0, #20]
+ 1056 0036 6FF30823 		bfc	r3, #8, #1
+ 1057 003a 4361     		str	r3, [r0, #20]
+ 546:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 1058              		.loc 1 546 0
+ 1059 003c 4369     		ldr	r3, [r0, #20]
+ 1060 003e 43F40073 		orr	r3, r3, #512
+ 1061 0042 4361     		str	r3, [r0, #20]
+ 1062 0044 7047     		bx	lr
+ 1063              	.L74:
+ 549:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+ 550:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl3_bit.rtsen = TRUE;
+ 1064              		.loc 1 550 0
+ 1065 0046 4369     		ldr	r3, [r0, #20]
+ 1066 0048 43F48073 		orr	r3, r3, #256
+ 1067 004c 4361     		str	r3, [r0, #20]
+ 551:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     usart_x->ctrl3_bit.ctsen = TRUE;
+ 1068              		.loc 1 551 0
+ 1069 004e 4369     		ldr	r3, [r0, #20]
+ 1070 0050 43F40073 		orr	r3, r3, #512
+ 1071 0054 4361     		str	r3, [r0, #20]
+ARM GAS  /tmp/ccsXmuZX.s 			page 29
+
+
+ 552:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 553:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 1072              		.loc 1 553 0
+ 1073 0056 DAE7     		b	.L66
+ 1074              		.cfi_endproc
+ 1075              	.LFE159:
+ 1077              		.section	.text.usart_flag_get,"ax",%progbits
+ 1078              		.align	1
+ 1079              		.global	usart_flag_get
+ 1080              		.syntax unified
+ 1081              		.thumb
+ 1082              		.thumb_func
+ 1083              		.fpu softvfp
+ 1085              	usart_flag_get:
+ 1086              	.LFB160:
+ 554:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 555:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 556:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  check whether the specified usart flag is set or not.
+ 557:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 558:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 559:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7 or UART8.
+ 560:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  flag: specifies the flag to check.
+ 561:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 562:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_CTSCF_FLAG: cts change flag (not available for UART4,UART5,USART6,UART7 and UAR
+ 563:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_BFF_FLAG:   break frame flag
+ 564:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_TDBE_FLAG:  transmit data buffer empty flag
+ 565:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_TDC_FLAG:   transmit data complete flag
+ 566:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_RDBF_FLAG:  receive data buffer full flag
+ 567:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_IDLEF_FLAG: idle flag
+ 568:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_ROERR_FLAG: receiver overflow error flag
+ 569:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_NERR_FLAG:  noise error flag
+ 570:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_FERR_FLAG:  framing error flag
+ 571:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_PERR_FLAG:  parity error flag
+ 572:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval the new state of usart_flag (SET or RESET).
+ 573:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 574:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** flag_status usart_flag_get(usart_type* usart_x, uint32_t flag)
+ 575:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 1087              		.loc 1 575 0
+ 1088              		.cfi_startproc
+ 1089              		@ args = 0, pretend = 0, frame = 0
+ 1090              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1091              		@ link register save eliminated.
+ 1092              	.LVL82:
+ 576:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   if(usart_x->sts & flag)
+ 1093              		.loc 1 576 0
+ 1094 0000 0368     		ldr	r3, [r0]
+ 1095 0002 0B42     		tst	r3, r1
+ 1096 0004 01D1     		bne	.L78
+ 577:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+ 578:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     return SET;
+ 579:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 580:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   else
+ 581:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   {
+ 582:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****     return RESET;
+ 1097              		.loc 1 582 0
+ 1098 0006 0020     		movs	r0, #0
+ 1099              	.LVL83:
+ARM GAS  /tmp/ccsXmuZX.s 			page 30
+
+
+ 583:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 584:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** }
+ 1100              		.loc 1 584 0
+ 1101 0008 7047     		bx	lr
+ 1102              	.LVL84:
+ 1103              	.L78:
+ 578:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   }
+ 1104              		.loc 1 578 0
+ 1105 000a 0120     		movs	r0, #1
+ 1106              	.LVL85:
+ 1107 000c 7047     		bx	lr
+ 1108              		.cfi_endproc
+ 1109              	.LFE160:
+ 1111              		.section	.text.usart_flag_clear,"ax",%progbits
+ 1112              		.align	1
+ 1113              		.global	usart_flag_clear
+ 1114              		.syntax unified
+ 1115              		.thumb
+ 1116              		.thumb_func
+ 1117              		.fpu softvfp
+ 1119              	usart_flag_clear:
+ 1120              	.LFB161:
+ 585:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** 
+ 586:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** /**
+ 587:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @brief  clear the usart's pending flags.
+ 588:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  usart_x: select the usart or the uart peripheral.
+ 589:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be one of the following values:
+ 590:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         USART1, USART2, USART3, UART4, UART5, USART6, UART7 or UART8.
+ 591:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @param  flag: specifies the flag to clear.
+ 592:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         this parameter can be any combination of the following values:
+ 593:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_CTSCF_FLAG: (not available for UART4,UART5,USART6,UART7 and UART8).
+ 594:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_BFF_FLAG:
+ 595:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_TDC_FLAG:
+ 596:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_RDBF_FLAG:
+ 597:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @note
+ 598:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_PERR_FLAG, USART_FERR_FLAG, USART_NERR_FLAG, USART_ROERR_FLAG and USART_IDLEF_F
+ 599:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *           sequence: a read operation to usart sts register (usart_flag_get())
+ 600:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *           followed by a read operation to usart dt register (usart_data_receive()).
+ 601:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_RDBF_FLAG can be also cleared by a read to the usart dt register(usart_data_rec
+ 602:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_TDC_FLAG can be also cleared by software sequence: a read operation to usart st
+ 603:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *           followed by a write operation to usart dt register (usart_data_transmit()).
+ 604:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   *         - USART_TDBE_FLAG is cleared only by a write to the usart dt register(usart_data_transm
+ 605:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   * @retval none
+ 606:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   */
+ 607:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** void usart_flag_clear(usart_type* usart_x, uint32_t flag)
+ 608:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c **** {
+ 1121              		.loc 1 608 0
+ 1122              		.cfi_startproc
+ 1123              		@ args = 0, pretend = 0, frame = 0
+ 1124              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1125              		@ link register save eliminated.
+ 1126              	.LVL86:
+ 609:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_usart.c ****   usart_x->sts = ~flag;
+ 1127              		.loc 1 609 0
+ 1128 0000 C943     		mvns	r1, r1
+ 1129              	.LVL87:
+ 1130 0002 0160     		str	r1, [r0]
+ARM GAS  /tmp/ccsXmuZX.s 			page 31
+
+
+ 1131 0004 7047     		bx	lr
+ 1132              		.cfi_endproc
+ 1133              	.LFE161:
+ 1135              		.text
+ 1136              	.Letext0:
+ 1137              		.file 2 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/mac
+ 1138              		.file 3 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
+ 1139              		.file 4 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/core_support/core_cm4.h"
+ 1140              		.file 5 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/system_at32f40
+ 1141              		.file 6 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/at32f403a_407.
+ 1142              		.file 7 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_crm.h"
+ 1143              		.file 8 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_usart.h"
+ 1144              		.file 9 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_usb.h"
+ARM GAS  /tmp/ccsXmuZX.s 			page 32
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 at32f403a_407_usart.c
+     /tmp/ccsXmuZX.s:16     .text.usart_reset:0000000000000000 $t
+     /tmp/ccsXmuZX.s:23     .text.usart_reset:0000000000000000 usart_reset
+     /tmp/ccsXmuZX.s:195    .text.usart_reset:00000000000000d4 $d
+     /tmp/ccsXmuZX.s:215    .text.usart_init:0000000000000000 $t
+     /tmp/ccsXmuZX.s:222    .text.usart_init:0000000000000000 usart_init
+     /tmp/ccsXmuZX.s:333    .text.usart_init:0000000000000088 $d
+     /tmp/ccsXmuZX.s:339    .text.usart_parity_selection_config:0000000000000000 $t
+     /tmp/ccsXmuZX.s:346    .text.usart_parity_selection_config:0000000000000000 usart_parity_selection_config
+     /tmp/ccsXmuZX.s:399    .text.usart_enable:0000000000000000 $t
+     /tmp/ccsXmuZX.s:406    .text.usart_enable:0000000000000000 usart_enable
+     /tmp/ccsXmuZX.s:423    .text.usart_transmitter_enable:0000000000000000 $t
+     /tmp/ccsXmuZX.s:430    .text.usart_transmitter_enable:0000000000000000 usart_transmitter_enable
+     /tmp/ccsXmuZX.s:447    .text.usart_receiver_enable:0000000000000000 $t
+     /tmp/ccsXmuZX.s:454    .text.usart_receiver_enable:0000000000000000 usart_receiver_enable
+     /tmp/ccsXmuZX.s:471    .text.usart_clock_config:0000000000000000 $t
+     /tmp/ccsXmuZX.s:478    .text.usart_clock_config:0000000000000000 usart_clock_config
+     /tmp/ccsXmuZX.s:514    .text.usart_clock_enable:0000000000000000 $t
+     /tmp/ccsXmuZX.s:521    .text.usart_clock_enable:0000000000000000 usart_clock_enable
+     /tmp/ccsXmuZX.s:538    .text.usart_interrupt_enable:0000000000000000 $t
+     /tmp/ccsXmuZX.s:545    .text.usart_interrupt_enable:0000000000000000 usart_interrupt_enable
+     /tmp/ccsXmuZX.s:595    .text.usart_dma_transmitter_enable:0000000000000000 $t
+     /tmp/ccsXmuZX.s:602    .text.usart_dma_transmitter_enable:0000000000000000 usart_dma_transmitter_enable
+     /tmp/ccsXmuZX.s:619    .text.usart_dma_receiver_enable:0000000000000000 $t
+     /tmp/ccsXmuZX.s:626    .text.usart_dma_receiver_enable:0000000000000000 usart_dma_receiver_enable
+     /tmp/ccsXmuZX.s:643    .text.usart_wakeup_id_set:0000000000000000 $t
+     /tmp/ccsXmuZX.s:650    .text.usart_wakeup_id_set:0000000000000000 usart_wakeup_id_set
+     /tmp/ccsXmuZX.s:667    .text.usart_wakeup_mode_set:0000000000000000 $t
+     /tmp/ccsXmuZX.s:674    .text.usart_wakeup_mode_set:0000000000000000 usart_wakeup_mode_set
+     /tmp/ccsXmuZX.s:691    .text.usart_receiver_mute_enable:0000000000000000 $t
+     /tmp/ccsXmuZX.s:698    .text.usart_receiver_mute_enable:0000000000000000 usart_receiver_mute_enable
+     /tmp/ccsXmuZX.s:715    .text.usart_break_bit_num_set:0000000000000000 $t
+     /tmp/ccsXmuZX.s:722    .text.usart_break_bit_num_set:0000000000000000 usart_break_bit_num_set
+     /tmp/ccsXmuZX.s:739    .text.usart_lin_mode_enable:0000000000000000 $t
+     /tmp/ccsXmuZX.s:746    .text.usart_lin_mode_enable:0000000000000000 usart_lin_mode_enable
+     /tmp/ccsXmuZX.s:763    .text.usart_data_transmit:0000000000000000 $t
+     /tmp/ccsXmuZX.s:770    .text.usart_data_transmit:0000000000000000 usart_data_transmit
+     /tmp/ccsXmuZX.s:787    .text.usart_data_receive:0000000000000000 $t
+     /tmp/ccsXmuZX.s:794    .text.usart_data_receive:0000000000000000 usart_data_receive
+     /tmp/ccsXmuZX.s:812    .text.usart_break_send:0000000000000000 $t
+     /tmp/ccsXmuZX.s:819    .text.usart_break_send:0000000000000000 usart_break_send
+     /tmp/ccsXmuZX.s:836    .text.usart_smartcard_guard_time_set:0000000000000000 $t
+     /tmp/ccsXmuZX.s:843    .text.usart_smartcard_guard_time_set:0000000000000000 usart_smartcard_guard_time_set
+     /tmp/ccsXmuZX.s:860    .text.usart_irda_smartcard_division_set:0000000000000000 $t
+     /tmp/ccsXmuZX.s:867    .text.usart_irda_smartcard_division_set:0000000000000000 usart_irda_smartcard_division_set
+     /tmp/ccsXmuZX.s:885    .text.usart_smartcard_mode_enable:0000000000000000 $t
+     /tmp/ccsXmuZX.s:892    .text.usart_smartcard_mode_enable:0000000000000000 usart_smartcard_mode_enable
+     /tmp/ccsXmuZX.s:909    .text.usart_smartcard_nack_set:0000000000000000 $t
+     /tmp/ccsXmuZX.s:916    .text.usart_smartcard_nack_set:0000000000000000 usart_smartcard_nack_set
+     /tmp/ccsXmuZX.s:933    .text.usart_single_line_halfduplex_select:0000000000000000 $t
+     /tmp/ccsXmuZX.s:940    .text.usart_single_line_halfduplex_select:0000000000000000 usart_single_line_halfduplex_select
+     /tmp/ccsXmuZX.s:957    .text.usart_irda_mode_enable:0000000000000000 $t
+     /tmp/ccsXmuZX.s:964    .text.usart_irda_mode_enable:0000000000000000 usart_irda_mode_enable
+     /tmp/ccsXmuZX.s:981    .text.usart_irda_low_power_enable:0000000000000000 $t
+     /tmp/ccsXmuZX.s:988    .text.usart_irda_low_power_enable:0000000000000000 usart_irda_low_power_enable
+     /tmp/ccsXmuZX.s:1005   .text.usart_hardware_flow_control_set:0000000000000000 $t
+ARM GAS  /tmp/ccsXmuZX.s 			page 33
+
+
+     /tmp/ccsXmuZX.s:1012   .text.usart_hardware_flow_control_set:0000000000000000 usart_hardware_flow_control_set
+     /tmp/ccsXmuZX.s:1078   .text.usart_flag_get:0000000000000000 $t
+     /tmp/ccsXmuZX.s:1085   .text.usart_flag_get:0000000000000000 usart_flag_get
+     /tmp/ccsXmuZX.s:1112   .text.usart_flag_clear:0000000000000000 $t
+     /tmp/ccsXmuZX.s:1119   .text.usart_flag_clear:0000000000000000 usart_flag_clear
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+crm_periph_reset
+crm_clocks_freq_get

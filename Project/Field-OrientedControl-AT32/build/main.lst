@@ -1,0 +1,547 @@
+ARM GAS  /tmp/cc7po03P.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"main.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.crm_configuration,"ax",%progbits
+  16              		.align	1
+  17              		.global	crm_configuration
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  21              		.fpu softvfp
+  23              	crm_configuration:
+  24              	.LFB134:
+  25              		.file 1 "main.c"
+   1:main.c        **** /**
+   2:main.c        ****   **************************************************************************
+   3:main.c        ****   * @file     main.c
+   4:main.c        ****   * @version  v2.0.8
+   5:main.c        ****   * @date     2022-04-02
+   6:main.c        ****   * @brief    main program
+   7:main.c        ****   **************************************************************************
+   8:main.c        ****   *                       Copyright notice & Disclaimer
+   9:main.c        ****   *
+  10:main.c        ****   * The software Board Support Package (BSP) that is made available to
+  11:main.c        ****   * download from Artery official website is the copyrighted work of Artery.
+  12:main.c        ****   * Artery authorizes customers to use, copy, and distribute the BSP
+  13:main.c        ****   * software and its related documentation for the purpose of design and
+  14:main.c        ****   * development in conjunction with Artery microcontrollers. Use of the
+  15:main.c        ****   * software is governed by this copyright notice and the following disclaimer.
+  16:main.c        ****   *
+  17:main.c        ****   * THIS SOFTWARE IS PROVIDED ON "AS IS" BASIS WITHOUT WARRANTIES,
+  18:main.c        ****   * GUARANTEES OR REPRESENTATIONS OF ANY KIND. ARTERY EXPRESSLY DISCLAIMS,
+  19:main.c        ****   * TO THE FULLEST EXTENT PERMITTED BY LAW, ALL EXPRESS, IMPLIED OR
+  20:main.c        ****   * STATUTORY OR OTHER WARRANTIES, GUARANTEES OR REPRESENTATIONS,
+  21:main.c        ****   * INCLUDING BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+  22:main.c        ****   * FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
+  23:main.c        ****   *
+  24:main.c        ****   **************************************************************************
+  25:main.c        ****   */
+  26:main.c        **** 
+  27:main.c        **** #include "at32f403a_407_board.h"
+  28:main.c        **** #include "at32f403a_407_clock.h"
+  29:main.c        **** #include "common.h"
+  30:main.c        **** 
+  31:main.c        **** gpio_init_type  gpio_init_struct = {0};
+  32:main.c        **** crm_clocks_freq_type crm_clocks_freq_struct = {0};
+  33:main.c        **** 
+ARM GAS  /tmp/cc7po03P.s 			page 2
+
+
+  34:main.c        **** tmr_output_config_type tmr_oc_init_structure;
+  35:main.c        **** 
+  36:main.c        **** uint16_t ccr1_val = 500;
+  37:main.c        **** uint16_t prescaler_value = 0;
+  38:main.c        **** 
+  39:main.c        **** void crm_configuration(void) {
+  26              		.loc 1 39 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30 0000 08B5     		push	{r3, lr}
+  31              	.LCFI0:
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 3, -8
+  34              		.cfi_offset 14, -4
+  40:main.c        ****   crm_periph_clock_enable(CRM_IOMUX_PERIPH_CLOCK, TRUE);
+  35              		.loc 1 40 0
+  36 0002 0121     		movs	r1, #1
+  37 0004 4FF4C010 		mov	r0, #1572864
+  38 0008 FFF7FEFF 		bl	crm_periph_clock_enable
+  39              	.LVL0:
+  41:main.c        ****   crm_periph_clock_enable(CRM_TMR2_PERIPH_CLOCK, TRUE);
+  40              		.loc 1 41 0
+  41 000c 0121     		movs	r1, #1
+  42 000e 4FF4E010 		mov	r0, #1835008
+  43 0012 FFF7FEFF 		bl	crm_periph_clock_enable
+  44              	.LVL1:
+  42:main.c        ****   crm_periph_clock_enable(CRM_GPIOA_PERIPH_CLOCK, TRUE);
+  45              		.loc 1 42 0
+  46 0016 0121     		movs	r1, #1
+  47 0018 0548     		ldr	r0, .L3
+  48 001a FFF7FEFF 		bl	crm_periph_clock_enable
+  49              	.LVL2:
+  43:main.c        ****   crm_periph_clock_enable(CRM_GPIOB_PERIPH_CLOCK, TRUE);
+  50              		.loc 1 43 0
+  51 001e 0121     		movs	r1, #1
+  52 0020 0448     		ldr	r0, .L3+4
+  53 0022 FFF7FEFF 		bl	crm_periph_clock_enable
+  54              	.LVL3:
+  44:main.c        ****   crm_periph_clock_enable(CRM_GPIOC_PERIPH_CLOCK, TRUE);
+  55              		.loc 1 44 0
+  56 0026 0121     		movs	r1, #1
+  57 0028 0348     		ldr	r0, .L3+8
+  58 002a FFF7FEFF 		bl	crm_periph_clock_enable
+  59              	.LVL4:
+  60 002e 08BD     		pop	{r3, pc}
+  61              	.L4:
+  62              		.align	2
+  63              	.L3:
+  64 0030 02001800 		.word	1572866
+  65 0034 03001800 		.word	1572867
+  66 0038 04001800 		.word	1572868
+  67              		.cfi_endproc
+  68              	.LFE134:
+  70              		.section	.text.gpio_configuration,"ax",%progbits
+  71              		.align	1
+  72              		.global	gpio_configuration
+ARM GAS  /tmp/cc7po03P.s 			page 3
+
+
+  73              		.syntax unified
+  74              		.thumb
+  75              		.thumb_func
+  76              		.fpu softvfp
+  78              	gpio_configuration:
+  79              	.LFB135:
+  45:main.c        **** }
+  46:main.c        **** 
+  47:main.c        **** void gpio_configuration(void)
+  48:main.c        **** {
+  80              		.loc 1 48 0
+  81              		.cfi_startproc
+  82              		@ args = 0, pretend = 0, frame = 8
+  83              		@ frame_needed = 0, uses_anonymous_args = 0
+  84 0000 00B5     		push	{lr}
+  85              	.LCFI1:
+  86              		.cfi_def_cfa_offset 4
+  87              		.cfi_offset 14, -4
+  88 0002 83B0     		sub	sp, sp, #12
+  89              	.LCFI2:
+  90              		.cfi_def_cfa_offset 16
+  49:main.c        ****   gpio_init_type gpio_init_struct;
+  50:main.c        **** 
+  51:main.c        ****   gpio_default_para_init(&gpio_init_struct);
+  91              		.loc 1 51 0
+  92 0004 6846     		mov	r0, sp
+  93 0006 FFF7FEFF 		bl	gpio_default_para_init
+  94              	.LVL5:
+  52:main.c        **** 
+  53:main.c        ****   gpio_init_struct.gpio_pins = GPIO_PINS_3 | GPIO_PINS_10;
+  95              		.loc 1 53 0
+  96 000a 4FF48163 		mov	r3, #1032
+  97 000e 0093     		str	r3, [sp]
+  54:main.c        ****   gpio_init_struct.gpio_out_type = GPIO_OUTPUT_PUSH_PULL;
+  98              		.loc 1 54 0
+  99 0010 0023     		movs	r3, #0
+ 100 0012 8DF80430 		strb	r3, [sp, #4]
+  55:main.c        ****   gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
+ 101              		.loc 1 55 0
+ 102 0016 0423     		movs	r3, #4
+ 103 0018 8DF80530 		strb	r3, [sp, #5]
+  56:main.c        ****   gpio_init_struct.gpio_mode = GPIO_MODE_MUX;
+ 104              		.loc 1 56 0
+ 105 001c 0823     		movs	r3, #8
+ 106 001e 8DF80630 		strb	r3, [sp, #6]
+  57:main.c        ****   gpio_init_struct.gpio_drive_strength = GPIO_DRIVE_STRENGTH_STRONGER;
+ 107              		.loc 1 57 0
+ 108 0022 0123     		movs	r3, #1
+ 109 0024 8DF80730 		strb	r3, [sp, #7]
+  58:main.c        ****   gpio_init(GPIOB, &gpio_init_struct);
+ 110              		.loc 1 58 0
+ 111 0028 6946     		mov	r1, sp
+ 112 002a 0B48     		ldr	r0, .L7
+ 113 002c FFF7FEFF 		bl	gpio_init
+ 114              	.LVL6:
+  59:main.c        ****   gpio_init_struct.gpio_pins = GPIO_PINS_0 | GPIO_PINS_1 | GPIO_PINS_2 | GPIO_PINS_15;
+ 115              		.loc 1 59 0
+ARM GAS  /tmp/cc7po03P.s 			page 4
+
+
+ 116 0030 48F20703 		movw	r3, #32775
+ 117 0034 0093     		str	r3, [sp]
+  60:main.c        ****   gpio_init(GPIOA, &gpio_init_struct);
+ 118              		.loc 1 60 0
+ 119 0036 6946     		mov	r1, sp
+ 120 0038 0848     		ldr	r0, .L7+4
+ 121 003a FFF7FEFF 		bl	gpio_init
+ 122              	.LVL7:
+  61:main.c        ****   gpio_init_struct.gpio_pins = GPIO_PINS_13;
+ 123              		.loc 1 61 0
+ 124 003e 4FF40053 		mov	r3, #8192
+ 125 0042 0093     		str	r3, [sp]
+  62:main.c        ****   gpio_init_struct.gpio_mode = GPIO_MODE_OUTPUT;
+ 126              		.loc 1 62 0
+ 127 0044 1023     		movs	r3, #16
+ 128 0046 8DF80630 		strb	r3, [sp, #6]
+  63:main.c        ****   gpio_init(GPIOC, &gpio_init_struct);
+ 129              		.loc 1 63 0
+ 130 004a 6946     		mov	r1, sp
+ 131 004c 0448     		ldr	r0, .L7+8
+ 132 004e FFF7FEFF 		bl	gpio_init
+ 133              	.LVL8:
+  64:main.c        **** }
+ 134              		.loc 1 64 0
+ 135 0052 03B0     		add	sp, sp, #12
+ 136              	.LCFI3:
+ 137              		.cfi_def_cfa_offset 4
+ 138              		@ sp needed
+ 139 0054 5DF804FB 		ldr	pc, [sp], #4
+ 140              	.L8:
+ 141              		.align	2
+ 142              	.L7:
+ 143 0058 000C0140 		.word	1073810432
+ 144 005c 00080140 		.word	1073809408
+ 145 0060 00100140 		.word	1073811456
+ 146              		.cfi_endproc
+ 147              	.LFE135:
+ 149              		.section	.text.main,"ax",%progbits
+ 150              		.align	1
+ 151              		.global	main
+ 152              		.syntax unified
+ 153              		.thumb
+ 154              		.thumb_func
+ 155              		.fpu softvfp
+ 157              	main:
+ 158              	.LFB136:
+  65:main.c        **** 
+  66:main.c        **** 
+  67:main.c        **** 
+  68:main.c        **** int main(void) {
+ 159              		.loc 1 68 0
+ 160              		.cfi_startproc
+ 161              		@ Volatile: function does not return.
+ 162              		@ args = 0, pretend = 0, frame = 0
+ 163              		@ frame_needed = 0, uses_anonymous_args = 0
+ 164 0000 80B5     		push	{r7, lr}
+ 165              	.LCFI4:
+ARM GAS  /tmp/cc7po03P.s 			page 5
+
+
+ 166              		.cfi_def_cfa_offset 8
+ 167              		.cfi_offset 7, -8
+ 168              		.cfi_offset 14, -4
+  69:main.c        **** 
+  70:main.c        ****   system_clock_config();
+ 169              		.loc 1 70 0
+ 170 0002 FFF7FEFF 		bl	system_clock_config
+ 171              	.LVL9:
+  71:main.c        **** 
+  72:main.c        ****   at32_board_init();
+ 172              		.loc 1 72 0
+ 173 0006 FFF7FEFF 		bl	at32_board_init
+ 174              	.LVL10:
+  73:main.c        **** 
+  74:main.c        ****   crm_configuration();
+ 175              		.loc 1 74 0
+ 176 000a FFF7FEFF 		bl	crm_configuration
+ 177              	.LVL11:
+  75:main.c        **** 
+  76:main.c        ****   gpio_configuration();
+ 178              		.loc 1 76 0
+ 179 000e FFF7FEFF 		bl	gpio_configuration
+ 180              	.LVL12:
+  77:main.c        **** 
+  78:main.c        ****   uart_print_init(115200);
+ 181              		.loc 1 78 0
+ 182 0012 4FF4E130 		mov	r0, #115200
+ 183 0016 FFF7FEFF 		bl	uart_print_init
+ 184              	.LVL13:
+  79:main.c        **** 
+  80:main.c        ****   OUTPUT("Hello Word\n");
+ 185              		.loc 1 80 0
+ 186 001a 3848     		ldr	r0, .L12
+ 187 001c FFF7FEFF 		bl	log_put
+ 188              	.LVL14:
+  81:main.c        **** 
+  82:main.c        ****   gpio_pin_remap_config(TMR2_MUX_11, TRUE);
+ 189              		.loc 1 82 0
+ 190 0020 0121     		movs	r1, #1
+ 191 0022 3748     		ldr	r0, .L12+4
+ 192 0024 FFF7FEFF 		bl	gpio_pin_remap_config
+ 193              	.LVL15:
+  83:main.c        ****   gpio_pin_remap_config(SWJTAG_MUX_010, TRUE);
+ 194              		.loc 1 83 0
+ 195 0028 0121     		movs	r1, #1
+ 196 002a 3648     		ldr	r0, .L12+8
+ 197 002c FFF7FEFF 		bl	gpio_pin_remap_config
+ 198              	.LVL16:
+  84:main.c        **** 
+  85:main.c        ****   tmr_base_init(TMR2, 999, 5);
+ 199              		.loc 1 85 0
+ 200 0030 0522     		movs	r2, #5
+ 201 0032 40F2E731 		movw	r1, #999
+ 202 0036 4FF08040 		mov	r0, #1073741824
+ 203 003a FFF7FEFF 		bl	tmr_base_init
+ 204              	.LVL17:
+  86:main.c        ****   tmr_cnt_dir_set(TMR2, TMR_COUNT_UP);
+ARM GAS  /tmp/cc7po03P.s 			page 6
+
+
+ 205              		.loc 1 86 0
+ 206 003e 0021     		movs	r1, #0
+ 207 0040 4FF08040 		mov	r0, #1073741824
+ 208 0044 FFF7FEFF 		bl	tmr_cnt_dir_set
+ 209              	.LVL18:
+  87:main.c        ****   tmr_clock_source_div_set(TMR2, TMR_CLOCK_DIV1);
+ 210              		.loc 1 87 0
+ 211 0048 0021     		movs	r1, #0
+ 212 004a 4FF08040 		mov	r0, #1073741824
+ 213 004e FFF7FEFF 		bl	tmr_clock_source_div_set
+ 214              	.LVL19:
+  88:main.c        **** 
+  89:main.c        ****   tmr_output_default_para_init(&tmr_oc_init_structure);
+ 215              		.loc 1 89 0
+ 216 0052 2D4C     		ldr	r4, .L12+12
+ 217 0054 2046     		mov	r0, r4
+ 218 0056 FFF7FEFF 		bl	tmr_output_default_para_init
+ 219              	.LVL20:
+  90:main.c        **** 
+  91:main.c        ****   tmr_oc_init_structure.oc_mode = TMR_OUTPUT_CONTROL_PWM_MODE_B;
+ 220              		.loc 1 91 0
+ 221 005a 0723     		movs	r3, #7
+ 222 005c 2370     		strb	r3, [r4]
+  92:main.c        ****   tmr_oc_init_structure.oc_idle_state = FALSE;
+ 223              		.loc 1 92 0
+ 224 005e 0026     		movs	r6, #0
+ 225 0060 6670     		strb	r6, [r4, #1]
+  93:main.c        ****   tmr_oc_init_structure.oc_polarity = TMR_OUTPUT_ACTIVE_HIGH;
+ 226              		.loc 1 93 0
+ 227 0062 E670     		strb	r6, [r4, #3]
+  94:main.c        ****   tmr_oc_init_structure.oc_output_state = TRUE;
+ 228              		.loc 1 94 0
+ 229 0064 0125     		movs	r5, #1
+ 230 0066 6571     		strb	r5, [r4, #5]
+  95:main.c        **** 
+  96:main.c        ****   tmr_output_channel_config(TMR2, TMR_SELECT_CHANNEL_1, &tmr_oc_init_structure);
+ 231              		.loc 1 96 0
+ 232 0068 2246     		mov	r2, r4
+ 233 006a 3146     		mov	r1, r6
+ 234 006c 4FF08040 		mov	r0, #1073741824
+ 235 0070 FFF7FEFF 		bl	tmr_output_channel_config
+ 236              	.LVL21:
+  97:main.c        ****   tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, ccr1_val);
+ 237              		.loc 1 97 0
+ 238 0074 254F     		ldr	r7, .L12+16
+ 239 0076 3A88     		ldrh	r2, [r7]
+ 240 0078 3146     		mov	r1, r6
+ 241 007a 4FF08040 		mov	r0, #1073741824
+ 242 007e FFF7FEFF 		bl	tmr_channel_value_set
+ 243              	.LVL22:
+  98:main.c        ****   tmr_output_channel_buffer_enable(TMR2, TMR_SELECT_CHANNEL_1, TRUE);
+ 244              		.loc 1 98 0
+ 245 0082 2A46     		mov	r2, r5
+ 246 0084 3146     		mov	r1, r6
+ 247 0086 4FF08040 		mov	r0, #1073741824
+ 248 008a FFF7FEFF 		bl	tmr_output_channel_buffer_enable
+ 249              	.LVL23:
+ARM GAS  /tmp/cc7po03P.s 			page 7
+
+
+  99:main.c        **** 
+ 100:main.c        ****   tmr_output_channel_config(TMR2, TMR_SELECT_CHANNEL_2, &tmr_oc_init_structure);
+ 250              		.loc 1 100 0
+ 251 008e 2246     		mov	r2, r4
+ 252 0090 0221     		movs	r1, #2
+ 253 0092 4FF08040 		mov	r0, #1073741824
+ 254 0096 FFF7FEFF 		bl	tmr_output_channel_config
+ 255              	.LVL24:
+ 101:main.c        ****   tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_2, ccr1_val);
+ 256              		.loc 1 101 0
+ 257 009a 3A88     		ldrh	r2, [r7]
+ 258 009c 0221     		movs	r1, #2
+ 259 009e 4FF08040 		mov	r0, #1073741824
+ 260 00a2 FFF7FEFF 		bl	tmr_channel_value_set
+ 261              	.LVL25:
+ 102:main.c        ****   tmr_output_channel_buffer_enable(TMR2, TMR_SELECT_CHANNEL_2, TRUE);
+ 262              		.loc 1 102 0
+ 263 00a6 2A46     		mov	r2, r5
+ 264 00a8 0221     		movs	r1, #2
+ 265 00aa 4FF08040 		mov	r0, #1073741824
+ 266 00ae FFF7FEFF 		bl	tmr_output_channel_buffer_enable
+ 267              	.LVL26:
+ 103:main.c        **** 
+ 104:main.c        ****   tmr_output_channel_config(TMR2, TMR_SELECT_CHANNEL_3, &tmr_oc_init_structure);
+ 268              		.loc 1 104 0
+ 269 00b2 2246     		mov	r2, r4
+ 270 00b4 0421     		movs	r1, #4
+ 271 00b6 4FF08040 		mov	r0, #1073741824
+ 272 00ba FFF7FEFF 		bl	tmr_output_channel_config
+ 273              	.LVL27:
+ 105:main.c        ****   tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_3, ccr1_val);
+ 274              		.loc 1 105 0
+ 275 00be 3A88     		ldrh	r2, [r7]
+ 276 00c0 0421     		movs	r1, #4
+ 277 00c2 4FF08040 		mov	r0, #1073741824
+ 278 00c6 FFF7FEFF 		bl	tmr_channel_value_set
+ 279              	.LVL28:
+ 106:main.c        ****   tmr_output_channel_buffer_enable(TMR2, TMR_SELECT_CHANNEL_3, TRUE);
+ 280              		.loc 1 106 0
+ 281 00ca 2A46     		mov	r2, r5
+ 282 00cc 0421     		movs	r1, #4
+ 283 00ce 4FF08040 		mov	r0, #1073741824
+ 284 00d2 FFF7FEFF 		bl	tmr_output_channel_buffer_enable
+ 285              	.LVL29:
+ 107:main.c        **** 
+ 108:main.c        ****   tmr_period_buffer_enable(TMR2, TRUE);
+ 286              		.loc 1 108 0
+ 287 00d6 2946     		mov	r1, r5
+ 288 00d8 4FF08040 		mov	r0, #1073741824
+ 289 00dc FFF7FEFF 		bl	tmr_period_buffer_enable
+ 290              	.LVL30:
+ 109:main.c        ****   tmr_counter_enable(TMR2, TRUE);
+ 291              		.loc 1 109 0
+ 292 00e0 2946     		mov	r1, r5
+ 293 00e2 4FF08040 		mov	r0, #1073741824
+ 294 00e6 FFF7FEFF 		bl	tmr_counter_enable
+ 295              	.LVL31:
+ARM GAS  /tmp/cc7po03P.s 			page 8
+
+
+ 296              	.L10:
+ 110:main.c        ****   while(1) {
+ 111:main.c        ****     GPIOC->odt ^= GPIO_PINS_13;
+ 297              		.loc 1 111 0 discriminator 1
+ 298 00ea 094A     		ldr	r2, .L12+20
+ 299 00ec D368     		ldr	r3, [r2, #12]
+ 300 00ee 83F40053 		eor	r3, r3, #8192
+ 301 00f2 D360     		str	r3, [r2, #12]
+ 112:main.c        ****     delay_sec(1);
+ 302              		.loc 1 112 0 discriminator 1
+ 303 00f4 0120     		movs	r0, #1
+ 304 00f6 FFF7FEFF 		bl	delay_sec
+ 305              	.LVL32:
+ 306 00fa F6E7     		b	.L10
+ 307              	.L13:
+ 308              		.align	2
+ 309              	.L12:
+ 310 00fc 00000000 		.word	.LC0
+ 311 0100 03020424 		.word	604242435
+ 312 0104 02031030 		.word	806355714
+ 313 0108 00000000 		.word	tmr_oc_init_structure
+ 314 010c 00000000 		.word	.LANCHOR0
+ 315 0110 00100140 		.word	1073811456
+ 316              		.cfi_endproc
+ 317              	.LFE136:
+ 319              		.global	prescaler_value
+ 320              		.global	ccr1_val
+ 321              		.comm	tmr_oc_init_structure,7,4
+ 322              		.global	crm_clocks_freq_struct
+ 323              		.global	gpio_init_struct
+ 324              		.section	.bss.crm_clocks_freq_struct,"aw",%nobits
+ 325              		.align	2
+ 328              	crm_clocks_freq_struct:
+ 329 0000 00000000 		.space	20
+ 329      00000000 
+ 329      00000000 
+ 329      00000000 
+ 329      00000000 
+ 330              		.section	.bss.gpio_init_struct,"aw",%nobits
+ 331              		.align	2
+ 334              	gpio_init_struct:
+ 335 0000 00000000 		.space	8
+ 335      00000000 
+ 336              		.section	.bss.prescaler_value,"aw",%nobits
+ 337              		.align	1
+ 340              	prescaler_value:
+ 341 0000 0000     		.space	2
+ 342              		.section	.data.ccr1_val,"aw",%progbits
+ 343              		.align	1
+ 344              		.set	.LANCHOR0,. + 0
+ 347              	ccr1_val:
+ 348 0000 F401     		.short	500
+ 349              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+ 350              		.align	2
+ 351              	.LC0:
+ 352 0000 48656C6C 		.ascii	"Hello Word\012\000"
+ 352      6F20576F 
+ARM GAS  /tmp/cc7po03P.s 			page 9
+
+
+ 352      72640A00 
+ 353              		.text
+ 354              	.Letext0:
+ 355              		.file 2 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/mac
+ 356              		.file 3 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
+ 357              		.file 4 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
+ 358              		.file 5 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/lib/gcc/arm-none-eabi/6.2
+ 359              		.file 6 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
+ 360              		.file 7 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
+ 361              		.file 8 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/core_support/core_cm4.h"
+ 362              		.file 9 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/system_at32f40
+ 363              		.file 10 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/at32f403a_407
+ 364              		.file 11 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_crm.h"
+ 365              		.file 12 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_tmr.h"
+ 366              		.file 13 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_gpio.h"
+ 367              		.file 14 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_usb.h"
+ 368              		.file 15 "Core/Inc/at32f403a_407_clock.h"
+ 369              		.file 16 "Core/Inc/at32f403a_407_board.h"
+ 370              		.file 17 "/home/y/github/EmbeddedSoftwareMCU/Common/common.h"
+ARM GAS  /tmp/cc7po03P.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+     /tmp/cc7po03P.s:16     .text.crm_configuration:0000000000000000 $t
+     /tmp/cc7po03P.s:23     .text.crm_configuration:0000000000000000 crm_configuration
+     /tmp/cc7po03P.s:64     .text.crm_configuration:0000000000000030 $d
+     /tmp/cc7po03P.s:71     .text.gpio_configuration:0000000000000000 $t
+     /tmp/cc7po03P.s:78     .text.gpio_configuration:0000000000000000 gpio_configuration
+     /tmp/cc7po03P.s:143    .text.gpio_configuration:0000000000000058 $d
+     /tmp/cc7po03P.s:150    .text.main:0000000000000000 $t
+     /tmp/cc7po03P.s:157    .text.main:0000000000000000 main
+     /tmp/cc7po03P.s:310    .text.main:00000000000000fc $d
+                            *COM*:0000000000000007 tmr_oc_init_structure
+     /tmp/cc7po03P.s:340    .bss.prescaler_value:0000000000000000 prescaler_value
+     /tmp/cc7po03P.s:347    .data.ccr1_val:0000000000000000 ccr1_val
+     /tmp/cc7po03P.s:328    .bss.crm_clocks_freq_struct:0000000000000000 crm_clocks_freq_struct
+     /tmp/cc7po03P.s:334    .bss.gpio_init_struct:0000000000000000 gpio_init_struct
+     /tmp/cc7po03P.s:325    .bss.crm_clocks_freq_struct:0000000000000000 $d
+     /tmp/cc7po03P.s:331    .bss.gpio_init_struct:0000000000000000 $d
+     /tmp/cc7po03P.s:337    .bss.prescaler_value:0000000000000000 $d
+     /tmp/cc7po03P.s:343    .data.ccr1_val:0000000000000000 $d
+     /tmp/cc7po03P.s:350    .rodata.main.str1.4:0000000000000000 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+crm_periph_clock_enable
+gpio_default_para_init
+gpio_init
+system_clock_config
+at32_board_init
+uart_print_init
+log_put
+gpio_pin_remap_config
+tmr_base_init
+tmr_cnt_dir_set
+tmr_clock_source_div_set
+tmr_output_default_para_init
+tmr_output_channel_config
+tmr_channel_value_set
+tmr_output_channel_buffer_enable
+tmr_period_buffer_enable
+tmr_counter_enable
+delay_sec

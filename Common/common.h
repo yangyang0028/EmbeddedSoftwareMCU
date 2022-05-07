@@ -1,6 +1,11 @@
 
 #include <stdint.h>
+
+#ifdef AT32
+#include "at32f403a_407_usart.h"
+#else
 #include "usart.h"
+#endif
 
 #define DEBUG "D"
 #define INFORMATION "I"

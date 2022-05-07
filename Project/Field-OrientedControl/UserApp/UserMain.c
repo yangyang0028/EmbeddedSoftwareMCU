@@ -73,10 +73,13 @@ void UserMain() {
     HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_3);
     HAL_ADC_Start_IT(&hadc1);
     DBG_OUTPUT(INFORMATION, "Field-OrientedControl");
-    DBG_OUTPUT(INFORMATION, "FOCInit %d", FOCInit(&g_foc));
+    // __HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_1, 500);
+    // __HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_2, 500);
+    // __HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 500);
+    // DBG_OUTPUT(INFORMATION, "FOCInit %d", FOCInit(&g_foc));
     // OUTPUT("%f", FOCTestZeroElectricAngle(&g_foc));
     while(1) {
-      FOCMove(&g_foc, 2);
+      // FOCMove(&g_foc, 2);
     }
 }
 
