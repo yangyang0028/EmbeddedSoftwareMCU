@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccQUs5GO.s 			page 1
+ARM GAS  /tmp/ccn3b2SJ.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
   31:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   */
   32:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c **** 
   33:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c **** /** @defgroup CRM
-ARM GAS  /tmp/ccQUs5GO.s 			page 2
+ARM GAS  /tmp/ccn3b2SJ.s 			page 2
 
 
   34:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   * @brief CRM driver modules
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
   51 0022 13F00C0F 		tst	r3, #12
   52 0026 FAD1     		bne	.L3
   63:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c **** 
-ARM GAS  /tmp/ccQUs5GO.s 			page 3
+ARM GAS  /tmp/ccn3b2SJ.s 			page 3
 
 
   64:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   /* reset cfg register, include sclk switch, ahbdiv, apb1div, apb2div, adcdiv,
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
   88              		@ frame_needed = 0, uses_anonymous_args = 0
   89              		@ link register save eliminated.
   90              	.LVL0:
-ARM GAS  /tmp/ccQUs5GO.s 			page 4
+ARM GAS  /tmp/ccn3b2SJ.s 			page 4
 
 
   85:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   CRM->bpdc_bit.lextbyps = new_state;
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  137              		.thumb
  138              		.thumb_func
  139              		.fpu softvfp
-ARM GAS  /tmp/ccQUs5GO.s 			page 5
+ARM GAS  /tmp/ccn3b2SJ.s 			page 5
 
 
  141              	crm_flag_get:
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  163              	.L14:
  128:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   }
  129:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   else
-ARM GAS  /tmp/ccQUs5GO.s 			page 6
+ARM GAS  /tmp/ccn3b2SJ.s 			page 6
 
 
  130:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   {
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  201              	.L16:
  146:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   {
  202              		.loc 1 146 0
-ARM GAS  /tmp/ccQUs5GO.s 			page 7
+ARM GAS  /tmp/ccn3b2SJ.s 			page 7
 
 
  203 0008 1120     		movs	r0, #17
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  166:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   * @retval none
  167:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   */
  168:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c **** void crm_hick_clock_trimming_set(uint8_t trim_value)
-ARM GAS  /tmp/ccQUs5GO.s 			page 8
+ARM GAS  /tmp/ccn3b2SJ.s 			page 8
 
 
  169:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c **** {
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  184:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   CRM->ctrl_bit.hickcal = cali_value;
  282              		.loc 1 184 0
  283 000c 1A68     		ldr	r2, [r3]
-ARM GAS  /tmp/ccQUs5GO.s 			page 9
+ARM GAS  /tmp/ccn3b2SJ.s 			page 9
 
 
  284 000e 60F30F22 		bfi	r2, r0, #8, #8
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  312              		@ link register save eliminated.
  313              	.LVL14:
  213:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   /* enable periph clock */
-ARM GAS  /tmp/ccQUs5GO.s 			page 10
+ARM GAS  /tmp/ccn3b2SJ.s 			page 10
 
 
  214:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   if(TRUE == new_state)
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  227:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   * @param  value
  228:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         this parameter can be one of the following values:
  229:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_EMAC_PERIPH_RESET         - CRM_IOMUX_PERIPH_RESET        - CRM_EXINT_PERIPH_RESE
-ARM GAS  /tmp/ccQUs5GO.s 			page 11
+ARM GAS  /tmp/ccn3b2SJ.s 			page 11
 
 
  230:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_GPIOB_PERIPH_RESET        - CRM_GPIOC_PERIPH_RESET        - CRM_GPIOD_PERIPH_RESE
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  384 002c 1A68     		ldr	r2, [r3]
  385 002e 00F01F00 		and	r0, r0, #31
  386              	.LVL23:
-ARM GAS  /tmp/ccQUs5GO.s 			page 12
+ARM GAS  /tmp/ccn3b2SJ.s 			page 12
 
 
  387 0032 01FA00F0 		lsl	r0, r1, r0
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  420 0014 0121     		movs	r1, #1
  421              	.LVL26:
  422 0016 01FA00F0 		lsl	r0, r1, r0
-ARM GAS  /tmp/ccQUs5GO.s 			page 13
+ARM GAS  /tmp/ccn3b2SJ.s 			page 13
 
 
  423 001a 22EA0000 		bic	r0, r2, r0
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  459 0000 0428     		cmp	r0, #4
  460 0002 21D8     		bhi	.L40
  461 0004 DFE800F0 		tbb	[pc, r0]
-ARM GAS  /tmp/ccQUs5GO.s 			page 14
+ARM GAS  /tmp/ccn3b2SJ.s 			page 14
 
 
  462              	.L43:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  311:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****       CRM->ctrlsts_bit.licken = new_state;
  502              		.loc 1 311 0
  503 003e 034B     		ldr	r3, .L48
-ARM GAS  /tmp/ccQUs5GO.s 			page 15
+ARM GAS  /tmp/ccn3b2SJ.s 			page 15
 
 
  504 0040 5A6A     		ldr	r2, [r3, #36]
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  531              	.LVL30:
  341:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   switch(flag)
  532              		.loc 1 341 0
-ARM GAS  /tmp/ccQUs5GO.s 			page 16
+ARM GAS  /tmp/ccn3b2SJ.s 			page 16
 
 
  533 0000 244B     		ldr	r3, .L66
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  354:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****     case CRM_LEXT_READY_INT_FLAG:
  563              		.loc 1 354 0
  564 0038 7047     		bx	lr
-ARM GAS  /tmp/ccQUs5GO.s 			page 17
+ARM GAS  /tmp/ccn3b2SJ.s 			page 17
 
 
  565              	.L64:
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  609 0070 0A4A     		ldr	r2, .L66+8
  610 0072 9368     		ldr	r3, [r2, #8]
  611 0074 43F40033 		orr	r3, r3, #131072
-ARM GAS  /tmp/ccQUs5GO.s 			page 18
+ARM GAS  /tmp/ccn3b2SJ.s 			page 18
 
 
  612 0078 9360     		str	r3, [r2, #8]
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  380:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_RTC_CLOCK_LICK
  381:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_RTC_CLOCK_HEXT_DIV
  382:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   * @retval none
-ARM GAS  /tmp/ccQUs5GO.s 			page 19
+ARM GAS  /tmp/ccn3b2SJ.s 			page 19
 
 
  383:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   */
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  694              		.align	2
  695              	.L72:
  696 000c 00100240 		.word	1073876992
-ARM GAS  /tmp/ccQUs5GO.s 			page 20
+ARM GAS  /tmp/ccn3b2SJ.s 			page 20
 
 
  697              		.cfi_endproc
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  734              		.thumb_func
  735              		.fpu softvfp
  737              	crm_apb1_div_set:
-ARM GAS  /tmp/ccQUs5GO.s 			page 21
+ARM GAS  /tmp/ccn3b2SJ.s 			page 21
 
 
  738              	.LFB148:
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  443:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_APB2_DIV_16
  444:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   * @retval none
  445:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   */
-ARM GAS  /tmp/ccQUs5GO.s 			page 22
+ARM GAS  /tmp/ccn3b2SJ.s 			page 22
 
 
  446:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c **** void crm_apb2_div_set(crm_apb2_div_type value)
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  804 0000 054B     		ldr	r3, .L84
  805 0002 5A68     		ldr	r2, [r3, #4]
  806 0004 60F38F32 		bfi	r2, r0, #14, #2
-ARM GAS  /tmp/ccQUs5GO.s 			page 23
+ARM GAS  /tmp/ccn3b2SJ.s 			page 23
 
 
  807 0008 5A60     		str	r2, [r3, #4]
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  843              		.loc 1 485 0
  844 000a C0F38000 		ubfx	r0, r0, #2, #1
  845              	.LVL45:
-ARM GAS  /tmp/ccQUs5GO.s 			page 24
+ARM GAS  /tmp/ccn3b2SJ.s 			page 24
 
 
  846 000e 5A68     		ldr	r2, [r3, #4]
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  894              	crm_battery_powered_domain_reset:
  895              	.LFB153:
  496:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c **** }
-ARM GAS  /tmp/ccQUs5GO.s 			page 25
+ARM GAS  /tmp/ccn3b2SJ.s 			page 25
 
 
  497:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c **** 
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  925              		.loc 1 523 0
  926              		.cfi_startproc
  927              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccQUs5GO.s 			page 26
+ARM GAS  /tmp/ccn3b2SJ.s 			page 26
 
 
  928              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  961 002c 5868     		ldr	r0, [r3, #4]
  962 002e 61F35E70 		bfi	r0, r1, #29, #2
  963 0032 5860     		str	r0, [r3, #4]
-ARM GAS  /tmp/ccQUs5GO.s 			page 27
+ARM GAS  /tmp/ccn3b2SJ.s 			page 27
 
 
  545:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c **** 
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  553:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         this parameter can be one of the following values:
  554:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_SCLK_HICK
  555:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_SCLK_HEXT
-ARM GAS  /tmp/ccQUs5GO.s 			page 28
+ARM GAS  /tmp/ccn3b2SJ.s 			page 28
 
 
  556:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_SCLK_PLL
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  1046 0002 5868     		ldr	r0, [r3, #4]
  576:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c **** }
  1047              		.loc 1 576 0
-ARM GAS  /tmp/ccQUs5GO.s 			page 29
+ARM GAS  /tmp/ccn3b2SJ.s 			page 29
 
 
  1048 0004 C0F38100 		ubfx	r0, r0, #2, #2
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  1083 0008 0128     		cmp	r0, #1
  1084 000a 15D0     		beq	.L112
  1085 000c 20B1     		cbz	r0, .L113
-ARM GAS  /tmp/ccQUs5GO.s 			page 30
+ARM GAS  /tmp/ccn3b2SJ.s 			page 30
 
 
  1086 000e 0228     		cmp	r0, #2
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  1091              		.loc 1 646 0
  1092 0016 11E0     		b	.L116
  1093              	.L113:
-ARM GAS  /tmp/ccQUs5GO.s 			page 31
+ARM GAS  /tmp/ccn3b2SJ.s 			page 31
 
 
  600:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****         clocks_struct->sclk_freq = HICK_VALUE * 6;
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  657:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   temp = CRM->cfg_bit.apb1div;
  1133              		.loc 1 657 0
  1134 004e 4A68     		ldr	r2, [r1, #4]
-ARM GAS  /tmp/ccQUs5GO.s 			page 32
+ARM GAS  /tmp/ccn3b2SJ.s 			page 32
 
 
  1135              	.LVL61:
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  1173 0080 B3FBF2F3 		udiv	r3, r3, r2
  1174 0084 2361     		str	r3, [r4, #16]
  1175 0086 10BD     		pop	{r4, pc}
-ARM GAS  /tmp/ccQUs5GO.s 			page 33
+ARM GAS  /tmp/ccn3b2SJ.s 			page 33
 
 
  1176              	.LVL72:
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  636:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****         }
  1220              		.loc 1 636 0
  1221 00c0 911C     		adds	r1, r2, #2
-ARM GAS  /tmp/ccQUs5GO.s 			page 34
+ARM GAS  /tmp/ccn3b2SJ.s 			page 34
 
 
  1222 00c2 084A     		ldr	r2, .L125
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  680:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_CLKOUT_NOCLK
  681:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_CLKOUT_LICK
  682:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_CLKOUT_LEXT
-ARM GAS  /tmp/ccQUs5GO.s 			page 35
+ARM GAS  /tmp/ccn3b2SJ.s 			page 35
 
 
  683:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_CLKOUT_SCLK
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  704:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_HICK_STABLE_INT
  705:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_HEXT_STABLE_INT
  706:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_PLL_STABLE_INT
-ARM GAS  /tmp/ccQUs5GO.s 			page 36
+ARM GAS  /tmp/ccn3b2SJ.s 			page 36
 
 
  707:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   * @param  new_state (TRUE or FALSE)
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  720:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   * @param  new_state (TRUE or FALSE)
  721:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   * @retval none
  722:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   */
-ARM GAS  /tmp/ccQUs5GO.s 			page 37
+ARM GAS  /tmp/ccn3b2SJ.s 			page 37
 
 
  723:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c **** void crm_auto_step_mode_enable(confirm_state new_state)
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  739:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c **** void crm_usb_interrupt_remapping_set(crm_usb_int_map_type int_remap)
  740:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c **** {
  1386              		.loc 1 740 0
-ARM GAS  /tmp/ccQUs5GO.s 			page 38
+ARM GAS  /tmp/ccn3b2SJ.s 			page 38
 
 
  1387              		.cfi_startproc
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  1429              	.L146:
  1430 000c 00100240 		.word	1073876992
  1431              		.cfi_endproc
-ARM GAS  /tmp/ccQUs5GO.s 			page 39
+ARM GAS  /tmp/ccn3b2SJ.s 			page 39
 
 
  1432              	.LFE162:
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  1475              		.global	crm_usb_clock_source_select
  1476              		.syntax unified
  1477              		.thumb
-ARM GAS  /tmp/ccQUs5GO.s 			page 40
+ARM GAS  /tmp/ccn3b2SJ.s 			page 40
 
 
  1478              		.thumb_func
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  1515              	.L156:
  1516 001c 00100240 		.word	1073876992
  1517              		.cfi_endproc
-ARM GAS  /tmp/ccQUs5GO.s 			page 41
+ARM GAS  /tmp/ccn3b2SJ.s 			page 41
 
 
  1518              	.LFE164:
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  803:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_HEXT_DIV_3
  804:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_HEXT_DIV_4
  805:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   *         - CRM_HEXT_DIV_5
-ARM GAS  /tmp/ccQUs5GO.s 			page 42
+ARM GAS  /tmp/ccn3b2SJ.s 			page 42
 
 
  806:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   * @retval none
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  1591              		@ frame_needed = 0, uses_anonymous_args = 0
  1592              		@ link register save eliminated.
  1593              	.LVL107:
-ARM GAS  /tmp/ccQUs5GO.s 			page 43
+ARM GAS  /tmp/ccn3b2SJ.s 			page 43
 
 
  830:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_crm.c ****   CRM->misc1_bit.clkoutdiv = clkout_div;
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  1656 0001 00       		.byte	0
  1657 0002 00       		.byte	0
  1658 0003 00       		.byte	0
-ARM GAS  /tmp/ccQUs5GO.s 			page 44
+ARM GAS  /tmp/ccn3b2SJ.s 			page 44
 
 
  1659 0004 00       		.byte	0
@@ -2602,127 +2602,127 @@ ARM GAS  /tmp/ccQUs5GO.s 			page 1
  1677              		.file 6 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/at32f403a_407.
  1678              		.file 7 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_crm.h"
  1679              		.file 8 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_usb.h"
-ARM GAS  /tmp/ccQUs5GO.s 			page 45
+ARM GAS  /tmp/ccn3b2SJ.s 			page 45
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 at32f403a_407_crm.c
-     /tmp/ccQUs5GO.s:16     .text.crm_reset:0000000000000000 $t
-     /tmp/ccQUs5GO.s:23     .text.crm_reset:0000000000000000 crm_reset
-     /tmp/ccQUs5GO.s:71     .text.crm_reset:0000000000000044 $d
-     /tmp/ccQUs5GO.s:76     .text.crm_lext_bypass:0000000000000000 $t
-     /tmp/ccQUs5GO.s:83     .text.crm_lext_bypass:0000000000000000 crm_lext_bypass
-     /tmp/ccQUs5GO.s:100    .text.crm_lext_bypass:000000000000000c $d
-     /tmp/ccQUs5GO.s:105    .text.crm_hext_bypass:0000000000000000 $t
-     /tmp/ccQUs5GO.s:112    .text.crm_hext_bypass:0000000000000000 crm_hext_bypass
-     /tmp/ccQUs5GO.s:129    .text.crm_hext_bypass:000000000000000c $d
-     /tmp/ccQUs5GO.s:134    .text.crm_flag_get:0000000000000000 $t
-     /tmp/ccQUs5GO.s:141    .text.crm_flag_get:0000000000000000 crm_flag_get
-     /tmp/ccQUs5GO.s:173    .text.crm_hext_stable_wait:0000000000000000 $t
-     /tmp/ccQUs5GO.s:180    .text.crm_hext_stable_wait:0000000000000000 crm_hext_stable_wait
-     /tmp/ccQUs5GO.s:232    .text.crm_hick_clock_trimming_set:0000000000000000 $t
-     /tmp/ccQUs5GO.s:239    .text.crm_hick_clock_trimming_set:0000000000000000 crm_hick_clock_trimming_set
-     /tmp/ccQUs5GO.s:256    .text.crm_hick_clock_trimming_set:000000000000000c $d
-     /tmp/ccQUs5GO.s:261    .text.crm_hick_clock_calibration_set:0000000000000000 $t
-     /tmp/ccQUs5GO.s:268    .text.crm_hick_clock_calibration_set:0000000000000000 crm_hick_clock_calibration_set
-     /tmp/ccQUs5GO.s:294    .text.crm_hick_clock_calibration_set:0000000000000020 $d
-     /tmp/ccQUs5GO.s:299    .text.crm_periph_clock_enable:0000000000000000 $t
-     /tmp/ccQUs5GO.s:306    .text.crm_periph_clock_enable:0000000000000000 crm_periph_clock_enable
-     /tmp/ccQUs5GO.s:347    .text.crm_periph_reset:0000000000000000 $t
-     /tmp/ccQUs5GO.s:354    .text.crm_periph_reset:0000000000000000 crm_periph_reset
-     /tmp/ccQUs5GO.s:395    .text.crm_periph_sleep_mode_clock_enable:0000000000000000 $t
-     /tmp/ccQUs5GO.s:402    .text.crm_periph_sleep_mode_clock_enable:0000000000000000 crm_periph_sleep_mode_clock_enable
-     /tmp/ccQUs5GO.s:443    .text.crm_clock_source_enable:0000000000000000 $t
-     /tmp/ccQUs5GO.s:450    .text.crm_clock_source_enable:0000000000000000 crm_clock_source_enable
-     /tmp/ccQUs5GO.s:463    .text.crm_clock_source_enable:0000000000000008 $d
-     /tmp/ccQUs5GO.s:512    .text.crm_clock_source_enable:000000000000004c $d
-     /tmp/ccQUs5GO.s:517    .text.crm_flag_clear:0000000000000000 $t
-     /tmp/ccQUs5GO.s:524    .text.crm_flag_clear:0000000000000000 crm_flag_clear
-     /tmp/ccQUs5GO.s:634    .text.crm_flag_clear:0000000000000094 $d
-     /tmp/ccQUs5GO.s:643    .text.crm_rtc_clock_select:0000000000000000 $t
-     /tmp/ccQUs5GO.s:650    .text.crm_rtc_clock_select:0000000000000000 crm_rtc_clock_select
-     /tmp/ccQUs5GO.s:667    .text.crm_rtc_clock_select:000000000000000c $d
-     /tmp/ccQUs5GO.s:672    .text.crm_rtc_clock_enable:0000000000000000 $t
-     /tmp/ccQUs5GO.s:679    .text.crm_rtc_clock_enable:0000000000000000 crm_rtc_clock_enable
-     /tmp/ccQUs5GO.s:696    .text.crm_rtc_clock_enable:000000000000000c $d
-     /tmp/ccQUs5GO.s:701    .text.crm_ahb_div_set:0000000000000000 $t
-     /tmp/ccQUs5GO.s:708    .text.crm_ahb_div_set:0000000000000000 crm_ahb_div_set
-     /tmp/ccQUs5GO.s:725    .text.crm_ahb_div_set:000000000000000c $d
-     /tmp/ccQUs5GO.s:730    .text.crm_apb1_div_set:0000000000000000 $t
-     /tmp/ccQUs5GO.s:737    .text.crm_apb1_div_set:0000000000000000 crm_apb1_div_set
-     /tmp/ccQUs5GO.s:754    .text.crm_apb1_div_set:000000000000000c $d
-     /tmp/ccQUs5GO.s:759    .text.crm_apb2_div_set:0000000000000000 $t
-     /tmp/ccQUs5GO.s:766    .text.crm_apb2_div_set:0000000000000000 crm_apb2_div_set
-     /tmp/ccQUs5GO.s:783    .text.crm_apb2_div_set:000000000000000c $d
-     /tmp/ccQUs5GO.s:788    .text.crm_adc_clock_div_set:0000000000000000 $t
-     /tmp/ccQUs5GO.s:795    .text.crm_adc_clock_div_set:0000000000000000 crm_adc_clock_div_set
-     /tmp/ccQUs5GO.s:818    .text.crm_adc_clock_div_set:0000000000000018 $d
-     /tmp/ccQUs5GO.s:823    .text.crm_usb_clock_div_set:0000000000000000 $t
-     /tmp/ccQUs5GO.s:830    .text.crm_usb_clock_div_set:0000000000000000 crm_usb_clock_div_set
-     /tmp/ccQUs5GO.s:853    .text.crm_usb_clock_div_set:0000000000000018 $d
-     /tmp/ccQUs5GO.s:858    .text.crm_clock_failure_detection_enable:0000000000000000 $t
-     /tmp/ccQUs5GO.s:865    .text.crm_clock_failure_detection_enable:0000000000000000 crm_clock_failure_detection_enable
-ARM GAS  /tmp/ccQUs5GO.s 			page 46
+     /tmp/ccn3b2SJ.s:16     .text.crm_reset:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:23     .text.crm_reset:0000000000000000 crm_reset
+     /tmp/ccn3b2SJ.s:71     .text.crm_reset:0000000000000044 $d
+     /tmp/ccn3b2SJ.s:76     .text.crm_lext_bypass:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:83     .text.crm_lext_bypass:0000000000000000 crm_lext_bypass
+     /tmp/ccn3b2SJ.s:100    .text.crm_lext_bypass:000000000000000c $d
+     /tmp/ccn3b2SJ.s:105    .text.crm_hext_bypass:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:112    .text.crm_hext_bypass:0000000000000000 crm_hext_bypass
+     /tmp/ccn3b2SJ.s:129    .text.crm_hext_bypass:000000000000000c $d
+     /tmp/ccn3b2SJ.s:134    .text.crm_flag_get:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:141    .text.crm_flag_get:0000000000000000 crm_flag_get
+     /tmp/ccn3b2SJ.s:173    .text.crm_hext_stable_wait:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:180    .text.crm_hext_stable_wait:0000000000000000 crm_hext_stable_wait
+     /tmp/ccn3b2SJ.s:232    .text.crm_hick_clock_trimming_set:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:239    .text.crm_hick_clock_trimming_set:0000000000000000 crm_hick_clock_trimming_set
+     /tmp/ccn3b2SJ.s:256    .text.crm_hick_clock_trimming_set:000000000000000c $d
+     /tmp/ccn3b2SJ.s:261    .text.crm_hick_clock_calibration_set:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:268    .text.crm_hick_clock_calibration_set:0000000000000000 crm_hick_clock_calibration_set
+     /tmp/ccn3b2SJ.s:294    .text.crm_hick_clock_calibration_set:0000000000000020 $d
+     /tmp/ccn3b2SJ.s:299    .text.crm_periph_clock_enable:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:306    .text.crm_periph_clock_enable:0000000000000000 crm_periph_clock_enable
+     /tmp/ccn3b2SJ.s:347    .text.crm_periph_reset:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:354    .text.crm_periph_reset:0000000000000000 crm_periph_reset
+     /tmp/ccn3b2SJ.s:395    .text.crm_periph_sleep_mode_clock_enable:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:402    .text.crm_periph_sleep_mode_clock_enable:0000000000000000 crm_periph_sleep_mode_clock_enable
+     /tmp/ccn3b2SJ.s:443    .text.crm_clock_source_enable:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:450    .text.crm_clock_source_enable:0000000000000000 crm_clock_source_enable
+     /tmp/ccn3b2SJ.s:463    .text.crm_clock_source_enable:0000000000000008 $d
+     /tmp/ccn3b2SJ.s:512    .text.crm_clock_source_enable:000000000000004c $d
+     /tmp/ccn3b2SJ.s:517    .text.crm_flag_clear:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:524    .text.crm_flag_clear:0000000000000000 crm_flag_clear
+     /tmp/ccn3b2SJ.s:634    .text.crm_flag_clear:0000000000000094 $d
+     /tmp/ccn3b2SJ.s:643    .text.crm_rtc_clock_select:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:650    .text.crm_rtc_clock_select:0000000000000000 crm_rtc_clock_select
+     /tmp/ccn3b2SJ.s:667    .text.crm_rtc_clock_select:000000000000000c $d
+     /tmp/ccn3b2SJ.s:672    .text.crm_rtc_clock_enable:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:679    .text.crm_rtc_clock_enable:0000000000000000 crm_rtc_clock_enable
+     /tmp/ccn3b2SJ.s:696    .text.crm_rtc_clock_enable:000000000000000c $d
+     /tmp/ccn3b2SJ.s:701    .text.crm_ahb_div_set:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:708    .text.crm_ahb_div_set:0000000000000000 crm_ahb_div_set
+     /tmp/ccn3b2SJ.s:725    .text.crm_ahb_div_set:000000000000000c $d
+     /tmp/ccn3b2SJ.s:730    .text.crm_apb1_div_set:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:737    .text.crm_apb1_div_set:0000000000000000 crm_apb1_div_set
+     /tmp/ccn3b2SJ.s:754    .text.crm_apb1_div_set:000000000000000c $d
+     /tmp/ccn3b2SJ.s:759    .text.crm_apb2_div_set:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:766    .text.crm_apb2_div_set:0000000000000000 crm_apb2_div_set
+     /tmp/ccn3b2SJ.s:783    .text.crm_apb2_div_set:000000000000000c $d
+     /tmp/ccn3b2SJ.s:788    .text.crm_adc_clock_div_set:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:795    .text.crm_adc_clock_div_set:0000000000000000 crm_adc_clock_div_set
+     /tmp/ccn3b2SJ.s:818    .text.crm_adc_clock_div_set:0000000000000018 $d
+     /tmp/ccn3b2SJ.s:823    .text.crm_usb_clock_div_set:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:830    .text.crm_usb_clock_div_set:0000000000000000 crm_usb_clock_div_set
+     /tmp/ccn3b2SJ.s:853    .text.crm_usb_clock_div_set:0000000000000018 $d
+     /tmp/ccn3b2SJ.s:858    .text.crm_clock_failure_detection_enable:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:865    .text.crm_clock_failure_detection_enable:0000000000000000 crm_clock_failure_detection_enable
+ARM GAS  /tmp/ccn3b2SJ.s 			page 46
 
 
-     /tmp/ccQUs5GO.s:882    .text.crm_clock_failure_detection_enable:000000000000000c $d
-     /tmp/ccQUs5GO.s:887    .text.crm_battery_powered_domain_reset:0000000000000000 $t
-     /tmp/ccQUs5GO.s:894    .text.crm_battery_powered_domain_reset:0000000000000000 crm_battery_powered_domain_reset
-     /tmp/ccQUs5GO.s:911    .text.crm_battery_powered_domain_reset:000000000000000c $d
-     /tmp/ccQUs5GO.s:916    .text.crm_pll_config:0000000000000000 $t
-     /tmp/ccQUs5GO.s:923    .text.crm_pll_config:0000000000000000 crm_pll_config
-     /tmp/ccQUs5GO.s:996    .text.crm_pll_config:0000000000000058 $d
-     /tmp/ccQUs5GO.s:1001   .text.crm_sysclk_switch:0000000000000000 $t
-     /tmp/ccQUs5GO.s:1008   .text.crm_sysclk_switch:0000000000000000 crm_sysclk_switch
-     /tmp/ccQUs5GO.s:1025   .text.crm_sysclk_switch:000000000000000c $d
-     /tmp/ccQUs5GO.s:1030   .text.crm_sysclk_switch_status_get:0000000000000000 $t
-     /tmp/ccQUs5GO.s:1037   .text.crm_sysclk_switch_status_get:0000000000000000 crm_sysclk_switch_status_get
-     /tmp/ccQUs5GO.s:1053   .text.crm_sysclk_switch_status_get:000000000000000c $d
-     /tmp/ccQUs5GO.s:1058   .text.crm_clocks_freq_get:0000000000000000 $t
-     /tmp/ccQUs5GO.s:1065   .text.crm_clocks_freq_get:0000000000000000 crm_clocks_freq_get
-     /tmp/ccQUs5GO.s:1249   .text.crm_clocks_freq_get:00000000000000e4 $d
-     /tmp/ccQUs5GO.s:1261   .text.crm_clock_out_set:0000000000000000 $t
-     /tmp/ccQUs5GO.s:1268   .text.crm_clock_out_set:0000000000000000 crm_clock_out_set
-     /tmp/ccQUs5GO.s:1291   .text.crm_clock_out_set:0000000000000018 $d
-     /tmp/ccQUs5GO.s:1296   .text.crm_interrupt_enable:0000000000000000 $t
-     /tmp/ccQUs5GO.s:1303   .text.crm_interrupt_enable:0000000000000000 crm_interrupt_enable
-     /tmp/ccQUs5GO.s:1333   .text.crm_interrupt_enable:000000000000001c $d
-     /tmp/ccQUs5GO.s:1338   .text.crm_auto_step_mode_enable:0000000000000000 $t
-     /tmp/ccQUs5GO.s:1345   .text.crm_auto_step_mode_enable:0000000000000000 crm_auto_step_mode_enable
-     /tmp/ccQUs5GO.s:1372   .text.crm_auto_step_mode_enable:000000000000001c $d
-     /tmp/ccQUs5GO.s:1377   .text.crm_usb_interrupt_remapping_set:0000000000000000 $t
-     /tmp/ccQUs5GO.s:1384   .text.crm_usb_interrupt_remapping_set:0000000000000000 crm_usb_interrupt_remapping_set
-     /tmp/ccQUs5GO.s:1401   .text.crm_usb_interrupt_remapping_set:000000000000000c $d
-     /tmp/ccQUs5GO.s:1406   .text.crm_hick_divider_select:0000000000000000 $t
-     /tmp/ccQUs5GO.s:1413   .text.crm_hick_divider_select:0000000000000000 crm_hick_divider_select
-     /tmp/ccQUs5GO.s:1430   .text.crm_hick_divider_select:000000000000000c $d
-     /tmp/ccQUs5GO.s:1435   .text.crm_hick_sclk_frequency_select:0000000000000000 $t
-     /tmp/ccQUs5GO.s:1442   .text.crm_hick_sclk_frequency_select:0000000000000000 crm_hick_sclk_frequency_select
-     /tmp/ccQUs5GO.s:1469   .text.crm_hick_sclk_frequency_select:0000000000000018 $d
-     /tmp/ccQUs5GO.s:1474   .text.crm_usb_clock_source_select:0000000000000000 $t
-     /tmp/ccQUs5GO.s:1481   .text.crm_usb_clock_source_select:0000000000000000 crm_usb_clock_source_select
-     /tmp/ccQUs5GO.s:1516   .text.crm_usb_clock_source_select:000000000000001c $d
-     /tmp/ccQUs5GO.s:1521   .text.crm_clkout_to_tmr10_enable:0000000000000000 $t
-     /tmp/ccQUs5GO.s:1528   .text.crm_clkout_to_tmr10_enable:0000000000000000 crm_clkout_to_tmr10_enable
-     /tmp/ccQUs5GO.s:1545   .text.crm_clkout_to_tmr10_enable:000000000000000c $d
-     /tmp/ccQUs5GO.s:1550   .text.crm_hext_clock_div_set:0000000000000000 $t
-     /tmp/ccQUs5GO.s:1557   .text.crm_hext_clock_div_set:0000000000000000 crm_hext_clock_div_set
-     /tmp/ccQUs5GO.s:1574   .text.crm_hext_clock_div_set:000000000000000c $d
-     /tmp/ccQUs5GO.s:1579   .text.crm_clkout_div_set:0000000000000000 $t
-     /tmp/ccQUs5GO.s:1586   .text.crm_clkout_div_set:0000000000000000 crm_clkout_div_set
-     /tmp/ccQUs5GO.s:1603   .text.crm_clkout_div_set:000000000000000c $d
-     /tmp/ccQUs5GO.s:1608   .rodata.adc_div_table.12798:0000000000000000 $d
-     /tmp/ccQUs5GO.s:1612   .rodata.adc_div_table.12798:0000000000000000 adc_div_table.12798
-     /tmp/ccQUs5GO.s:1622   .rodata.ahb_apb1_div_table.12796:0000000000000000 $d
-     /tmp/ccQUs5GO.s:1626   .rodata.ahb_apb1_div_table.12796:0000000000000000 ahb_apb1_div_table.12796
-     /tmp/ccQUs5GO.s:1636   .rodata.ahb_apb2_div_table.12797:0000000000000000 $d
-     /tmp/ccQUs5GO.s:1640   .rodata.ahb_apb2_div_table.12797:0000000000000000 ahb_apb2_div_table.12797
-     /tmp/ccQUs5GO.s:1650   .rodata.sclk_ahb_div_table.12795:0000000000000000 $d
-     /tmp/ccQUs5GO.s:1654   .rodata.sclk_ahb_div_table.12795:0000000000000000 sclk_ahb_div_table.12795
+     /tmp/ccn3b2SJ.s:882    .text.crm_clock_failure_detection_enable:000000000000000c $d
+     /tmp/ccn3b2SJ.s:887    .text.crm_battery_powered_domain_reset:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:894    .text.crm_battery_powered_domain_reset:0000000000000000 crm_battery_powered_domain_reset
+     /tmp/ccn3b2SJ.s:911    .text.crm_battery_powered_domain_reset:000000000000000c $d
+     /tmp/ccn3b2SJ.s:916    .text.crm_pll_config:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:923    .text.crm_pll_config:0000000000000000 crm_pll_config
+     /tmp/ccn3b2SJ.s:996    .text.crm_pll_config:0000000000000058 $d
+     /tmp/ccn3b2SJ.s:1001   .text.crm_sysclk_switch:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:1008   .text.crm_sysclk_switch:0000000000000000 crm_sysclk_switch
+     /tmp/ccn3b2SJ.s:1025   .text.crm_sysclk_switch:000000000000000c $d
+     /tmp/ccn3b2SJ.s:1030   .text.crm_sysclk_switch_status_get:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:1037   .text.crm_sysclk_switch_status_get:0000000000000000 crm_sysclk_switch_status_get
+     /tmp/ccn3b2SJ.s:1053   .text.crm_sysclk_switch_status_get:000000000000000c $d
+     /tmp/ccn3b2SJ.s:1058   .text.crm_clocks_freq_get:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:1065   .text.crm_clocks_freq_get:0000000000000000 crm_clocks_freq_get
+     /tmp/ccn3b2SJ.s:1249   .text.crm_clocks_freq_get:00000000000000e4 $d
+     /tmp/ccn3b2SJ.s:1261   .text.crm_clock_out_set:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:1268   .text.crm_clock_out_set:0000000000000000 crm_clock_out_set
+     /tmp/ccn3b2SJ.s:1291   .text.crm_clock_out_set:0000000000000018 $d
+     /tmp/ccn3b2SJ.s:1296   .text.crm_interrupt_enable:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:1303   .text.crm_interrupt_enable:0000000000000000 crm_interrupt_enable
+     /tmp/ccn3b2SJ.s:1333   .text.crm_interrupt_enable:000000000000001c $d
+     /tmp/ccn3b2SJ.s:1338   .text.crm_auto_step_mode_enable:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:1345   .text.crm_auto_step_mode_enable:0000000000000000 crm_auto_step_mode_enable
+     /tmp/ccn3b2SJ.s:1372   .text.crm_auto_step_mode_enable:000000000000001c $d
+     /tmp/ccn3b2SJ.s:1377   .text.crm_usb_interrupt_remapping_set:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:1384   .text.crm_usb_interrupt_remapping_set:0000000000000000 crm_usb_interrupt_remapping_set
+     /tmp/ccn3b2SJ.s:1401   .text.crm_usb_interrupt_remapping_set:000000000000000c $d
+     /tmp/ccn3b2SJ.s:1406   .text.crm_hick_divider_select:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:1413   .text.crm_hick_divider_select:0000000000000000 crm_hick_divider_select
+     /tmp/ccn3b2SJ.s:1430   .text.crm_hick_divider_select:000000000000000c $d
+     /tmp/ccn3b2SJ.s:1435   .text.crm_hick_sclk_frequency_select:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:1442   .text.crm_hick_sclk_frequency_select:0000000000000000 crm_hick_sclk_frequency_select
+     /tmp/ccn3b2SJ.s:1469   .text.crm_hick_sclk_frequency_select:0000000000000018 $d
+     /tmp/ccn3b2SJ.s:1474   .text.crm_usb_clock_source_select:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:1481   .text.crm_usb_clock_source_select:0000000000000000 crm_usb_clock_source_select
+     /tmp/ccn3b2SJ.s:1516   .text.crm_usb_clock_source_select:000000000000001c $d
+     /tmp/ccn3b2SJ.s:1521   .text.crm_clkout_to_tmr10_enable:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:1528   .text.crm_clkout_to_tmr10_enable:0000000000000000 crm_clkout_to_tmr10_enable
+     /tmp/ccn3b2SJ.s:1545   .text.crm_clkout_to_tmr10_enable:000000000000000c $d
+     /tmp/ccn3b2SJ.s:1550   .text.crm_hext_clock_div_set:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:1557   .text.crm_hext_clock_div_set:0000000000000000 crm_hext_clock_div_set
+     /tmp/ccn3b2SJ.s:1574   .text.crm_hext_clock_div_set:000000000000000c $d
+     /tmp/ccn3b2SJ.s:1579   .text.crm_clkout_div_set:0000000000000000 $t
+     /tmp/ccn3b2SJ.s:1586   .text.crm_clkout_div_set:0000000000000000 crm_clkout_div_set
+     /tmp/ccn3b2SJ.s:1603   .text.crm_clkout_div_set:000000000000000c $d
+     /tmp/ccn3b2SJ.s:1608   .rodata.adc_div_table.12798:0000000000000000 $d
+     /tmp/ccn3b2SJ.s:1612   .rodata.adc_div_table.12798:0000000000000000 adc_div_table.12798
+     /tmp/ccn3b2SJ.s:1622   .rodata.ahb_apb1_div_table.12796:0000000000000000 $d
+     /tmp/ccn3b2SJ.s:1626   .rodata.ahb_apb1_div_table.12796:0000000000000000 ahb_apb1_div_table.12796
+     /tmp/ccn3b2SJ.s:1636   .rodata.ahb_apb2_div_table.12797:0000000000000000 $d
+     /tmp/ccn3b2SJ.s:1640   .rodata.ahb_apb2_div_table.12797:0000000000000000 ahb_apb2_div_table.12797
+     /tmp/ccn3b2SJ.s:1650   .rodata.sclk_ahb_div_table.12795:0000000000000000 $d
+     /tmp/ccn3b2SJ.s:1654   .rodata.sclk_ahb_div_table.12795:0000000000000000 sclk_ahb_div_table.12795
                      .debug_frame:0000000000000010 $d
-     /tmp/ccQUs5GO.s:468    .text.crm_clock_source_enable:000000000000000d $d
-     /tmp/ccQUs5GO.s:468    .text.crm_clock_source_enable:000000000000000e $t
-ARM GAS  /tmp/ccQUs5GO.s 			page 47
+     /tmp/ccn3b2SJ.s:468    .text.crm_clock_source_enable:000000000000000d $d
+     /tmp/ccn3b2SJ.s:468    .text.crm_clock_source_enable:000000000000000e $t
+ARM GAS  /tmp/ccn3b2SJ.s 			page 47
 
 
 

@@ -12,7 +12,7 @@ static const int16_t g_motor_max_current = 10000;
 static const float  g_rpm_to_rps = 1.0 / 3600.0 * 6.28318530718 ; // rad/s
 
 static struct PID pid_angle = {
-    .Kp = 80.0,
+    .Kp = 120.0,
     .Ki = 0.0,
     .Kd = 0.0,
 };

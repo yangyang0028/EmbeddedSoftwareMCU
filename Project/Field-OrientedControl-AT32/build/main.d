@@ -34,7 +34,12 @@ build/main.o: main.c Core/Inc/at32f403a_407_board.h \
  /home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_usb.h \
  /home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_emac.h \
  Core/Inc/at32f403a_407_clock.h \
- /home/y/github/EmbeddedSoftwareMCU/Common/common.h
+ /home/y/github/EmbeddedSoftwareMCU/SoftwareLib/i2c_application_library/i2c_application.h \
+ /home/y/github/EmbeddedSoftwareMCU/HardwareDriver/AS5600.h \
+ /home/y/github/EmbeddedSoftwareMCU/Common/common.h \
+ /home/y/github/EmbeddedSoftwareMCU/SoftwareLib/SimpleFOC/Foc.h \
+ /home/y/github/EmbeddedSoftwareMCU/SoftwareLib/SimpleFOC/foc_utils.h \
+ /home/y/github/EmbeddedSoftwareMCU/SoftwareLib/Pid/Pid.h
 
 Core/Inc/at32f403a_407_board.h:
 
@@ -108,4 +113,14 @@ Core/Inc/at32f403a_407_conf.h:
 
 Core/Inc/at32f403a_407_clock.h:
 
+/home/y/github/EmbeddedSoftwareMCU/SoftwareLib/i2c_application_library/i2c_application.h:
+
+/home/y/github/EmbeddedSoftwareMCU/HardwareDriver/AS5600.h:
+
 /home/y/github/EmbeddedSoftwareMCU/Common/common.h:
+
+/home/y/github/EmbeddedSoftwareMCU/SoftwareLib/SimpleFOC/Foc.h:
+
+/home/y/github/EmbeddedSoftwareMCU/SoftwareLib/SimpleFOC/foc_utils.h:
+
+/home/y/github/EmbeddedSoftwareMCU/SoftwareLib/Pid/Pid.h:

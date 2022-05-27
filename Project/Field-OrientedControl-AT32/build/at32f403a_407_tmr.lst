@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccF7O1vI.s 			page 1
+ARM GAS  /tmp/ccH67hzF.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
   31:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   */
   32:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** 
   33:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** /** @defgroup TMR
-ARM GAS  /tmp/ccF7O1vI.s 			page 2
+ARM GAS  /tmp/ccH67hzF.s 			page 2
 
 
   34:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   * @brief TMR driver modules
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
   67:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****     crm_periph_reset(CRM_TMR3_PERIPH_RESET, FALSE);
   68:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   }
   69:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   else if(tmr_x == TMR4)
-ARM GAS  /tmp/ccF7O1vI.s 			page 3
+ARM GAS  /tmp/ccH67hzF.s 			page 3
 
 
   47              		.loc 1 69 0
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
   71              		.loc 1 99 0
   72 0038 564B     		ldr	r3, .L31+32
   73 003a 9842     		cmp	r0, r3
-ARM GAS  /tmp/ccF7O1vI.s 			page 4
+ARM GAS  /tmp/ccH67hzF.s 			page 4
 
 
   74 003c 68D0     		beq	.L26
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  106 0068 FFF7FEFF 		bl	crm_periph_reset
  107              	.LVL5:
  108 006c 10BD     		pop	{r4, pc}
-ARM GAS  /tmp/ccF7O1vI.s 			page 5
+ARM GAS  /tmp/ccH67hzF.s 			page 5
 
 
  109              	.LVL6:
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  156 00ac 414C     		ldr	r4, .L31+64
  157 00ae 0121     		movs	r1, #1
  158 00b0 2046     		mov	r0, r4
-ARM GAS  /tmp/ccF7O1vI.s 			page 6
+ARM GAS  /tmp/ccH67hzF.s 			page 6
 
 
  159              	.LVL19:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
   92:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   }
  207              		.loc 1 92 0
  208 00f2 0021     		movs	r1, #0
-ARM GAS  /tmp/ccF7O1vI.s 			page 7
+ARM GAS  /tmp/ccH67hzF.s 			page 7
 
 
  209 00f4 2046     		mov	r0, r4
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  257 0136 10BD     		pop	{r4, pc}
  258              	.LVL46:
  259              	.L28:
-ARM GAS  /tmp/ccF7O1vI.s 			page 8
+ARM GAS  /tmp/ccH67hzF.s 			page 8
 
 
  111:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****     crm_periph_reset(CRM_TMR12_PERIPH_RESET, FALSE);
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  305              		.align	2
  306              	.L31:
  307 0174 002C0140 		.word	1073818624
-ARM GAS  /tmp/ccF7O1vI.s 			page 9
+ARM GAS  /tmp/ccH67hzF.s 			page 9
 
 
  308 0178 00040040 		.word	1073742848
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  137:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   /* tmr counter enable  */
  138:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   tmr_x->ctrl1_bit.tmren = new_state;
  352              		.loc 1 138 0
-ARM GAS  /tmp/ccF7O1vI.s 			page 10
+ARM GAS  /tmp/ccH67hzF.s 			page 10
 
 
  353 0000 0368     		ldr	r3, [r0]
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  392              		.cfi_endproc
  393              	.LFE135:
  395              		.section	.text.tmr_input_default_para_init,"ax",%progbits
-ARM GAS  /tmp/ccF7O1vI.s 			page 11
+ARM GAS  /tmp/ccH67hzF.s 			page 11
 
 
  396              		.align	1
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  174:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   * @param  tmr_brkdt_struct
  175:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         - to the structure of tmr_brkdt_config_type
  176:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   * @retval none
-ARM GAS  /tmp/ccF7O1vI.s 			page 12
+ARM GAS  /tmp/ccH67hzF.s 			page 12
 
 
  177:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   */
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  198:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   * @retval none
  199:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   */
  200:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** void tmr_base_init(tmr_type* tmr_x, uint32_t tmr_pr, uint32_t tmr_div)
-ARM GAS  /tmp/ccF7O1vI.s 			page 13
+ARM GAS  /tmp/ccH67hzF.s 			page 13
 
 
  201:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** {
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  500              		@ args = 0, pretend = 0, frame = 0
  501              		@ frame_needed = 0, uses_anonymous_args = 0
  502              		@ link register save eliminated.
-ARM GAS  /tmp/ccF7O1vI.s 			page 14
+ARM GAS  /tmp/ccH67hzF.s 			page 14
 
 
  503              	.LVL63:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  537              		.align	1
  538              		.global	tmr_repetition_counter_set
  539              		.syntax unified
-ARM GAS  /tmp/ccF7O1vI.s 			page 15
+ARM GAS  /tmp/ccH67hzF.s 			page 15
 
 
  540              		.thumb
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  576              		.cfi_endproc
  577              	.LFE141:
  579              		.section	.text.tmr_counter_value_set,"ax",%progbits
-ARM GAS  /tmp/ccF7O1vI.s 			page 16
+ARM GAS  /tmp/ccH67hzF.s 			page 16
 
 
  580              		.align	1
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  295:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** {
  611              		.loc 1 295 0
  612              		.cfi_startproc
-ARM GAS  /tmp/ccF7O1vI.s 			page 17
+ARM GAS  /tmp/ccH67hzF.s 			page 17
 
 
  613              		@ args = 0, pretend = 0, frame = 0
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  653              		.fpu softvfp
  655              	tmr_div_value_get:
  656              	.LFB145:
-ARM GAS  /tmp/ccF7O1vI.s 			page 18
+ARM GAS  /tmp/ccH67hzF.s 			page 18
 
 
  313:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** }
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  345:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****                                tmr_output_config_type *tmr_output_struct)
  346:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** {
  681              		.loc 1 346 0
-ARM GAS  /tmp/ccF7O1vI.s 			page 19
+ARM GAS  /tmp/ccH67hzF.s 			page 19
 
 
  682              		.cfi_startproc
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  364:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   tmr_x->ctrl2 |= channel_index;
  719              		.loc 1 364 0
  720 002c 4468     		ldr	r4, [r0, #4]
-ARM GAS  /tmp/ccF7O1vI.s 			page 20
+ARM GAS  /tmp/ccH67hzF.s 			page 20
 
 
  721 002e 2343     		orrs	r3, r3, r4
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  379:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****     case TMR_SELECT_CHANNEL_3:
  380:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       tmr_x->cm2_output_bit.c3octrl = tmr_output_struct->oc_mode;
  381:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       break;
-ARM GAS  /tmp/ccF7O1vI.s 			page 21
+ARM GAS  /tmp/ccH67hzF.s 			page 21
 
 
  382:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** 
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  407:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** 
  408:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   /* get channel enable bit position in cctrl register */
  409:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   channel_index = (uint16_t)(tmr_output_struct->oc_output_state << (tmr_channel * 2));
-ARM GAS  /tmp/ccF7O1vI.s 			page 22
+ARM GAS  /tmp/ccH67hzF.s 			page 22
 
 
  788              		.loc 1 409 0
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  827              	.LVL95:
  828              	.L55:
  829              	.LCFI3:
-ARM GAS  /tmp/ccF7O1vI.s 			page 23
+ARM GAS  /tmp/ccH67hzF.s 			page 23
 
 
  830              		.cfi_restore_state
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  874 00ee D8E7     		b	.L61
  875              	.L64:
  876              		.align	2
-ARM GAS  /tmp/ccF7O1vI.s 			page 24
+ARM GAS  /tmp/ccH67hzF.s 			page 24
 
 
  877              	.L63:
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  900 0002 18D8     		bhi	.L65
  901 0004 DFE801F0 		tbb	[pc, r1]
  902              	.L68:
-ARM GAS  /tmp/ccF7O1vI.s 			page 25
+ARM GAS  /tmp/ccH67hzF.s 			page 25
 
 
  903 0008 04       		.byte	(.L67-.L68)/2
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  943              		.align	1
  944              		.global	tmr_period_value_set
  945              		.syntax unified
-ARM GAS  /tmp/ccF7O1vI.s 			page 26
+ARM GAS  /tmp/ccH67hzF.s 			page 26
 
 
  946              		.thumb
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  502:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   * @retval timer period register value of counter
  503:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         (for 16 bit tmr 0x0000~0xFFFF, for 32 bit tmr
  504:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         0x0000_0000~0xFFFF_FFFF)
-ARM GAS  /tmp/ccF7O1vI.s 			page 27
+ARM GAS  /tmp/ccH67hzF.s 			page 27
 
 
  505:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   */
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  531:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** 
  532:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   channel = tmr_channel;
  533:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** 
-ARM GAS  /tmp/ccF7O1vI.s 			page 28
+ARM GAS  /tmp/ccH67hzF.s 			page 28
 
 
  534:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   /* set tmr channel value */
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  1042              		.global	tmr_channel_value_get
  1043              		.syntax unified
  1044              		.thumb
-ARM GAS  /tmp/ccF7O1vI.s 			page 29
+ARM GAS  /tmp/ccH67hzF.s 			page 29
 
 
  1045              		.thumb_func
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  581:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   {
  582:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****     case TMR_SELECT_CHANNEL_1:
  583:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       cc_value_get = tmr_x->c1dt;
-ARM GAS  /tmp/ccF7O1vI.s 			page 30
+ARM GAS  /tmp/ccH67hzF.s 			page 30
 
 
  1070              		.loc 1 583 0
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  1103              		.cfi_endproc
  1104              	.LFE151:
  1106              		.section	.text.tmr_period_buffer_enable,"ax",%progbits
-ARM GAS  /tmp/ccF7O1vI.s 			page 31
+ARM GAS  /tmp/ccH67hzF.s 			page 31
 
 
  1107              		.align	1
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  628:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         - TMR_SELECT_CHANNEL_2
  629:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         - TMR_SELECT_CHANNEL_3
  630:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         - TMR_SELECT_CHANNEL_4
-ARM GAS  /tmp/ccF7O1vI.s 			page 32
+ARM GAS  /tmp/ccH67hzF.s 			page 32
 
 
  631:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   * @param  new_state (TRUE or FALSE)
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  651:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** 
  652:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****     case TMR_SELECT_CHANNEL_3:
  653:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       tmr_x->cm2_output_bit.c3oben = new_state;
-ARM GAS  /tmp/ccF7O1vI.s 			page 33
+ARM GAS  /tmp/ccH67hzF.s 			page 33
 
 
  1174              		.loc 1 653 0
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  1201              		.cfi_startproc
  1202              		@ args = 0, pretend = 0, frame = 0
  1203              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccF7O1vI.s 			page 34
+ARM GAS  /tmp/ccH67hzF.s 			page 34
 
 
  1204              		@ link register save eliminated.
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  1240              	.L103:
  701:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** 
  702:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****     case TMR_SELECT_CHANNEL_4:
-ARM GAS  /tmp/ccF7O1vI.s 			page 35
+ARM GAS  /tmp/ccH67hzF.s 			page 35
 
 
  703:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       tmr_x->cm2_output_bit.c4oien = new_state;
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  734:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   switch(channel)
  1266              		.loc 1 734 0
  1267 0000 0629     		cmp	r1, #6
-ARM GAS  /tmp/ccF7O1vI.s 			page 36
+ARM GAS  /tmp/ccH67hzF.s 			page 36
 
 
  1268 0002 18D8     		bhi	.L104
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  1307              		.cfi_endproc
  1308              	.LFE155:
  1310              		.section	.text.tmr_one_cycle_mode_enable,"ax",%progbits
-ARM GAS  /tmp/ccF7O1vI.s 			page 37
+ARM GAS  /tmp/ccH67hzF.s 			page 37
 
 
  1311              		.align	1
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  774:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         this parameter can be one of the following values:
  775:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         TMR2, TMR5
  776:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   * @param  new_state (TRUE or FALSE)
-ARM GAS  /tmp/ccF7O1vI.s 			page 38
+ARM GAS  /tmp/ccH67hzF.s 			page 38
 
 
  777:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   * @retval none
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  794:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   * @param  new_state (TRUE or FALSE)
  795:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   * @retval none
  796:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   */
-ARM GAS  /tmp/ccF7O1vI.s 			page 39
+ARM GAS  /tmp/ccH67hzF.s 			page 39
 
 
  797:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** void tmr_overflow_request_source_set(tmr_type *tmr_x, confirm_state new_state)
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  1423              		.global	tmr_input_channel_init
  1424              		.syntax unified
  1425              		.thumb
-ARM GAS  /tmp/ccF7O1vI.s 			page 40
+ARM GAS  /tmp/ccH67hzF.s 			page 40
 
 
  1426              		.thumb_func
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  1454 0010 43       		.byte	(.L124-.L122)/2
  1455 0011 22       		.byte	(.L119-.L122)/2
  1456 0012 62       		.byte	(.L125-.L122)/2
-ARM GAS  /tmp/ccF7O1vI.s 			page 41
+ARM GAS  /tmp/ccH67hzF.s 			page 41
 
 
  1457 0013 00       		.p2align 1
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  860:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****     case TMR_SELECT_CHANNEL_3:
  861:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       tmr_x->cctrl_bit.c3p        = (uint32_t)input_struct->input_polarity_select;
  862:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       tmr_x->cctrl_bit.c3cp       = (input_struct->input_polarity_select & 0x2) >> 1;
-ARM GAS  /tmp/ccF7O1vI.s 			page 42
+ARM GAS  /tmp/ccH67hzF.s 			page 42
 
 
  863:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       tmr_x->cm2_input_bit.c3c    = input_struct->input_mapped_select;
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  1524 0078 8369     		ldr	r3, [r0, #24]
  1525 007a 61F30F33 		bfi	r3, r1, #12, #4
  1526 007e 8361     		str	r3, [r0, #24]
-ARM GAS  /tmp/ccF7O1vI.s 			page 43
+ARM GAS  /tmp/ccH67hzF.s 			page 43
 
 
  856:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       tmr_x->cctrl_bit.c2en       = TRUE;
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  1571              		.loc 1 867 0
  1572 00ce BFE7     		b	.L119
  1573              	.LVL137:
-ARM GAS  /tmp/ccF7O1vI.s 			page 44
+ARM GAS  /tmp/ccH67hzF.s 			page 44
 
 
  1574              	.L125:
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  890:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         - TMR_SELECT_CHANNEL_1
  891:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         - TMR_SELECT_CHANNEL_1C
  892:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         - TMR_SELECT_CHANNEL_2
-ARM GAS  /tmp/ccF7O1vI.s 			page 45
+ARM GAS  /tmp/ccH67hzF.s 			page 45
 
 
  893:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         - TMR_SELECT_CHANNEL_2C
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  1648 0022 7047     		bx	lr
  1649              	.L132:
  915:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** 
-ARM GAS  /tmp/ccF7O1vI.s 			page 46
+ARM GAS  /tmp/ccH67hzF.s 			page 46
 
 
  916:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****     case TMR_SELECT_CHANNEL_2:
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  1687              		.section	.text.tmr_input_channel_filter_set,"ax",%progbits
  1688              		.align	1
  1689              		.global	tmr_input_channel_filter_set
-ARM GAS  /tmp/ccF7O1vI.s 			page 47
+ARM GAS  /tmp/ccH67hzF.s 			page 47
 
 
  1690              		.syntax unified
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  1715 000f 00       		.p2align 1
  1716              	.L139:
  964:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   {
-ARM GAS  /tmp/ccF7O1vI.s 			page 48
+ARM GAS  /tmp/ccH67hzF.s 			page 48
 
 
  965:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****     case TMR_SELECT_CHANNEL_1:
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  981:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****     default:
  982:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       break;
  983:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   }
-ARM GAS  /tmp/ccF7O1vI.s 			page 49
+ARM GAS  /tmp/ccH67hzF.s 			page 49
 
 
  984:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** }
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
 1018:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       }
 1019:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       else if(input_struct->input_polarity_select == TMR_INPUT_FALLING_EDGE)
 1020:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       {
-ARM GAS  /tmp/ccF7O1vI.s 			page 50
+ARM GAS  /tmp/ccH67hzF.s 			page 50
 
 
 1021:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****         /* set channel polarity */
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
 1075:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       else if(input_struct->input_mapped_select == TMR_CC_CHANNEL_MAPPED_INDIRECT)
 1076:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       {
 1077:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****         /* set mapped direct */
-ARM GAS  /tmp/ccF7O1vI.s 			page 51
+ARM GAS  /tmp/ccH67hzF.s 			page 51
 
 
 1078:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****         tmr_x->cm1_input_bit.c2c = TMR_CC_CHANNEL_MAPPED_INDIRECT;
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  1806              		.loc 1 1034 0
  1807 0028 022B     		cmp	r3, #2
  1808 002a 32D0     		beq	.L158
-ARM GAS  /tmp/ccF7O1vI.s 			page 52
+ARM GAS  /tmp/ccH67hzF.s 			page 52
 
 
  1809              	.L151:
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  1853 0074 6FF34513 		bfc	r3, #5, #1
  1854 0078 0362     		str	r3, [r0, #32]
  1855 007a D2E7     		b	.L149
-ARM GAS  /tmp/ccF7O1vI.s 			page 53
+ARM GAS  /tmp/ccH67hzF.s 			page 53
 
 
  1856              	.L157:
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  1901 00c2 022B     		cmp	r3, #2
  1902 00c4 32D0     		beq	.L160
  1903              	.L155:
-ARM GAS  /tmp/ccF7O1vI.s 			page 54
+ARM GAS  /tmp/ccH67hzF.s 			page 54
 
 
 1083:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       tmr_x->cm1_input_bit.c2df = input_struct->input_filter_value;
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  1949 0114 D2E7     		b	.L153
  1950              	.L159:
 1072:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****         tmr_x->cm1_input_bit.c1c = TMR_CC_CHANNEL_MAPPED_INDIRECT;
-ARM GAS  /tmp/ccF7O1vI.s 			page 55
+ARM GAS  /tmp/ccH67hzF.s 			page 55
 
 
  1951              		.loc 1 1072 0
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  1990              		@ frame_needed = 0, uses_anonymous_args = 0
  1991              		@ link register save eliminated.
  1992              	.LVL161:
-ARM GAS  /tmp/ccF7O1vI.s 			page 56
+ARM GAS  /tmp/ccH67hzF.s 			page 56
 
 
 1112:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   tmr_x->ctrl2_bit.c1insel = ti1_connect;
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2018 0000 0629     		cmp	r1, #6
  2019 0002 18D8     		bhi	.L162
  2020 0004 DFE801F0 		tbb	[pc, r1]
-ARM GAS  /tmp/ccF7O1vI.s 			page 57
+ARM GAS  /tmp/ccH67hzF.s 			page 57
 
 
  2021              	.L165:
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2061              		.section	.text.tmr_primary_mode_select,"ax",%progbits
  2062              		.align	1
  2063              		.global	tmr_primary_mode_select
-ARM GAS  /tmp/ccF7O1vI.s 			page 58
+ARM GAS  /tmp/ccH67hzF.s 			page 58
 
 
  2064              		.syntax unified
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2094              	.LFB167:
 1185:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** }
 1186:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** 
-ARM GAS  /tmp/ccF7O1vI.s 			page 59
+ARM GAS  /tmp/ccH67hzF.s 			page 59
 
 
 1187:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** /**
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
 1219:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   */
 1220:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** void tmr_channel_dma_select(tmr_type *tmr_x, tmr_dma_request_source_type cc_dma_select)
 1221:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** {
-ARM GAS  /tmp/ccF7O1vI.s 			page 60
+ARM GAS  /tmp/ccH67hzF.s 			page 60
 
 
  2119              		.loc 1 1221 0
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2162              		.thumb_func
  2163              		.fpu softvfp
  2165              	tmr_channel_buffer_enable:
-ARM GAS  /tmp/ccF7O1vI.s 			page 61
+ARM GAS  /tmp/ccH67hzF.s 			page 61
 
 
  2166              	.LFB170:
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
 1267:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   */
 1268:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** void tmr_trigger_input_select(tmr_type *tmr_x, sub_tmr_input_sel_type trigger_select)
 1269:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** {
-ARM GAS  /tmp/ccF7O1vI.s 			page 62
+ARM GAS  /tmp/ccH67hzF.s 			page 62
 
 
  2191              		.loc 1 1269 0
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2234              		.thumb_func
  2235              		.fpu softvfp
  2237              	tmr_dma_request_enable:
-ARM GAS  /tmp/ccF7O1vI.s 			page 63
+ARM GAS  /tmp/ccH67hzF.s 			page 63
 
 
  2238              	.LFB173:
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2262              	.LVL173:
  2263 0014 C160     		str	r1, [r0, #12]
  2264 0016 7047     		bx	lr
-ARM GAS  /tmp/ccF7O1vI.s 			page 64
+ARM GAS  /tmp/ccH67hzF.s 			page 64
 
 
  2265              		.cfi_endproc
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2290 0006 C368     		ldr	r3, [r0, #12]
  2291 0008 23EA0101 		bic	r1, r3, r1
  2292              	.LVL175:
-ARM GAS  /tmp/ccF7O1vI.s 			page 65
+ARM GAS  /tmp/ccH67hzF.s 			page 65
 
 
  2293 000c C160     		str	r1, [r0, #12]
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2321              		@ link register save eliminated.
  2322              	.LVL178:
 1371:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   flag_status status = RESET;
-ARM GAS  /tmp/ccF7O1vI.s 			page 66
+ARM GAS  /tmp/ccH67hzF.s 			page 66
 
 
 1372:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** 
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
 1399:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         - TMR_TRIGGER_FLAG
 1400:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         - TMR_BRK_FLAG
 1401:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         - TMR_C1_RECAPTURE_FLAG
-ARM GAS  /tmp/ccF7O1vI.s 			page 67
+ARM GAS  /tmp/ccH67hzF.s 			page 67
 
 
 1402:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         - TMR_C2_RECAPTURE_FLAG
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2377              		@ args = 0, pretend = 0, frame = 0
  2378              		@ frame_needed = 0, uses_anonymous_args = 0
  2379              		@ link register save eliminated.
-ARM GAS  /tmp/ccF7O1vI.s 			page 68
+ARM GAS  /tmp/ccH67hzF.s 			page 68
 
 
  2380              	.LVL184:
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
 1446:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** }
 1447:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** 
 1448:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** /**
-ARM GAS  /tmp/ccF7O1vI.s 			page 69
+ARM GAS  /tmp/ccH67hzF.s 			page 69
 
 
 1449:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   * @brief  set tmr select internal clock
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
 1481:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** void tmr_output_channel_polarity_set(tmr_type *tmr_x, tmr_channel_select_type tmr_channel,
 1482:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****                                      tmr_polarity_active_type oc_polarity)
 1483:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** {
-ARM GAS  /tmp/ccF7O1vI.s 			page 70
+ARM GAS  /tmp/ccH67hzF.s 			page 70
 
 
  2448              		.loc 1 1483 0
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
 1500:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       break;
  2486              		.loc 1 1500 0
  2487 002c 7047     		bx	lr
-ARM GAS  /tmp/ccF7O1vI.s 			page 71
+ARM GAS  /tmp/ccH67hzF.s 			page 71
 
 
  2488              	.L201:
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
 1516:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       break;
 1517:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** 
 1518:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****     default:
-ARM GAS  /tmp/ccF7O1vI.s 			page 72
+ARM GAS  /tmp/ccH67hzF.s 			page 72
 
 
 1519:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       break;
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2554 001a 10BC     		pop	{r4}
  2555              	.LCFI11:
  2556              		.cfi_restore 4
-ARM GAS  /tmp/ccF7O1vI.s 			page 73
+ARM GAS  /tmp/ccH67hzF.s 			page 73
 
 
  2557              		.cfi_def_cfa_offset 0
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2589 000e A360     		str	r3, [r4, #8]
 1572:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   tmr_x->stctrl_bit.stis = TMR_SUB_INPUT_SEL_EXTIN;
  2590              		.loc 1 1572 0
-ARM GAS  /tmp/ccF7O1vI.s 			page 74
+ARM GAS  /tmp/ccH67hzF.s 			page 74
 
 
  2591 0010 A368     		ldr	r3, [r4, #8]
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2622              		.loc 1 1597 0
  2623 0008 A368     		ldr	r3, [r4, #8]
  2624 000a 43F48043 		orr	r3, r3, #16384
-ARM GAS  /tmp/ccF7O1vI.s 			page 75
+ARM GAS  /tmp/ccH67hzF.s 			page 75
 
 
  2625 000e A360     		str	r3, [r4, #8]
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2653 0008 8460     		str	r4, [r0, #8]
 1626:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c **** 
 1627:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   /* set ic1 polarity */
-ARM GAS  /tmp/ccF7O1vI.s 			page 76
+ARM GAS  /tmp/ccH67hzF.s 			page 76
 
 
 1628:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   tmr_x->cctrl_bit.c1p =  (ic1_polarity & 0x1);
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2698              		.thumb_func
  2699              		.fpu softvfp
  2701              	tmr_force_output_set:
-ARM GAS  /tmp/ccF7O1vI.s 			page 77
+ARM GAS  /tmp/ccH67hzF.s 			page 77
 
 
  2702              	.LFB185:
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2726 0016 8361     		str	r3, [r0, #24]
 1669:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****       break;
  2727              		.loc 1 1669 0
-ARM GAS  /tmp/ccF7O1vI.s 			page 78
+ARM GAS  /tmp/ccH67hzF.s 			page 78
 
 
  2728 0018 7047     		bx	lr
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
 1691:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         this parameter can be one of the following values:
 1692:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         TMR1, TMR2, TMR3, TMR4, TMR5, TMR8
 1693:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   * @param  dma_length
-ARM GAS  /tmp/ccF7O1vI.s 			page 79
+ARM GAS  /tmp/ccH67hzF.s 			page 79
 
 
 1694:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_tmr.c ****   *         this parameter can be one of the following values:
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2783              		.global	tmr_brkdt_config
  2784              		.syntax unified
  2785              		.thumb
-ARM GAS  /tmp/ccF7O1vI.s 			page 80
+ARM GAS  /tmp/ccH67hzF.s 			page 80
 
 
  2786              		.thumb_func
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2822              		.loc 1 1747 0
  2823 0032 CA78     		ldrb	r2, [r1, #3]	@ zero_extendqisi2
  2824 0034 436C     		ldr	r3, [r0, #68]
-ARM GAS  /tmp/ccF7O1vI.s 			page 81
+ARM GAS  /tmp/ccH67hzF.s 			page 81
 
 
  2825 0036 62F38E33 		bfi	r3, r2, #14, #1
@@ -4822,171 +4822,171 @@ ARM GAS  /tmp/ccF7O1vI.s 			page 1
  2843              		.file 7 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_crm.h"
  2844              		.file 8 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_tmr.h"
  2845              		.file 9 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_usb.h"
-ARM GAS  /tmp/ccF7O1vI.s 			page 82
+ARM GAS  /tmp/ccH67hzF.s 			page 82
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 at32f403a_407_tmr.c
-     /tmp/ccF7O1vI.s:16     .text.tmr_reset:0000000000000000 $t
-     /tmp/ccF7O1vI.s:23     .text.tmr_reset:0000000000000000 tmr_reset
-     /tmp/ccF7O1vI.s:307    .text.tmr_reset:0000000000000174 $d
-     /tmp/ccF7O1vI.s:337    .text.tmr_counter_enable:0000000000000000 $t
-     /tmp/ccF7O1vI.s:344    .text.tmr_counter_enable:0000000000000000 tmr_counter_enable
-     /tmp/ccF7O1vI.s:361    .text.tmr_output_default_para_init:0000000000000000 $t
-     /tmp/ccF7O1vI.s:368    .text.tmr_output_default_para_init:0000000000000000 tmr_output_default_para_init
-     /tmp/ccF7O1vI.s:396    .text.tmr_input_default_para_init:0000000000000000 $t
-     /tmp/ccF7O1vI.s:403    .text.tmr_input_default_para_init:0000000000000000 tmr_input_default_para_init
-     /tmp/ccF7O1vI.s:426    .text.tmr_brkdt_default_para_init:0000000000000000 $t
-     /tmp/ccF7O1vI.s:433    .text.tmr_brkdt_default_para_init:0000000000000000 tmr_brkdt_default_para_init
-     /tmp/ccF7O1vI.s:461    .text.tmr_base_init:0000000000000000 $t
-     /tmp/ccF7O1vI.s:468    .text.tmr_base_init:0000000000000000 tmr_base_init
-     /tmp/ccF7O1vI.s:489    .text.tmr_clock_source_div_set:0000000000000000 $t
-     /tmp/ccF7O1vI.s:496    .text.tmr_clock_source_div_set:0000000000000000 tmr_clock_source_div_set
-     /tmp/ccF7O1vI.s:513    .text.tmr_cnt_dir_set:0000000000000000 $t
-     /tmp/ccF7O1vI.s:520    .text.tmr_cnt_dir_set:0000000000000000 tmr_cnt_dir_set
-     /tmp/ccF7O1vI.s:537    .text.tmr_repetition_counter_set:0000000000000000 $t
-     /tmp/ccF7O1vI.s:544    .text.tmr_repetition_counter_set:0000000000000000 tmr_repetition_counter_set
-     /tmp/ccF7O1vI.s:575    .text.tmr_repetition_counter_set:000000000000001c $d
-     /tmp/ccF7O1vI.s:580    .text.tmr_counter_value_set:0000000000000000 $t
-     /tmp/ccF7O1vI.s:587    .text.tmr_counter_value_set:0000000000000000 tmr_counter_value_set
-     /tmp/ccF7O1vI.s:602    .text.tmr_counter_value_get:0000000000000000 $t
-     /tmp/ccF7O1vI.s:609    .text.tmr_counter_value_get:0000000000000000 tmr_counter_value_get
-     /tmp/ccF7O1vI.s:626    .text.tmr_div_value_set:0000000000000000 $t
-     /tmp/ccF7O1vI.s:633    .text.tmr_div_value_set:0000000000000000 tmr_div_value_set
-     /tmp/ccF7O1vI.s:648    .text.tmr_div_value_get:0000000000000000 $t
-     /tmp/ccF7O1vI.s:655    .text.tmr_div_value_get:0000000000000000 tmr_div_value_get
-     /tmp/ccF7O1vI.s:672    .text.tmr_output_channel_config:0000000000000000 $t
-     /tmp/ccF7O1vI.s:679    .text.tmr_output_channel_config:0000000000000000 tmr_output_channel_config
-     /tmp/ccF7O1vI.s:730    .text.tmr_output_channel_config:000000000000003a $d
-     /tmp/ccF7O1vI.s:878    .text.tmr_output_channel_config:00000000000000f0 $d
-     /tmp/ccF7O1vI.s:883    .text.tmr_output_channel_mode_select:0000000000000000 $t
-     /tmp/ccF7O1vI.s:890    .text.tmr_output_channel_mode_select:0000000000000000 tmr_output_channel_mode_select
-     /tmp/ccF7O1vI.s:903    .text.tmr_output_channel_mode_select:0000000000000008 $d
-     /tmp/ccF7O1vI.s:943    .text.tmr_period_value_set:0000000000000000 $t
-     /tmp/ccF7O1vI.s:950    .text.tmr_period_value_set:0000000000000000 tmr_period_value_set
-     /tmp/ccF7O1vI.s:965    .text.tmr_period_value_get:0000000000000000 $t
-     /tmp/ccF7O1vI.s:972    .text.tmr_period_value_get:0000000000000000 tmr_period_value_get
-     /tmp/ccF7O1vI.s:989    .text.tmr_channel_value_set:0000000000000000 $t
-     /tmp/ccF7O1vI.s:996    .text.tmr_channel_value_set:0000000000000000 tmr_channel_value_set
-     /tmp/ccF7O1vI.s:1009   .text.tmr_channel_value_set:0000000000000008 $d
-     /tmp/ccF7O1vI.s:1041   .text.tmr_channel_value_get:0000000000000000 $t
-     /tmp/ccF7O1vI.s:1048   .text.tmr_channel_value_get:0000000000000000 tmr_channel_value_get
-     /tmp/ccF7O1vI.s:1061   .text.tmr_channel_value_get:0000000000000008 $d
-     /tmp/ccF7O1vI.s:1107   .text.tmr_period_buffer_enable:0000000000000000 $t
-     /tmp/ccF7O1vI.s:1114   .text.tmr_period_buffer_enable:0000000000000000 tmr_period_buffer_enable
-     /tmp/ccF7O1vI.s:1131   .text.tmr_output_channel_buffer_enable:0000000000000000 $t
-     /tmp/ccF7O1vI.s:1138   .text.tmr_output_channel_buffer_enable:0000000000000000 tmr_output_channel_buffer_enable
-     /tmp/ccF7O1vI.s:1151   .text.tmr_output_channel_buffer_enable:0000000000000008 $d
-     /tmp/ccF7O1vI.s:1191   .text.tmr_output_channel_immediately_set:0000000000000000 $t
-     /tmp/ccF7O1vI.s:1198   .text.tmr_output_channel_immediately_set:0000000000000000 tmr_output_channel_immediately_set
-     /tmp/ccF7O1vI.s:1211   .text.tmr_output_channel_immediately_set:0000000000000008 $d
-     /tmp/ccF7O1vI.s:1251   .text.tmr_output_channel_switch_set:0000000000000000 $t
-     /tmp/ccF7O1vI.s:1258   .text.tmr_output_channel_switch_set:0000000000000000 tmr_output_channel_switch_set
-ARM GAS  /tmp/ccF7O1vI.s 			page 83
+     /tmp/ccH67hzF.s:16     .text.tmr_reset:0000000000000000 $t
+     /tmp/ccH67hzF.s:23     .text.tmr_reset:0000000000000000 tmr_reset
+     /tmp/ccH67hzF.s:307    .text.tmr_reset:0000000000000174 $d
+     /tmp/ccH67hzF.s:337    .text.tmr_counter_enable:0000000000000000 $t
+     /tmp/ccH67hzF.s:344    .text.tmr_counter_enable:0000000000000000 tmr_counter_enable
+     /tmp/ccH67hzF.s:361    .text.tmr_output_default_para_init:0000000000000000 $t
+     /tmp/ccH67hzF.s:368    .text.tmr_output_default_para_init:0000000000000000 tmr_output_default_para_init
+     /tmp/ccH67hzF.s:396    .text.tmr_input_default_para_init:0000000000000000 $t
+     /tmp/ccH67hzF.s:403    .text.tmr_input_default_para_init:0000000000000000 tmr_input_default_para_init
+     /tmp/ccH67hzF.s:426    .text.tmr_brkdt_default_para_init:0000000000000000 $t
+     /tmp/ccH67hzF.s:433    .text.tmr_brkdt_default_para_init:0000000000000000 tmr_brkdt_default_para_init
+     /tmp/ccH67hzF.s:461    .text.tmr_base_init:0000000000000000 $t
+     /tmp/ccH67hzF.s:468    .text.tmr_base_init:0000000000000000 tmr_base_init
+     /tmp/ccH67hzF.s:489    .text.tmr_clock_source_div_set:0000000000000000 $t
+     /tmp/ccH67hzF.s:496    .text.tmr_clock_source_div_set:0000000000000000 tmr_clock_source_div_set
+     /tmp/ccH67hzF.s:513    .text.tmr_cnt_dir_set:0000000000000000 $t
+     /tmp/ccH67hzF.s:520    .text.tmr_cnt_dir_set:0000000000000000 tmr_cnt_dir_set
+     /tmp/ccH67hzF.s:537    .text.tmr_repetition_counter_set:0000000000000000 $t
+     /tmp/ccH67hzF.s:544    .text.tmr_repetition_counter_set:0000000000000000 tmr_repetition_counter_set
+     /tmp/ccH67hzF.s:575    .text.tmr_repetition_counter_set:000000000000001c $d
+     /tmp/ccH67hzF.s:580    .text.tmr_counter_value_set:0000000000000000 $t
+     /tmp/ccH67hzF.s:587    .text.tmr_counter_value_set:0000000000000000 tmr_counter_value_set
+     /tmp/ccH67hzF.s:602    .text.tmr_counter_value_get:0000000000000000 $t
+     /tmp/ccH67hzF.s:609    .text.tmr_counter_value_get:0000000000000000 tmr_counter_value_get
+     /tmp/ccH67hzF.s:626    .text.tmr_div_value_set:0000000000000000 $t
+     /tmp/ccH67hzF.s:633    .text.tmr_div_value_set:0000000000000000 tmr_div_value_set
+     /tmp/ccH67hzF.s:648    .text.tmr_div_value_get:0000000000000000 $t
+     /tmp/ccH67hzF.s:655    .text.tmr_div_value_get:0000000000000000 tmr_div_value_get
+     /tmp/ccH67hzF.s:672    .text.tmr_output_channel_config:0000000000000000 $t
+     /tmp/ccH67hzF.s:679    .text.tmr_output_channel_config:0000000000000000 tmr_output_channel_config
+     /tmp/ccH67hzF.s:730    .text.tmr_output_channel_config:000000000000003a $d
+     /tmp/ccH67hzF.s:878    .text.tmr_output_channel_config:00000000000000f0 $d
+     /tmp/ccH67hzF.s:883    .text.tmr_output_channel_mode_select:0000000000000000 $t
+     /tmp/ccH67hzF.s:890    .text.tmr_output_channel_mode_select:0000000000000000 tmr_output_channel_mode_select
+     /tmp/ccH67hzF.s:903    .text.tmr_output_channel_mode_select:0000000000000008 $d
+     /tmp/ccH67hzF.s:943    .text.tmr_period_value_set:0000000000000000 $t
+     /tmp/ccH67hzF.s:950    .text.tmr_period_value_set:0000000000000000 tmr_period_value_set
+     /tmp/ccH67hzF.s:965    .text.tmr_period_value_get:0000000000000000 $t
+     /tmp/ccH67hzF.s:972    .text.tmr_period_value_get:0000000000000000 tmr_period_value_get
+     /tmp/ccH67hzF.s:989    .text.tmr_channel_value_set:0000000000000000 $t
+     /tmp/ccH67hzF.s:996    .text.tmr_channel_value_set:0000000000000000 tmr_channel_value_set
+     /tmp/ccH67hzF.s:1009   .text.tmr_channel_value_set:0000000000000008 $d
+     /tmp/ccH67hzF.s:1041   .text.tmr_channel_value_get:0000000000000000 $t
+     /tmp/ccH67hzF.s:1048   .text.tmr_channel_value_get:0000000000000000 tmr_channel_value_get
+     /tmp/ccH67hzF.s:1061   .text.tmr_channel_value_get:0000000000000008 $d
+     /tmp/ccH67hzF.s:1107   .text.tmr_period_buffer_enable:0000000000000000 $t
+     /tmp/ccH67hzF.s:1114   .text.tmr_period_buffer_enable:0000000000000000 tmr_period_buffer_enable
+     /tmp/ccH67hzF.s:1131   .text.tmr_output_channel_buffer_enable:0000000000000000 $t
+     /tmp/ccH67hzF.s:1138   .text.tmr_output_channel_buffer_enable:0000000000000000 tmr_output_channel_buffer_enable
+     /tmp/ccH67hzF.s:1151   .text.tmr_output_channel_buffer_enable:0000000000000008 $d
+     /tmp/ccH67hzF.s:1191   .text.tmr_output_channel_immediately_set:0000000000000000 $t
+     /tmp/ccH67hzF.s:1198   .text.tmr_output_channel_immediately_set:0000000000000000 tmr_output_channel_immediately_set
+     /tmp/ccH67hzF.s:1211   .text.tmr_output_channel_immediately_set:0000000000000008 $d
+     /tmp/ccH67hzF.s:1251   .text.tmr_output_channel_switch_set:0000000000000000 $t
+     /tmp/ccH67hzF.s:1258   .text.tmr_output_channel_switch_set:0000000000000000 tmr_output_channel_switch_set
+ARM GAS  /tmp/ccH67hzF.s 			page 83
 
 
-     /tmp/ccF7O1vI.s:1271   .text.tmr_output_channel_switch_set:0000000000000008 $d
-     /tmp/ccF7O1vI.s:1311   .text.tmr_one_cycle_mode_enable:0000000000000000 $t
-     /tmp/ccF7O1vI.s:1318   .text.tmr_one_cycle_mode_enable:0000000000000000 tmr_one_cycle_mode_enable
-     /tmp/ccF7O1vI.s:1335   .text.tmr_32_bit_function_enable:0000000000000000 $t
-     /tmp/ccF7O1vI.s:1342   .text.tmr_32_bit_function_enable:0000000000000000 tmr_32_bit_function_enable
-     /tmp/ccF7O1vI.s:1369   .text.tmr_32_bit_function_enable:0000000000000018 $d
-     /tmp/ccF7O1vI.s:1374   .text.tmr_overflow_request_source_set:0000000000000000 $t
-     /tmp/ccF7O1vI.s:1381   .text.tmr_overflow_request_source_set:0000000000000000 tmr_overflow_request_source_set
-     /tmp/ccF7O1vI.s:1398   .text.tmr_overflow_event_disable:0000000000000000 $t
-     /tmp/ccF7O1vI.s:1405   .text.tmr_overflow_event_disable:0000000000000000 tmr_overflow_event_disable
-     /tmp/ccF7O1vI.s:1422   .text.tmr_input_channel_init:0000000000000000 $t
-     /tmp/ccF7O1vI.s:1429   .text.tmr_input_channel_init:0000000000000000 tmr_input_channel_init
-     /tmp/ccF7O1vI.s:1450   .text.tmr_input_channel_init:000000000000000c $d
-     /tmp/ccF7O1vI.s:1607   .text.tmr_channel_enable:0000000000000000 $t
-     /tmp/ccF7O1vI.s:1614   .text.tmr_channel_enable:0000000000000000 tmr_channel_enable
-     /tmp/ccF7O1vI.s:1627   .text.tmr_channel_enable:0000000000000008 $d
-     /tmp/ccF7O1vI.s:1688   .text.tmr_input_channel_filter_set:0000000000000000 $t
-     /tmp/ccF7O1vI.s:1695   .text.tmr_input_channel_filter_set:0000000000000000 tmr_input_channel_filter_set
-     /tmp/ccF7O1vI.s:1708   .text.tmr_input_channel_filter_set:0000000000000008 $d
-     /tmp/ccF7O1vI.s:1748   .text.tmr_pwm_input_config:0000000000000000 $t
-     /tmp/ccF7O1vI.s:1755   .text.tmr_pwm_input_config:0000000000000000 tmr_pwm_input_config
-     /tmp/ccF7O1vI.s:1978   .text.tmr_channel1_input_select:0000000000000000 $t
-     /tmp/ccF7O1vI.s:1985   .text.tmr_channel1_input_select:0000000000000000 tmr_channel1_input_select
-     /tmp/ccF7O1vI.s:2002   .text.tmr_input_channel_divider_set:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2009   .text.tmr_input_channel_divider_set:0000000000000000 tmr_input_channel_divider_set
-     /tmp/ccF7O1vI.s:2022   .text.tmr_input_channel_divider_set:0000000000000008 $d
-     /tmp/ccF7O1vI.s:2062   .text.tmr_primary_mode_select:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2069   .text.tmr_primary_mode_select:0000000000000000 tmr_primary_mode_select
-     /tmp/ccF7O1vI.s:2086   .text.tmr_sub_mode_select:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2093   .text.tmr_sub_mode_select:0000000000000000 tmr_sub_mode_select
-     /tmp/ccF7O1vI.s:2110   .text.tmr_channel_dma_select:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2117   .text.tmr_channel_dma_select:0000000000000000 tmr_channel_dma_select
-     /tmp/ccF7O1vI.s:2134   .text.tmr_hall_select:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2141   .text.tmr_hall_select:0000000000000000 tmr_hall_select
-     /tmp/ccF7O1vI.s:2158   .text.tmr_channel_buffer_enable:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2165   .text.tmr_channel_buffer_enable:0000000000000000 tmr_channel_buffer_enable
-     /tmp/ccF7O1vI.s:2182   .text.tmr_trigger_input_select:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2189   .text.tmr_trigger_input_select:0000000000000000 tmr_trigger_input_select
-     /tmp/ccF7O1vI.s:2206   .text.tmr_sub_sync_mode_set:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2213   .text.tmr_sub_sync_mode_set:0000000000000000 tmr_sub_sync_mode_set
-     /tmp/ccF7O1vI.s:2230   .text.tmr_dma_request_enable:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2237   .text.tmr_dma_request_enable:0000000000000000 tmr_dma_request_enable
-     /tmp/ccF7O1vI.s:2269   .text.tmr_interrupt_enable:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2276   .text.tmr_interrupt_enable:0000000000000000 tmr_interrupt_enable
-     /tmp/ccF7O1vI.s:2308   .text.tmr_flag_get:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2315   .text.tmr_flag_get:0000000000000000 tmr_flag_get
-     /tmp/ccF7O1vI.s:2342   .text.tmr_flag_clear:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2349   .text.tmr_flag_clear:0000000000000000 tmr_flag_clear
-     /tmp/ccF7O1vI.s:2366   .text.tmr_event_sw_trigger:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2373   .text.tmr_event_sw_trigger:0000000000000000 tmr_event_sw_trigger
-     /tmp/ccF7O1vI.s:2391   .text.tmr_output_enable:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2398   .text.tmr_output_enable:0000000000000000 tmr_output_enable
-     /tmp/ccF7O1vI.s:2415   .text.tmr_internal_clock_set:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2422   .text.tmr_internal_clock_set:0000000000000000 tmr_internal_clock_set
-     /tmp/ccF7O1vI.s:2439   .text.tmr_output_channel_polarity_set:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2446   .text.tmr_output_channel_polarity_set:0000000000000000 tmr_output_channel_polarity_set
-     /tmp/ccF7O1vI.s:2459   .text.tmr_output_channel_polarity_set:0000000000000008 $d
-ARM GAS  /tmp/ccF7O1vI.s 			page 84
+     /tmp/ccH67hzF.s:1271   .text.tmr_output_channel_switch_set:0000000000000008 $d
+     /tmp/ccH67hzF.s:1311   .text.tmr_one_cycle_mode_enable:0000000000000000 $t
+     /tmp/ccH67hzF.s:1318   .text.tmr_one_cycle_mode_enable:0000000000000000 tmr_one_cycle_mode_enable
+     /tmp/ccH67hzF.s:1335   .text.tmr_32_bit_function_enable:0000000000000000 $t
+     /tmp/ccH67hzF.s:1342   .text.tmr_32_bit_function_enable:0000000000000000 tmr_32_bit_function_enable
+     /tmp/ccH67hzF.s:1369   .text.tmr_32_bit_function_enable:0000000000000018 $d
+     /tmp/ccH67hzF.s:1374   .text.tmr_overflow_request_source_set:0000000000000000 $t
+     /tmp/ccH67hzF.s:1381   .text.tmr_overflow_request_source_set:0000000000000000 tmr_overflow_request_source_set
+     /tmp/ccH67hzF.s:1398   .text.tmr_overflow_event_disable:0000000000000000 $t
+     /tmp/ccH67hzF.s:1405   .text.tmr_overflow_event_disable:0000000000000000 tmr_overflow_event_disable
+     /tmp/ccH67hzF.s:1422   .text.tmr_input_channel_init:0000000000000000 $t
+     /tmp/ccH67hzF.s:1429   .text.tmr_input_channel_init:0000000000000000 tmr_input_channel_init
+     /tmp/ccH67hzF.s:1450   .text.tmr_input_channel_init:000000000000000c $d
+     /tmp/ccH67hzF.s:1607   .text.tmr_channel_enable:0000000000000000 $t
+     /tmp/ccH67hzF.s:1614   .text.tmr_channel_enable:0000000000000000 tmr_channel_enable
+     /tmp/ccH67hzF.s:1627   .text.tmr_channel_enable:0000000000000008 $d
+     /tmp/ccH67hzF.s:1688   .text.tmr_input_channel_filter_set:0000000000000000 $t
+     /tmp/ccH67hzF.s:1695   .text.tmr_input_channel_filter_set:0000000000000000 tmr_input_channel_filter_set
+     /tmp/ccH67hzF.s:1708   .text.tmr_input_channel_filter_set:0000000000000008 $d
+     /tmp/ccH67hzF.s:1748   .text.tmr_pwm_input_config:0000000000000000 $t
+     /tmp/ccH67hzF.s:1755   .text.tmr_pwm_input_config:0000000000000000 tmr_pwm_input_config
+     /tmp/ccH67hzF.s:1978   .text.tmr_channel1_input_select:0000000000000000 $t
+     /tmp/ccH67hzF.s:1985   .text.tmr_channel1_input_select:0000000000000000 tmr_channel1_input_select
+     /tmp/ccH67hzF.s:2002   .text.tmr_input_channel_divider_set:0000000000000000 $t
+     /tmp/ccH67hzF.s:2009   .text.tmr_input_channel_divider_set:0000000000000000 tmr_input_channel_divider_set
+     /tmp/ccH67hzF.s:2022   .text.tmr_input_channel_divider_set:0000000000000008 $d
+     /tmp/ccH67hzF.s:2062   .text.tmr_primary_mode_select:0000000000000000 $t
+     /tmp/ccH67hzF.s:2069   .text.tmr_primary_mode_select:0000000000000000 tmr_primary_mode_select
+     /tmp/ccH67hzF.s:2086   .text.tmr_sub_mode_select:0000000000000000 $t
+     /tmp/ccH67hzF.s:2093   .text.tmr_sub_mode_select:0000000000000000 tmr_sub_mode_select
+     /tmp/ccH67hzF.s:2110   .text.tmr_channel_dma_select:0000000000000000 $t
+     /tmp/ccH67hzF.s:2117   .text.tmr_channel_dma_select:0000000000000000 tmr_channel_dma_select
+     /tmp/ccH67hzF.s:2134   .text.tmr_hall_select:0000000000000000 $t
+     /tmp/ccH67hzF.s:2141   .text.tmr_hall_select:0000000000000000 tmr_hall_select
+     /tmp/ccH67hzF.s:2158   .text.tmr_channel_buffer_enable:0000000000000000 $t
+     /tmp/ccH67hzF.s:2165   .text.tmr_channel_buffer_enable:0000000000000000 tmr_channel_buffer_enable
+     /tmp/ccH67hzF.s:2182   .text.tmr_trigger_input_select:0000000000000000 $t
+     /tmp/ccH67hzF.s:2189   .text.tmr_trigger_input_select:0000000000000000 tmr_trigger_input_select
+     /tmp/ccH67hzF.s:2206   .text.tmr_sub_sync_mode_set:0000000000000000 $t
+     /tmp/ccH67hzF.s:2213   .text.tmr_sub_sync_mode_set:0000000000000000 tmr_sub_sync_mode_set
+     /tmp/ccH67hzF.s:2230   .text.tmr_dma_request_enable:0000000000000000 $t
+     /tmp/ccH67hzF.s:2237   .text.tmr_dma_request_enable:0000000000000000 tmr_dma_request_enable
+     /tmp/ccH67hzF.s:2269   .text.tmr_interrupt_enable:0000000000000000 $t
+     /tmp/ccH67hzF.s:2276   .text.tmr_interrupt_enable:0000000000000000 tmr_interrupt_enable
+     /tmp/ccH67hzF.s:2308   .text.tmr_flag_get:0000000000000000 $t
+     /tmp/ccH67hzF.s:2315   .text.tmr_flag_get:0000000000000000 tmr_flag_get
+     /tmp/ccH67hzF.s:2342   .text.tmr_flag_clear:0000000000000000 $t
+     /tmp/ccH67hzF.s:2349   .text.tmr_flag_clear:0000000000000000 tmr_flag_clear
+     /tmp/ccH67hzF.s:2366   .text.tmr_event_sw_trigger:0000000000000000 $t
+     /tmp/ccH67hzF.s:2373   .text.tmr_event_sw_trigger:0000000000000000 tmr_event_sw_trigger
+     /tmp/ccH67hzF.s:2391   .text.tmr_output_enable:0000000000000000 $t
+     /tmp/ccH67hzF.s:2398   .text.tmr_output_enable:0000000000000000 tmr_output_enable
+     /tmp/ccH67hzF.s:2415   .text.tmr_internal_clock_set:0000000000000000 $t
+     /tmp/ccH67hzF.s:2422   .text.tmr_internal_clock_set:0000000000000000 tmr_internal_clock_set
+     /tmp/ccH67hzF.s:2439   .text.tmr_output_channel_polarity_set:0000000000000000 $t
+     /tmp/ccH67hzF.s:2446   .text.tmr_output_channel_polarity_set:0000000000000000 tmr_output_channel_polarity_set
+     /tmp/ccH67hzF.s:2459   .text.tmr_output_channel_polarity_set:0000000000000008 $d
+ARM GAS  /tmp/ccH67hzF.s 			page 84
 
 
-     /tmp/ccF7O1vI.s:2520   .text.tmr_external_clock_config:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2527   .text.tmr_external_clock_config:0000000000000000 tmr_external_clock_config
-     /tmp/ccF7O1vI.s:2563   .text.tmr_external_clock_mode1_config:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2570   .text.tmr_external_clock_mode1_config:0000000000000000 tmr_external_clock_mode1_config
-     /tmp/ccF7O1vI.s:2599   .text.tmr_external_clock_mode2_config:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2606   .text.tmr_external_clock_mode2_config:0000000000000000 tmr_external_clock_mode2_config
-     /tmp/ccF7O1vI.s:2631   .text.tmr_encoder_mode_config:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2638   .text.tmr_encoder_mode_config:0000000000000000 tmr_encoder_mode_config
-     /tmp/ccF7O1vI.s:2694   .text.tmr_force_output_set:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2701   .text.tmr_force_output_set:0000000000000000 tmr_force_output_set
-     /tmp/ccF7O1vI.s:2714   .text.tmr_force_output_set:0000000000000008 $d
-     /tmp/ccF7O1vI.s:2754   .text.tmr_dma_control_config:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2761   .text.tmr_dma_control_config:0000000000000000 tmr_dma_control_config
-     /tmp/ccF7O1vI.s:2782   .text.tmr_brkdt_config:0000000000000000 $t
-     /tmp/ccF7O1vI.s:2789   .text.tmr_brkdt_config:0000000000000000 tmr_brkdt_config
+     /tmp/ccH67hzF.s:2520   .text.tmr_external_clock_config:0000000000000000 $t
+     /tmp/ccH67hzF.s:2527   .text.tmr_external_clock_config:0000000000000000 tmr_external_clock_config
+     /tmp/ccH67hzF.s:2563   .text.tmr_external_clock_mode1_config:0000000000000000 $t
+     /tmp/ccH67hzF.s:2570   .text.tmr_external_clock_mode1_config:0000000000000000 tmr_external_clock_mode1_config
+     /tmp/ccH67hzF.s:2599   .text.tmr_external_clock_mode2_config:0000000000000000 $t
+     /tmp/ccH67hzF.s:2606   .text.tmr_external_clock_mode2_config:0000000000000000 tmr_external_clock_mode2_config
+     /tmp/ccH67hzF.s:2631   .text.tmr_encoder_mode_config:0000000000000000 $t
+     /tmp/ccH67hzF.s:2638   .text.tmr_encoder_mode_config:0000000000000000 tmr_encoder_mode_config
+     /tmp/ccH67hzF.s:2694   .text.tmr_force_output_set:0000000000000000 $t
+     /tmp/ccH67hzF.s:2701   .text.tmr_force_output_set:0000000000000000 tmr_force_output_set
+     /tmp/ccH67hzF.s:2714   .text.tmr_force_output_set:0000000000000008 $d
+     /tmp/ccH67hzF.s:2754   .text.tmr_dma_control_config:0000000000000000 $t
+     /tmp/ccH67hzF.s:2761   .text.tmr_dma_control_config:0000000000000000 tmr_dma_control_config
+     /tmp/ccH67hzF.s:2782   .text.tmr_brkdt_config:0000000000000000 $t
+     /tmp/ccH67hzF.s:2789   .text.tmr_brkdt_config:0000000000000000 tmr_brkdt_config
                      .debug_frame:0000000000000010 $d
-     /tmp/ccF7O1vI.s:738    .text.tmr_output_channel_config:0000000000000041 $d
-     /tmp/ccF7O1vI.s:738    .text.tmr_output_channel_config:0000000000000042 $t
-     /tmp/ccF7O1vI.s:910    .text.tmr_output_channel_mode_select:000000000000000f $d
-     /tmp/ccF7O1vI.s:910    .text.tmr_output_channel_mode_select:0000000000000010 $t
-     /tmp/ccF7O1vI.s:1016   .text.tmr_channel_value_set:000000000000000f $d
-     /tmp/ccF7O1vI.s:1016   .text.tmr_channel_value_set:0000000000000010 $t
-     /tmp/ccF7O1vI.s:1068   .text.tmr_channel_value_get:000000000000000f $d
-     /tmp/ccF7O1vI.s:1068   .text.tmr_channel_value_get:0000000000000010 $t
-     /tmp/ccF7O1vI.s:1158   .text.tmr_output_channel_buffer_enable:000000000000000f $d
-     /tmp/ccF7O1vI.s:1158   .text.tmr_output_channel_buffer_enable:0000000000000010 $t
-     /tmp/ccF7O1vI.s:1218   .text.tmr_output_channel_immediately_set:000000000000000f $d
-     /tmp/ccF7O1vI.s:1218   .text.tmr_output_channel_immediately_set:0000000000000010 $t
-     /tmp/ccF7O1vI.s:1278   .text.tmr_output_channel_switch_set:000000000000000f $d
-     /tmp/ccF7O1vI.s:1278   .text.tmr_output_channel_switch_set:0000000000000010 $t
-     /tmp/ccF7O1vI.s:1457   .text.tmr_input_channel_init:0000000000000013 $d
-     /tmp/ccF7O1vI.s:1457   .text.tmr_input_channel_init:0000000000000014 $t
-     /tmp/ccF7O1vI.s:1634   .text.tmr_channel_enable:000000000000000f $d
-     /tmp/ccF7O1vI.s:1634   .text.tmr_channel_enable:0000000000000010 $t
-     /tmp/ccF7O1vI.s:1715   .text.tmr_input_channel_filter_set:000000000000000f $d
-     /tmp/ccF7O1vI.s:1715   .text.tmr_input_channel_filter_set:0000000000000010 $t
-     /tmp/ccF7O1vI.s:2029   .text.tmr_input_channel_divider_set:000000000000000f $d
-     /tmp/ccF7O1vI.s:2029   .text.tmr_input_channel_divider_set:0000000000000010 $t
-     /tmp/ccF7O1vI.s:2466   .text.tmr_output_channel_polarity_set:000000000000000f $d
-     /tmp/ccF7O1vI.s:2466   .text.tmr_output_channel_polarity_set:0000000000000010 $t
-     /tmp/ccF7O1vI.s:2721   .text.tmr_force_output_set:000000000000000f $d
-     /tmp/ccF7O1vI.s:2721   .text.tmr_force_output_set:0000000000000010 $t
+     /tmp/ccH67hzF.s:738    .text.tmr_output_channel_config:0000000000000041 $d
+     /tmp/ccH67hzF.s:738    .text.tmr_output_channel_config:0000000000000042 $t
+     /tmp/ccH67hzF.s:910    .text.tmr_output_channel_mode_select:000000000000000f $d
+     /tmp/ccH67hzF.s:910    .text.tmr_output_channel_mode_select:0000000000000010 $t
+     /tmp/ccH67hzF.s:1016   .text.tmr_channel_value_set:000000000000000f $d
+     /tmp/ccH67hzF.s:1016   .text.tmr_channel_value_set:0000000000000010 $t
+     /tmp/ccH67hzF.s:1068   .text.tmr_channel_value_get:000000000000000f $d
+     /tmp/ccH67hzF.s:1068   .text.tmr_channel_value_get:0000000000000010 $t
+     /tmp/ccH67hzF.s:1158   .text.tmr_output_channel_buffer_enable:000000000000000f $d
+     /tmp/ccH67hzF.s:1158   .text.tmr_output_channel_buffer_enable:0000000000000010 $t
+     /tmp/ccH67hzF.s:1218   .text.tmr_output_channel_immediately_set:000000000000000f $d
+     /tmp/ccH67hzF.s:1218   .text.tmr_output_channel_immediately_set:0000000000000010 $t
+     /tmp/ccH67hzF.s:1278   .text.tmr_output_channel_switch_set:000000000000000f $d
+     /tmp/ccH67hzF.s:1278   .text.tmr_output_channel_switch_set:0000000000000010 $t
+     /tmp/ccH67hzF.s:1457   .text.tmr_input_channel_init:0000000000000013 $d
+     /tmp/ccH67hzF.s:1457   .text.tmr_input_channel_init:0000000000000014 $t
+     /tmp/ccH67hzF.s:1634   .text.tmr_channel_enable:000000000000000f $d
+     /tmp/ccH67hzF.s:1634   .text.tmr_channel_enable:0000000000000010 $t
+     /tmp/ccH67hzF.s:1715   .text.tmr_input_channel_filter_set:000000000000000f $d
+     /tmp/ccH67hzF.s:1715   .text.tmr_input_channel_filter_set:0000000000000010 $t
+     /tmp/ccH67hzF.s:2029   .text.tmr_input_channel_divider_set:000000000000000f $d
+     /tmp/ccH67hzF.s:2029   .text.tmr_input_channel_divider_set:0000000000000010 $t
+     /tmp/ccH67hzF.s:2466   .text.tmr_output_channel_polarity_set:000000000000000f $d
+     /tmp/ccH67hzF.s:2466   .text.tmr_output_channel_polarity_set:0000000000000010 $t
+     /tmp/ccH67hzF.s:2721   .text.tmr_force_output_set:000000000000000f $d
+     /tmp/ccH67hzF.s:2721   .text.tmr_force_output_set:0000000000000010 $t
 
 UNDEFINED SYMBOLS
 crm_periph_reset

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc7po03P.s 			page 1
+ARM GAS  /tmp/ccqSbL36.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -15,15 +15,15 @@ ARM GAS  /tmp/cc7po03P.s 			page 1
   12              		.text
   13              	.Ltext0:
   14              		.cfi_sections	.debug_frame
-  15              		.section	.text.crm_configuration,"ax",%progbits
+  15              		.section	.text.AS5600Receive,"ax",%progbits
   16              		.align	1
-  17              		.global	crm_configuration
+  17              		.global	AS5600Receive
   18              		.syntax unified
   19              		.thumb
   20              		.thumb_func
   21              		.fpu softvfp
-  23              	crm_configuration:
-  24              	.LFB134:
+  23              	AS5600Receive:
+  24              	.LFB138:
   25              		.file 1 "main.c"
    1:main.c        **** /**
    2:main.c        ****   **************************************************************************
@@ -53,495 +53,1959 @@ ARM GAS  /tmp/cc7po03P.s 			page 1
   26:main.c        **** 
   27:main.c        **** #include "at32f403a_407_board.h"
   28:main.c        **** #include "at32f403a_407_clock.h"
-  29:main.c        **** #include "common.h"
-  30:main.c        **** 
-  31:main.c        **** gpio_init_type  gpio_init_struct = {0};
-  32:main.c        **** crm_clocks_freq_type crm_clocks_freq_struct = {0};
-  33:main.c        **** 
-ARM GAS  /tmp/cc7po03P.s 			page 2
+  29:main.c        **** #include "i2c_application.h"
+  30:main.c        **** #include "at32f403a_407_i2c.h"
+  31:main.c        **** #include "AS5600.h"
+  32:main.c        **** #include "common.h"
+  33:main.c        **** #include "Foc.h"
+ARM GAS  /tmp/ccqSbL36.s 			page 2
 
 
-  34:main.c        **** tmr_output_config_type tmr_oc_init_structure;
+  34:main.c        **** #include "Pid.h"
   35:main.c        **** 
-  36:main.c        **** uint16_t ccr1_val = 500;
-  37:main.c        **** uint16_t prescaler_value = 0;
+  36:main.c        **** __IO uint16_t adc1_ordinary_valuetab[2] = {0};
+  37:main.c        **** __IO uint16_t dma_trans_complete_flag = 0;
   38:main.c        **** 
-  39:main.c        **** void crm_configuration(void) {
-  26              		.loc 1 39 0
+  39:main.c        **** gpio_init_type  gpio_init_struct = {0};
+  40:main.c        **** crm_clocks_freq_type crm_clocks_freq_struct = {0};
+  41:main.c        **** 
+  42:main.c        **** tmr_output_config_type tmr_oc_init_structure;
+  43:main.c        **** 
+  44:main.c        **** uint16_t ccr1_val = 500;
+  45:main.c        **** uint16_t prescaler_value = 0;
+  46:main.c        **** 
+  47:main.c        **** #define I2C_TIMEOUT                      0xffff
+  48:main.c        **** 
+  49:main.c        **** #define I2Cx_SPEED                       1000000
+  50:main.c        **** 
+  51:main.c        **** #define I2Cx_PORT                        I2C1
+  52:main.c        **** #define I2Cx_CLK                         CRM_I2C1_PERIPH_CLOCK
+  53:main.c        **** 
+  54:main.c        **** #define I2Cx_SCL_PIN                     GPIO_PINS_6
+  55:main.c        **** #define I2Cx_SCL_GPIO_PORT               GPIOB
+  56:main.c        **** #define I2Cx_SCL_GPIO_CLK                CRM_GPIOB_PERIPH_CLOCK
+  57:main.c        **** 
+  58:main.c        **** #define I2Cx_SDA_PIN                     GPIO_PINS_7
+  59:main.c        **** #define I2Cx_SDA_GPIO_PORT               GPIOB
+  60:main.c        **** #define I2Cx_SDA_GPIO_CLK                CRM_GPIOB_PERIPH_CLOCK
+  61:main.c        **** 
+  62:main.c        **** #define I2Cx_DMA_CLK                     CRM_DMA1_PERIPH_CLOCK
+  63:main.c        **** #define I2Cx_DMA_TX_CHANNEL              DMA1_CHANNEL6
+  64:main.c        **** #define I2Cx_DMA_TX_IRQn                 DMA1_Channel6_IRQn
+  65:main.c        **** 
+  66:main.c        **** #define I2Cx_DMA_RX_CHANNEL              DMA1_CHANNEL7
+  67:main.c        **** #define I2Cx_DMA_RX_IRQn                 DMA1_Channel7_IRQn
+  68:main.c        **** 
+  69:main.c        **** #define I2Cx_EVT_IRQn                    I2C1_EVT_IRQn
+  70:main.c        **** #define I2Cx_ERR_IRQn                    I2C1_ERR_IRQn
+  71:main.c        **** 
+  72:main.c        **** i2c_handle_type hi2cx;
+  73:main.c        **** 
+  74:main.c        **** void crm_configuration(void) {
+  75:main.c        ****   crm_periph_clock_enable(CRM_IOMUX_PERIPH_CLOCK, TRUE);
+  76:main.c        ****   crm_periph_clock_enable(CRM_TMR2_PERIPH_CLOCK, TRUE);
+  77:main.c        ****   crm_periph_clock_enable(CRM_GPIOA_PERIPH_CLOCK, TRUE);
+  78:main.c        ****   crm_periph_clock_enable(CRM_GPIOB_PERIPH_CLOCK, TRUE);
+  79:main.c        ****   crm_periph_clock_enable(CRM_GPIOC_PERIPH_CLOCK, TRUE);
+  80:main.c        **** }
+  81:main.c        **** 
+  82:main.c        **** void gpio_configuration(void) {
+  83:main.c        ****   gpio_init_type gpio_init_struct;
+  84:main.c        **** 
+  85:main.c        ****   gpio_default_para_init(&gpio_init_struct);
+  86:main.c        **** 
+  87:main.c        ****   gpio_init_struct.gpio_pins = GPIO_PINS_3 | GPIO_PINS_10;
+  88:main.c        ****   gpio_init_struct.gpio_out_type = GPIO_OUTPUT_PUSH_PULL;
+  89:main.c        ****   gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
+  90:main.c        ****   gpio_init_struct.gpio_mode = GPIO_MODE_MUX;
+ARM GAS  /tmp/ccqSbL36.s 			page 3
+
+
+  91:main.c        ****   gpio_init_struct.gpio_drive_strength = GPIO_DRIVE_STRENGTH_STRONGER;
+  92:main.c        ****   gpio_init(GPIOB, &gpio_init_struct);
+  93:main.c        ****   gpio_init_struct.gpio_pins = GPIO_PINS_15;
+  94:main.c        ****   gpio_init(GPIOA, &gpio_init_struct);
+  95:main.c        ****   gpio_init_struct.gpio_pins = GPIO_PINS_13;
+  96:main.c        ****   gpio_init_struct.gpio_mode = GPIO_MODE_OUTPUT;
+  97:main.c        ****   gpio_init(GPIOC, &gpio_init_struct);
+  98:main.c        **** 
+  99:main.c        ****   gpio_default_para_init(&gpio_init_struct);
+ 100:main.c        ****   gpio_init_struct.gpio_mode = 0x03;
+ 101:main.c        ****   gpio_init_struct.gpio_pins = GPIO_PINS_1 | GPIO_PINS_2;
+ 102:main.c        ****   gpio_init(GPIOA, &gpio_init_struct);
+ 103:main.c        **** }
+ 104:main.c        **** 
+ 105:main.c        **** static void dma_config(void)
+ 106:main.c        **** {
+ 107:main.c        ****   dma_init_type dma_init_struct;
+ 108:main.c        ****   crm_periph_clock_enable(CRM_DMA1_PERIPH_CLOCK, TRUE);
+ 109:main.c        ****   nvic_irq_enable(DMA1_Channel1_IRQn, 0, 0);
+ 110:main.c        ****   dma_reset(DMA1_CHANNEL1);
+ 111:main.c        ****   dma_default_para_init(&dma_init_struct);
+ 112:main.c        ****   dma_init_struct.buffer_size = 2;
+ 113:main.c        ****   dma_init_struct.direction = DMA_DIR_PERIPHERAL_TO_MEMORY;
+ 114:main.c        ****   dma_init_struct.memory_base_addr = (uint32_t)adc1_ordinary_valuetab;
+ 115:main.c        ****   dma_init_struct.memory_data_width = DMA_MEMORY_DATA_WIDTH_HALFWORD;
+ 116:main.c        ****   dma_init_struct.memory_inc_enable = TRUE;
+ 117:main.c        ****   dma_init_struct.peripheral_base_addr = (uint32_t)&(ADC1->odt);
+ 118:main.c        ****   dma_init_struct.peripheral_data_width = DMA_PERIPHERAL_DATA_WIDTH_HALFWORD;
+ 119:main.c        ****   dma_init_struct.peripheral_inc_enable = FALSE;
+ 120:main.c        ****   dma_init_struct.priority = DMA_PRIORITY_HIGH;
+ 121:main.c        ****   dma_init_struct.loop_mode_enable = TRUE;
+ 122:main.c        ****   dma_init(DMA1_CHANNEL1, &dma_init_struct);
+ 123:main.c        **** 
+ 124:main.c        ****   dma_interrupt_enable(DMA1_CHANNEL1, DMA_FDT_INT, TRUE);
+ 125:main.c        ****   dma_channel_enable(DMA1_CHANNEL1, TRUE);
+ 126:main.c        **** }
+ 127:main.c        **** 
+ 128:main.c        **** static void adc_config(void)
+ 129:main.c        **** {
+ 130:main.c        ****   adc_base_config_type adc_base_struct;
+ 131:main.c        ****   crm_periph_clock_enable(CRM_ADC1_PERIPH_CLOCK, TRUE);
+ 132:main.c        ****   crm_adc_clock_div_set(CRM_ADC_DIV_8);
+ 133:main.c        **** 
+ 134:main.c        ****   /* select combine mode */
+ 135:main.c        ****   adc_combine_mode_select(ADC_INDEPENDENT_MODE);
+ 136:main.c        ****   adc_base_default_para_init(&adc_base_struct);
+ 137:main.c        ****   adc_base_struct.sequence_mode = TRUE;
+ 138:main.c        ****   adc_base_struct.repeat_mode = TRUE;
+ 139:main.c        ****   adc_base_struct.data_align = ADC_RIGHT_ALIGNMENT;
+ 140:main.c        ****   adc_base_struct.ordinary_channel_length = 2;
+ 141:main.c        ****   adc_base_config(ADC1, &adc_base_struct);
+ 142:main.c        ****   adc_ordinary_channel_set(ADC1, ADC_CHANNEL_1, 1, ADC_SAMPLETIME_7_5);
+ 143:main.c        ****   adc_ordinary_channel_set(ADC1, ADC_CHANNEL_2, 2, ADC_SAMPLETIME_7_5);
+ 144:main.c        ****   adc_ordinary_conversion_trigger_set(ADC1, ADC12_ORDINARY_TRIG_SOFTWARE, TRUE);
+ 145:main.c        ****   adc_dma_mode_enable(ADC1, TRUE);
+ 146:main.c        **** 
+ 147:main.c        ****   adc_enable(ADC1, TRUE);
+ARM GAS  /tmp/ccqSbL36.s 			page 4
+
+
+ 148:main.c        ****   adc_calibration_init(ADC1);
+ 149:main.c        ****   while(adc_calibration_init_status_get(ADC1));
+ 150:main.c        ****   adc_calibration_start(ADC1);
+ 151:main.c        ****   while(adc_calibration_status_get(ADC1));
+ 152:main.c        **** }
+ 153:main.c        **** 
+ 154:main.c        **** void AS5600Receive(uint8_t address, uint8_t *buffer, uint32_t len) {
+  26              		.loc 1 154 0
   27              		.cfi_startproc
   28              		@ args = 0, pretend = 0, frame = 0
   29              		@ frame_needed = 0, uses_anonymous_args = 0
-  30 0000 08B5     		push	{r3, lr}
-  31              	.LCFI0:
-  32              		.cfi_def_cfa_offset 8
-  33              		.cfi_offset 3, -8
+  30              	.LVL0:
+  31 0000 00B5     		push	{lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 4
   34              		.cfi_offset 14, -4
-  40:main.c        ****   crm_periph_clock_enable(CRM_IOMUX_PERIPH_CLOCK, TRUE);
-  35              		.loc 1 40 0
-  36 0002 0121     		movs	r1, #1
-  37 0004 4FF4C010 		mov	r0, #1572864
-  38 0008 FFF7FEFF 		bl	crm_periph_clock_enable
-  39              	.LVL0:
-  41:main.c        ****   crm_periph_clock_enable(CRM_TMR2_PERIPH_CLOCK, TRUE);
-  40              		.loc 1 41 0
-  41 000c 0121     		movs	r1, #1
-  42 000e 4FF4E010 		mov	r0, #1835008
-  43 0012 FFF7FEFF 		bl	crm_periph_clock_enable
-  44              	.LVL1:
-  42:main.c        ****   crm_periph_clock_enable(CRM_GPIOA_PERIPH_CLOCK, TRUE);
-  45              		.loc 1 42 0
-  46 0016 0121     		movs	r1, #1
-  47 0018 0548     		ldr	r0, .L3
-  48 001a FFF7FEFF 		bl	crm_periph_clock_enable
-  49              	.LVL2:
-  43:main.c        ****   crm_periph_clock_enable(CRM_GPIOB_PERIPH_CLOCK, TRUE);
-  50              		.loc 1 43 0
-  51 001e 0121     		movs	r1, #1
-  52 0020 0448     		ldr	r0, .L3+4
-  53 0022 FFF7FEFF 		bl	crm_periph_clock_enable
-  54              	.LVL3:
-  44:main.c        ****   crm_periph_clock_enable(CRM_GPIOC_PERIPH_CLOCK, TRUE);
-  55              		.loc 1 44 0
-  56 0026 0121     		movs	r1, #1
-  57 0028 0348     		ldr	r0, .L3+8
-  58 002a FFF7FEFF 		bl	crm_periph_clock_enable
-  59              	.LVL4:
-  60 002e 08BD     		pop	{r3, pc}
-  61              	.L4:
-  62              		.align	2
-  63              	.L3:
-  64 0030 02001800 		.word	1572866
-  65 0034 03001800 		.word	1572867
-  66 0038 04001800 		.word	1572868
-  67              		.cfi_endproc
-  68              	.LFE134:
-  70              		.section	.text.gpio_configuration,"ax",%progbits
-  71              		.align	1
-  72              		.global	gpio_configuration
-ARM GAS  /tmp/cc7po03P.s 			page 3
+  35 0002 83B0     		sub	sp, sp, #12
+  36              	.LCFI1:
+  37              		.cfi_def_cfa_offset 16
+ 155:main.c        ****   i2c_status_type i2c_status;
+ 156:main.c        ****   if((i2c_status = i2c_master_receive(&hi2cx, address, buffer, len, I2C_TIMEOUT)) != I2C_OK){
+  38              		.loc 1 156 0
+  39 0004 4FF6FF73 		movw	r3, #65535
+  40 0008 0093     		str	r3, [sp]
+  41 000a 93B2     		uxth	r3, r2
+  42 000c 0A46     		mov	r2, r1
+  43              	.LVL1:
+  44 000e 0146     		mov	r1, r0
+  45              	.LVL2:
+  46 0010 0248     		ldr	r0, .L3
+  47              	.LVL3:
+  48 0012 FFF7FEFF 		bl	i2c_master_receive
+  49              	.LVL4:
+ 157:main.c        ****     // error_handler(i2c_status);
+ 158:main.c        ****   }
+ 159:main.c        **** }
+  50              		.loc 1 159 0
+  51 0016 03B0     		add	sp, sp, #12
+  52              	.LCFI2:
+  53              		.cfi_def_cfa_offset 4
+  54              		@ sp needed
+  55 0018 5DF804FB 		ldr	pc, [sp], #4
+  56              	.L4:
+  57              		.align	2
+  58              	.L3:
+  59 001c 00000000 		.word	hi2cx
+  60              		.cfi_endproc
+  61              	.LFE138:
+  63              		.section	.text.AS5600Transmit,"ax",%progbits
+  64              		.align	1
+  65              		.global	AS5600Transmit
+  66              		.syntax unified
+  67              		.thumb
+  68              		.thumb_func
+  69              		.fpu softvfp
+  71              	AS5600Transmit:
+  72              	.LFB139:
+ARM GAS  /tmp/ccqSbL36.s 			page 5
 
 
-  73              		.syntax unified
-  74              		.thumb
-  75              		.thumb_func
-  76              		.fpu softvfp
-  78              	gpio_configuration:
-  79              	.LFB135:
-  45:main.c        **** }
-  46:main.c        **** 
-  47:main.c        **** void gpio_configuration(void)
-  48:main.c        **** {
-  80              		.loc 1 48 0
-  81              		.cfi_startproc
-  82              		@ args = 0, pretend = 0, frame = 8
-  83              		@ frame_needed = 0, uses_anonymous_args = 0
-  84 0000 00B5     		push	{lr}
-  85              	.LCFI1:
-  86              		.cfi_def_cfa_offset 4
-  87              		.cfi_offset 14, -4
-  88 0002 83B0     		sub	sp, sp, #12
-  89              	.LCFI2:
-  90              		.cfi_def_cfa_offset 16
-  49:main.c        ****   gpio_init_type gpio_init_struct;
-  50:main.c        **** 
-  51:main.c        ****   gpio_default_para_init(&gpio_init_struct);
-  91              		.loc 1 51 0
-  92 0004 6846     		mov	r0, sp
-  93 0006 FFF7FEFF 		bl	gpio_default_para_init
-  94              	.LVL5:
-  52:main.c        **** 
-  53:main.c        ****   gpio_init_struct.gpio_pins = GPIO_PINS_3 | GPIO_PINS_10;
-  95              		.loc 1 53 0
-  96 000a 4FF48163 		mov	r3, #1032
-  97 000e 0093     		str	r3, [sp]
-  54:main.c        ****   gpio_init_struct.gpio_out_type = GPIO_OUTPUT_PUSH_PULL;
-  98              		.loc 1 54 0
-  99 0010 0023     		movs	r3, #0
- 100 0012 8DF80430 		strb	r3, [sp, #4]
-  55:main.c        ****   gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
- 101              		.loc 1 55 0
- 102 0016 0423     		movs	r3, #4
- 103 0018 8DF80530 		strb	r3, [sp, #5]
-  56:main.c        ****   gpio_init_struct.gpio_mode = GPIO_MODE_MUX;
- 104              		.loc 1 56 0
- 105 001c 0823     		movs	r3, #8
- 106 001e 8DF80630 		strb	r3, [sp, #6]
-  57:main.c        ****   gpio_init_struct.gpio_drive_strength = GPIO_DRIVE_STRENGTH_STRONGER;
- 107              		.loc 1 57 0
- 108 0022 0123     		movs	r3, #1
- 109 0024 8DF80730 		strb	r3, [sp, #7]
-  58:main.c        ****   gpio_init(GPIOB, &gpio_init_struct);
- 110              		.loc 1 58 0
- 111 0028 6946     		mov	r1, sp
- 112 002a 0B48     		ldr	r0, .L7
- 113 002c FFF7FEFF 		bl	gpio_init
- 114              	.LVL6:
-  59:main.c        ****   gpio_init_struct.gpio_pins = GPIO_PINS_0 | GPIO_PINS_1 | GPIO_PINS_2 | GPIO_PINS_15;
- 115              		.loc 1 59 0
-ARM GAS  /tmp/cc7po03P.s 			page 4
+ 160:main.c        **** 
+ 161:main.c        **** void AS5600Transmit(uint8_t address, uint8_t *buffer, uint32_t len) {
+  73              		.loc 1 161 0
+  74              		.cfi_startproc
+  75              		@ args = 0, pretend = 0, frame = 0
+  76              		@ frame_needed = 0, uses_anonymous_args = 0
+  77              	.LVL5:
+  78 0000 00B5     		push	{lr}
+  79              	.LCFI3:
+  80              		.cfi_def_cfa_offset 4
+  81              		.cfi_offset 14, -4
+  82 0002 83B0     		sub	sp, sp, #12
+  83              	.LCFI4:
+  84              		.cfi_def_cfa_offset 16
+ 162:main.c        ****   i2c_status_type i2c_status;
+ 163:main.c        ****   if((i2c_status = i2c_master_transmit(&hi2cx, address, buffer, len, I2C_TIMEOUT)) != I2C_OK) {
+  85              		.loc 1 163 0
+  86 0004 4FF6FF73 		movw	r3, #65535
+  87 0008 0093     		str	r3, [sp]
+  88 000a 93B2     		uxth	r3, r2
+  89 000c 0A46     		mov	r2, r1
+  90              	.LVL6:
+  91 000e 0146     		mov	r1, r0
+  92              	.LVL7:
+  93 0010 0248     		ldr	r0, .L7
+  94              	.LVL8:
+  95 0012 FFF7FEFF 		bl	i2c_master_transmit
+  96              	.LVL9:
+ 164:main.c        ****     // error_handler(i2c_status);
+ 165:main.c        ****   }
+ 166:main.c        **** }
+  97              		.loc 1 166 0
+  98 0016 03B0     		add	sp, sp, #12
+  99              	.LCFI5:
+ 100              		.cfi_def_cfa_offset 4
+ 101              		@ sp needed
+ 102 0018 5DF804FB 		ldr	pc, [sp], #4
+ 103              	.L8:
+ 104              		.align	2
+ 105              	.L7:
+ 106 001c 00000000 		.word	hi2cx
+ 107              		.cfi_endproc
+ 108              	.LFE139:
+ 110              		.global	__aeabi_fmul
+ 111              		.global	__aeabi_f2iz
+ 112              		.section	.text.OutPutPWM,"ax",%progbits
+ 113              		.align	1
+ 114              		.global	OutPutPWM
+ 115              		.syntax unified
+ 116              		.thumb
+ 117              		.thumb_func
+ 118              		.fpu softvfp
+ 120              	OutPutPWM:
+ 121              	.LFB143:
+ 167:main.c        **** 
+ 168:main.c        **** struct AS5600 g_as5600 = {
+ 169:main.c        ****   .Angle = 0,
+ARM GAS  /tmp/ccqSbL36.s 			page 6
 
 
- 116 0030 48F20703 		movw	r3, #32775
- 117 0034 0093     		str	r3, [sp]
-  60:main.c        ****   gpio_init(GPIOA, &gpio_init_struct);
- 118              		.loc 1 60 0
- 119 0036 6946     		mov	r1, sp
- 120 0038 0848     		ldr	r0, .L7+4
- 121 003a FFF7FEFF 		bl	gpio_init
- 122              	.LVL7:
-  61:main.c        ****   gpio_init_struct.gpio_pins = GPIO_PINS_13;
- 123              		.loc 1 61 0
- 124 003e 4FF40053 		mov	r3, #8192
- 125 0042 0093     		str	r3, [sp]
-  62:main.c        ****   gpio_init_struct.gpio_mode = GPIO_MODE_OUTPUT;
- 126              		.loc 1 62 0
- 127 0044 1023     		movs	r3, #16
- 128 0046 8DF80630 		strb	r3, [sp, #6]
-  63:main.c        ****   gpio_init(GPIOC, &gpio_init_struct);
- 129              		.loc 1 63 0
- 130 004a 6946     		mov	r1, sp
- 131 004c 0448     		ldr	r0, .L7+8
- 132 004e FFF7FEFF 		bl	gpio_init
- 133              	.LVL8:
-  64:main.c        **** }
- 134              		.loc 1 64 0
- 135 0052 03B0     		add	sp, sp, #12
- 136              	.LCFI3:
- 137              		.cfi_def_cfa_offset 4
- 138              		@ sp needed
- 139 0054 5DF804FB 		ldr	pc, [sp], #4
- 140              	.L8:
- 141              		.align	2
- 142              	.L7:
- 143 0058 000C0140 		.word	1073810432
- 144 005c 00080140 		.word	1073809408
- 145 0060 00100140 		.word	1073811456
- 146              		.cfi_endproc
- 147              	.LFE135:
- 149              		.section	.text.main,"ax",%progbits
- 150              		.align	1
- 151              		.global	main
- 152              		.syntax unified
- 153              		.thumb
- 154              		.thumb_func
- 155              		.fpu softvfp
- 157              	main:
- 158              	.LFB136:
-  65:main.c        **** 
-  66:main.c        **** 
-  67:main.c        **** 
-  68:main.c        **** int main(void) {
- 159              		.loc 1 68 0
- 160              		.cfi_startproc
- 161              		@ Volatile: function does not return.
- 162              		@ args = 0, pretend = 0, frame = 0
- 163              		@ frame_needed = 0, uses_anonymous_args = 0
- 164 0000 80B5     		push	{r7, lr}
- 165              	.LCFI4:
-ARM GAS  /tmp/cc7po03P.s 			page 5
+ 170:main.c        ****   .AS5600Receive = AS5600Receive,
+ 171:main.c        ****   .AS5600Transmit = AS5600Transmit,
+ 172:main.c        **** };
+ 173:main.c        **** 
+ 174:main.c        **** uint32_t buffer_compare(uint8_t* buffer1, uint8_t* buffer2, uint32_t len);
+ 175:main.c        **** void error_handler(uint32_t error_code);
+ 176:main.c        **** void i2c_lowlevel_init(i2c_handle_type* hi2c);
+ 177:main.c        **** 
+ 178:main.c        **** /**
+ 179:main.c        ****   * @brief  error handler program
+ 180:main.c        ****   * @param  i2c_status
+ 181:main.c        ****   * @retval none
+ 182:main.c        ****   */
+ 183:main.c        **** void error_handler(uint32_t error_code)
+ 184:main.c        **** {
+ 185:main.c        ****   OUTPUT("i2c %d\n", error_code);
+ 186:main.c        **** }
+ 187:main.c        **** 
+ 188:main.c        **** /**
+ 189:main.c        ****   * @brief  compare whether the valus of buffer 1 and buffer 2 are equal.
+ 190:main.c        ****   * @param  buffer1: buffer 1 address.
+ 191:main.c        ****             buffer2: buffer 2 address.
+ 192:main.c        ****   * @retval 0: equal.
+ 193:main.c        ****   *         1: unequal.
+ 194:main.c        ****   */
+ 195:main.c        **** uint32_t buffer_compare(uint8_t* buffer1, uint8_t* buffer2, uint32_t len)
+ 196:main.c        **** {
+ 197:main.c        ****   uint32_t i;
+ 198:main.c        **** 
+ 199:main.c        ****   for(i = 0; i < len; i++)
+ 200:main.c        ****   {
+ 201:main.c        ****     if(buffer1[i] != buffer2[i])
+ 202:main.c        ****     {
+ 203:main.c        ****       return 1;
+ 204:main.c        ****     }
+ 205:main.c        ****   }
+ 206:main.c        **** 
+ 207:main.c        ****   return 0;
+ 208:main.c        **** }
+ 209:main.c        **** 
+ 210:main.c        **** /**
+ 211:main.c        ****   * @brief  initializes peripherals used by the i2c.
+ 212:main.c        ****   * @param  none
+ 213:main.c        ****   * @retval none
+ 214:main.c        ****   */
+ 215:main.c        **** void i2c_lowlevel_init(i2c_handle_type* hi2c)
+ 216:main.c        **** {
+ 217:main.c        **** gpio_init_type gpio_initstructure;
+ 218:main.c        **** 
+ 219:main.c        ****   if(hi2c->i2cx == I2Cx_PORT)
+ 220:main.c        ****   {
+ 221:main.c        ****     /* i2c periph clock enable */
+ 222:main.c        ****     crm_periph_clock_enable(I2Cx_CLK, TRUE);
+ 223:main.c        ****     crm_periph_clock_enable(I2Cx_SCL_GPIO_CLK, TRUE);
+ 224:main.c        ****     crm_periph_clock_enable(I2Cx_SDA_GPIO_CLK, TRUE);
+ 225:main.c        **** 
+ 226:main.c        ****     /* gpio configuration */
+ARM GAS  /tmp/ccqSbL36.s 			page 7
 
 
- 166              		.cfi_def_cfa_offset 8
- 167              		.cfi_offset 7, -8
- 168              		.cfi_offset 14, -4
-  69:main.c        **** 
-  70:main.c        ****   system_clock_config();
- 169              		.loc 1 70 0
- 170 0002 FFF7FEFF 		bl	system_clock_config
- 171              	.LVL9:
-  71:main.c        **** 
-  72:main.c        ****   at32_board_init();
- 172              		.loc 1 72 0
- 173 0006 FFF7FEFF 		bl	at32_board_init
- 174              	.LVL10:
-  73:main.c        **** 
-  74:main.c        ****   crm_configuration();
- 175              		.loc 1 74 0
- 176 000a FFF7FEFF 		bl	crm_configuration
- 177              	.LVL11:
-  75:main.c        **** 
-  76:main.c        ****   gpio_configuration();
- 178              		.loc 1 76 0
- 179 000e FFF7FEFF 		bl	gpio_configuration
- 180              	.LVL12:
-  77:main.c        **** 
-  78:main.c        ****   uart_print_init(115200);
- 181              		.loc 1 78 0
- 182 0012 4FF4E130 		mov	r0, #115200
- 183 0016 FFF7FEFF 		bl	uart_print_init
- 184              	.LVL13:
-  79:main.c        **** 
-  80:main.c        ****   OUTPUT("Hello Word\n");
- 185              		.loc 1 80 0
- 186 001a 3848     		ldr	r0, .L12
- 187 001c FFF7FEFF 		bl	log_put
- 188              	.LVL14:
-  81:main.c        **** 
-  82:main.c        ****   gpio_pin_remap_config(TMR2_MUX_11, TRUE);
- 189              		.loc 1 82 0
- 190 0020 0121     		movs	r1, #1
- 191 0022 3748     		ldr	r0, .L12+4
- 192 0024 FFF7FEFF 		bl	gpio_pin_remap_config
- 193              	.LVL15:
-  83:main.c        ****   gpio_pin_remap_config(SWJTAG_MUX_010, TRUE);
- 194              		.loc 1 83 0
- 195 0028 0121     		movs	r1, #1
- 196 002a 3648     		ldr	r0, .L12+8
- 197 002c FFF7FEFF 		bl	gpio_pin_remap_config
- 198              	.LVL16:
-  84:main.c        **** 
-  85:main.c        ****   tmr_base_init(TMR2, 999, 5);
- 199              		.loc 1 85 0
- 200 0030 0522     		movs	r2, #5
- 201 0032 40F2E731 		movw	r1, #999
- 202 0036 4FF08040 		mov	r0, #1073741824
- 203 003a FFF7FEFF 		bl	tmr_base_init
- 204              	.LVL17:
-  86:main.c        ****   tmr_cnt_dir_set(TMR2, TMR_COUNT_UP);
-ARM GAS  /tmp/cc7po03P.s 			page 6
+ 227:main.c        ****     gpio_initstructure.gpio_out_type       = GPIO_OUTPUT_OPEN_DRAIN;
+ 228:main.c        ****     gpio_initstructure.gpio_pull           = GPIO_PULL_UP;
+ 229:main.c        ****     gpio_initstructure.gpio_mode           = GPIO_MODE_MUX;
+ 230:main.c        ****     gpio_initstructure.gpio_drive_strength = GPIO_DRIVE_STRENGTH_STRONGER;
+ 231:main.c        **** 
+ 232:main.c        ****     /* configure i2c pins: scl */
+ 233:main.c        ****     gpio_initstructure.gpio_pins = I2Cx_SCL_PIN;
+ 234:main.c        ****     gpio_init(I2Cx_SCL_GPIO_PORT, &gpio_initstructure);
+ 235:main.c        **** 
+ 236:main.c        ****     /* configure i2c pins: sda */
+ 237:main.c        ****     gpio_initstructure.gpio_pins = I2Cx_SDA_PIN;
+ 238:main.c        ****     gpio_init(I2Cx_SDA_GPIO_PORT, &gpio_initstructure);
+ 239:main.c        **** 
+ 240:main.c        ****     /* configure and enable i2c dma channel interrupt */
+ 241:main.c        ****     nvic_irq_enable(I2Cx_DMA_TX_IRQn, 0, 0);
+ 242:main.c        ****     nvic_irq_enable(I2Cx_DMA_RX_IRQn, 0, 0);
+ 243:main.c        **** 
+ 244:main.c        ****     /* i2c dma tx and rx channels configuration */
+ 245:main.c        ****     /* enable the dma clock */
+ 246:main.c        ****     crm_periph_clock_enable(I2Cx_DMA_CLK, TRUE);
+ 247:main.c        **** 
+ 248:main.c        ****     /* i2c dma channel configuration */
+ 249:main.c        ****     dma_reset(hi2c->dma_tx_channel);
+ 250:main.c        ****     dma_reset(hi2c->dma_rx_channel);
+ 251:main.c        **** 
+ 252:main.c        ****     hi2c->dma_tx_channel = I2Cx_DMA_TX_CHANNEL;
+ 253:main.c        ****     hi2c->dma_rx_channel = I2Cx_DMA_RX_CHANNEL;
+ 254:main.c        **** 
+ 255:main.c        ****     dma_default_para_init(&hi2c->dma_init_struct);
+ 256:main.c        ****     hi2c->dma_init_struct.peripheral_inc_enable    = FALSE;
+ 257:main.c        ****     hi2c->dma_init_struct.memory_inc_enable        = TRUE;
+ 258:main.c        ****     hi2c->dma_init_struct.peripheral_data_width    = DMA_PERIPHERAL_DATA_WIDTH_BYTE;
+ 259:main.c        ****     hi2c->dma_init_struct.memory_data_width        = DMA_MEMORY_DATA_WIDTH_BYTE;
+ 260:main.c        ****     hi2c->dma_init_struct.loop_mode_enable         = FALSE;
+ 261:main.c        ****     hi2c->dma_init_struct.priority                 = DMA_PRIORITY_VERY_HIGH;
+ 262:main.c        ****     hi2c->dma_init_struct.direction                = DMA_DIR_MEMORY_TO_PERIPHERAL;
+ 263:main.c        **** 
+ 264:main.c        ****     dma_init(hi2c->dma_tx_channel, &hi2c->dma_init_struct);
+ 265:main.c        ****     dma_init(hi2c->dma_rx_channel, &hi2c->dma_init_struct);
+ 266:main.c        **** 
+ 267:main.c        ****     i2c_init(hi2c->i2cx, I2C_FSMODE_DUTY_2_1, I2Cx_SPEED);
+ 268:main.c        **** 
+ 269:main.c        ****     i2c_own_address1_set(hi2c->i2cx, I2C_ADDRESS_MODE_7BIT, 0xb0);
+ 270:main.c        ****   }
+ 271:main.c        **** }
+ 272:main.c        **** 
+ 273:main.c        **** void OutPutPWM(float Ta, float Tb, float Tc) {
+ 122              		.loc 1 273 0
+ 123              		.cfi_startproc
+ 124              		@ args = 0, pretend = 0, frame = 0
+ 125              		@ frame_needed = 0, uses_anonymous_args = 0
+ 126              	.LVL10:
+ 127 0000 38B5     		push	{r3, r4, r5, lr}
+ 128              	.LCFI6:
+ 129              		.cfi_def_cfa_offset 16
+ 130              		.cfi_offset 3, -16
+ 131              		.cfi_offset 4, -12
+ARM GAS  /tmp/ccqSbL36.s 			page 8
 
 
- 205              		.loc 1 86 0
- 206 003e 0021     		movs	r1, #0
- 207 0040 4FF08040 		mov	r0, #1073741824
- 208 0044 FFF7FEFF 		bl	tmr_cnt_dir_set
- 209              	.LVL18:
-  87:main.c        ****   tmr_clock_source_div_set(TMR2, TMR_CLOCK_DIV1);
- 210              		.loc 1 87 0
- 211 0048 0021     		movs	r1, #0
- 212 004a 4FF08040 		mov	r0, #1073741824
- 213 004e FFF7FEFF 		bl	tmr_clock_source_div_set
- 214              	.LVL19:
-  88:main.c        **** 
-  89:main.c        ****   tmr_output_default_para_init(&tmr_oc_init_structure);
- 215              		.loc 1 89 0
- 216 0052 2D4C     		ldr	r4, .L12+12
- 217 0054 2046     		mov	r0, r4
- 218 0056 FFF7FEFF 		bl	tmr_output_default_para_init
- 219              	.LVL20:
-  90:main.c        **** 
-  91:main.c        ****   tmr_oc_init_structure.oc_mode = TMR_OUTPUT_CONTROL_PWM_MODE_B;
- 220              		.loc 1 91 0
- 221 005a 0723     		movs	r3, #7
- 222 005c 2370     		strb	r3, [r4]
-  92:main.c        ****   tmr_oc_init_structure.oc_idle_state = FALSE;
- 223              		.loc 1 92 0
- 224 005e 0026     		movs	r6, #0
- 225 0060 6670     		strb	r6, [r4, #1]
-  93:main.c        ****   tmr_oc_init_structure.oc_polarity = TMR_OUTPUT_ACTIVE_HIGH;
- 226              		.loc 1 93 0
- 227 0062 E670     		strb	r6, [r4, #3]
-  94:main.c        ****   tmr_oc_init_structure.oc_output_state = TRUE;
- 228              		.loc 1 94 0
- 229 0064 0125     		movs	r5, #1
- 230 0066 6571     		strb	r5, [r4, #5]
-  95:main.c        **** 
-  96:main.c        ****   tmr_output_channel_config(TMR2, TMR_SELECT_CHANNEL_1, &tmr_oc_init_structure);
- 231              		.loc 1 96 0
- 232 0068 2246     		mov	r2, r4
- 233 006a 3146     		mov	r1, r6
- 234 006c 4FF08040 		mov	r0, #1073741824
- 235 0070 FFF7FEFF 		bl	tmr_output_channel_config
- 236              	.LVL21:
-  97:main.c        ****   tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, ccr1_val);
- 237              		.loc 1 97 0
- 238 0074 254F     		ldr	r7, .L12+16
- 239 0076 3A88     		ldrh	r2, [r7]
- 240 0078 3146     		mov	r1, r6
- 241 007a 4FF08040 		mov	r0, #1073741824
- 242 007e FFF7FEFF 		bl	tmr_channel_value_set
- 243              	.LVL22:
-  98:main.c        ****   tmr_output_channel_buffer_enable(TMR2, TMR_SELECT_CHANNEL_1, TRUE);
- 244              		.loc 1 98 0
- 245 0082 2A46     		mov	r2, r5
- 246 0084 3146     		mov	r1, r6
- 247 0086 4FF08040 		mov	r0, #1073741824
- 248 008a FFF7FEFF 		bl	tmr_output_channel_buffer_enable
- 249              	.LVL23:
-ARM GAS  /tmp/cc7po03P.s 			page 7
+ 132              		.cfi_offset 5, -8
+ 133              		.cfi_offset 14, -4
+ 134 0002 0D46     		mov	r5, r1
+ 135 0004 1446     		mov	r4, r2
+ 274:main.c        ****   tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, (int)(Ta * 1000));
+ 136              		.loc 1 274 0
+ 137 0006 1249     		ldr	r1, .L11
+ 138              	.LVL11:
+ 139 0008 FFF7FEFF 		bl	__aeabi_fmul
+ 140              	.LVL12:
+ 141 000c FFF7FEFF 		bl	__aeabi_f2iz
+ 142              	.LVL13:
+ 143 0010 0246     		mov	r2, r0
+ 144 0012 0021     		movs	r1, #0
+ 145 0014 4FF08040 		mov	r0, #1073741824
+ 146 0018 FFF7FEFF 		bl	tmr_channel_value_set
+ 147              	.LVL14:
+ 275:main.c        ****   tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, (int)(Tb * 1000));
+ 148              		.loc 1 275 0
+ 149 001c 0C49     		ldr	r1, .L11
+ 150 001e 2846     		mov	r0, r5
+ 151 0020 FFF7FEFF 		bl	__aeabi_fmul
+ 152              	.LVL15:
+ 153 0024 FFF7FEFF 		bl	__aeabi_f2iz
+ 154              	.LVL16:
+ 155 0028 0246     		mov	r2, r0
+ 156 002a 0021     		movs	r1, #0
+ 157 002c 4FF08040 		mov	r0, #1073741824
+ 158 0030 FFF7FEFF 		bl	tmr_channel_value_set
+ 159              	.LVL17:
+ 276:main.c        ****   tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, (int)(Tc * 1000));
+ 160              		.loc 1 276 0
+ 161 0034 0649     		ldr	r1, .L11
+ 162 0036 2046     		mov	r0, r4
+ 163 0038 FFF7FEFF 		bl	__aeabi_fmul
+ 164              	.LVL18:
+ 165 003c FFF7FEFF 		bl	__aeabi_f2iz
+ 166              	.LVL19:
+ 167 0040 0246     		mov	r2, r0
+ 168 0042 0021     		movs	r1, #0
+ 169 0044 4FF08040 		mov	r0, #1073741824
+ 170 0048 FFF7FEFF 		bl	tmr_channel_value_set
+ 171              	.LVL20:
+ 172 004c 38BD     		pop	{r3, r4, r5, pc}
+ 173              	.LVL21:
+ 174              	.L12:
+ 175 004e 00BF     		.align	2
+ 176              	.L11:
+ 177 0050 00007A44 		.word	1148846080
+ 178              		.cfi_endproc
+ 179              	.LFE143:
+ 181              		.section	.text.DelayMs,"ax",%progbits
+ 182              		.align	1
+ 183              		.global	DelayMs
+ 184              		.syntax unified
+ 185              		.thumb
+ 186              		.thumb_func
+ARM GAS  /tmp/ccqSbL36.s 			page 9
 
 
-  99:main.c        **** 
- 100:main.c        ****   tmr_output_channel_config(TMR2, TMR_SELECT_CHANNEL_2, &tmr_oc_init_structure);
- 250              		.loc 1 100 0
- 251 008e 2246     		mov	r2, r4
- 252 0090 0221     		movs	r1, #2
- 253 0092 4FF08040 		mov	r0, #1073741824
- 254 0096 FFF7FEFF 		bl	tmr_output_channel_config
- 255              	.LVL24:
- 101:main.c        ****   tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_2, ccr1_val);
- 256              		.loc 1 101 0
- 257 009a 3A88     		ldrh	r2, [r7]
- 258 009c 0221     		movs	r1, #2
- 259 009e 4FF08040 		mov	r0, #1073741824
- 260 00a2 FFF7FEFF 		bl	tmr_channel_value_set
- 261              	.LVL25:
- 102:main.c        ****   tmr_output_channel_buffer_enable(TMR2, TMR_SELECT_CHANNEL_2, TRUE);
- 262              		.loc 1 102 0
- 263 00a6 2A46     		mov	r2, r5
- 264 00a8 0221     		movs	r1, #2
- 265 00aa 4FF08040 		mov	r0, #1073741824
- 266 00ae FFF7FEFF 		bl	tmr_output_channel_buffer_enable
- 267              	.LVL26:
- 103:main.c        **** 
- 104:main.c        ****   tmr_output_channel_config(TMR2, TMR_SELECT_CHANNEL_3, &tmr_oc_init_structure);
- 268              		.loc 1 104 0
- 269 00b2 2246     		mov	r2, r4
- 270 00b4 0421     		movs	r1, #4
- 271 00b6 4FF08040 		mov	r0, #1073741824
- 272 00ba FFF7FEFF 		bl	tmr_output_channel_config
- 273              	.LVL27:
- 105:main.c        ****   tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_3, ccr1_val);
- 274              		.loc 1 105 0
- 275 00be 3A88     		ldrh	r2, [r7]
- 276 00c0 0421     		movs	r1, #4
- 277 00c2 4FF08040 		mov	r0, #1073741824
- 278 00c6 FFF7FEFF 		bl	tmr_channel_value_set
- 279              	.LVL28:
- 106:main.c        ****   tmr_output_channel_buffer_enable(TMR2, TMR_SELECT_CHANNEL_3, TRUE);
- 280              		.loc 1 106 0
- 281 00ca 2A46     		mov	r2, r5
- 282 00cc 0421     		movs	r1, #4
- 283 00ce 4FF08040 		mov	r0, #1073741824
- 284 00d2 FFF7FEFF 		bl	tmr_output_channel_buffer_enable
- 285              	.LVL29:
- 107:main.c        **** 
- 108:main.c        ****   tmr_period_buffer_enable(TMR2, TRUE);
+ 187              		.fpu softvfp
+ 189              	DelayMs:
+ 190              	.LFB144:
+ 277:main.c        **** }
+ 278:main.c        **** 
+ 279:main.c        **** void DelayMs(uint32_t ms) {
+ 191              		.loc 1 279 0
+ 192              		.cfi_startproc
+ 193              		@ args = 0, pretend = 0, frame = 0
+ 194              		@ frame_needed = 0, uses_anonymous_args = 0
+ 195              	.LVL22:
+ 196 0000 08B5     		push	{r3, lr}
+ 197              	.LCFI7:
+ 198              		.cfi_def_cfa_offset 8
+ 199              		.cfi_offset 3, -8
+ 200              		.cfi_offset 14, -4
+ 280:main.c        ****   delay_ms(ms);
+ 201              		.loc 1 280 0
+ 202 0002 80B2     		uxth	r0, r0
+ 203              	.LVL23:
+ 204 0004 FFF7FEFF 		bl	delay_ms
+ 205              	.LVL24:
+ 206 0008 08BD     		pop	{r3, pc}
+ 207              		.cfi_endproc
+ 208              	.LFE144:
+ 210              		.global	__aeabi_i2d
+ 211              		.global	__aeabi_dmul
+ 212              		.global	__aeabi_d2f
+ 213              		.section	.text.GetShaftAnage,"ax",%progbits
+ 214              		.align	1
+ 215              		.global	GetShaftAnage
+ 216              		.syntax unified
+ 217              		.thumb
+ 218              		.thumb_func
+ 219              		.fpu softvfp
+ 221              	GetShaftAnage:
+ 222              	.LFB145:
+ 281:main.c        **** }
+ 282:main.c        **** 
+ 283:main.c        **** float GetShaftAnage() {
+ 223              		.loc 1 283 0
+ 224              		.cfi_startproc
+ 225              		@ args = 0, pretend = 0, frame = 0
+ 226              		@ frame_needed = 0, uses_anonymous_args = 0
+ 227 0000 10B5     		push	{r4, lr}
+ 228              	.LCFI8:
+ 229              		.cfi_def_cfa_offset 8
+ 230              		.cfi_offset 4, -8
+ 231              		.cfi_offset 14, -4
+ 284:main.c        ****   AS5600GetAngle(&g_as5600);
+ 232              		.loc 1 284 0
+ 233 0002 0B4C     		ldr	r4, .L17+8
+ 234 0004 2046     		mov	r0, r4
+ 235 0006 FFF7FEFF 		bl	AS5600GetAngle
+ 236              	.LVL25:
+ 285:main.c        ****   // OUTPUT("%d\n", g_as5600.Angle);
+ 286:main.c        ****   return g_as5600.Angle / 4096.0 * _2PI;
+ARM GAS  /tmp/ccqSbL36.s 			page 10
+
+
+ 237              		.loc 1 286 0
+ 238 000a 2088     		ldrh	r0, [r4]
+ 239 000c FFF7FEFF 		bl	__aeabi_i2d
+ 240              	.LVL26:
+ 241 0010 0022     		movs	r2, #0
+ 242 0012 084B     		ldr	r3, .L17+12
+ 243 0014 FFF7FEFF 		bl	__aeabi_dmul
+ 244              	.LVL27:
+ 245 0018 03A3     		adr	r3, .L17
+ 246 001a D3E90023 		ldrd	r2, [r3]
+ 247 001e FFF7FEFF 		bl	__aeabi_dmul
+ 248              	.LVL28:
+ 249 0022 FFF7FEFF 		bl	__aeabi_d2f
+ 250              	.LVL29:
+ 287:main.c        **** }
+ 251              		.loc 1 287 0
+ 252 0026 10BD     		pop	{r4, pc}
+ 253              	.L18:
+ 254              		.align	3
+ 255              	.L17:
+ 256 0028 EA2E4454 		.word	1413754602
+ 257 002c FB211940 		.word	1075388923
+ 258 0030 00000000 		.word	.LANCHOR0
+ 259 0034 0000303F 		.word	1060110336
+ 260              		.cfi_endproc
+ 261              	.LFE145:
+ 263              		.section	.text.dma_config,"ax",%progbits
+ 264              		.align	1
+ 265              		.syntax unified
+ 266              		.thumb
+ 267              		.thumb_func
+ 268              		.fpu softvfp
+ 270              	dma_config:
+ 271              	.LFB136:
+ 106:main.c        ****   dma_init_type dma_init_struct;
+ 272              		.loc 1 106 0
+ 273              		.cfi_startproc
+ 274              		@ args = 0, pretend = 0, frame = 24
+ 275              		@ frame_needed = 0, uses_anonymous_args = 0
+ 276 0000 70B5     		push	{r4, r5, r6, lr}
+ 277              	.LCFI9:
+ 278              		.cfi_def_cfa_offset 16
+ 279              		.cfi_offset 4, -16
+ 280              		.cfi_offset 5, -12
+ 281              		.cfi_offset 6, -8
+ 282              		.cfi_offset 14, -4
+ 283 0002 86B0     		sub	sp, sp, #24
+ 284              	.LCFI10:
+ 285              		.cfi_def_cfa_offset 40
+ 108:main.c        ****   nvic_irq_enable(DMA1_Channel1_IRQn, 0, 0);
  286              		.loc 1 108 0
- 287 00d6 2946     		mov	r1, r5
- 288 00d8 4FF08040 		mov	r0, #1073741824
- 289 00dc FFF7FEFF 		bl	tmr_period_buffer_enable
+ 287 0004 0121     		movs	r1, #1
+ 288 0006 4FF4A010 		mov	r0, #1310720
+ 289 000a FFF7FEFF 		bl	crm_periph_clock_enable
  290              	.LVL30:
- 109:main.c        ****   tmr_counter_enable(TMR2, TRUE);
+ 109:main.c        ****   dma_reset(DMA1_CHANNEL1);
  291              		.loc 1 109 0
- 292 00e0 2946     		mov	r1, r5
- 293 00e2 4FF08040 		mov	r0, #1073741824
- 294 00e6 FFF7FEFF 		bl	tmr_counter_enable
- 295              	.LVL31:
-ARM GAS  /tmp/cc7po03P.s 			page 8
+ARM GAS  /tmp/ccqSbL36.s 			page 11
 
 
- 296              	.L10:
- 110:main.c        ****   while(1) {
- 111:main.c        ****     GPIOC->odt ^= GPIO_PINS_13;
- 297              		.loc 1 111 0 discriminator 1
- 298 00ea 094A     		ldr	r2, .L12+20
- 299 00ec D368     		ldr	r3, [r2, #12]
- 300 00ee 83F40053 		eor	r3, r3, #8192
- 301 00f2 D360     		str	r3, [r2, #12]
- 112:main.c        ****     delay_sec(1);
- 302              		.loc 1 112 0 discriminator 1
- 303 00f4 0120     		movs	r0, #1
- 304 00f6 FFF7FEFF 		bl	delay_sec
- 305              	.LVL32:
- 306 00fa F6E7     		b	.L10
- 307              	.L13:
- 308              		.align	2
- 309              	.L12:
- 310 00fc 00000000 		.word	.LC0
- 311 0100 03020424 		.word	604242435
- 312 0104 02031030 		.word	806355714
- 313 0108 00000000 		.word	tmr_oc_init_structure
- 314 010c 00000000 		.word	.LANCHOR0
- 315 0110 00100140 		.word	1073811456
- 316              		.cfi_endproc
- 317              	.LFE136:
- 319              		.global	prescaler_value
- 320              		.global	ccr1_val
- 321              		.comm	tmr_oc_init_structure,7,4
- 322              		.global	crm_clocks_freq_struct
- 323              		.global	gpio_init_struct
- 324              		.section	.bss.crm_clocks_freq_struct,"aw",%nobits
- 325              		.align	2
- 328              	crm_clocks_freq_struct:
- 329 0000 00000000 		.space	20
- 329      00000000 
- 329      00000000 
- 329      00000000 
- 329      00000000 
- 330              		.section	.bss.gpio_init_struct,"aw",%nobits
- 331              		.align	2
- 334              	gpio_init_struct:
- 335 0000 00000000 		.space	8
- 335      00000000 
- 336              		.section	.bss.prescaler_value,"aw",%nobits
- 337              		.align	1
- 340              	prescaler_value:
- 341 0000 0000     		.space	2
- 342              		.section	.data.ccr1_val,"aw",%progbits
- 343              		.align	1
- 344              		.set	.LANCHOR0,. + 0
- 347              	ccr1_val:
- 348 0000 F401     		.short	500
- 349              		.section	.rodata.main.str1.4,"aMS",%progbits,1
- 350              		.align	2
- 351              	.LC0:
- 352 0000 48656C6C 		.ascii	"Hello Word\012\000"
- 352      6F20576F 
-ARM GAS  /tmp/cc7po03P.s 			page 9
+ 292 000e 0022     		movs	r2, #0
+ 293 0010 1146     		mov	r1, r2
+ 294 0012 0B20     		movs	r0, #11
+ 295 0014 FFF7FEFF 		bl	nvic_irq_enable
+ 296              	.LVL31:
+ 110:main.c        ****   dma_default_para_init(&dma_init_struct);
+ 297              		.loc 1 110 0
+ 298 0018 164D     		ldr	r5, .L21
+ 299 001a 2846     		mov	r0, r5
+ 300 001c FFF7FEFF 		bl	dma_reset
+ 301              	.LVL32:
+ 111:main.c        ****   dma_init_struct.buffer_size = 2;
+ 302              		.loc 1 111 0
+ 303 0020 01A8     		add	r0, sp, #4
+ 304 0022 FFF7FEFF 		bl	dma_default_para_init
+ 305              	.LVL33:
+ 112:main.c        ****   dma_init_struct.direction = DMA_DIR_PERIPHERAL_TO_MEMORY;
+ 306              		.loc 1 112 0
+ 307 0026 0226     		movs	r6, #2
+ 308 0028 ADF80E60 		strh	r6, [sp, #14]	@ movhi
+ 113:main.c        ****   dma_init_struct.memory_base_addr = (uint32_t)adc1_ordinary_valuetab;
+ 309              		.loc 1 113 0
+ 310 002c 0023     		movs	r3, #0
+ 311 002e ADF80C30 		strh	r3, [sp, #12]	@ movhi
+ 114:main.c        ****   dma_init_struct.memory_data_width = DMA_MEMORY_DATA_WIDTH_HALFWORD;
+ 312              		.loc 1 114 0
+ 313 0032 114A     		ldr	r2, .L21+4
+ 314 0034 0292     		str	r2, [sp, #8]
+ 115:main.c        ****   dma_init_struct.memory_inc_enable = TRUE;
+ 315              		.loc 1 115 0
+ 316 0036 0124     		movs	r4, #1
+ 317 0038 8DF81340 		strb	r4, [sp, #19]
+ 116:main.c        ****   dma_init_struct.peripheral_base_addr = (uint32_t)&(ADC1->odt);
+ 318              		.loc 1 116 0
+ 319 003c 8DF81140 		strb	r4, [sp, #17]
+ 117:main.c        ****   dma_init_struct.peripheral_data_width = DMA_PERIPHERAL_DATA_WIDTH_HALFWORD;
+ 320              		.loc 1 117 0
+ 321 0040 0E4A     		ldr	r2, .L21+8
+ 322 0042 0192     		str	r2, [sp, #4]
+ 118:main.c        ****   dma_init_struct.peripheral_inc_enable = FALSE;
+ 323              		.loc 1 118 0
+ 324 0044 8DF81240 		strb	r4, [sp, #18]
+ 119:main.c        ****   dma_init_struct.priority = DMA_PRIORITY_HIGH;
+ 325              		.loc 1 119 0
+ 326 0048 8DF81030 		strb	r3, [sp, #16]
+ 120:main.c        ****   dma_init_struct.loop_mode_enable = TRUE;
+ 327              		.loc 1 120 0
+ 328 004c 8DF81560 		strb	r6, [sp, #21]
+ 121:main.c        ****   dma_init(DMA1_CHANNEL1, &dma_init_struct);
+ 329              		.loc 1 121 0
+ 330 0050 8DF81440 		strb	r4, [sp, #20]
+ 122:main.c        **** 
+ 331              		.loc 1 122 0
+ 332 0054 01A9     		add	r1, sp, #4
+ 333 0056 2846     		mov	r0, r5
+ 334 0058 FFF7FEFF 		bl	dma_init
+ 335              	.LVL34:
+ARM GAS  /tmp/ccqSbL36.s 			page 12
 
 
- 352      72640A00 
- 353              		.text
- 354              	.Letext0:
- 355              		.file 2 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/mac
- 356              		.file 3 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
- 357              		.file 4 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
- 358              		.file 5 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/lib/gcc/arm-none-eabi/6.2
- 359              		.file 6 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
- 360              		.file 7 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
- 361              		.file 8 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/core_support/core_cm4.h"
- 362              		.file 9 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/system_at32f40
- 363              		.file 10 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/at32f403a_407
- 364              		.file 11 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_crm.h"
- 365              		.file 12 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_tmr.h"
- 366              		.file 13 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_gpio.h"
- 367              		.file 14 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_usb.h"
- 368              		.file 15 "Core/Inc/at32f403a_407_clock.h"
- 369              		.file 16 "Core/Inc/at32f403a_407_board.h"
- 370              		.file 17 "/home/y/github/EmbeddedSoftwareMCU/Common/common.h"
-ARM GAS  /tmp/cc7po03P.s 			page 10
+ 124:main.c        ****   dma_channel_enable(DMA1_CHANNEL1, TRUE);
+ 336              		.loc 1 124 0
+ 337 005c 2246     		mov	r2, r4
+ 338 005e 3146     		mov	r1, r6
+ 339 0060 2846     		mov	r0, r5
+ 340 0062 FFF7FEFF 		bl	dma_interrupt_enable
+ 341              	.LVL35:
+ 125:main.c        **** }
+ 342              		.loc 1 125 0
+ 343 0066 2146     		mov	r1, r4
+ 344 0068 2846     		mov	r0, r5
+ 345 006a FFF7FEFF 		bl	dma_channel_enable
+ 346              	.LVL36:
+ 126:main.c        **** 
+ 347              		.loc 1 126 0
+ 348 006e 06B0     		add	sp, sp, #24
+ 349              	.LCFI11:
+ 350              		.cfi_def_cfa_offset 16
+ 351              		@ sp needed
+ 352 0070 70BD     		pop	{r4, r5, r6, pc}
+ 353              	.L22:
+ 354 0072 00BF     		.align	2
+ 355              	.L21:
+ 356 0074 08000240 		.word	1073872904
+ 357 0078 00000000 		.word	.LANCHOR1
+ 358 007c 4C240140 		.word	1073816652
+ 359              		.cfi_endproc
+ 360              	.LFE136:
+ 362              		.section	.text.adc_config,"ax",%progbits
+ 363              		.align	1
+ 364              		.syntax unified
+ 365              		.thumb
+ 366              		.thumb_func
+ 367              		.fpu softvfp
+ 369              	adc_config:
+ 370              	.LFB137:
+ 129:main.c        ****   adc_base_config_type adc_base_struct;
+ 371              		.loc 1 129 0
+ 372              		.cfi_startproc
+ 373              		@ args = 0, pretend = 0, frame = 8
+ 374              		@ frame_needed = 0, uses_anonymous_args = 0
+ 375 0000 70B5     		push	{r4, r5, r6, lr}
+ 376              	.LCFI12:
+ 377              		.cfi_def_cfa_offset 16
+ 378              		.cfi_offset 4, -16
+ 379              		.cfi_offset 5, -12
+ 380              		.cfi_offset 6, -8
+ 381              		.cfi_offset 14, -4
+ 382 0002 82B0     		sub	sp, sp, #8
+ 383              	.LCFI13:
+ 384              		.cfi_def_cfa_offset 24
+ 131:main.c        ****   crm_adc_clock_div_set(CRM_ADC_DIV_8);
+ 385              		.loc 1 131 0
+ 386 0004 0121     		movs	r1, #1
+ 387 0006 2348     		ldr	r0, .L27
+ 388 0008 FFF7FEFF 		bl	crm_periph_clock_enable
+ 389              	.LVL37:
+ARM GAS  /tmp/ccqSbL36.s 			page 13
+
+
+ 132:main.c        **** 
+ 390              		.loc 1 132 0
+ 391 000c 0320     		movs	r0, #3
+ 392 000e FFF7FEFF 		bl	crm_adc_clock_div_set
+ 393              	.LVL38:
+ 135:main.c        ****   adc_base_default_para_init(&adc_base_struct);
+ 394              		.loc 1 135 0
+ 395 0012 0020     		movs	r0, #0
+ 396 0014 FFF7FEFF 		bl	adc_combine_mode_select
+ 397              	.LVL39:
+ 136:main.c        ****   adc_base_struct.sequence_mode = TRUE;
+ 398              		.loc 1 136 0
+ 399 0018 01A8     		add	r0, sp, #4
+ 400 001a FFF7FEFF 		bl	adc_base_default_para_init
+ 401              	.LVL40:
+ 137:main.c        ****   adc_base_struct.repeat_mode = TRUE;
+ 402              		.loc 1 137 0
+ 403 001e 0124     		movs	r4, #1
+ 404 0020 8DF80440 		strb	r4, [sp, #4]
+ 138:main.c        ****   adc_base_struct.data_align = ADC_RIGHT_ALIGNMENT;
+ 405              		.loc 1 138 0
+ 406 0024 8DF80540 		strb	r4, [sp, #5]
+ 139:main.c        ****   adc_base_struct.ordinary_channel_length = 2;
+ 407              		.loc 1 139 0
+ 408 0028 0023     		movs	r3, #0
+ 409 002a 8DF80630 		strb	r3, [sp, #6]
+ 140:main.c        ****   adc_base_config(ADC1, &adc_base_struct);
+ 410              		.loc 1 140 0
+ 411 002e 0226     		movs	r6, #2
+ 412 0030 8DF80760 		strb	r6, [sp, #7]
+ 141:main.c        ****   adc_ordinary_channel_set(ADC1, ADC_CHANNEL_1, 1, ADC_SAMPLETIME_7_5);
+ 413              		.loc 1 141 0
+ 414 0034 184D     		ldr	r5, .L27+4
+ 415 0036 01A9     		add	r1, sp, #4
+ 416 0038 2846     		mov	r0, r5
+ 417 003a FFF7FEFF 		bl	adc_base_config
+ 418              	.LVL41:
+ 142:main.c        ****   adc_ordinary_channel_set(ADC1, ADC_CHANNEL_2, 2, ADC_SAMPLETIME_7_5);
+ 419              		.loc 1 142 0
+ 420 003e 2346     		mov	r3, r4
+ 421 0040 2246     		mov	r2, r4
+ 422 0042 2146     		mov	r1, r4
+ 423 0044 2846     		mov	r0, r5
+ 424 0046 FFF7FEFF 		bl	adc_ordinary_channel_set
+ 425              	.LVL42:
+ 143:main.c        ****   adc_ordinary_conversion_trigger_set(ADC1, ADC12_ORDINARY_TRIG_SOFTWARE, TRUE);
+ 426              		.loc 1 143 0
+ 427 004a 2346     		mov	r3, r4
+ 428 004c 3246     		mov	r2, r6
+ 429 004e 3146     		mov	r1, r6
+ 430 0050 2846     		mov	r0, r5
+ 431 0052 FFF7FEFF 		bl	adc_ordinary_channel_set
+ 432              	.LVL43:
+ 144:main.c        ****   adc_dma_mode_enable(ADC1, TRUE);
+ 433              		.loc 1 144 0
+ 434 0056 2246     		mov	r2, r4
+ 435 0058 0721     		movs	r1, #7
+ARM GAS  /tmp/ccqSbL36.s 			page 14
+
+
+ 436 005a 2846     		mov	r0, r5
+ 437 005c FFF7FEFF 		bl	adc_ordinary_conversion_trigger_set
+ 438              	.LVL44:
+ 145:main.c        **** 
+ 439              		.loc 1 145 0
+ 440 0060 2146     		mov	r1, r4
+ 441 0062 2846     		mov	r0, r5
+ 442 0064 FFF7FEFF 		bl	adc_dma_mode_enable
+ 443              	.LVL45:
+ 147:main.c        ****   adc_calibration_init(ADC1);
+ 444              		.loc 1 147 0
+ 445 0068 2146     		mov	r1, r4
+ 446 006a 2846     		mov	r0, r5
+ 447 006c FFF7FEFF 		bl	adc_enable
+ 448              	.LVL46:
+ 148:main.c        ****   while(adc_calibration_init_status_get(ADC1));
+ 449              		.loc 1 148 0
+ 450 0070 2846     		mov	r0, r5
+ 451 0072 FFF7FEFF 		bl	adc_calibration_init
+ 452              	.LVL47:
+ 453              	.L24:
+ 149:main.c        ****   adc_calibration_start(ADC1);
+ 454              		.loc 1 149 0 discriminator 1
+ 455 0076 0848     		ldr	r0, .L27+4
+ 456 0078 FFF7FEFF 		bl	adc_calibration_init_status_get
+ 457              	.LVL48:
+ 458 007c 0028     		cmp	r0, #0
+ 459 007e FAD1     		bne	.L24
+ 150:main.c        ****   while(adc_calibration_status_get(ADC1));
+ 460              		.loc 1 150 0
+ 461 0080 0548     		ldr	r0, .L27+4
+ 462 0082 FFF7FEFF 		bl	adc_calibration_start
+ 463              	.LVL49:
+ 464              	.L25:
+ 151:main.c        **** }
+ 465              		.loc 1 151 0 discriminator 1
+ 466 0086 0448     		ldr	r0, .L27+4
+ 467 0088 FFF7FEFF 		bl	adc_calibration_status_get
+ 468              	.LVL50:
+ 469 008c 0028     		cmp	r0, #0
+ 470 008e FAD1     		bne	.L25
+ 152:main.c        **** 
+ 471              		.loc 1 152 0
+ 472 0090 02B0     		add	sp, sp, #8
+ 473              	.LCFI14:
+ 474              		.cfi_def_cfa_offset 16
+ 475              		@ sp needed
+ 476 0092 70BD     		pop	{r4, r5, r6, pc}
+ 477              	.L28:
+ 478              		.align	2
+ 479              	.L27:
+ 480 0094 09001800 		.word	1572873
+ 481 0098 00240140 		.word	1073816576
+ 482              		.cfi_endproc
+ 483              	.LFE137:
+ 485              		.section	.text.crm_configuration,"ax",%progbits
+ 486              		.align	1
+ARM GAS  /tmp/ccqSbL36.s 			page 15
+
+
+ 487              		.global	crm_configuration
+ 488              		.syntax unified
+ 489              		.thumb
+ 490              		.thumb_func
+ 491              		.fpu softvfp
+ 493              	crm_configuration:
+ 494              	.LFB134:
+  74:main.c        ****   crm_periph_clock_enable(CRM_IOMUX_PERIPH_CLOCK, TRUE);
+ 495              		.loc 1 74 0
+ 496              		.cfi_startproc
+ 497              		@ args = 0, pretend = 0, frame = 0
+ 498              		@ frame_needed = 0, uses_anonymous_args = 0
+ 499 0000 08B5     		push	{r3, lr}
+ 500              	.LCFI15:
+ 501              		.cfi_def_cfa_offset 8
+ 502              		.cfi_offset 3, -8
+ 503              		.cfi_offset 14, -4
+  75:main.c        ****   crm_periph_clock_enable(CRM_TMR2_PERIPH_CLOCK, TRUE);
+ 504              		.loc 1 75 0
+ 505 0002 0121     		movs	r1, #1
+ 506 0004 4FF4C010 		mov	r0, #1572864
+ 507 0008 FFF7FEFF 		bl	crm_periph_clock_enable
+ 508              	.LVL51:
+  76:main.c        ****   crm_periph_clock_enable(CRM_GPIOA_PERIPH_CLOCK, TRUE);
+ 509              		.loc 1 76 0
+ 510 000c 0121     		movs	r1, #1
+ 511 000e 4FF4E010 		mov	r0, #1835008
+ 512 0012 FFF7FEFF 		bl	crm_periph_clock_enable
+ 513              	.LVL52:
+  77:main.c        ****   crm_periph_clock_enable(CRM_GPIOB_PERIPH_CLOCK, TRUE);
+ 514              		.loc 1 77 0
+ 515 0016 0121     		movs	r1, #1
+ 516 0018 0548     		ldr	r0, .L31
+ 517 001a FFF7FEFF 		bl	crm_periph_clock_enable
+ 518              	.LVL53:
+  78:main.c        ****   crm_periph_clock_enable(CRM_GPIOC_PERIPH_CLOCK, TRUE);
+ 519              		.loc 1 78 0
+ 520 001e 0121     		movs	r1, #1
+ 521 0020 0448     		ldr	r0, .L31+4
+ 522 0022 FFF7FEFF 		bl	crm_periph_clock_enable
+ 523              	.LVL54:
+  79:main.c        **** }
+ 524              		.loc 1 79 0
+ 525 0026 0121     		movs	r1, #1
+ 526 0028 0348     		ldr	r0, .L31+8
+ 527 002a FFF7FEFF 		bl	crm_periph_clock_enable
+ 528              	.LVL55:
+ 529 002e 08BD     		pop	{r3, pc}
+ 530              	.L32:
+ 531              		.align	2
+ 532              	.L31:
+ 533 0030 02001800 		.word	1572866
+ 534 0034 03001800 		.word	1572867
+ 535 0038 04001800 		.word	1572868
+ 536              		.cfi_endproc
+ 537              	.LFE134:
+ 539              		.section	.text.gpio_configuration,"ax",%progbits
+ARM GAS  /tmp/ccqSbL36.s 			page 16
+
+
+ 540              		.align	1
+ 541              		.global	gpio_configuration
+ 542              		.syntax unified
+ 543              		.thumb
+ 544              		.thumb_func
+ 545              		.fpu softvfp
+ 547              	gpio_configuration:
+ 548              	.LFB135:
+  82:main.c        ****   gpio_init_type gpio_init_struct;
+ 549              		.loc 1 82 0
+ 550              		.cfi_startproc
+ 551              		@ args = 0, pretend = 0, frame = 8
+ 552              		@ frame_needed = 0, uses_anonymous_args = 0
+ 553 0000 10B5     		push	{r4, lr}
+ 554              	.LCFI16:
+ 555              		.cfi_def_cfa_offset 8
+ 556              		.cfi_offset 4, -8
+ 557              		.cfi_offset 14, -4
+ 558 0002 82B0     		sub	sp, sp, #8
+ 559              	.LCFI17:
+ 560              		.cfi_def_cfa_offset 16
+  85:main.c        **** 
+ 561              		.loc 1 85 0
+ 562 0004 6846     		mov	r0, sp
+ 563 0006 FFF7FEFF 		bl	gpio_default_para_init
+ 564              	.LVL56:
+  87:main.c        ****   gpio_init_struct.gpio_out_type = GPIO_OUTPUT_PUSH_PULL;
+ 565              		.loc 1 87 0
+ 566 000a 4FF48163 		mov	r3, #1032
+ 567 000e 0093     		str	r3, [sp]
+  88:main.c        ****   gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
+ 568              		.loc 1 88 0
+ 569 0010 0023     		movs	r3, #0
+ 570 0012 8DF80430 		strb	r3, [sp, #4]
+  89:main.c        ****   gpio_init_struct.gpio_mode = GPIO_MODE_MUX;
+ 571              		.loc 1 89 0
+ 572 0016 0423     		movs	r3, #4
+ 573 0018 8DF80530 		strb	r3, [sp, #5]
+  90:main.c        ****   gpio_init_struct.gpio_drive_strength = GPIO_DRIVE_STRENGTH_STRONGER;
+ 574              		.loc 1 90 0
+ 575 001c 0823     		movs	r3, #8
+ 576 001e 8DF80630 		strb	r3, [sp, #6]
+  91:main.c        ****   gpio_init(GPIOB, &gpio_init_struct);
+ 577              		.loc 1 91 0
+ 578 0022 0123     		movs	r3, #1
+ 579 0024 8DF80730 		strb	r3, [sp, #7]
+  92:main.c        ****   gpio_init_struct.gpio_pins = GPIO_PINS_15;
+ 580              		.loc 1 92 0
+ 581 0028 6946     		mov	r1, sp
+ 582 002a 1148     		ldr	r0, .L35
+ 583 002c FFF7FEFF 		bl	gpio_init
+ 584              	.LVL57:
+  93:main.c        ****   gpio_init(GPIOA, &gpio_init_struct);
+ 585              		.loc 1 93 0
+ 586 0030 4FF40043 		mov	r3, #32768
+ 587 0034 0093     		str	r3, [sp]
+  94:main.c        ****   gpio_init_struct.gpio_pins = GPIO_PINS_13;
+ARM GAS  /tmp/ccqSbL36.s 			page 17
+
+
+ 588              		.loc 1 94 0
+ 589 0036 0F4C     		ldr	r4, .L35+4
+ 590 0038 6946     		mov	r1, sp
+ 591 003a 2046     		mov	r0, r4
+ 592 003c FFF7FEFF 		bl	gpio_init
+ 593              	.LVL58:
+  95:main.c        ****   gpio_init_struct.gpio_mode = GPIO_MODE_OUTPUT;
+ 594              		.loc 1 95 0
+ 595 0040 4FF40053 		mov	r3, #8192
+ 596 0044 0093     		str	r3, [sp]
+  96:main.c        ****   gpio_init(GPIOC, &gpio_init_struct);
+ 597              		.loc 1 96 0
+ 598 0046 1023     		movs	r3, #16
+ 599 0048 8DF80630 		strb	r3, [sp, #6]
+  97:main.c        **** 
+ 600              		.loc 1 97 0
+ 601 004c 6946     		mov	r1, sp
+ 602 004e 0A48     		ldr	r0, .L35+8
+ 603 0050 FFF7FEFF 		bl	gpio_init
+ 604              	.LVL59:
+  99:main.c        ****   gpio_init_struct.gpio_mode = 0x03;
+ 605              		.loc 1 99 0
+ 606 0054 6846     		mov	r0, sp
+ 607 0056 FFF7FEFF 		bl	gpio_default_para_init
+ 608              	.LVL60:
+ 100:main.c        ****   gpio_init_struct.gpio_pins = GPIO_PINS_1 | GPIO_PINS_2;
+ 609              		.loc 1 100 0
+ 610 005a 0323     		movs	r3, #3
+ 611 005c 8DF80630 		strb	r3, [sp, #6]
+ 101:main.c        ****   gpio_init(GPIOA, &gpio_init_struct);
+ 612              		.loc 1 101 0
+ 613 0060 0623     		movs	r3, #6
+ 614 0062 0093     		str	r3, [sp]
+ 102:main.c        **** }
+ 615              		.loc 1 102 0
+ 616 0064 6946     		mov	r1, sp
+ 617 0066 2046     		mov	r0, r4
+ 618 0068 FFF7FEFF 		bl	gpio_init
+ 619              	.LVL61:
+ 103:main.c        **** 
+ 620              		.loc 1 103 0
+ 621 006c 02B0     		add	sp, sp, #8
+ 622              	.LCFI18:
+ 623              		.cfi_def_cfa_offset 8
+ 624              		@ sp needed
+ 625 006e 10BD     		pop	{r4, pc}
+ 626              	.L36:
+ 627              		.align	2
+ 628              	.L35:
+ 629 0070 000C0140 		.word	1073810432
+ 630 0074 00080140 		.word	1073809408
+ 631 0078 00100140 		.word	1073811456
+ 632              		.cfi_endproc
+ 633              	.LFE135:
+ 635              		.section	.text.error_handler,"ax",%progbits
+ 636              		.align	1
+ 637              		.global	error_handler
+ARM GAS  /tmp/ccqSbL36.s 			page 18
+
+
+ 638              		.syntax unified
+ 639              		.thumb
+ 640              		.thumb_func
+ 641              		.fpu softvfp
+ 643              	error_handler:
+ 644              	.LFB140:
+ 184:main.c        ****   OUTPUT("i2c %d\n", error_code);
+ 645              		.loc 1 184 0
+ 646              		.cfi_startproc
+ 647              		@ args = 0, pretend = 0, frame = 0
+ 648              		@ frame_needed = 0, uses_anonymous_args = 0
+ 649              	.LVL62:
+ 650 0000 08B5     		push	{r3, lr}
+ 651              	.LCFI19:
+ 652              		.cfi_def_cfa_offset 8
+ 653              		.cfi_offset 3, -8
+ 654              		.cfi_offset 14, -4
+ 185:main.c        **** }
+ 655              		.loc 1 185 0
+ 656 0002 0146     		mov	r1, r0
+ 657 0004 0148     		ldr	r0, .L39
+ 658              	.LVL63:
+ 659 0006 FFF7FEFF 		bl	log_put
+ 660              	.LVL64:
+ 661 000a 08BD     		pop	{r3, pc}
+ 662              	.L40:
+ 663              		.align	2
+ 664              	.L39:
+ 665 000c 00000000 		.word	.LC0
+ 666              		.cfi_endproc
+ 667              	.LFE140:
+ 669              		.section	.text.buffer_compare,"ax",%progbits
+ 670              		.align	1
+ 671              		.global	buffer_compare
+ 672              		.syntax unified
+ 673              		.thumb
+ 674              		.thumb_func
+ 675              		.fpu softvfp
+ 677              	buffer_compare:
+ 678              	.LFB141:
+ 196:main.c        ****   uint32_t i;
+ 679              		.loc 1 196 0
+ 680              		.cfi_startproc
+ 681              		@ args = 0, pretend = 0, frame = 0
+ 682              		@ frame_needed = 0, uses_anonymous_args = 0
+ 683              		@ link register save eliminated.
+ 684              	.LVL65:
+ 199:main.c        ****   {
+ 685              		.loc 1 199 0
+ 686 0000 0023     		movs	r3, #0
+ 687              	.LVL66:
+ 688 0002 9342     		cmp	r3, r2
+ 689 0004 0CD2     		bcs	.L50
+ 196:main.c        ****   uint32_t i;
+ 690              		.loc 1 196 0
+ 691 0006 30B4     		push	{r4, r5}
+ 692              	.LCFI20:
+ARM GAS  /tmp/ccqSbL36.s 			page 19
+
+
+ 693              		.cfi_def_cfa_offset 8
+ 694              		.cfi_offset 4, -8
+ 695              		.cfi_offset 5, -4
+ 696              	.L44:
+ 201:main.c        ****     {
+ 697              		.loc 1 201 0
+ 698 0008 C55C     		ldrb	r5, [r0, r3]	@ zero_extendqisi2
+ 699 000a CC5C     		ldrb	r4, [r1, r3]	@ zero_extendqisi2
+ 700 000c A542     		cmp	r5, r4
+ 701 000e 05D1     		bne	.L45
+ 199:main.c        ****   {
+ 702              		.loc 1 199 0 discriminator 2
+ 703 0010 0133     		adds	r3, r3, #1
+ 704              	.LVL67:
+ 705 0012 9342     		cmp	r3, r2
+ 706 0014 F8D3     		bcc	.L44
+ 207:main.c        **** }
+ 707              		.loc 1 207 0
+ 708 0016 0020     		movs	r0, #0
+ 709              	.LVL68:
+ 710              	.L41:
+ 208:main.c        **** 
+ 711              		.loc 1 208 0
+ 712 0018 30BC     		pop	{r4, r5}
+ 713              	.LCFI21:
+ 714              		.cfi_remember_state
+ 715              		.cfi_restore 5
+ 716              		.cfi_restore 4
+ 717              		.cfi_def_cfa_offset 0
+ 718 001a 7047     		bx	lr
+ 719              	.LVL69:
+ 720              	.L45:
+ 721              	.LCFI22:
+ 722              		.cfi_restore_state
+ 203:main.c        ****     }
+ 723              		.loc 1 203 0
+ 724 001c 0120     		movs	r0, #1
+ 725              	.LVL70:
+ 726 001e FBE7     		b	.L41
+ 727              	.LVL71:
+ 728              	.L50:
+ 729              	.LCFI23:
+ 730              		.cfi_def_cfa_offset 0
+ 731              		.cfi_restore 4
+ 732              		.cfi_restore 5
+ 207:main.c        **** }
+ 733              		.loc 1 207 0
+ 734 0020 0020     		movs	r0, #0
+ 735              	.LVL72:
+ 208:main.c        **** 
+ 736              		.loc 1 208 0
+ 737 0022 7047     		bx	lr
+ 738              		.cfi_endproc
+ 739              	.LFE141:
+ 741              		.section	.text.i2c_lowlevel_init,"ax",%progbits
+ 742              		.align	1
+ 743              		.global	i2c_lowlevel_init
+ARM GAS  /tmp/ccqSbL36.s 			page 20
+
+
+ 744              		.syntax unified
+ 745              		.thumb
+ 746              		.thumb_func
+ 747              		.fpu softvfp
+ 749              	i2c_lowlevel_init:
+ 750              	.LFB142:
+ 216:main.c        **** gpio_init_type gpio_initstructure;
+ 751              		.loc 1 216 0
+ 752              		.cfi_startproc
+ 753              		@ args = 0, pretend = 0, frame = 8
+ 754              		@ frame_needed = 0, uses_anonymous_args = 0
+ 755              	.LVL73:
+ 219:main.c        ****   {
+ 756              		.loc 1 219 0
+ 757 0000 0268     		ldr	r2, [r0]
+ 758 0002 394B     		ldr	r3, .L58
+ 759 0004 9A42     		cmp	r2, r3
+ 760 0006 00D0     		beq	.L57
+ 761 0008 7047     		bx	lr
+ 762              	.L57:
+ 216:main.c        **** gpio_init_type gpio_initstructure;
+ 763              		.loc 1 216 0
+ 764 000a F0B5     		push	{r4, r5, r6, r7, lr}
+ 765              	.LCFI24:
+ 766              		.cfi_def_cfa_offset 20
+ 767              		.cfi_offset 4, -20
+ 768              		.cfi_offset 5, -16
+ 769              		.cfi_offset 6, -12
+ 770              		.cfi_offset 7, -8
+ 771              		.cfi_offset 14, -4
+ 772 000c 83B0     		sub	sp, sp, #12
+ 773              	.LCFI25:
+ 774              		.cfi_def_cfa_offset 32
+ 775 000e 0446     		mov	r4, r0
+ 222:main.c        ****     crm_periph_clock_enable(I2Cx_SCL_GPIO_CLK, TRUE);
+ 776              		.loc 1 222 0
+ 777 0010 0121     		movs	r1, #1
+ 778 0012 3648     		ldr	r0, .L58+4
+ 779              	.LVL74:
+ 780 0014 FFF7FEFF 		bl	crm_periph_clock_enable
+ 781              	.LVL75:
+ 223:main.c        ****     crm_periph_clock_enable(I2Cx_SDA_GPIO_CLK, TRUE);
+ 782              		.loc 1 223 0
+ 783 0018 354D     		ldr	r5, .L58+8
+ 784 001a 0121     		movs	r1, #1
+ 785 001c 2846     		mov	r0, r5
+ 786 001e FFF7FEFF 		bl	crm_periph_clock_enable
+ 787              	.LVL76:
+ 224:main.c        **** 
+ 788              		.loc 1 224 0
+ 789 0022 0121     		movs	r1, #1
+ 790 0024 2846     		mov	r0, r5
+ 791 0026 FFF7FEFF 		bl	crm_periph_clock_enable
+ 792              	.LVL77:
+ 227:main.c        ****     gpio_initstructure.gpio_pull           = GPIO_PULL_UP;
+ 793              		.loc 1 227 0
+ 794 002a 0423     		movs	r3, #4
+ARM GAS  /tmp/ccqSbL36.s 			page 21
+
+
+ 795 002c 8DF80430 		strb	r3, [sp, #4]
+ 228:main.c        ****     gpio_initstructure.gpio_mode           = GPIO_MODE_MUX;
+ 796              		.loc 1 228 0
+ 797 0030 1823     		movs	r3, #24
+ 798 0032 8DF80530 		strb	r3, [sp, #5]
+ 229:main.c        ****     gpio_initstructure.gpio_drive_strength = GPIO_DRIVE_STRENGTH_STRONGER;
+ 799              		.loc 1 229 0
+ 800 0036 0823     		movs	r3, #8
+ 801 0038 8DF80630 		strb	r3, [sp, #6]
+ 230:main.c        **** 
+ 802              		.loc 1 230 0
+ 803 003c 0127     		movs	r7, #1
+ 804 003e 8DF80770 		strb	r7, [sp, #7]
+ 233:main.c        ****     gpio_init(I2Cx_SCL_GPIO_PORT, &gpio_initstructure);
+ 805              		.loc 1 233 0
+ 806 0042 0DEB0305 		add	r5, sp, r3
+ 807 0046 4023     		movs	r3, #64
+ 808 0048 45F8083D 		str	r3, [r5, #-8]!
+ 234:main.c        **** 
+ 809              		.loc 1 234 0
+ 810 004c 294E     		ldr	r6, .L58+12
+ 811 004e 2946     		mov	r1, r5
+ 812 0050 3046     		mov	r0, r6
+ 813 0052 FFF7FEFF 		bl	gpio_init
+ 814              	.LVL78:
+ 237:main.c        ****     gpio_init(I2Cx_SDA_GPIO_PORT, &gpio_initstructure);
+ 815              		.loc 1 237 0
+ 816 0056 8023     		movs	r3, #128
+ 817 0058 0093     		str	r3, [sp]
+ 238:main.c        **** 
+ 818              		.loc 1 238 0
+ 819 005a 2946     		mov	r1, r5
+ 820 005c 3046     		mov	r0, r6
+ 821 005e FFF7FEFF 		bl	gpio_init
+ 822              	.LVL79:
+ 241:main.c        ****     nvic_irq_enable(I2Cx_DMA_RX_IRQn, 0, 0);
+ 823              		.loc 1 241 0
+ 824 0062 0022     		movs	r2, #0
+ 825 0064 1146     		mov	r1, r2
+ 826 0066 1020     		movs	r0, #16
+ 827 0068 FFF7FEFF 		bl	nvic_irq_enable
+ 828              	.LVL80:
+ 242:main.c        **** 
+ 829              		.loc 1 242 0
+ 830 006c 0022     		movs	r2, #0
+ 831 006e 1146     		mov	r1, r2
+ 832 0070 1120     		movs	r0, #17
+ 833 0072 FFF7FEFF 		bl	nvic_irq_enable
+ 834              	.LVL81:
+ 246:main.c        **** 
+ 835              		.loc 1 246 0
+ 836 0076 3946     		mov	r1, r7
+ 837 0078 4FF4A010 		mov	r0, #1310720
+ 838 007c FFF7FEFF 		bl	crm_periph_clock_enable
+ 839              	.LVL82:
+ 249:main.c        ****     dma_reset(hi2c->dma_rx_channel);
+ 840              		.loc 1 249 0
+ARM GAS  /tmp/ccqSbL36.s 			page 22
+
+
+ 841 0080 E069     		ldr	r0, [r4, #28]
+ 842 0082 FFF7FEFF 		bl	dma_reset
+ 843              	.LVL83:
+ 250:main.c        **** 
+ 844              		.loc 1 250 0
+ 845 0086 206A     		ldr	r0, [r4, #32]
+ 846 0088 FFF7FEFF 		bl	dma_reset
+ 847              	.LVL84:
+ 252:main.c        ****     hi2c->dma_rx_channel = I2Cx_DMA_RX_CHANNEL;
+ 848              		.loc 1 252 0
+ 849 008c 1A4B     		ldr	r3, .L58+16
+ 850 008e E361     		str	r3, [r4, #28]
+ 253:main.c        **** 
+ 851              		.loc 1 253 0
+ 852 0090 1433     		adds	r3, r3, #20
+ 853 0092 2362     		str	r3, [r4, #32]
+ 255:main.c        ****     hi2c->dma_init_struct.peripheral_inc_enable    = FALSE;
+ 854              		.loc 1 255 0
+ 855 0094 04F12406 		add	r6, r4, #36
+ 856 0098 3046     		mov	r0, r6
+ 857 009a FFF7FEFF 		bl	dma_default_para_init
+ 858              	.LVL85:
+ 256:main.c        ****     hi2c->dma_init_struct.memory_inc_enable        = TRUE;
+ 859              		.loc 1 256 0
+ 860 009e 0025     		movs	r5, #0
+ 861 00a0 84F83050 		strb	r5, [r4, #48]
+ 257:main.c        ****     hi2c->dma_init_struct.peripheral_data_width    = DMA_PERIPHERAL_DATA_WIDTH_BYTE;
+ 862              		.loc 1 257 0
+ 863 00a4 84F83170 		strb	r7, [r4, #49]
+ 258:main.c        ****     hi2c->dma_init_struct.memory_data_width        = DMA_MEMORY_DATA_WIDTH_BYTE;
+ 864              		.loc 1 258 0
+ 865 00a8 84F83250 		strb	r5, [r4, #50]
+ 259:main.c        ****     hi2c->dma_init_struct.loop_mode_enable         = FALSE;
+ 866              		.loc 1 259 0
+ 867 00ac 84F83350 		strb	r5, [r4, #51]
+ 260:main.c        ****     hi2c->dma_init_struct.priority                 = DMA_PRIORITY_VERY_HIGH;
+ 868              		.loc 1 260 0
+ 869 00b0 84F83450 		strb	r5, [r4, #52]
+ 261:main.c        ****     hi2c->dma_init_struct.direction                = DMA_DIR_MEMORY_TO_PERIPHERAL;
+ 870              		.loc 1 261 0
+ 871 00b4 0323     		movs	r3, #3
+ 872 00b6 84F83530 		strb	r3, [r4, #53]
+ 262:main.c        **** 
+ 873              		.loc 1 262 0
+ 874 00ba 1023     		movs	r3, #16
+ 875 00bc A385     		strh	r3, [r4, #44]	@ movhi
+ 264:main.c        ****     dma_init(hi2c->dma_rx_channel, &hi2c->dma_init_struct);
+ 876              		.loc 1 264 0
+ 877 00be 3146     		mov	r1, r6
+ 878 00c0 E069     		ldr	r0, [r4, #28]
+ 879 00c2 FFF7FEFF 		bl	dma_init
+ 880              	.LVL86:
+ 265:main.c        **** 
+ 881              		.loc 1 265 0
+ 882 00c6 3146     		mov	r1, r6
+ 883 00c8 206A     		ldr	r0, [r4, #32]
+ 884 00ca FFF7FEFF 		bl	dma_init
+ARM GAS  /tmp/ccqSbL36.s 			page 23
+
+
+ 885              	.LVL87:
+ 267:main.c        **** 
+ 886              		.loc 1 267 0
+ 887 00ce 0B4A     		ldr	r2, .L58+20
+ 888 00d0 2946     		mov	r1, r5
+ 889 00d2 2068     		ldr	r0, [r4]
+ 890 00d4 FFF7FEFF 		bl	i2c_init
+ 891              	.LVL88:
+ 269:main.c        ****   }
+ 892              		.loc 1 269 0
+ 893 00d8 B022     		movs	r2, #176
+ 894 00da 2946     		mov	r1, r5
+ 895 00dc 2068     		ldr	r0, [r4]
+ 896 00de FFF7FEFF 		bl	i2c_own_address1_set
+ 897              	.LVL89:
+ 271:main.c        **** 
+ 898              		.loc 1 271 0
+ 899 00e2 03B0     		add	sp, sp, #12
+ 900              	.LCFI26:
+ 901              		.cfi_def_cfa_offset 20
+ 902              		@ sp needed
+ 903 00e4 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 904              	.LVL90:
+ 905              	.L59:
+ 906 00e6 00BF     		.align	2
+ 907              	.L58:
+ 908 00e8 00540040 		.word	1073763328
+ 909 00ec 15001C00 		.word	1835029
+ 910 00f0 03001800 		.word	1572867
+ 911 00f4 000C0140 		.word	1073810432
+ 912 00f8 6C000240 		.word	1073873004
+ 913 00fc 40420F00 		.word	1000000
+ 914              		.cfi_endproc
+ 915              	.LFE142:
+ 917              		.global	__aeabi_f2d
+ 918              		.section	.text.main,"ax",%progbits
+ 919              		.align	1
+ 920              		.global	main
+ 921              		.syntax unified
+ 922              		.thumb
+ 923              		.thumb_func
+ 924              		.fpu softvfp
+ 926              	main:
+ 927              	.LFB146:
+ 288:main.c        **** 
+ 289:main.c        **** 
+ 290:main.c        **** struct PID  velocity_pid = {
+ 291:main.c        ****     .Kp = 0.7,
+ 292:main.c        ****     .Ki = 0.001,
+ 293:main.c        ****     .Kd = 0.0,
+ 294:main.c        **** };
+ 295:main.c        **** 
+ 296:main.c        **** struct FOCConfig g_foc_config = {
+ 297:main.c        ****     .controller = Type_velocity_openloop_angle,
+ 298:main.c        ****     .voltage_power_supply = 12.0,
+ 299:main.c        ****     .voltage_limit = 3.0,
+ 300:main.c        ****     .voltage_sensor_align = 1,
+ARM GAS  /tmp/ccqSbL36.s 			page 24
+
+
+ 301:main.c        ****     .velocity_limit = 20,
+ 302:main.c        ****     .velocity_pid = &velocity_pid,
+ 303:main.c        ****     .pole_pairs = 11,
+ 304:main.c        ****     .zero_electric_angle = 1.254794,
+ 305:main.c        ****     .OutPutPWM = OutPutPWM,
+ 306:main.c        ****     .DelayMs = DelayMs,
+ 307:main.c        ****     .GetShaftAnage = GetShaftAnage,
+ 308:main.c        **** };
+ 309:main.c        **** 
+ 310:main.c        **** struct FOC g_foc = {
+ 311:main.c        ****   .foc_config = &g_foc_config,
+ 312:main.c        **** };
+ 313:main.c        **** 
+ 314:main.c        **** 
+ 315:main.c        **** int main(void) {
+ 928              		.loc 1 315 0
+ 929              		.cfi_startproc
+ 930              		@ Volatile: function does not return.
+ 931              		@ args = 0, pretend = 0, frame = 0
+ 932              		@ frame_needed = 0, uses_anonymous_args = 0
+ 933 0000 80B5     		push	{r7, lr}
+ 934              	.LCFI27:
+ 935              		.cfi_def_cfa_offset 8
+ 936              		.cfi_offset 7, -8
+ 937              		.cfi_offset 14, -4
+ 938 0002 82B0     		sub	sp, sp, #8
+ 939              	.LCFI28:
+ 940              		.cfi_def_cfa_offset 16
+ 316:main.c        **** 
+ 317:main.c        ****   nvic_priority_group_config(NVIC_PRIORITY_GROUP_4);
+ 941              		.loc 1 317 0
+ 942 0004 0320     		movs	r0, #3
+ 943 0006 FFF7FEFF 		bl	nvic_priority_group_config
+ 944              	.LVL91:
+ 318:main.c        **** 
+ 319:main.c        ****   system_clock_config();
+ 945              		.loc 1 319 0
+ 946 000a FFF7FEFF 		bl	system_clock_config
+ 947              	.LVL92:
+ 320:main.c        **** 
+ 321:main.c        ****   at32_board_init();
+ 948              		.loc 1 321 0
+ 949 000e FFF7FEFF 		bl	at32_board_init
+ 950              	.LVL93:
+ 322:main.c        **** 
+ 323:main.c        ****   crm_configuration();
+ 951              		.loc 1 323 0
+ 952 0012 FFF7FEFF 		bl	crm_configuration
+ 953              	.LVL94:
+ 324:main.c        **** 
+ 325:main.c        ****   gpio_configuration();
+ 954              		.loc 1 325 0
+ 955 0016 FFF7FEFF 		bl	gpio_configuration
+ 956              	.LVL95:
+ 326:main.c        **** 
+ 327:main.c        ****   uart_print_init(115200);
+ 957              		.loc 1 327 0
+ARM GAS  /tmp/ccqSbL36.s 			page 25
+
+
+ 958 001a 4FF4E130 		mov	r0, #115200
+ 959 001e FFF7FEFF 		bl	uart_print_init
+ 960              	.LVL96:
+ 328:main.c        **** 
+ 329:main.c        ****   dma_config();
+ 961              		.loc 1 329 0
+ 962 0022 FFF7FEFF 		bl	dma_config
+ 963              	.LVL97:
+ 330:main.c        ****   adc_config();
+ 964              		.loc 1 330 0
+ 965 0026 FFF7FEFF 		bl	adc_config
+ 966              	.LVL98:
+ 331:main.c        **** 
+ 332:main.c        ****   OUTPUT("Hello Word\n");
+ 967              		.loc 1 332 0
+ 968 002a 5448     		ldr	r0, .L64
+ 969 002c FFF7FEFF 		bl	log_put
+ 970              	.LVL99:
+ 333:main.c        **** 
+ 334:main.c        ****   gpio_pin_remap_config(TMR2_MUX_11, TRUE);
+ 971              		.loc 1 334 0
+ 972 0030 0121     		movs	r1, #1
+ 973 0032 5348     		ldr	r0, .L64+4
+ 974 0034 FFF7FEFF 		bl	gpio_pin_remap_config
+ 975              	.LVL100:
+ 335:main.c        ****   gpio_pin_remap_config(SWJTAG_MUX_010, TRUE);
+ 976              		.loc 1 335 0
+ 977 0038 0121     		movs	r1, #1
+ 978 003a 5248     		ldr	r0, .L64+8
+ 979 003c FFF7FEFF 		bl	gpio_pin_remap_config
+ 980              	.LVL101:
+ 336:main.c        **** 
+ 337:main.c        ****   tmr_base_init(TMR2, 999, 239);
+ 981              		.loc 1 337 0
+ 982 0040 EF22     		movs	r2, #239
+ 983 0042 40F2E731 		movw	r1, #999
+ 984 0046 4FF08040 		mov	r0, #1073741824
+ 985 004a FFF7FEFF 		bl	tmr_base_init
+ 986              	.LVL102:
+ 338:main.c        ****   tmr_cnt_dir_set(TMR2, TMR_COUNT_UP);
+ 987              		.loc 1 338 0
+ 988 004e 0021     		movs	r1, #0
+ 989 0050 4FF08040 		mov	r0, #1073741824
+ 990 0054 FFF7FEFF 		bl	tmr_cnt_dir_set
+ 991              	.LVL103:
+ 339:main.c        ****   tmr_clock_source_div_set(TMR2, TMR_CLOCK_DIV1);
+ 992              		.loc 1 339 0
+ 993 0058 0021     		movs	r1, #0
+ 994 005a 4FF08040 		mov	r0, #1073741824
+ 995 005e FFF7FEFF 		bl	tmr_clock_source_div_set
+ 996              	.LVL104:
+ 340:main.c        **** 
+ 341:main.c        ****   tmr_output_default_para_init(&tmr_oc_init_structure);
+ 997              		.loc 1 341 0
+ 998 0062 494C     		ldr	r4, .L64+12
+ 999 0064 2046     		mov	r0, r4
+ 1000 0066 FFF7FEFF 		bl	tmr_output_default_para_init
+ARM GAS  /tmp/ccqSbL36.s 			page 26
+
+
+ 1001              	.LVL105:
+ 342:main.c        **** 
+ 343:main.c        ****   tmr_oc_init_structure.oc_mode = TMR_OUTPUT_CONTROL_PWM_MODE_B;
+ 1002              		.loc 1 343 0
+ 1003 006a 0723     		movs	r3, #7
+ 1004 006c 2370     		strb	r3, [r4]
+ 344:main.c        ****   tmr_oc_init_structure.oc_idle_state = FALSE;
+ 1005              		.loc 1 344 0
+ 1006 006e 0026     		movs	r6, #0
+ 1007 0070 6670     		strb	r6, [r4, #1]
+ 345:main.c        ****   tmr_oc_init_structure.oc_polarity = TMR_OUTPUT_ACTIVE_HIGH;
+ 1008              		.loc 1 345 0
+ 1009 0072 E670     		strb	r6, [r4, #3]
+ 346:main.c        ****   tmr_oc_init_structure.oc_output_state = TRUE;
+ 1010              		.loc 1 346 0
+ 1011 0074 0125     		movs	r5, #1
+ 1012 0076 6571     		strb	r5, [r4, #5]
+ 347:main.c        **** 
+ 348:main.c        ****   tmr_output_channel_config(TMR2, TMR_SELECT_CHANNEL_1, &tmr_oc_init_structure);
+ 1013              		.loc 1 348 0
+ 1014 0078 2246     		mov	r2, r4
+ 1015 007a 3146     		mov	r1, r6
+ 1016 007c 4FF08040 		mov	r0, #1073741824
+ 1017 0080 FFF7FEFF 		bl	tmr_output_channel_config
+ 1018              	.LVL106:
+ 349:main.c        ****   tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, ccr1_val);
+ 1019              		.loc 1 349 0
+ 1020 0084 414F     		ldr	r7, .L64+16
+ 1021 0086 3A88     		ldrh	r2, [r7]
+ 1022 0088 3146     		mov	r1, r6
+ 1023 008a 4FF08040 		mov	r0, #1073741824
+ 1024 008e FFF7FEFF 		bl	tmr_channel_value_set
+ 1025              	.LVL107:
+ 350:main.c        ****   tmr_output_channel_buffer_enable(TMR2, TMR_SELECT_CHANNEL_1, TRUE);
+ 1026              		.loc 1 350 0
+ 1027 0092 2A46     		mov	r2, r5
+ 1028 0094 3146     		mov	r1, r6
+ 1029 0096 4FF08040 		mov	r0, #1073741824
+ 1030 009a FFF7FEFF 		bl	tmr_output_channel_buffer_enable
+ 1031              	.LVL108:
+ 351:main.c        **** 
+ 352:main.c        ****   tmr_output_channel_config(TMR2, TMR_SELECT_CHANNEL_2, &tmr_oc_init_structure);
+ 1032              		.loc 1 352 0
+ 1033 009e 2246     		mov	r2, r4
+ 1034 00a0 0221     		movs	r1, #2
+ 1035 00a2 4FF08040 		mov	r0, #1073741824
+ 1036 00a6 FFF7FEFF 		bl	tmr_output_channel_config
+ 1037              	.LVL109:
+ 353:main.c        ****   tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_2, ccr1_val);
+ 1038              		.loc 1 353 0
+ 1039 00aa 3A88     		ldrh	r2, [r7]
+ 1040 00ac 0221     		movs	r1, #2
+ 1041 00ae 4FF08040 		mov	r0, #1073741824
+ 1042 00b2 FFF7FEFF 		bl	tmr_channel_value_set
+ 1043              	.LVL110:
+ 354:main.c        ****   tmr_output_channel_buffer_enable(TMR2, TMR_SELECT_CHANNEL_2, TRUE);
+ 1044              		.loc 1 354 0
+ARM GAS  /tmp/ccqSbL36.s 			page 27
+
+
+ 1045 00b6 2A46     		mov	r2, r5
+ 1046 00b8 0221     		movs	r1, #2
+ 1047 00ba 4FF08040 		mov	r0, #1073741824
+ 1048 00be FFF7FEFF 		bl	tmr_output_channel_buffer_enable
+ 1049              	.LVL111:
+ 355:main.c        **** 
+ 356:main.c        ****   tmr_output_channel_config(TMR2, TMR_SELECT_CHANNEL_3, &tmr_oc_init_structure);
+ 1050              		.loc 1 356 0
+ 1051 00c2 2246     		mov	r2, r4
+ 1052 00c4 0421     		movs	r1, #4
+ 1053 00c6 4FF08040 		mov	r0, #1073741824
+ 1054 00ca FFF7FEFF 		bl	tmr_output_channel_config
+ 1055              	.LVL112:
+ 357:main.c        ****   tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_3, ccr1_val);
+ 1056              		.loc 1 357 0
+ 1057 00ce 3A88     		ldrh	r2, [r7]
+ 1058 00d0 0421     		movs	r1, #4
+ 1059 00d2 4FF08040 		mov	r0, #1073741824
+ 1060 00d6 FFF7FEFF 		bl	tmr_channel_value_set
+ 1061              	.LVL113:
+ 358:main.c        ****   tmr_output_channel_buffer_enable(TMR2, TMR_SELECT_CHANNEL_3, TRUE);
+ 1062              		.loc 1 358 0
+ 1063 00da 2A46     		mov	r2, r5
+ 1064 00dc 0421     		movs	r1, #4
+ 1065 00de 4FF08040 		mov	r0, #1073741824
+ 1066 00e2 FFF7FEFF 		bl	tmr_output_channel_buffer_enable
+ 1067              	.LVL114:
+ 359:main.c        **** 
+ 360:main.c        ****   tmr_period_buffer_enable(TMR2, TRUE);
+ 1068              		.loc 1 360 0
+ 1069 00e6 2946     		mov	r1, r5
+ 1070 00e8 4FF08040 		mov	r0, #1073741824
+ 1071 00ec FFF7FEFF 		bl	tmr_period_buffer_enable
+ 1072              	.LVL115:
+ 361:main.c        ****   tmr_counter_enable(TMR2, TRUE);
+ 1073              		.loc 1 361 0
+ 1074 00f0 2946     		mov	r1, r5
+ 1075 00f2 4FF08040 		mov	r0, #1073741824
+ 1076 00f6 FFF7FEFF 		bl	tmr_counter_enable
+ 1077              	.LVL116:
+ 362:main.c        **** 
+ 363:main.c        ****   hi2cx.i2cx = I2C1;
+ 1078              		.loc 1 363 0
+ 1079 00fa 2548     		ldr	r0, .L64+20
+ 1080 00fc 254B     		ldr	r3, .L64+24
+ 1081 00fe 0360     		str	r3, [r0]
+ 364:main.c        ****   
+ 365:main.c        ****   i2c_config(&hi2cx);
+ 1082              		.loc 1 365 0
+ 1083 0100 FFF7FEFF 		bl	i2c_config
+ 1084              	.LVL117:
+ 366:main.c        **** 
+ 367:main.c        ****   DBG_OUTPUT(INFORMATION, "Field-OrientedControl");
+ 1085              		.loc 1 367 0
+ 1086 0104 244C     		ldr	r4, .L64+28
+ 1087 0106 40F26F12 		movw	r2, #367
+ 1088 010a 2146     		mov	r1, r4
+ARM GAS  /tmp/ccqSbL36.s 			page 28
+
+
+ 1089 010c 2348     		ldr	r0, .L64+32
+ 1090 010e FFF7FEFF 		bl	log_put
+ 1091              	.LVL118:
+ 368:main.c        ****   DBG_OUTPUT(INFORMATION, "FOCInit %d", FOCInit(&g_foc));
+ 1092              		.loc 1 368 0
+ 1093 0112 234D     		ldr	r5, .L64+36
+ 1094 0114 2846     		mov	r0, r5
+ 1095 0116 FFF7FEFF 		bl	FOCInit
+ 1096              	.LVL119:
+ 1097 011a 0346     		mov	r3, r0
+ 1098 011c 4FF4B872 		mov	r2, #368
+ 1099 0120 2146     		mov	r1, r4
+ 1100 0122 2048     		ldr	r0, .L64+40
+ 1101 0124 FFF7FEFF 		bl	log_put
+ 1102              	.LVL120:
+ 369:main.c        ****   DBG_OUTPUT(INFORMATION, "FOCTestZeroElectricAngle %lf", FOCTestZeroElectricAngle(&g_foc));
+ 1103              		.loc 1 369 0
+ 1104 0128 2846     		mov	r0, r5
+ 1105 012a FFF7FEFF 		bl	FOCTestZeroElectricAngle
+ 1106              	.LVL121:
+ 1107 012e FFF7FEFF 		bl	__aeabi_f2d
+ 1108              	.LVL122:
+ 1109 0132 CDE90001 		strd	r0, [sp]
+ 1110 0136 40F27112 		movw	r2, #369
+ 1111 013a 2146     		mov	r1, r4
+ 1112 013c 1A48     		ldr	r0, .L64+44
+ 1113 013e FFF7FEFF 		bl	log_put
+ 1114              	.LVL123:
+ 1115              	.L62:
+ 370:main.c        ****   while(1) {
+ 371:main.c        ****     adc_ordinary_software_trigger_enable(ADC1, TRUE);
+ 1116              		.loc 1 371 0
+ 1117 0142 0121     		movs	r1, #1
+ 1118 0144 1948     		ldr	r0, .L64+48
+ 1119 0146 FFF7FEFF 		bl	adc_ordinary_software_trigger_enable
+ 1120              	.LVL124:
+ 1121              	.L61:
+ 372:main.c        ****     while(dma_trans_complete_flag == 0);
+ 1122              		.loc 1 372 0 discriminator 1
+ 1123 014a 194B     		ldr	r3, .L64+52
+ 1124 014c 1B88     		ldrh	r3, [r3]
+ 1125 014e 9BB2     		uxth	r3, r3
+ 1126 0150 002B     		cmp	r3, #0
+ 1127 0152 FAD0     		beq	.L61
+ 373:main.c        ****     OUTPUT("a1=%d, a2=%d,\n", adc1_ordinary_valuetab[0], adc1_ordinary_valuetab[1]);
+ 1128              		.loc 1 373 0
+ 1129 0154 174B     		ldr	r3, .L64+56
+ 1130 0156 1988     		ldrh	r1, [r3]
+ 1131 0158 5A88     		ldrh	r2, [r3, #2]
+ 1132 015a 92B2     		uxth	r2, r2
+ 1133 015c 89B2     		uxth	r1, r1
+ 1134 015e 1648     		ldr	r0, .L64+60
+ 1135 0160 FFF7FEFF 		bl	log_put
+ 1136              	.LVL125:
+ 374:main.c        ****     GPIOC->odt ^= GPIO_PINS_13;
+ 1137              		.loc 1 374 0
+ 1138 0164 154A     		ldr	r2, .L64+64
+ARM GAS  /tmp/ccqSbL36.s 			page 29
+
+
+ 1139 0166 D368     		ldr	r3, [r2, #12]
+ 1140 0168 83F40053 		eor	r3, r3, #8192
+ 1141 016c D360     		str	r3, [r2, #12]
+ 375:main.c        ****     FOCMove(&g_foc, 2);
+ 1142              		.loc 1 375 0
+ 1143 016e 4FF08041 		mov	r1, #1073741824
+ 1144 0172 0B48     		ldr	r0, .L64+36
+ 1145 0174 FFF7FEFF 		bl	FOCMove
+ 1146              	.LVL126:
+ 371:main.c        ****     while(dma_trans_complete_flag == 0);
+ 1147              		.loc 1 371 0
+ 1148 0178 E3E7     		b	.L62
+ 1149              	.L65:
+ 1150 017a 00BF     		.align	2
+ 1151              	.L64:
+ 1152 017c 00000000 		.word	.LC1
+ 1153 0180 03020424 		.word	604242435
+ 1154 0184 02031030 		.word	806355714
+ 1155 0188 00000000 		.word	tmr_oc_init_structure
+ 1156 018c 00000000 		.word	.LANCHOR2
+ 1157 0190 00000000 		.word	hi2cx
+ 1158 0194 00540040 		.word	1073763328
+ 1159 0198 0C000000 		.word	.LC2
+ 1160 019c 14000000 		.word	.LC3
+ 1161 01a0 00000000 		.word	.LANCHOR3
+ 1162 01a4 34000000 		.word	.LC4
+ 1163 01a8 4C000000 		.word	.LC5
+ 1164 01ac 00240140 		.word	1073816576
+ 1165 01b0 00000000 		.word	.LANCHOR4
+ 1166 01b4 00000000 		.word	.LANCHOR1
+ 1167 01b8 74000000 		.word	.LC6
+ 1168 01bc 00100140 		.word	1073811456
+ 1169              		.cfi_endproc
+ 1170              	.LFE146:
+ 1172              		.global	g_foc
+ 1173              		.global	g_foc_config
+ 1174              		.global	velocity_pid
+ 1175              		.global	g_as5600
+ 1176              		.comm	hi2cx,56,4
+ 1177              		.global	prescaler_value
+ 1178              		.global	ccr1_val
+ 1179              		.comm	tmr_oc_init_structure,7,4
+ 1180              		.global	crm_clocks_freq_struct
+ 1181              		.global	gpio_init_struct
+ 1182              		.global	dma_trans_complete_flag
+ 1183              		.global	adc1_ordinary_valuetab
+ 1184              		.section	.bss.adc1_ordinary_valuetab,"aw",%nobits
+ 1185              		.align	2
+ 1186              		.set	.LANCHOR1,. + 0
+ 1189              	adc1_ordinary_valuetab:
+ 1190 0000 00000000 		.space	4
+ 1191              		.section	.bss.crm_clocks_freq_struct,"aw",%nobits
+ 1192              		.align	2
+ 1195              	crm_clocks_freq_struct:
+ 1196 0000 00000000 		.space	20
+ 1196      00000000 
+ 1196      00000000 
+ARM GAS  /tmp/ccqSbL36.s 			page 30
+
+
+ 1196      00000000 
+ 1196      00000000 
+ 1197              		.section	.bss.dma_trans_complete_flag,"aw",%nobits
+ 1198              		.align	1
+ 1199              		.set	.LANCHOR4,. + 0
+ 1202              	dma_trans_complete_flag:
+ 1203 0000 0000     		.space	2
+ 1204              		.section	.bss.gpio_init_struct,"aw",%nobits
+ 1205              		.align	2
+ 1208              	gpio_init_struct:
+ 1209 0000 00000000 		.space	8
+ 1209      00000000 
+ 1210              		.section	.bss.prescaler_value,"aw",%nobits
+ 1211              		.align	1
+ 1214              	prescaler_value:
+ 1215 0000 0000     		.space	2
+ 1216              		.section	.data.ccr1_val,"aw",%progbits
+ 1217              		.align	1
+ 1218              		.set	.LANCHOR2,. + 0
+ 1221              	ccr1_val:
+ 1222 0000 F401     		.short	500
+ 1223              		.section	.data.g_as5600,"aw",%progbits
+ 1224              		.align	2
+ 1225              		.set	.LANCHOR0,. + 0
+ 1228              	g_as5600:
+ 1229 0000 0000     		.short	0
+ 1230 0002 0000     		.space	2
+ 1231 0004 00000000 		.word	AS5600Transmit
+ 1232 0008 00000000 		.word	AS5600Receive
+ 1233              		.section	.data.g_foc,"aw",%progbits
+ 1234              		.align	3
+ 1235              		.set	.LANCHOR3,. + 0
+ 1238              	g_foc:
+ 1239 0000 00000000 		.word	g_foc_config
+ 1240 0004 00000000 		.space	52
+ 1240      00000000 
+ 1240      00000000 
+ 1240      00000000 
+ 1240      00000000 
+ 1241              		.section	.data.g_foc_config,"aw",%progbits
+ 1242              		.align	2
+ 1245              	g_foc_config:
+ 1246 0000 04       		.byte	4
+ 1247 0001 000000   		.space	3
+ 1248 0004 00004041 		.word	1094713344
+ 1249 0008 00004040 		.word	1077936128
+ 1250 000c 0000803F 		.word	1065353216
+ 1251 0010 14       		.byte	20
+ 1252 0011 0B       		.byte	11
+ 1253 0012 0000     		.space	2
+ 1254 0014 179DA03F 		.word	1067490583
+ 1255 0018 00000000 		.word	velocity_pid
+ 1256 001c 00000000 		.word	OutPutPWM
+ 1257 0020 00000000 		.word	DelayMs
+ 1258 0024 00000000 		.word	GetShaftAnage
+ 1259              		.section	.data.velocity_pid,"aw",%progbits
+ 1260              		.align	2
+ARM GAS  /tmp/ccqSbL36.s 			page 31
+
+
+ 1263              	velocity_pid:
+ 1264 0000 00000000 		.space	8
+ 1264      00000000 
+ 1265 0008 3333333F 		.word	1060320051
+ 1266 000c 6F12833A 		.word	981668463
+ 1267 0010 00000000 		.word	0
+ 1268 0014 00000000 		.space	12
+ 1268      00000000 
+ 1268      00000000 
+ 1269              		.section	.rodata.error_handler.str1.4,"aMS",%progbits,1
+ 1270              		.align	2
+ 1271              	.LC0:
+ 1272 0000 69326320 		.ascii	"i2c %d\012\000"
+ 1272      25640A00 
+ 1273              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+ 1274              		.align	2
+ 1275              	.LC1:
+ 1276 0000 48656C6C 		.ascii	"Hello Word\012\000"
+ 1276      6F20576F 
+ 1276      72640A00 
+ 1277              	.LC2:
+ 1278 000c 6D61696E 		.ascii	"main.c\000"
+ 1278      2E6300
+ 1279 0013 00       		.space	1
+ 1280              	.LC3:
+ 1281 0014 5B495D25 		.ascii	"[I]%s%d::Field-OrientedControl\012\000"
+ 1281      7325643A 
+ 1281      3A466965 
+ 1281      6C642D4F 
+ 1281      7269656E 
+ 1282              	.LC4:
+ 1283 0034 5B495D25 		.ascii	"[I]%s%d::FOCInit %d\012\000"
+ 1283      7325643A 
+ 1283      3A464F43 
+ 1283      496E6974 
+ 1283      2025640A 
+ 1284 0049 000000   		.space	3
+ 1285              	.LC5:
+ 1286 004c 5B495D25 		.ascii	"[I]%s%d::FOCTestZeroElectricAngle %lf\012\000"
+ 1286      7325643A 
+ 1286      3A464F43 
+ 1286      54657374 
+ 1286      5A65726F 
+ 1287 0073 00       		.space	1
+ 1288              	.LC6:
+ 1289 0074 61313D25 		.ascii	"a1=%d, a2=%d,\012\000"
+ 1289      642C2061 
+ 1289      323D2564 
+ 1289      2C0A00
+ 1290              		.text
+ 1291              	.Letext0:
+ 1292              		.file 2 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/mac
+ 1293              		.file 3 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
+ 1294              		.file 4 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
+ 1295              		.file 5 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/lib/gcc/arm-none-eabi/6.2
+ 1296              		.file 6 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
+ 1297              		.file 7 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
+ARM GAS  /tmp/ccqSbL36.s 			page 32
+
+
+ 1298              		.file 8 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/core_support/core_cm4.h"
+ 1299              		.file 9 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/system_at32f40
+ 1300              		.file 10 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/at32f403a_407
+ 1301              		.file 11 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_crm.h"
+ 1302              		.file 12 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_tmr.h"
+ 1303              		.file 13 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_gpio.h"
+ 1304              		.file 14 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_i2c.h"
+ 1305              		.file 15 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_adc.h"
+ 1306              		.file 16 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_dma.h"
+ 1307              		.file 17 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_misc.h"
+ 1308              		.file 18 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_usb.h"
+ 1309              		.file 19 "/home/y/github/EmbeddedSoftwareMCU/SoftwareLib/i2c_application_library/i2c_application.h
+ 1310              		.file 20 "/home/y/github/EmbeddedSoftwareMCU/HardwareDriver/AS5600.h"
+ 1311              		.file 21 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/ma
+ 1312              		.file 22 "/home/y/github/EmbeddedSoftwareMCU/SoftwareLib/SimpleFOC/foc_utils.h"
+ 1313              		.file 23 "/home/y/github/EmbeddedSoftwareMCU/SoftwareLib/Pid/Pid.h"
+ 1314              		.file 24 "/home/y/github/EmbeddedSoftwareMCU/SoftwareLib/SimpleFOC/Foc.h"
+ 1315              		.file 25 "Core/Inc/at32f403a_407_clock.h"
+ 1316              		.file 26 "Core/Inc/at32f403a_407_board.h"
+ 1317              		.file 27 "/home/y/github/EmbeddedSoftwareMCU/Common/common.h"
+ARM GAS  /tmp/ccqSbL36.s 			page 33
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/cc7po03P.s:16     .text.crm_configuration:0000000000000000 $t
-     /tmp/cc7po03P.s:23     .text.crm_configuration:0000000000000000 crm_configuration
-     /tmp/cc7po03P.s:64     .text.crm_configuration:0000000000000030 $d
-     /tmp/cc7po03P.s:71     .text.gpio_configuration:0000000000000000 $t
-     /tmp/cc7po03P.s:78     .text.gpio_configuration:0000000000000000 gpio_configuration
-     /tmp/cc7po03P.s:143    .text.gpio_configuration:0000000000000058 $d
-     /tmp/cc7po03P.s:150    .text.main:0000000000000000 $t
-     /tmp/cc7po03P.s:157    .text.main:0000000000000000 main
-     /tmp/cc7po03P.s:310    .text.main:00000000000000fc $d
+     /tmp/ccqSbL36.s:16     .text.AS5600Receive:0000000000000000 $t
+     /tmp/ccqSbL36.s:23     .text.AS5600Receive:0000000000000000 AS5600Receive
+     /tmp/ccqSbL36.s:59     .text.AS5600Receive:000000000000001c $d
+                            *COM*:0000000000000038 hi2cx
+     /tmp/ccqSbL36.s:64     .text.AS5600Transmit:0000000000000000 $t
+     /tmp/ccqSbL36.s:71     .text.AS5600Transmit:0000000000000000 AS5600Transmit
+     /tmp/ccqSbL36.s:106    .text.AS5600Transmit:000000000000001c $d
+     /tmp/ccqSbL36.s:113    .text.OutPutPWM:0000000000000000 $t
+     /tmp/ccqSbL36.s:120    .text.OutPutPWM:0000000000000000 OutPutPWM
+     /tmp/ccqSbL36.s:177    .text.OutPutPWM:0000000000000050 $d
+     /tmp/ccqSbL36.s:182    .text.DelayMs:0000000000000000 $t
+     /tmp/ccqSbL36.s:189    .text.DelayMs:0000000000000000 DelayMs
+     /tmp/ccqSbL36.s:214    .text.GetShaftAnage:0000000000000000 $t
+     /tmp/ccqSbL36.s:221    .text.GetShaftAnage:0000000000000000 GetShaftAnage
+     /tmp/ccqSbL36.s:256    .text.GetShaftAnage:0000000000000028 $d
+     /tmp/ccqSbL36.s:264    .text.dma_config:0000000000000000 $t
+     /tmp/ccqSbL36.s:270    .text.dma_config:0000000000000000 dma_config
+     /tmp/ccqSbL36.s:356    .text.dma_config:0000000000000074 $d
+     /tmp/ccqSbL36.s:363    .text.adc_config:0000000000000000 $t
+     /tmp/ccqSbL36.s:369    .text.adc_config:0000000000000000 adc_config
+     /tmp/ccqSbL36.s:480    .text.adc_config:0000000000000094 $d
+     /tmp/ccqSbL36.s:486    .text.crm_configuration:0000000000000000 $t
+     /tmp/ccqSbL36.s:493    .text.crm_configuration:0000000000000000 crm_configuration
+     /tmp/ccqSbL36.s:533    .text.crm_configuration:0000000000000030 $d
+     /tmp/ccqSbL36.s:540    .text.gpio_configuration:0000000000000000 $t
+     /tmp/ccqSbL36.s:547    .text.gpio_configuration:0000000000000000 gpio_configuration
+     /tmp/ccqSbL36.s:629    .text.gpio_configuration:0000000000000070 $d
+     /tmp/ccqSbL36.s:636    .text.error_handler:0000000000000000 $t
+     /tmp/ccqSbL36.s:643    .text.error_handler:0000000000000000 error_handler
+     /tmp/ccqSbL36.s:665    .text.error_handler:000000000000000c $d
+     /tmp/ccqSbL36.s:670    .text.buffer_compare:0000000000000000 $t
+     /tmp/ccqSbL36.s:677    .text.buffer_compare:0000000000000000 buffer_compare
+     /tmp/ccqSbL36.s:742    .text.i2c_lowlevel_init:0000000000000000 $t
+     /tmp/ccqSbL36.s:749    .text.i2c_lowlevel_init:0000000000000000 i2c_lowlevel_init
+     /tmp/ccqSbL36.s:908    .text.i2c_lowlevel_init:00000000000000e8 $d
+     /tmp/ccqSbL36.s:919    .text.main:0000000000000000 $t
+     /tmp/ccqSbL36.s:926    .text.main:0000000000000000 main
+     /tmp/ccqSbL36.s:1152   .text.main:000000000000017c $d
                             *COM*:0000000000000007 tmr_oc_init_structure
-     /tmp/cc7po03P.s:340    .bss.prescaler_value:0000000000000000 prescaler_value
-     /tmp/cc7po03P.s:347    .data.ccr1_val:0000000000000000 ccr1_val
-     /tmp/cc7po03P.s:328    .bss.crm_clocks_freq_struct:0000000000000000 crm_clocks_freq_struct
-     /tmp/cc7po03P.s:334    .bss.gpio_init_struct:0000000000000000 gpio_init_struct
-     /tmp/cc7po03P.s:325    .bss.crm_clocks_freq_struct:0000000000000000 $d
-     /tmp/cc7po03P.s:331    .bss.gpio_init_struct:0000000000000000 $d
-     /tmp/cc7po03P.s:337    .bss.prescaler_value:0000000000000000 $d
-     /tmp/cc7po03P.s:343    .data.ccr1_val:0000000000000000 $d
-     /tmp/cc7po03P.s:350    .rodata.main.str1.4:0000000000000000 $d
+     /tmp/ccqSbL36.s:1238   .data.g_foc:0000000000000000 g_foc
+     /tmp/ccqSbL36.s:1245   .data.g_foc_config:0000000000000000 g_foc_config
+     /tmp/ccqSbL36.s:1263   .data.velocity_pid:0000000000000000 velocity_pid
+     /tmp/ccqSbL36.s:1228   .data.g_as5600:0000000000000000 g_as5600
+     /tmp/ccqSbL36.s:1214   .bss.prescaler_value:0000000000000000 prescaler_value
+     /tmp/ccqSbL36.s:1221   .data.ccr1_val:0000000000000000 ccr1_val
+     /tmp/ccqSbL36.s:1195   .bss.crm_clocks_freq_struct:0000000000000000 crm_clocks_freq_struct
+     /tmp/ccqSbL36.s:1208   .bss.gpio_init_struct:0000000000000000 gpio_init_struct
+     /tmp/ccqSbL36.s:1202   .bss.dma_trans_complete_flag:0000000000000000 dma_trans_complete_flag
+     /tmp/ccqSbL36.s:1189   .bss.adc1_ordinary_valuetab:0000000000000000 adc1_ordinary_valuetab
+     /tmp/ccqSbL36.s:1185   .bss.adc1_ordinary_valuetab:0000000000000000 $d
+     /tmp/ccqSbL36.s:1192   .bss.crm_clocks_freq_struct:0000000000000000 $d
+     /tmp/ccqSbL36.s:1198   .bss.dma_trans_complete_flag:0000000000000000 $d
+     /tmp/ccqSbL36.s:1205   .bss.gpio_init_struct:0000000000000000 $d
+     /tmp/ccqSbL36.s:1211   .bss.prescaler_value:0000000000000000 $d
+     /tmp/ccqSbL36.s:1217   .data.ccr1_val:0000000000000000 $d
+ARM GAS  /tmp/ccqSbL36.s 			page 34
+
+
+     /tmp/ccqSbL36.s:1224   .data.g_as5600:0000000000000000 $d
+     /tmp/ccqSbL36.s:1234   .data.g_foc:0000000000000000 $d
+     /tmp/ccqSbL36.s:1242   .data.g_foc_config:0000000000000000 $d
+     /tmp/ccqSbL36.s:1260   .data.velocity_pid:0000000000000000 $d
+     /tmp/ccqSbL36.s:1270   .rodata.error_handler.str1.4:0000000000000000 $d
+     /tmp/ccqSbL36.s:1274   .rodata.main.str1.4:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
+i2c_master_receive
+i2c_master_transmit
+__aeabi_fmul
+__aeabi_f2iz
+tmr_channel_value_set
+delay_ms
+__aeabi_i2d
+__aeabi_dmul
+__aeabi_d2f
+AS5600GetAngle
 crm_periph_clock_enable
+nvic_irq_enable
+dma_reset
+dma_default_para_init
+dma_init
+dma_interrupt_enable
+dma_channel_enable
+crm_adc_clock_div_set
+adc_combine_mode_select
+adc_base_default_para_init
+adc_base_config
+adc_ordinary_channel_set
+adc_ordinary_conversion_trigger_set
+adc_dma_mode_enable
+adc_enable
+adc_calibration_init
+adc_calibration_init_status_get
+adc_calibration_start
+adc_calibration_status_get
 gpio_default_para_init
 gpio_init
+log_put
+i2c_init
+i2c_own_address1_set
+__aeabi_f2d
+nvic_priority_group_config
 system_clock_config
 at32_board_init
 uart_print_init
-log_put
 gpio_pin_remap_config
 tmr_base_init
 tmr_cnt_dir_set
 tmr_clock_source_div_set
 tmr_output_default_para_init
 tmr_output_channel_config
-tmr_channel_value_set
 tmr_output_channel_buffer_enable
 tmr_period_buffer_enable
 tmr_counter_enable
-delay_sec
+ARM GAS  /tmp/ccqSbL36.s 			page 35
+
+
+i2c_config
+FOCInit
+FOCTestZeroElectricAngle
+adc_ordinary_software_trigger_enable
+FOCMove

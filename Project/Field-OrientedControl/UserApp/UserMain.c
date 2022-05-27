@@ -12,11 +12,11 @@
 #include <stdint.h>
 
 void AS5600Receive(uint8_t address, uint8_t *buffer, uint32_t len) {
-  while(HAL_I2C_Master_Receive(&hi2c1, address, buffer, len, 0xff) != HAL_OK);
+  while(HAL_I2C_Master_Receive(&hi2c1, address, buffer, len, 0xffff) != HAL_OK);
 }
 
 void AS5600Transmit(uint8_t address, uint8_t *buffer, uint32_t len) {
-   while(HAL_I2C_Master_Transmit(&hi2c1, (address | 1), buffer, len, 0xff) != HAL_OK);
+   while(HAL_I2C_Master_Transmit(&hi2c1, (address | 1), buffer, len, 0xffff) != HAL_OK);
 }
 
 struct AS5600 g_as5600 = {
@@ -73,13 +73,10 @@ void UserMain() {
     HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_3);
     HAL_ADC_Start_IT(&hadc1);
     DBG_OUTPUT(INFORMATION, "Field-OrientedControl");
-    // __HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_1, 500);
-    // __HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_2, 500);
-    // __HAL_TIM_SetCompare(&htim2, TIM_CHANNEL_3, 500);
-    // DBG_OUTPUT(INFORMATION, "FOCInit %d", FOCInit(&g_foc));
+    DBG_OUTPUT(INFORMATION, "FOCInit %d", FOCInit(&g_foc));
     // OUTPUT("%f", FOCTestZeroElectricAngle(&g_foc));
     while(1) {
-      // FOCMove(&g_foc, 2);
+      FOCMove(&g_foc, 2);
     }
 }
 

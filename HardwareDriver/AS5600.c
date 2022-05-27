@@ -2,6 +2,8 @@
 
 #define AS5600_RAW_ANGLE_REGISTER  0x0E
 
+#define NULL 0
+
 void AS5600GetAngle(AS5600 *as5600) {
   if(as5600->AS5600Receive == NULL || as5600->AS5600Transmit == NULL){
     return ;

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccFIGp3h.s 			page 1
+ARM GAS  /tmp/ccTPynDd.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
   31:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   */
   32:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c **** 
   33:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c **** /** @defgroup GPIO
-ARM GAS  /tmp/ccFIGp3h.s 			page 2
+ARM GAS  /tmp/ccTPynDd.s 			page 2
 
 
   34:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   * @brief GPIO driver modules
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
   66:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****     crm_periph_reset(CRM_GPIOC_PERIPH_RESET, FALSE);
   67:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   }
   68:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   else if(gpio_x == GPIOD)
-ARM GAS  /tmp/ccFIGp3h.s 			page 3
+ARM GAS  /tmp/ccTPynDd.s 			page 3
 
 
   48              		.loc 1 68 0
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
   92 004a 164C     		ldr	r4, .L13+28
   93 004c 0121     		movs	r1, #1
   94 004e 2046     		mov	r0, r4
-ARM GAS  /tmp/ccFIGp3h.s 			page 4
+ARM GAS  /tmp/ccTPynDd.s 			page 4
 
 
   95              	.LVL11:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  141 0094 00140140 		.word	1073812480
  142 0098 00180140 		.word	1073813504
  143 009c 02000C00 		.word	786434
-ARM GAS  /tmp/ccFIGp3h.s 			page 5
+ARM GAS  /tmp/ccTPynDd.s 			page 5
 
 
  144 00a0 03000C00 		.word	786435
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  190              		.fpu softvfp
  192              	gpio_init:
  193              	.LFB135:
-ARM GAS  /tmp/ccFIGp3h.s 			page 6
+ARM GAS  /tmp/ccTPynDd.s 			page 6
 
 
   90:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c **** }
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  220              	.LVL26:
  118:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c **** 
  119:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****     if(gpio_init_struct->gpio_pull == GPIO_PULL_UP)
-ARM GAS  /tmp/ccFIGp3h.s 			page 7
+ARM GAS  /tmp/ccTPynDd.s 			page 7
 
 
  221              		.loc 1 119 0
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  138:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****     {
  139:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****       if((1 << temp) & pin_index)
  140:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****       {
-ARM GAS  /tmp/ccFIGp3h.s 			page 8
+ARM GAS  /tmp/ccTPynDd.s 			page 8
 
 
  141:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****         gpio_x->cfglr &= (uint32_t)~(0x0F << (temp * 4));
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  291 006e 0468     		ldr	r4, [r0]
  292 0070 01FA02F2 		lsl	r2, r1, r2
  293 0074 2243     		orrs	r2, r2, r4
-ARM GAS  /tmp/ccFIGp3h.s 			page 9
+ARM GAS  /tmp/ccTPynDd.s 			page 9
 
 
  294 0076 0260     		str	r2, [r0]
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  339              	.LFE135:
  341              		.section	.text.gpio_default_para_init,"ax",%progbits
  342              		.align	1
-ARM GAS  /tmp/ccFIGp3h.s 			page 10
+ARM GAS  /tmp/ccTPynDd.s 			page 10
 
 
  343              		.global	gpio_default_para_init
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  177:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c **** 
  178:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c **** /**
  179:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   * @brief  read the specified input port pin.
-ARM GAS  /tmp/ccFIGp3h.s 			page 11
+ARM GAS  /tmp/ccTPynDd.s 			page 11
 
 
  180:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   * @param  gpio_x: to select the gpio peripheral.
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  215:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c **** 
  216:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   return status;
  217:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c **** }
-ARM GAS  /tmp/ccFIGp3h.s 			page 12
+ARM GAS  /tmp/ccTPynDd.s 			page 12
 
 
  404              		.loc 1 217 0
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  236:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   * @param  pins: gpio pin number
  237:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         this parameter can be one of the following values:
  238:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         - GPIO_PINS_0
-ARM GAS  /tmp/ccFIGp3h.s 			page 13
+ARM GAS  /tmp/ccTPynDd.s 			page 13
 
 
  239:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         - GPIO_PINS_1
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  465              		.cfi_endproc
  466              	.LFE139:
  468              		.section	.text.gpio_output_data_read,"ax",%progbits
-ARM GAS  /tmp/ccFIGp3h.s 			page 14
+ARM GAS  /tmp/ccTPynDd.s 			page 14
 
 
  469              		.align	1
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  294:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         - GPIO_PINS_3
  295:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         - GPIO_PINS_4
  296:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         - GPIO_PINS_5
-ARM GAS  /tmp/ccFIGp3h.s 			page 15
+ARM GAS  /tmp/ccTPynDd.s 			page 15
 
 
  297:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         - GPIO_PINS_6
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  331:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         - GPIO_PINS_9
  332:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         - GPIO_PINS_10
  333:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         - GPIO_PINS_11
-ARM GAS  /tmp/ccFIGp3h.s 			page 16
+ARM GAS  /tmp/ccTPynDd.s 			page 16
 
 
  334:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         - GPIO_PINS_12
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  368:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         - GPIO_PINS_15
  369:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         - GPIO_PINS_ALL
  370:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   * @param  bit_state: specifies the value to be written to the selected bit (TRUE or FALSE).
-ARM GAS  /tmp/ccFIGp3h.s 			page 17
+ARM GAS  /tmp/ccTPynDd.s 			page 17
 
 
  371:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   * @retval none
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  578              		@ frame_needed = 0, uses_anonymous_args = 0
  579              		@ link register save eliminated.
  580              	.LVL56:
-ARM GAS  /tmp/ccFIGp3h.s 			page 18
+ARM GAS  /tmp/ccTPynDd.s 			page 18
 
 
  395:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   gpio_x->odt = port_value;
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  603              		.loc 1 428 0
  604 0000 41F48033 		orr	r3, r1, #65536
  605              	.LVL58:
-ARM GAS  /tmp/ccFIGp3h.s 			page 19
+ARM GAS  /tmp/ccTPynDd.s 			page 19
 
 
  429:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   /* set wpen bit */
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  460:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         - GPIO_PINS_12
  461:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         - GPIO_PINS_13
  462:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         - GPIO_PINS_14
-ARM GAS  /tmp/ccFIGp3h.s 			page 20
+ARM GAS  /tmp/ccTPynDd.s 			page 20
 
 
  463:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         - GPIO_PINS_15
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  483:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   * @param  gpio_port_source: select the gpio port to be used as source
  484:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         for event output.
  485:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         this parameter can be one of the following values:
-ARM GAS  /tmp/ccFIGp3h.s 			page 21
+ARM GAS  /tmp/ccTPynDd.s 			page 21
 
 
  486:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   *         - GPIO_PORT_SOURCE_GPIOA
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  521:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   IOMUX->evtout = tmpreg;
  685              		.loc 1 521 0
  686 000e 1060     		str	r0, [r2]
-ARM GAS  /tmp/ccFIGp3h.s 			page 22
+ARM GAS  /tmp/ccTPynDd.s 			page 22
 
 
  687 0010 7047     		bx	lr
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  533:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c **** }
  534:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c **** 
  535:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c **** /**
-ARM GAS  /tmp/ccFIGp3h.s 			page 23
+ARM GAS  /tmp/ccTPynDd.s 			page 23
 
 
  536:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   * @brief  iomux remap and debug i/o configuration.
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  574:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   bit_offset = (gpio_remap >> 16) & 0xFF;
  575:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   bit_num = (gpio_remap >> 8) & 0xFF;
  576:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   bit_val = gpio_remap & 0xFF;
-ARM GAS  /tmp/ccFIGp3h.s 			page 24
+ARM GAS  /tmp/ccTPynDd.s 			page 24
 
 
  577:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c **** 
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  788              	.LVL79:
  789 003a 7047     		bx	lr
  790              		.cfi_endproc
-ARM GAS  /tmp/ccFIGp3h.s 			page 25
+ARM GAS  /tmp/ccTPynDd.s 			page 25
 
 
  791              	.LFE149:
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  813              	.LVL81:
  627:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   uint32_t tmp = 0x00;
  628:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****   tmp = ((uint32_t)0x0F) << (0x04 * (gpio_pin_source & (uint8_t)0x03));
-ARM GAS  /tmp/ccFIGp3h.s 			page 26
+ARM GAS  /tmp/ccTPynDd.s 			page 26
 
 
  814              		.loc 1 628 0
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  651:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c **** }
  846              		.loc 1 651 0
  847 002e 10BC     		pop	{r4}
-ARM GAS  /tmp/ccFIGp3h.s 			page 27
+ARM GAS  /tmp/ccTPynDd.s 			page 27
 
 
  848              	.LCFI7:
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  646:/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/src/at32f403a_407_gpio.c ****       break;
  895              		.loc 1 646 0
  896 0068 4A69     		ldr	r2, [r1, #20]
-ARM GAS  /tmp/ccFIGp3h.s 			page 28
+ARM GAS  /tmp/ccTPynDd.s 			page 28
 
 
  897 006a 00FA03F3 		lsl	r3, r0, r3
@@ -1643,53 +1643,53 @@ ARM GAS  /tmp/ccFIGp3h.s 			page 1
  917              		.file 7 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_crm.h"
  918              		.file 8 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_gpio.h"
  919              		.file 9 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_usb.h"
-ARM GAS  /tmp/ccFIGp3h.s 			page 29
+ARM GAS  /tmp/ccTPynDd.s 			page 29
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 at32f403a_407_gpio.c
-     /tmp/ccFIGp3h.s:16     .text.gpio_reset:0000000000000000 $t
-     /tmp/ccFIGp3h.s:23     .text.gpio_reset:0000000000000000 gpio_reset
-     /tmp/ccFIGp3h.s:138    .text.gpio_reset:0000000000000088 $d
-     /tmp/ccFIGp3h.s:152    .text.gpio_iomux_reset:0000000000000000 $t
-     /tmp/ccFIGp3h.s:159    .text.gpio_iomux_reset:0000000000000000 gpio_iomux_reset
-     /tmp/ccFIGp3h.s:185    .text.gpio_init:0000000000000000 $t
-     /tmp/ccFIGp3h.s:192    .text.gpio_init:0000000000000000 gpio_init
-     /tmp/ccFIGp3h.s:342    .text.gpio_default_para_init:0000000000000000 $t
-     /tmp/ccFIGp3h.s:349    .text.gpio_default_para_init:0000000000000000 gpio_default_para_init
-     /tmp/ccFIGp3h.s:376    .text.gpio_input_data_bit_read:0000000000000000 $t
-     /tmp/ccFIGp3h.s:383    .text.gpio_input_data_bit_read:0000000000000000 gpio_input_data_bit_read
-     /tmp/ccFIGp3h.s:410    .text.gpio_input_data_read:0000000000000000 $t
-     /tmp/ccFIGp3h.s:417    .text.gpio_input_data_read:0000000000000000 gpio_input_data_read
-     /tmp/ccFIGp3h.s:435    .text.gpio_output_data_bit_read:0000000000000000 $t
-     /tmp/ccFIGp3h.s:442    .text.gpio_output_data_bit_read:0000000000000000 gpio_output_data_bit_read
-     /tmp/ccFIGp3h.s:469    .text.gpio_output_data_read:0000000000000000 $t
-     /tmp/ccFIGp3h.s:476    .text.gpio_output_data_read:0000000000000000 gpio_output_data_read
-     /tmp/ccFIGp3h.s:494    .text.gpio_bits_set:0000000000000000 $t
-     /tmp/ccFIGp3h.s:501    .text.gpio_bits_set:0000000000000000 gpio_bits_set
-     /tmp/ccFIGp3h.s:516    .text.gpio_bits_reset:0000000000000000 $t
-     /tmp/ccFIGp3h.s:523    .text.gpio_bits_reset:0000000000000000 gpio_bits_reset
-     /tmp/ccFIGp3h.s:538    .text.gpio_bits_write:0000000000000000 $t
-     /tmp/ccFIGp3h.s:545    .text.gpio_bits_write:0000000000000000 gpio_bits_write
-     /tmp/ccFIGp3h.s:566    .text.gpio_port_wirte:0000000000000000 $t
-     /tmp/ccFIGp3h.s:573    .text.gpio_port_wirte:0000000000000000 gpio_port_wirte
-     /tmp/ccFIGp3h.s:588    .text.gpio_pin_wp_config:0000000000000000 $t
-     /tmp/ccFIGp3h.s:595    .text.gpio_pin_wp_config:0000000000000000 gpio_pin_wp_config
-     /tmp/ccFIGp3h.s:622    .text.gpio_pins_huge_driven_config:0000000000000000 $t
-     /tmp/ccFIGp3h.s:629    .text.gpio_pins_huge_driven_config:0000000000000000 gpio_pins_huge_driven_config
-     /tmp/ccFIGp3h.s:657    .text.gpio_event_output_config:0000000000000000 $t
-     /tmp/ccFIGp3h.s:664    .text.gpio_event_output_config:0000000000000000 gpio_event_output_config
-     /tmp/ccFIGp3h.s:691    .text.gpio_event_output_config:0000000000000014 $d
-     /tmp/ccFIGp3h.s:696    .text.gpio_event_output_enable:0000000000000000 $t
-     /tmp/ccFIGp3h.s:703    .text.gpio_event_output_enable:0000000000000000 gpio_event_output_enable
-     /tmp/ccFIGp3h.s:720    .text.gpio_event_output_enable:000000000000000c $d
-     /tmp/ccFIGp3h.s:725    .text.gpio_pin_remap_config:0000000000000000 $t
-     /tmp/ccFIGp3h.s:732    .text.gpio_pin_remap_config:0000000000000000 gpio_pin_remap_config
-     /tmp/ccFIGp3h.s:794    .text.gpio_exint_line_config:0000000000000000 $t
-     /tmp/ccFIGp3h.s:801    .text.gpio_exint_line_config:0000000000000000 gpio_exint_line_config
-     /tmp/ccFIGp3h.s:827    .text.gpio_exint_line_config:0000000000000016 $d
-     /tmp/ccFIGp3h.s:831    .text.gpio_exint_line_config:000000000000001a $t
-     /tmp/ccFIGp3h.s:906    .text.gpio_exint_line_config:0000000000000074 $d
+     /tmp/ccTPynDd.s:16     .text.gpio_reset:0000000000000000 $t
+     /tmp/ccTPynDd.s:23     .text.gpio_reset:0000000000000000 gpio_reset
+     /tmp/ccTPynDd.s:138    .text.gpio_reset:0000000000000088 $d
+     /tmp/ccTPynDd.s:152    .text.gpio_iomux_reset:0000000000000000 $t
+     /tmp/ccTPynDd.s:159    .text.gpio_iomux_reset:0000000000000000 gpio_iomux_reset
+     /tmp/ccTPynDd.s:185    .text.gpio_init:0000000000000000 $t
+     /tmp/ccTPynDd.s:192    .text.gpio_init:0000000000000000 gpio_init
+     /tmp/ccTPynDd.s:342    .text.gpio_default_para_init:0000000000000000 $t
+     /tmp/ccTPynDd.s:349    .text.gpio_default_para_init:0000000000000000 gpio_default_para_init
+     /tmp/ccTPynDd.s:376    .text.gpio_input_data_bit_read:0000000000000000 $t
+     /tmp/ccTPynDd.s:383    .text.gpio_input_data_bit_read:0000000000000000 gpio_input_data_bit_read
+     /tmp/ccTPynDd.s:410    .text.gpio_input_data_read:0000000000000000 $t
+     /tmp/ccTPynDd.s:417    .text.gpio_input_data_read:0000000000000000 gpio_input_data_read
+     /tmp/ccTPynDd.s:435    .text.gpio_output_data_bit_read:0000000000000000 $t
+     /tmp/ccTPynDd.s:442    .text.gpio_output_data_bit_read:0000000000000000 gpio_output_data_bit_read
+     /tmp/ccTPynDd.s:469    .text.gpio_output_data_read:0000000000000000 $t
+     /tmp/ccTPynDd.s:476    .text.gpio_output_data_read:0000000000000000 gpio_output_data_read
+     /tmp/ccTPynDd.s:494    .text.gpio_bits_set:0000000000000000 $t
+     /tmp/ccTPynDd.s:501    .text.gpio_bits_set:0000000000000000 gpio_bits_set
+     /tmp/ccTPynDd.s:516    .text.gpio_bits_reset:0000000000000000 $t
+     /tmp/ccTPynDd.s:523    .text.gpio_bits_reset:0000000000000000 gpio_bits_reset
+     /tmp/ccTPynDd.s:538    .text.gpio_bits_write:0000000000000000 $t
+     /tmp/ccTPynDd.s:545    .text.gpio_bits_write:0000000000000000 gpio_bits_write
+     /tmp/ccTPynDd.s:566    .text.gpio_port_wirte:0000000000000000 $t
+     /tmp/ccTPynDd.s:573    .text.gpio_port_wirte:0000000000000000 gpio_port_wirte
+     /tmp/ccTPynDd.s:588    .text.gpio_pin_wp_config:0000000000000000 $t
+     /tmp/ccTPynDd.s:595    .text.gpio_pin_wp_config:0000000000000000 gpio_pin_wp_config
+     /tmp/ccTPynDd.s:622    .text.gpio_pins_huge_driven_config:0000000000000000 $t
+     /tmp/ccTPynDd.s:629    .text.gpio_pins_huge_driven_config:0000000000000000 gpio_pins_huge_driven_config
+     /tmp/ccTPynDd.s:657    .text.gpio_event_output_config:0000000000000000 $t
+     /tmp/ccTPynDd.s:664    .text.gpio_event_output_config:0000000000000000 gpio_event_output_config
+     /tmp/ccTPynDd.s:691    .text.gpio_event_output_config:0000000000000014 $d
+     /tmp/ccTPynDd.s:696    .text.gpio_event_output_enable:0000000000000000 $t
+     /tmp/ccTPynDd.s:703    .text.gpio_event_output_enable:0000000000000000 gpio_event_output_enable
+     /tmp/ccTPynDd.s:720    .text.gpio_event_output_enable:000000000000000c $d
+     /tmp/ccTPynDd.s:725    .text.gpio_pin_remap_config:0000000000000000 $t
+     /tmp/ccTPynDd.s:732    .text.gpio_pin_remap_config:0000000000000000 gpio_pin_remap_config
+     /tmp/ccTPynDd.s:794    .text.gpio_exint_line_config:0000000000000000 $t
+     /tmp/ccTPynDd.s:801    .text.gpio_exint_line_config:0000000000000000 gpio_exint_line_config
+     /tmp/ccTPynDd.s:827    .text.gpio_exint_line_config:0000000000000016 $d
+     /tmp/ccTPynDd.s:831    .text.gpio_exint_line_config:000000000000001a $t
+     /tmp/ccTPynDd.s:906    .text.gpio_exint_line_config:0000000000000074 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

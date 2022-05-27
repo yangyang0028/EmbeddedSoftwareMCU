@@ -32,13 +32,14 @@ __STATIC_INLINE uint32_t LL_SYSTICK_IsActiveCounterFlag(void) {
 
 
 uint64_t _micros() {
-  LL_SYSTICK_IsActiveCounterFlag();
-  uint32_t m = HAL_GetTick();
-  const uint32_t tms = SysTick->LOAD + 1;
-  __IO uint32_t u = tms - SysTick->VAL;
-  if (LL_SYSTICK_IsActiveCounterFlag()) {
-    m = HAL_GetTick();
-    u = tms - SysTick->VAL;
-  }
-  return (m * 1000 + (u * 1000) / tms);
+  // LL_SYSTICK_IsActiveCounterFlag();
+  // uint32_t m = HAL_GetTick();
+  // const uint32_t tms = SysTick->LOAD + 1;
+  // __IO uint32_t u = tms - SysTick->VAL;
+  // if (LL_SYSTICK_IsActiveCounterFlag()) {
+  //   m = HAL_GetTick();
+  //   u = tms - SysTick->VAL;
+  // }
+  // return (m * 1000 + (u * 1000) / tms);
+  return 0;
 }

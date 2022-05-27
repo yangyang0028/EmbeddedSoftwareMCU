@@ -1,4 +1,4 @@
-TARGET = AT32F403ACGU7-Test
+TARGET = Field-OrientedControl-AT32
 
 ######################################
 # building variables
@@ -51,7 +51,16 @@ $(embedded_software_mcu_path)/Libraries/AT32/drivers/src/at32f403a_407_gpio.c \
 $(embedded_software_mcu_path)/Libraries/AT32/drivers/src/at32f403a_407_misc.c \
 $(embedded_software_mcu_path)/Libraries/AT32/drivers/src/at32f403a_407_tmr.c \
 $(embedded_software_mcu_path)/Libraries/AT32/drivers/src/at32f403a_407_usart.c \
+$(embedded_software_mcu_path)/Libraries/AT32/drivers/src/at32f403a_407_i2c.c \
 $(embedded_software_mcu_path)/Common/common.c \
+$(embedded_software_mcu_path)/SoftwareLib/i2c_application_library/i2c_application.c \
+$(embedded_software_mcu_path)/HardwareDriver/AS5600.c \
+$(embedded_software_mcu_path)/Libraries/AT32/drivers/src/at32f403a_407_dma.c \
+$(embedded_software_mcu_path)/SoftwareLib/SimpleFOC/foc_utils.c \
+$(embedded_software_mcu_path)/SoftwareLib/SimpleFOC/Foc.c \
+$(embedded_software_mcu_path)/SoftwareLib/Pid/Pid.c \
+$(embedded_software_mcu_path)/Libraries/AT32/drivers/src/at32f403a_407_rtc.c \
+$(embedded_software_mcu_path)/Libraries/AT32/drivers/src/at32f403a_407_adc.c \
 main.c 
 
 # ASM sources
@@ -117,7 +126,11 @@ C_INCLUDES =  \
 -I$(embedded_software_mcu_path)/Libraries/AT32/cmsis/dsp/include \
 -I$(embedded_software_mcu_path)/Libraries/AT32/cmsis/cm4/device_support \
 -I$(embedded_software_mcu_path)/Libraries/AT32/cmsis/cm4/core_support \
--I$(embedded_software_mcu_path)/Common/
+-I$(embedded_software_mcu_path)/Common/ \
+-I$(embedded_software_mcu_path)/SoftwareLib/i2c_application_library/ \
+-I$(embedded_software_mcu_path)/HardwareDriver/ \
+-I$(embedded_software_mcu_path)/SoftwareLib/SimpleFOC \
+-I$(embedded_software_mcu_path)/SoftwareLib/Pid
 
 # compile gcc flags
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections

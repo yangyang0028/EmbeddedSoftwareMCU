@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccxxBJxC.s 			page 1
+ARM GAS  /tmp/ccp73zUm.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccxxBJxC.s 			page 1
   48              		.cfi_def_cfa_offset 48
   49 0006 08AB     		add	r3, sp, #32
   50 0008 53F8042B 		ldr	r2, [r3], #4
-ARM GAS  /tmp/ccxxBJxC.s 			page 2
+ARM GAS  /tmp/ccp73zUm.s 			page 2
 
 
    9:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****     va_list args;
@@ -75,7 +75,7 @@ ARM GAS  /tmp/ccxxBJxC.s 			page 1
   57              	.LVL1:
   58 0016 0746     		mov	r7, r0
   59              	.LVL2:
-  60              	.LBB6:
+  60              	.LBB2:
   14:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****     va_end(args);
   15:/home/y/github/EmbeddedSoftwareMCU/Common/common.c **** #ifdef USING_USB
   16:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****     CDC_Transmit_FS(log_buf, length);
@@ -85,11 +85,11 @@ ARM GAS  /tmp/ccxxBJxC.s 			page 1
   20:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****     for (int i = 0; i< length ; i++){
   61              		.loc 1 20 0
   62 0018 0024     		movs	r4, #0
-  63              	.LBE6:
+  63              	.LBE2:
   19:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****     for (int i = 0; i< length ; i++){
   64              		.loc 1 19 0
   65 001a 2546     		mov	r5, r4
-  66              	.LBB7:
+  66              	.LBB3:
   67              		.loc 1 20 0
   68 001c 0DE0     		b	.L2
   69              	.LVL3:
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccxxBJxC.s 			page 1
   89              		.loc 1 22 0 discriminator 2
   90 0038 3546     		mov	r5, r6
   91              	.LVL8:
-ARM GAS  /tmp/ccxxBJxC.s 			page 3
+ARM GAS  /tmp/ccp73zUm.s 			page 3
 
 
   92              	.L2:
@@ -126,7 +126,7 @@ ARM GAS  /tmp/ccxxBJxC.s 			page 1
   93              		.loc 1 20 0 discriminator 1
   94 003a A742     		cmp	r7, r4
   95 003c EFD8     		bhi	.L3
-  96              	.LBE7:
+  96              	.LBE3:
   23:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****     }
   24:/home/y/github/EmbeddedSoftwareMCU/Common/common.c **** #else
   25:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****     HAL_UART_Transmit(&huart1, (uint8_t*)log_buf, length, 0xFFFF);
@@ -178,141 +178,70 @@ ARM GAS  /tmp/ccxxBJxC.s 			page 1
   33:/home/y/github/EmbeddedSoftwareMCU/Common/common.c **** 
   34:/home/y/github/EmbeddedSoftwareMCU/Common/common.c **** uint64_t _micros() {
  137              		.loc 1 34 0
-ARM GAS  /tmp/ccxxBJxC.s 			page 4
+ARM GAS  /tmp/ccp73zUm.s 			page 4
 
 
  138              		.cfi_startproc
- 139              		@ args = 0, pretend = 0, frame = 8
+ 139              		@ args = 0, pretend = 0, frame = 0
  140              		@ frame_needed = 0, uses_anonymous_args = 0
- 141 0000 30B5     		push	{r4, r5, lr}
- 142              	.LCFI6:
- 143              		.cfi_def_cfa_offset 12
- 144              		.cfi_offset 4, -12
- 145              		.cfi_offset 5, -8
- 146              		.cfi_offset 14, -4
- 147 0002 83B0     		sub	sp, sp, #12
- 148              	.LCFI7:
- 149              		.cfi_def_cfa_offset 24
- 150              	.LBB8:
- 151              	.LBB9:
-  30:/home/y/github/EmbeddedSoftwareMCU/Common/common.c **** }
- 152              		.loc 1 30 0
- 153 0004 0F4D     		ldr	r5, .L11
- 154 0006 2B68     		ldr	r3, [r5]
- 155              	.LBE9:
- 156              	.LBE8:
-  35:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   LL_SYSTICK_IsActiveCounterFlag();
-  36:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   uint32_t m = HAL_GetTick();
- 157              		.loc 1 36 0
- 158 0008 FFF7FEFF 		bl	HAL_GetTick
- 159              	.LVL10:
-  37:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   const uint32_t tms = SysTick->LOAD + 1;
- 160              		.loc 1 37 0
- 161 000c 6C68     		ldr	r4, [r5, #4]
- 162 000e 0134     		adds	r4, r4, #1
- 163              	.LVL11:
-  38:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   __IO uint32_t u = tms - SysTick->VAL;
- 164              		.loc 1 38 0
- 165 0010 AB68     		ldr	r3, [r5, #8]
- 166 0012 E31A     		subs	r3, r4, r3
- 167 0014 0193     		str	r3, [sp, #4]
- 168              	.LBB10:
- 169              	.LBB11:
-  30:/home/y/github/EmbeddedSoftwareMCU/Common/common.c **** }
- 170              		.loc 1 30 0
- 171 0016 2B68     		ldr	r3, [r5]
- 172              	.LBE11:
- 173              	.LBE10:
-  39:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   if (LL_SYSTICK_IsActiveCounterFlag()) {
- 174              		.loc 1 39 0
- 175 0018 13F4803F 		tst	r3, #65536
- 176 001c 0BD1     		bne	.L10
- 177              	.L8:
-  40:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****     m = HAL_GetTick();
-  41:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****     u = tms - SysTick->VAL;
-  42:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   }
-  43:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   return (m * 1000 + (u * 1000) / tms);
- 178              		.loc 1 43 0
- 179 001e 4FF47A72 		mov	r2, #1000
- 180 0022 019B     		ldr	r3, [sp, #4]
- 181 0024 02FB03F3 		mul	r3, r2, r3
- 182 0028 B3FBF4F3 		udiv	r3, r3, r4
-  44:/home/y/github/EmbeddedSoftwareMCU/Common/common.c **** }
-ARM GAS  /tmp/ccxxBJxC.s 			page 5
-
-
- 183              		.loc 1 44 0
- 184 002c 02FB0030 		mla	r0, r2, r0, r3
- 185              	.LVL12:
- 186 0030 0021     		movs	r1, #0
- 187 0032 03B0     		add	sp, sp, #12
- 188              	.LCFI8:
- 189              		.cfi_remember_state
- 190              		.cfi_def_cfa_offset 12
- 191              		@ sp needed
- 192 0034 30BD     		pop	{r4, r5, pc}
- 193              	.LVL13:
- 194              	.L10:
- 195              	.LCFI9:
- 196              		.cfi_restore_state
-  40:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****     m = HAL_GetTick();
- 197              		.loc 1 40 0
- 198 0036 FFF7FEFF 		bl	HAL_GetTick
- 199              	.LVL14:
-  41:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   }
- 200              		.loc 1 41 0
- 201 003a AB68     		ldr	r3, [r5, #8]
- 202 003c E31A     		subs	r3, r4, r3
- 203 003e 0193     		str	r3, [sp, #4]
- 204 0040 EDE7     		b	.L8
- 205              	.L12:
- 206 0042 00BF     		.align	2
- 207              	.L11:
- 208 0044 10E000E0 		.word	-536813552
- 209              		.cfi_endproc
- 210              	.LFE136:
- 212              		.section	.bss.log_buf.13647,"aw",%nobits
- 213              		.align	2
- 214              		.set	.LANCHOR0,. + 0
- 217              	log_buf.13647:
- 218 0000 00000000 		.space	256
- 218      00000000 
- 218      00000000 
- 218      00000000 
- 218      00000000 
- 219              		.text
- 220              	.Letext0:
- 221              		.file 2 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/mac
- 222              		.file 3 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
- 223              		.file 4 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/core_support/core_cm4.h"
- 224              		.file 5 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/system_at32f40
- 225              		.file 6 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_usb.h"
- 226              		.file 7 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_usart.h"
- 227              		.file 8 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/lib/gcc/arm-none-eabi/6.2
- 228              		.file 9 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/lib/gcc/arm-none-eabi/6.2
- 229              		.file 10 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sy
- 230              		.file 11 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sy
- 231              		.file 12 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sy
- 232              		.file 13 "<built-in>"
- 233              		.file 14 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/st
- 234              		.file 15 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/at32f403a_407
-ARM GAS  /tmp/ccxxBJxC.s 			page 6
+ 141              		@ link register save eliminated.
+  35:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   // LL_SYSTICK_IsActiveCounterFlag();
+  36:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   // uint32_t m = HAL_GetTick();
+  37:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   // const uint32_t tms = SysTick->LOAD + 1;
+  38:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   // __IO uint32_t u = tms - SysTick->VAL;
+  39:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   // if (LL_SYSTICK_IsActiveCounterFlag()) {
+  40:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   //   m = HAL_GetTick();
+  41:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   //   u = tms - SysTick->VAL;
+  42:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   // }
+  43:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   // return (m * 1000 + (u * 1000) / tms);
+  44:/home/y/github/EmbeddedSoftwareMCU/Common/common.c ****   return 0;
+  45:/home/y/github/EmbeddedSoftwareMCU/Common/common.c **** }
+ 142              		.loc 1 45 0
+ 143 0000 0020     		movs	r0, #0
+ 144 0002 0021     		movs	r1, #0
+ 145 0004 7047     		bx	lr
+ 146              		.cfi_endproc
+ 147              	.LFE136:
+ 149              		.section	.bss.log_buf.13647,"aw",%nobits
+ 150              		.align	2
+ 151              		.set	.LANCHOR0,. + 0
+ 154              	log_buf.13647:
+ 155 0000 00000000 		.space	256
+ 155      00000000 
+ 155      00000000 
+ 155      00000000 
+ 155      00000000 
+ 156              		.text
+ 157              	.Letext0:
+ 158              		.file 2 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/mac
+ 159              		.file 3 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
+ 160              		.file 4 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/core_support/core_cm4.h"
+ 161              		.file 5 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/system_at32f40
+ 162              		.file 6 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_usb.h"
+ 163              		.file 7 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_usart.h"
+ 164              		.file 8 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/lib/gcc/arm-none-eabi/6.2
+ 165              		.file 9 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/lib/gcc/arm-none-eabi/6.2
+ 166              		.file 10 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sy
+ 167              		.file 11 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sy
+ 168              		.file 12 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sy
+ 169              		.file 13 "<built-in>"
+ 170              		.file 14 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/st
+ 171              		.file 15 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/at32f403a_407
+ARM GAS  /tmp/ccp73zUm.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 common.c
-     /tmp/ccxxBJxC.s:16     .text.log_put:0000000000000000 $t
-     /tmp/ccxxBJxC.s:23     .text.log_put:0000000000000000 log_put
-     /tmp/ccxxBJxC.s:122    .text.log_put:0000000000000048 $d
-     /tmp/ccxxBJxC.s:128    .text._micros:0000000000000000 $t
-     /tmp/ccxxBJxC.s:135    .text._micros:0000000000000000 _micros
-     /tmp/ccxxBJxC.s:208    .text._micros:0000000000000044 $d
-     /tmp/ccxxBJxC.s:213    .bss.log_buf.13647:0000000000000000 $d
-     /tmp/ccxxBJxC.s:217    .bss.log_buf.13647:0000000000000000 log_buf.13647
+     /tmp/ccp73zUm.s:16     .text.log_put:0000000000000000 $t
+     /tmp/ccp73zUm.s:23     .text.log_put:0000000000000000 log_put
+     /tmp/ccp73zUm.s:122    .text.log_put:0000000000000048 $d
+     /tmp/ccp73zUm.s:128    .text._micros:0000000000000000 $t
+     /tmp/ccp73zUm.s:135    .text._micros:0000000000000000 _micros
+     /tmp/ccp73zUm.s:150    .bss.log_buf.13647:0000000000000000 $d
+     /tmp/ccp73zUm.s:154    .bss.log_buf.13647:0000000000000000 log_buf.13647
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
 vsnprintf
 usart_flag_get
 usart_data_transmit
-HAL_GetTick

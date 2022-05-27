@@ -70,7 +70,6 @@ typedef enum
 #define LED_NUM                          3
 
 #if defined (AT_START_F403A_V1) || defined (AT_START_F407_V1)
-#define AT32
 #define LED2_PIN                         GPIO_PINS_13
 #define LED2_GPIO                        GPIOD
 #define LED2_GPIO_CRM_CLK                CRM_GPIOD_PERIPH_CLOCK

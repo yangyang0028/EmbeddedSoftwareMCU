@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccoT5nSk.s 			page 1
+ARM GAS  /tmp/ccS1PgZW.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,21 +58,23 @@ ARM GAS  /tmp/ccoT5nSk.s 			page 1
   31:Core/Src/at32f403a_407_int.c ****   * @{
   32:Core/Src/at32f403a_407_int.c ****   */
   33:Core/Src/at32f403a_407_int.c **** 
-ARM GAS  /tmp/ccoT5nSk.s 			page 2
+ARM GAS  /tmp/ccS1PgZW.s 			page 2
 
 
   34:Core/Src/at32f403a_407_int.c **** /** @addtogroup 403A_GPIO_led_toggle
   35:Core/Src/at32f403a_407_int.c ****   * @{
   36:Core/Src/at32f403a_407_int.c ****   */
   37:Core/Src/at32f403a_407_int.c **** 
-  38:Core/Src/at32f403a_407_int.c **** /**
-  39:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles nmi exception.
-  40:Core/Src/at32f403a_407_int.c ****   * @param  none
-  41:Core/Src/at32f403a_407_int.c ****   * @retval none
-  42:Core/Src/at32f403a_407_int.c ****   */
-  43:Core/Src/at32f403a_407_int.c **** void NMI_Handler(void)
-  44:Core/Src/at32f403a_407_int.c **** {
-  26              		.loc 1 44 0
+  38:Core/Src/at32f403a_407_int.c **** extern __IO uint16_t dma_trans_complete_flag;
+  39:Core/Src/at32f403a_407_int.c **** 
+  40:Core/Src/at32f403a_407_int.c **** /**
+  41:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles nmi exception.
+  42:Core/Src/at32f403a_407_int.c ****   * @param  none
+  43:Core/Src/at32f403a_407_int.c ****   * @retval none
+  44:Core/Src/at32f403a_407_int.c ****   */
+  45:Core/Src/at32f403a_407_int.c **** void NMI_Handler(void)
+  46:Core/Src/at32f403a_407_int.c **** {
+  26              		.loc 1 46 0
   27              		.cfi_startproc
   28              		@ args = 0, pretend = 0, frame = 0
   29              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -89,16 +91,16 @@ ARM GAS  /tmp/ccoT5nSk.s 			page 1
   41              		.fpu softvfp
   43              	HardFault_Handler:
   44              	.LFB134:
-  45:Core/Src/at32f403a_407_int.c **** }
-  46:Core/Src/at32f403a_407_int.c **** 
-  47:Core/Src/at32f403a_407_int.c **** /**
-  48:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles hard fault exception.
-  49:Core/Src/at32f403a_407_int.c ****   * @param  none
-  50:Core/Src/at32f403a_407_int.c ****   * @retval none
-  51:Core/Src/at32f403a_407_int.c ****   */
-  52:Core/Src/at32f403a_407_int.c **** void HardFault_Handler(void)
-  53:Core/Src/at32f403a_407_int.c **** {
-  45              		.loc 1 53 0
+  47:Core/Src/at32f403a_407_int.c **** }
+  48:Core/Src/at32f403a_407_int.c **** 
+  49:Core/Src/at32f403a_407_int.c **** /**
+  50:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles hard fault exception.
+  51:Core/Src/at32f403a_407_int.c ****   * @param  none
+  52:Core/Src/at32f403a_407_int.c ****   * @retval none
+  53:Core/Src/at32f403a_407_int.c ****   */
+  54:Core/Src/at32f403a_407_int.c **** void HardFault_Handler(void)
+  55:Core/Src/at32f403a_407_int.c **** {
+  45              		.loc 1 55 0
   46              		.cfi_startproc
   47              		@ Volatile: function does not return.
   48              		@ args = 0, pretend = 0, frame = 0
@@ -116,24 +118,24 @@ ARM GAS  /tmp/ccoT5nSk.s 			page 1
   61              		.thumb_func
   62              		.fpu softvfp
   64              	MemManage_Handler:
+ARM GAS  /tmp/ccS1PgZW.s 			page 3
+
+
   65              	.LFB135:
-  54:Core/Src/at32f403a_407_int.c ****   /* go to infinite loop when hard fault exception occurs */
-ARM GAS  /tmp/ccoT5nSk.s 			page 3
-
-
-  55:Core/Src/at32f403a_407_int.c ****   while(1)
-  56:Core/Src/at32f403a_407_int.c ****   {
-  57:Core/Src/at32f403a_407_int.c ****   }
-  58:Core/Src/at32f403a_407_int.c **** }
-  59:Core/Src/at32f403a_407_int.c **** 
-  60:Core/Src/at32f403a_407_int.c **** /**
-  61:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles memory manage exception.
-  62:Core/Src/at32f403a_407_int.c ****   * @param  none
-  63:Core/Src/at32f403a_407_int.c ****   * @retval none
-  64:Core/Src/at32f403a_407_int.c ****   */
-  65:Core/Src/at32f403a_407_int.c **** void MemManage_Handler(void)
-  66:Core/Src/at32f403a_407_int.c **** {
-  66              		.loc 1 66 0
+  56:Core/Src/at32f403a_407_int.c ****   /* go to infinite loop when hard fault exception occurs */
+  57:Core/Src/at32f403a_407_int.c ****   while(1)
+  58:Core/Src/at32f403a_407_int.c ****   {
+  59:Core/Src/at32f403a_407_int.c ****   }
+  60:Core/Src/at32f403a_407_int.c **** }
+  61:Core/Src/at32f403a_407_int.c **** 
+  62:Core/Src/at32f403a_407_int.c **** /**
+  63:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles memory manage exception.
+  64:Core/Src/at32f403a_407_int.c ****   * @param  none
+  65:Core/Src/at32f403a_407_int.c ****   * @retval none
+  66:Core/Src/at32f403a_407_int.c ****   */
+  67:Core/Src/at32f403a_407_int.c **** void MemManage_Handler(void)
+  68:Core/Src/at32f403a_407_int.c **** {
+  66              		.loc 1 68 0
   67              		.cfi_startproc
   68              		@ Volatile: function does not return.
   69              		@ args = 0, pretend = 0, frame = 0
@@ -152,20 +154,20 @@ ARM GAS  /tmp/ccoT5nSk.s 			page 1
   83              		.fpu softvfp
   85              	BusFault_Handler:
   86              	.LFB136:
-  67:Core/Src/at32f403a_407_int.c ****   /* go to infinite loop when memory manage exception occurs */
-  68:Core/Src/at32f403a_407_int.c ****   while(1)
-  69:Core/Src/at32f403a_407_int.c ****   {
-  70:Core/Src/at32f403a_407_int.c ****   }
-  71:Core/Src/at32f403a_407_int.c **** }
-  72:Core/Src/at32f403a_407_int.c **** 
-  73:Core/Src/at32f403a_407_int.c **** /**
-  74:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles bus fault exception.
-  75:Core/Src/at32f403a_407_int.c ****   * @param  none
-  76:Core/Src/at32f403a_407_int.c ****   * @retval none
-  77:Core/Src/at32f403a_407_int.c ****   */
-  78:Core/Src/at32f403a_407_int.c **** void BusFault_Handler(void)
-  79:Core/Src/at32f403a_407_int.c **** {
-  87              		.loc 1 79 0
+  69:Core/Src/at32f403a_407_int.c ****   /* go to infinite loop when memory manage exception occurs */
+  70:Core/Src/at32f403a_407_int.c ****   while(1)
+  71:Core/Src/at32f403a_407_int.c ****   {
+  72:Core/Src/at32f403a_407_int.c ****   }
+  73:Core/Src/at32f403a_407_int.c **** }
+  74:Core/Src/at32f403a_407_int.c **** 
+  75:Core/Src/at32f403a_407_int.c **** /**
+  76:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles bus fault exception.
+  77:Core/Src/at32f403a_407_int.c ****   * @param  none
+  78:Core/Src/at32f403a_407_int.c ****   * @retval none
+  79:Core/Src/at32f403a_407_int.c ****   */
+  80:Core/Src/at32f403a_407_int.c **** void BusFault_Handler(void)
+  81:Core/Src/at32f403a_407_int.c **** {
+  87              		.loc 1 81 0
   88              		.cfi_startproc
   89              		@ Volatile: function does not return.
   90              		@ args = 0, pretend = 0, frame = 0
@@ -176,31 +178,31 @@ ARM GAS  /tmp/ccoT5nSk.s 			page 1
   95              		.cfi_endproc
   96              	.LFE136:
   98              		.section	.text.UsageFault_Handler,"ax",%progbits
+ARM GAS  /tmp/ccS1PgZW.s 			page 4
+
+
   99              		.align	1
  100              		.global	UsageFault_Handler
-ARM GAS  /tmp/ccoT5nSk.s 			page 4
-
-
  101              		.syntax unified
  102              		.thumb
  103              		.thumb_func
  104              		.fpu softvfp
  106              	UsageFault_Handler:
  107              	.LFB137:
-  80:Core/Src/at32f403a_407_int.c ****   /* go to infinite loop when bus fault exception occurs */
-  81:Core/Src/at32f403a_407_int.c ****   while(1)
-  82:Core/Src/at32f403a_407_int.c ****   {
-  83:Core/Src/at32f403a_407_int.c ****   }
-  84:Core/Src/at32f403a_407_int.c **** }
-  85:Core/Src/at32f403a_407_int.c **** 
-  86:Core/Src/at32f403a_407_int.c **** /**
-  87:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles usage fault exception.
-  88:Core/Src/at32f403a_407_int.c ****   * @param  none
-  89:Core/Src/at32f403a_407_int.c ****   * @retval none
-  90:Core/Src/at32f403a_407_int.c ****   */
-  91:Core/Src/at32f403a_407_int.c **** void UsageFault_Handler(void)
-  92:Core/Src/at32f403a_407_int.c **** {
- 108              		.loc 1 92 0
+  82:Core/Src/at32f403a_407_int.c ****   /* go to infinite loop when bus fault exception occurs */
+  83:Core/Src/at32f403a_407_int.c ****   while(1)
+  84:Core/Src/at32f403a_407_int.c ****   {
+  85:Core/Src/at32f403a_407_int.c ****   }
+  86:Core/Src/at32f403a_407_int.c **** }
+  87:Core/Src/at32f403a_407_int.c **** 
+  88:Core/Src/at32f403a_407_int.c **** /**
+  89:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles usage fault exception.
+  90:Core/Src/at32f403a_407_int.c ****   * @param  none
+  91:Core/Src/at32f403a_407_int.c ****   * @retval none
+  92:Core/Src/at32f403a_407_int.c ****   */
+  93:Core/Src/at32f403a_407_int.c **** void UsageFault_Handler(void)
+  94:Core/Src/at32f403a_407_int.c **** {
+ 108              		.loc 1 94 0
  109              		.cfi_startproc
  110              		@ Volatile: function does not return.
  111              		@ args = 0, pretend = 0, frame = 0
@@ -219,28 +221,28 @@ ARM GAS  /tmp/ccoT5nSk.s 			page 1
  125              		.fpu softvfp
  127              	SVC_Handler:
  128              	.LFB138:
-  93:Core/Src/at32f403a_407_int.c ****   /* go to infinite loop when usage fault exception occurs */
-  94:Core/Src/at32f403a_407_int.c ****   while(1)
-  95:Core/Src/at32f403a_407_int.c ****   {
-  96:Core/Src/at32f403a_407_int.c ****   }
-  97:Core/Src/at32f403a_407_int.c **** }
-  98:Core/Src/at32f403a_407_int.c **** 
-  99:Core/Src/at32f403a_407_int.c **** /**
- 100:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles svcall exception.
- 101:Core/Src/at32f403a_407_int.c ****   * @param  none
- 102:Core/Src/at32f403a_407_int.c ****   * @retval none
- 103:Core/Src/at32f403a_407_int.c ****   */
- 104:Core/Src/at32f403a_407_int.c **** void SVC_Handler(void)
- 105:Core/Src/at32f403a_407_int.c **** {
- 129              		.loc 1 105 0
+  95:Core/Src/at32f403a_407_int.c ****   /* go to infinite loop when usage fault exception occurs */
+  96:Core/Src/at32f403a_407_int.c ****   while(1)
+  97:Core/Src/at32f403a_407_int.c ****   {
+  98:Core/Src/at32f403a_407_int.c ****   }
+  99:Core/Src/at32f403a_407_int.c **** }
+ 100:Core/Src/at32f403a_407_int.c **** 
+ 101:Core/Src/at32f403a_407_int.c **** /**
+ 102:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles svcall exception.
+ 103:Core/Src/at32f403a_407_int.c ****   * @param  none
+ 104:Core/Src/at32f403a_407_int.c ****   * @retval none
+ 105:Core/Src/at32f403a_407_int.c ****   */
+ 106:Core/Src/at32f403a_407_int.c **** void SVC_Handler(void)
+ 107:Core/Src/at32f403a_407_int.c **** {
+ 129              		.loc 1 107 0
  130              		.cfi_startproc
  131              		@ args = 0, pretend = 0, frame = 0
  132              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccS1PgZW.s 			page 5
+
+
  133              		@ link register save eliminated.
  134 0000 7047     		bx	lr
-ARM GAS  /tmp/ccoT5nSk.s 			page 5
-
-
  135              		.cfi_endproc
  136              	.LFE138:
  138              		.section	.text.DebugMon_Handler,"ax",%progbits
@@ -252,16 +254,16 @@ ARM GAS  /tmp/ccoT5nSk.s 			page 1
  144              		.fpu softvfp
  146              	DebugMon_Handler:
  147              	.LFB139:
- 106:Core/Src/at32f403a_407_int.c **** }
- 107:Core/Src/at32f403a_407_int.c **** 
- 108:Core/Src/at32f403a_407_int.c **** /**
- 109:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles debug monitor exception.
- 110:Core/Src/at32f403a_407_int.c ****   * @param  none
- 111:Core/Src/at32f403a_407_int.c ****   * @retval none
- 112:Core/Src/at32f403a_407_int.c ****   */
- 113:Core/Src/at32f403a_407_int.c **** void DebugMon_Handler(void)
- 114:Core/Src/at32f403a_407_int.c **** {
- 148              		.loc 1 114 0
+ 108:Core/Src/at32f403a_407_int.c **** }
+ 109:Core/Src/at32f403a_407_int.c **** 
+ 110:Core/Src/at32f403a_407_int.c **** /**
+ 111:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles debug monitor exception.
+ 112:Core/Src/at32f403a_407_int.c ****   * @param  none
+ 113:Core/Src/at32f403a_407_int.c ****   * @retval none
+ 114:Core/Src/at32f403a_407_int.c ****   */
+ 115:Core/Src/at32f403a_407_int.c **** void DebugMon_Handler(void)
+ 116:Core/Src/at32f403a_407_int.c **** {
+ 148              		.loc 1 116 0
  149              		.cfi_startproc
  150              		@ args = 0, pretend = 0, frame = 0
  151              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -278,16 +280,16 @@ ARM GAS  /tmp/ccoT5nSk.s 			page 1
  163              		.fpu softvfp
  165              	PendSV_Handler:
  166              	.LFB140:
- 115:Core/Src/at32f403a_407_int.c **** }
- 116:Core/Src/at32f403a_407_int.c **** 
- 117:Core/Src/at32f403a_407_int.c **** /**
- 118:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles pendsv_handler exception.
- 119:Core/Src/at32f403a_407_int.c ****   * @param  none
- 120:Core/Src/at32f403a_407_int.c ****   * @retval none
- 121:Core/Src/at32f403a_407_int.c ****   */
- 122:Core/Src/at32f403a_407_int.c **** void PendSV_Handler(void)
- 123:Core/Src/at32f403a_407_int.c **** {
- 167              		.loc 1 123 0
+ 117:Core/Src/at32f403a_407_int.c **** }
+ 118:Core/Src/at32f403a_407_int.c **** 
+ 119:Core/Src/at32f403a_407_int.c **** /**
+ 120:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles pendsv_handler exception.
+ 121:Core/Src/at32f403a_407_int.c ****   * @param  none
+ 122:Core/Src/at32f403a_407_int.c ****   * @retval none
+ 123:Core/Src/at32f403a_407_int.c ****   */
+ 124:Core/Src/at32f403a_407_int.c **** void PendSV_Handler(void)
+ 125:Core/Src/at32f403a_407_int.c **** {
+ 167              		.loc 1 125 0
  168              		.cfi_startproc
  169              		@ args = 0, pretend = 0, frame = 0
  170              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -296,27 +298,27 @@ ARM GAS  /tmp/ccoT5nSk.s 			page 1
  173              		.cfi_endproc
  174              	.LFE140:
  176              		.section	.text.SysTick_Handler,"ax",%progbits
+ARM GAS  /tmp/ccS1PgZW.s 			page 6
+
+
  177              		.align	1
  178              		.global	SysTick_Handler
-ARM GAS  /tmp/ccoT5nSk.s 			page 6
-
-
  179              		.syntax unified
  180              		.thumb
  181              		.thumb_func
  182              		.fpu softvfp
  184              	SysTick_Handler:
  185              	.LFB141:
- 124:Core/Src/at32f403a_407_int.c **** }
- 125:Core/Src/at32f403a_407_int.c **** 
- 126:Core/Src/at32f403a_407_int.c **** /**
- 127:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles systick handler.
- 128:Core/Src/at32f403a_407_int.c ****   * @param  none
- 129:Core/Src/at32f403a_407_int.c ****   * @retval none
- 130:Core/Src/at32f403a_407_int.c ****   */
- 131:Core/Src/at32f403a_407_int.c **** void SysTick_Handler(void)
- 132:Core/Src/at32f403a_407_int.c **** {
- 186              		.loc 1 132 0
+ 126:Core/Src/at32f403a_407_int.c **** }
+ 127:Core/Src/at32f403a_407_int.c **** 
+ 128:Core/Src/at32f403a_407_int.c **** /**
+ 129:Core/Src/at32f403a_407_int.c ****   * @brief  this function handles systick handler.
+ 130:Core/Src/at32f403a_407_int.c ****   * @param  none
+ 131:Core/Src/at32f403a_407_int.c ****   * @retval none
+ 132:Core/Src/at32f403a_407_int.c ****   */
+ 133:Core/Src/at32f403a_407_int.c **** void SysTick_Handler(void)
+ 134:Core/Src/at32f403a_407_int.c **** {
+ 186              		.loc 1 134 0
  187              		.cfi_startproc
  188              		@ args = 0, pretend = 0, frame = 0
  189              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -324,36 +326,100 @@ ARM GAS  /tmp/ccoT5nSk.s 			page 1
  191 0000 7047     		bx	lr
  192              		.cfi_endproc
  193              	.LFE141:
- 195              		.text
- 196              	.Letext0:
- 197              		.file 2 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/mac
- 198              		.file 3 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
- 199              		.file 4 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/core_support/core_cm4.h"
- 200              		.file 5 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/system_at32f40
- 201              		.file 6 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_usb.h"
-ARM GAS  /tmp/ccoT5nSk.s 			page 7
+ 195              		.section	.text.DMA1_Channel1_IRQHandler,"ax",%progbits
+ 196              		.align	1
+ 197              		.global	DMA1_Channel1_IRQHandler
+ 198              		.syntax unified
+ 199              		.thumb
+ 200              		.thumb_func
+ 201              		.fpu softvfp
+ 203              	DMA1_Channel1_IRQHandler:
+ 204              	.LFB142:
+ 135:Core/Src/at32f403a_407_int.c **** }
+ 136:Core/Src/at32f403a_407_int.c **** 
+ 137:Core/Src/at32f403a_407_int.c **** void DMA1_Channel1_IRQHandler(void)
+ 138:Core/Src/at32f403a_407_int.c **** {
+ 205              		.loc 1 138 0
+ 206              		.cfi_startproc
+ 207              		@ args = 0, pretend = 0, frame = 0
+ 208              		@ frame_needed = 0, uses_anonymous_args = 0
+ 209              		.loc 1 138 0
+ 210 0000 08B5     		push	{r3, lr}
+ 211              	.LCFI0:
+ 212              		.cfi_def_cfa_offset 8
+ 213              		.cfi_offset 3, -8
+ 214              		.cfi_offset 14, -4
+ 139:Core/Src/at32f403a_407_int.c ****   if(dma_flag_get(DMA1_FDT1_FLAG) != RESET)
+ 215              		.loc 1 139 0
+ 216 0002 0220     		movs	r0, #2
+ 217 0004 FFF7FEFF 		bl	dma_flag_get
+ 218              	.LVL0:
+ 219 0008 00B9     		cbnz	r0, .L17
+ 220              	.L14:
+ 221 000a 08BD     		pop	{r3, pc}
+ 222              	.L17:
+ARM GAS  /tmp/ccS1PgZW.s 			page 7
+
+
+ 140:Core/Src/at32f403a_407_int.c ****   {
+ 141:Core/Src/at32f403a_407_int.c ****     dma_flag_clear(DMA1_FDT1_FLAG);
+ 223              		.loc 1 141 0
+ 224 000c 0220     		movs	r0, #2
+ 225 000e FFF7FEFF 		bl	dma_flag_clear
+ 226              	.LVL1:
+ 142:Core/Src/at32f403a_407_int.c ****     dma_trans_complete_flag = 1;
+ 227              		.loc 1 142 0
+ 228 0012 0122     		movs	r2, #1
+ 229 0014 014B     		ldr	r3, .L18
+ 230 0016 1A80     		strh	r2, [r3]	@ movhi
+ 143:Core/Src/at32f403a_407_int.c ****   }
+ 144:Core/Src/at32f403a_407_int.c **** }
+ 231              		.loc 1 144 0
+ 232 0018 F7E7     		b	.L14
+ 233              	.L19:
+ 234 001a 00BF     		.align	2
+ 235              	.L18:
+ 236 001c 00000000 		.word	dma_trans_complete_flag
+ 237              		.cfi_endproc
+ 238              	.LFE142:
+ 240              		.text
+ 241              	.Letext0:
+ 242              		.file 2 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/mac
+ 243              		.file 3 "/home/y/github/EmbeddedSoftwareMCU/Tools/gcc-arm-none-eabi-unix/arm-none-eabi/include/sys
+ 244              		.file 4 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/core_support/core_cm4.h"
+ 245              		.file 5 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/system_at32f40
+ 246              		.file 6 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_usb.h"
+ 247              		.file 7 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/drivers/inc/at32f403a_407_dma.h"
+ 248              		.file 8 "/home/y/github/EmbeddedSoftwareMCU/Libraries/AT32/cmsis/cm4/device_support/at32f403a_407.
+ARM GAS  /tmp/ccS1PgZW.s 			page 8
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 at32f403a_407_int.c
-     /tmp/ccoT5nSk.s:16     .text.NMI_Handler:0000000000000000 $t
-     /tmp/ccoT5nSk.s:23     .text.NMI_Handler:0000000000000000 NMI_Handler
-     /tmp/ccoT5nSk.s:36     .text.HardFault_Handler:0000000000000000 $t
-     /tmp/ccoT5nSk.s:43     .text.HardFault_Handler:0000000000000000 HardFault_Handler
-     /tmp/ccoT5nSk.s:57     .text.MemManage_Handler:0000000000000000 $t
-     /tmp/ccoT5nSk.s:64     .text.MemManage_Handler:0000000000000000 MemManage_Handler
-     /tmp/ccoT5nSk.s:78     .text.BusFault_Handler:0000000000000000 $t
-     /tmp/ccoT5nSk.s:85     .text.BusFault_Handler:0000000000000000 BusFault_Handler
-     /tmp/ccoT5nSk.s:99     .text.UsageFault_Handler:0000000000000000 $t
-     /tmp/ccoT5nSk.s:106    .text.UsageFault_Handler:0000000000000000 UsageFault_Handler
-     /tmp/ccoT5nSk.s:120    .text.SVC_Handler:0000000000000000 $t
-     /tmp/ccoT5nSk.s:127    .text.SVC_Handler:0000000000000000 SVC_Handler
-     /tmp/ccoT5nSk.s:139    .text.DebugMon_Handler:0000000000000000 $t
-     /tmp/ccoT5nSk.s:146    .text.DebugMon_Handler:0000000000000000 DebugMon_Handler
-     /tmp/ccoT5nSk.s:158    .text.PendSV_Handler:0000000000000000 $t
-     /tmp/ccoT5nSk.s:165    .text.PendSV_Handler:0000000000000000 PendSV_Handler
-     /tmp/ccoT5nSk.s:177    .text.SysTick_Handler:0000000000000000 $t
-     /tmp/ccoT5nSk.s:184    .text.SysTick_Handler:0000000000000000 SysTick_Handler
+     /tmp/ccS1PgZW.s:16     .text.NMI_Handler:0000000000000000 $t
+     /tmp/ccS1PgZW.s:23     .text.NMI_Handler:0000000000000000 NMI_Handler
+     /tmp/ccS1PgZW.s:36     .text.HardFault_Handler:0000000000000000 $t
+     /tmp/ccS1PgZW.s:43     .text.HardFault_Handler:0000000000000000 HardFault_Handler
+     /tmp/ccS1PgZW.s:57     .text.MemManage_Handler:0000000000000000 $t
+     /tmp/ccS1PgZW.s:64     .text.MemManage_Handler:0000000000000000 MemManage_Handler
+     /tmp/ccS1PgZW.s:78     .text.BusFault_Handler:0000000000000000 $t
+     /tmp/ccS1PgZW.s:85     .text.BusFault_Handler:0000000000000000 BusFault_Handler
+     /tmp/ccS1PgZW.s:99     .text.UsageFault_Handler:0000000000000000 $t
+     /tmp/ccS1PgZW.s:106    .text.UsageFault_Handler:0000000000000000 UsageFault_Handler
+     /tmp/ccS1PgZW.s:120    .text.SVC_Handler:0000000000000000 $t
+     /tmp/ccS1PgZW.s:127    .text.SVC_Handler:0000000000000000 SVC_Handler
+     /tmp/ccS1PgZW.s:139    .text.DebugMon_Handler:0000000000000000 $t
+     /tmp/ccS1PgZW.s:146    .text.DebugMon_Handler:0000000000000000 DebugMon_Handler
+     /tmp/ccS1PgZW.s:158    .text.PendSV_Handler:0000000000000000 $t
+     /tmp/ccS1PgZW.s:165    .text.PendSV_Handler:0000000000000000 PendSV_Handler
+     /tmp/ccS1PgZW.s:177    .text.SysTick_Handler:0000000000000000 $t
+     /tmp/ccS1PgZW.s:184    .text.SysTick_Handler:0000000000000000 SysTick_Handler
+     /tmp/ccS1PgZW.s:196    .text.DMA1_Channel1_IRQHandler:0000000000000000 $t
+     /tmp/ccS1PgZW.s:203    .text.DMA1_Channel1_IRQHandler:0000000000000000 DMA1_Channel1_IRQHandler
+     /tmp/ccS1PgZW.s:236    .text.DMA1_Channel1_IRQHandler:000000000000001c $d
                      .debug_frame:0000000000000010 $d
 
-NO UNDEFINED SYMBOLS
+UNDEFINED SYMBOLS
+dma_flag_get
+dma_flag_clear
+dma_trans_complete_flag

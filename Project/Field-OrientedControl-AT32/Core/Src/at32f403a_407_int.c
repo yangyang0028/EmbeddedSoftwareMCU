@@ -35,6 +35,8 @@
   * @{
   */
 
+extern __IO uint16_t dma_trans_complete_flag;
+
 /**
   * @brief  this function handles nmi exception.
   * @param  none
@@ -132,6 +134,14 @@ void SysTick_Handler(void)
 {
 }
 
+void DMA1_Channel1_IRQHandler(void)
+{
+  if(dma_flag_get(DMA1_FDT1_FLAG) != RESET)
+  {
+    dma_flag_clear(DMA1_FDT1_FLAG);
+    dma_trans_complete_flag = 1;
+  }
+}
 
 /**
   * @}
