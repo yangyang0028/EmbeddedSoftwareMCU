@@ -1,0 +1,5 @@
+r
+loadfile /home/y/github/EmbeddedSoftwareMCU/Project/AT32F403ACGU7-Test-Cmake/build/AT32F403ACGU7-Test-Cmake.bin 0x08000000
+r
+exit 
+
