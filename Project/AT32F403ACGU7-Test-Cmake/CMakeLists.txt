@@ -4,25 +4,22 @@ project(AT32F403ACGU7-Test-Cmake)
 
 set(EmbeddedSoftwareMCU  ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
-if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-    set(gcc-arm-none Tools/gcc-arm-none-eabi-unix)
-	message(STATUS "Configuring on/for Linux")
-elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    set(gcc-arm-none Tools/gcc-arm-none-eabi-unix)
-	message(STATUS "Configuring on/for macOS")
-elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    set(gcc-arm-none Tools/gcc-arm-none-eabi-win)
-	message(STATUS "Configuring on/for Windows")
-elseif(CMAKE_SYSTEM_NAME STREQUAL "AIX")
-	message(STATUS "Configuring on/for IBM AIX")
-else()
-    set(gcc-arm-none Tools/gcc-arm-none-eabi-unix)
-	message(STATUS "Configuring on/for ${CMAKE_SYSTEM_NAME}")
-endif()
+set(arm-none-eabi ${EmbeddedSoftwareMCU}/Tools/gcc-arm-none-eabi)
 
-set(CMAKE_C_COMPILER ${EmbeddedSoftwareMCU}/${gcc-arm-none}/bin/arm-none-eabi-gcc)
-set(CMAKE_OBJCOPY ${EmbeddedSoftwareMCU}/${gcc-arm-none}/bin/arm-none-eabi-objcopy)
-set(CMAKE_SIZE ${EmbeddedSoftwareMCU}/${gcc-arm-none}/bin/arm-none-eabi-size)
+include( ${EmbeddedSoftwareMCU}/Tools/GccArm.cmake)
+
+download_and_extract(
+    https://developer.arm.com/-/media/Files/downloads/gnu-rm/10.3-2021.10/gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2    
+    ${EmbeddedSoftwareMCU}/Tools/gcc-arm-none-eabi-unix.tar.bz2
+    MD5
+    2383e4eb4ea23f248d33adc70dc3227e
+    ${arm-none-eabi}
+)
+
+
+set(CMAKE_C_COMPILER ${arm-none-eabi}/bin/arm-none-eabi-gcc)
+set(CMAKE_OBJCOPY  ${arm-none-eabi}/bin/arm-none-eabi-objcopy)
+set(CMAKE_SIZE  ${arm-none-eabi}/bin/arm-none-eabi-size)
 
 add_definitions(
 -DAT32F403ARCT7
