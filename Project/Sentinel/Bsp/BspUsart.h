@@ -46,7 +46,7 @@ typedef struct SerialPortRx{
     char end_flag;
 }__attribute__ ((packed))SerialPortRx;
 
-struct RCType g_remote_control;
+extern struct RCType g_remote_control;
 
 void UsartUserInit();
 

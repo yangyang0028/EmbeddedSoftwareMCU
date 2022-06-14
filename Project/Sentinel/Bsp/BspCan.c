@@ -2,6 +2,8 @@
 #include "stm32f4xx_hal.h"
 #include "common.h"
 
+MotorInfo g_motor_info[MOTOR_MAX_NUM];
+
 void CanUserInit(void) {
     CAN_FilterTypeDef can_filter_st; 
     can_filter_st.FilterActivation = ENABLE; 

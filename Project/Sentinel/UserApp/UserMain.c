@@ -48,27 +48,25 @@ void StartTask(void const * argument) {
         (void *)NULL,
         (UBaseType_t)LED_TASK_PRIO,
         (TaskHandle_t *)&LedTaskHandler);
-
     // xTaskCreate((TaskFunction_t)INSTask,
     //         (const char *)"INSTask",
     //         (uint16_t)INS_TASK_SIZE,
     //         (void *)NULL,
     //         (UBaseType_t)INS_TASK_PRIO,
     //         (TaskHandle_t *)&InsTaskHandler);
+    // xTaskCreate((TaskFunction_t)HolderTask,
+    //         (const char *)"HolderTask",
+    //         (uint16_t)HOLDER_TASK_SIZE,
+    //         (void *)NULL,
+    //         (UBaseType_t)HOLDER_TASK_PRIO,
+    //         (TaskHandle_t *)&HolderTaskHandler);
 
-    xTaskCreate((TaskFunction_t)HolderTask,
-            (const char *)"HolderTask",
-            (uint16_t)HOLDER_TASK_SIZE,
-            (void *)NULL,
-            (UBaseType_t)HOLDER_TASK_PRIO,
-            (TaskHandle_t *)&HolderTaskHandler);
-
-    xTaskCreate((TaskFunction_t)ShootTask,
-            (const char *)"ShootTask",
-            (uint16_t)SHOOT_TASK_SIZE,
-            (void *)NULL,
-            (UBaseType_t)SHOOT_TASK_PRIO,
-            (TaskHandle_t *)&ShootTaskHandler);
+    // xTaskCreate((TaskFunction_t)ShootTask,
+    //         (const char *)"ShootTask",
+    //         (uint16_t)SHOOT_TASK_SIZE,
+    //         (void *)NULL,
+    //         (UBaseType_t)SHOOT_TASK_PRIO,
+    //         (TaskHandle_t *)&ShootTaskHandler);
 
     vTaskDelete(StartTaskHandler);
     taskEXIT_CRITICAL();

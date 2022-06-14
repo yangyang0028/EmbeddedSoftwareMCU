@@ -1,5 +1,6 @@
 #include "BspUsart.h"
 
+struct RCType g_remote_control;
 
 uint8_t g_remote_control_buff[100] = {0};
 uint8_t g_jetson_nano_rx_buff[100] = {0};

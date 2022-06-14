@@ -45,7 +45,7 @@ void ShootTask(void const *argument) {
     HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
     HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_3);
     g_shoot.rotational_speed = 0;
-    while(g_motor_info[DIAL_MOTOR].rotor_angle == 0) ;
+    while(g_motor_info[DIAL_MOTOR].rotor_angle == 0) vTaskDelay(1);
     while(1) {
         g_shoot.rotational_speed ++;
         DelayShoot ++;

@@ -17,7 +17,7 @@ typedef struct {
     uint8_t  temp;
 }MotorInfo;
 
-MotorInfo g_motor_info[MOTOR_MAX_NUM];
+extern MotorInfo g_motor_info[MOTOR_MAX_NUM];
 
 void CanUserInit(void);
 void SetMotorVoltageMg6020(int16_t v1, int16_t v2, int16_t v3, int16_t v4);
