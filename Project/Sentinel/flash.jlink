@@ -1,5 +1,0 @@
-r
-loadfile /home/y/github/EmbeddedSoftwareMCU/Project/Sentinel/build/Sentinel.bin
-r
-exit 
-
