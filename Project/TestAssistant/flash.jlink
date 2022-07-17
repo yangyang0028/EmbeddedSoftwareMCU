@@ -1,0 +1,5 @@
+r
+loadfile /home/y/github/EmbeddedSoftwareMCU/Project/TestAssistant/build/TestAssistant.bin 0x08000000
+r
+exit 
+

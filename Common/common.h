@@ -7,9 +7,9 @@
 #include "usart.h"
 #endif
 
-#define DEBUG "D"
-#define INFORMATION "I"
-#define WARNING "W"
+#define DBUG "D"
+#define INFO "I"
+#define WARN "W"
 #define ERROR "E"
 
 #define CONSOLEBUF_SIZE 256

@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jul 15 21:17:20 2022
+# Make data base, printed on Sun Jul 17 18:41:23 2022
 
 # Variables
 
@@ -49,7 +49,7 @@ VTE_VERSION = 6003
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:52613
+JOURNAL_STREAM = 8:49610
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile
@@ -67,13 +67,13 @@ MAKELEVEL := 0
 # environment
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
-DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=58965e546c4ed81dba318ef062d15aa4
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=9056f9b20812757bdca61e9e62d3e33f
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
 _ = /usr/bin/code
 # environment
-MANAGERPID = 1564
+MANAGERPID = 1505
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -87,7 +87,7 @@ NO_PROXY = localhost,127.0.0.0/8,::1
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/y-Lenovo-Legion-R9000P2021H:@/tmp/.ICE-unix/2157,unix/y-Lenovo-Legion-R9000P2021H:/tmp/.ICE-unix/2157
+SESSION_MANAGER = local/y-Lenovo-Legion-R9000P2021H:@/tmp/.ICE-unix/1716,unix/y-Lenovo-Legion-R9000P2021H:/tmp/.ICE-unix/1716
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -97,7 +97,7 @@ VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = aeec9c6e89e3471f91f30230df4e4fef
+INVOCATION_ID = 4bf24fd21c384ac5b7a00d149d302e79
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -119,7 +119,7 @@ PWD = /home/y/github/EmbeddedSoftwareMCU
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2122
+SSH_AGENT_PID = 1681
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -165,7 +165,7 @@ SHLVL = 1
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-6b783729-ac8c-428a-bbaa-3981f9df3d52.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-b80c0c7c-1164-4520-be59-c39f2c9cbf4c.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -223,11 +223,11 @@ LC_ALL = C
 # environment
 DBUS_STARTER_BUS_TYPE = session
 # environment
-GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/a9943a0b_af66_439f_b64a_3903c15406e6
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/79659402_afc3_410e_9950_52dc682c6135
 # automatic
 ^F = $(notdir $^)
 # environment
-GNOME_TERMINAL_SERVICE = :1.352
+GNOME_TERMINAL_SERVICE = :1.105
 # default
 SUFFIXES := 
 # environment
@@ -249,9 +249,9 @@ LANG = C
 # environment
 TERM = xterm-256color
 # environment
-VSCODE_PID = 11669
+VSCODE_PID = 2469
 # environment
-DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=58965e546c4ed81dba318ef062d15aa4
+DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=9056f9b20812757bdca61e9e62d3e33f
 # variable set hash-table stats:
 # Load=120/1024=12%, Rehash=0, Collisions=21/142=15%
 
@@ -284,7 +284,6 @@ Makefile:
 #  File does not exist.
 #  File has been updated.
 #  Failed to be updated.
- 
 
 # Not a target:
 makefile:
@@ -315,11 +314,12 @@ GNUmakefile:
 # No general ('VPATH' variable) search path.
 
 # strcache buffers: 1 (0) / strings = 22 / storage = 206 B / avg = 9 B
+ 
 # current buf: size = 8162 B / used = 206 B / count = 22 / avg = 9 B
 
 # strcache performance: lookups = 25 / hit rate = 12%
 # hash-table stats:
 # Load=22/8192=0%, Rehash=0, Collisions=1/25=4%
-# Finished Make data base on Fri Jul 15 21:17:20 2022
+# Finished Make data base on Sun Jul 17 18:41:23 2022
 
  
